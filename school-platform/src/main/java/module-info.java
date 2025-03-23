@@ -7,6 +7,6 @@ module com.tdap.schoolplatform {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
 
-    opens com.tdap.schoolplatform to javafx.fxml;
-    exports com.tdap.schoolplatform;
+    opens com.tap.schoolplatform to javafx.fxml;
+    exports com.tap.schoolplatform;
 }
