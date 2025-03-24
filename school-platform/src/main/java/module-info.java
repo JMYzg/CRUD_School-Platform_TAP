@@ -6,6 +6,7 @@ module com.tdap.schoolplatform {
     requires com.dlsc.formsfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.xml;
 
     opens com.tap.schoolplatform to javafx.fxml;
     exports com.tap.schoolplatform;
