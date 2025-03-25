@@ -4,8 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
 
@@ -22,6 +20,4 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
-
-
 }

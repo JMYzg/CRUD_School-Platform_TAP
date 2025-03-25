@@ -1,4 +1,4 @@
-package com.tap.schoolplatform;
+package com.tap.schoolplatform.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

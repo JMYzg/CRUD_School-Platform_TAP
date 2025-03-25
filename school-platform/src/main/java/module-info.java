@@ -1,4 +1,4 @@
-module com.tdap.schoolplatform {
+module com.tap.schoolplatform {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -10,4 +10,6 @@ module com.tdap.schoolplatform {
 
     opens com.tap.schoolplatform to javafx.fxml;
     exports com.tap.schoolplatform;
+    exports com.tap.schoolplatform.controllers;
+    opens com.tap.schoolplatform.controllers to javafx.fxml;
 }
