@@ -3,10 +3,7 @@ package com.tap.schoolplatform.models.academic;
 import com.tap.schoolplatform.models.academic.keys.GroupKey;
 import com.tap.schoolplatform.models.users.Teacher;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Degree {
     private String name;
@@ -32,5 +29,18 @@ public class Degree {
     public List<Teacher> getTeachers() {return teachers;}
     public void addTeacher(Teacher teacher) {
         teachers.add(teacher);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Degree degree = (Degree) object;
+        return Objects.equals(name, degree.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
