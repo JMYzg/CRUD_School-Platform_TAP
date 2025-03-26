@@ -25,6 +25,7 @@ public class BirthDate {
         return month;
     }
     public void setMonth(int month) {
+        if (month < 1 || month > 12) throw new IllegalArgumentException("Month out of range");
         this.month = month;
     }
 

@@ -1,12 +1,12 @@
 package com.tap.schoolplatform.models.shared;
 
 public class Address {
-    String street;
-    int postalCode;
-    String colony;
-    String city;
-    String state;
-    String country;
+    private String street;
+    private int postalCode;
+    private String colony;
+    private String city;
+    private String state;
+    private String country;
 
     public Address(String street, int postalCode, String colony, String city, String state, String country) {
         this.street = street;
@@ -57,5 +57,10 @@ public class Address {
     }
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return "St." + street + ", P.C.:" + postalCode + ", Col." + colony + ", " + city + ", " + state + ", " + country;
     }
 }

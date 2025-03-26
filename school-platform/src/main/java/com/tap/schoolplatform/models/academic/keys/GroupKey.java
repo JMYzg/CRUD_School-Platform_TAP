@@ -12,10 +12,10 @@ public class GroupKey {
         this.semester = semester;
     }
 
-    final Shift getShift() {
+    public Shift getShift() {
         return shift;
     }
-    final int getSemester() {
+    public int getSemester() {
         return semester;
     }
 
