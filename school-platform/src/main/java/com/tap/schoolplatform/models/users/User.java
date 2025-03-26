@@ -8,13 +8,13 @@ import java.util.UUID;
 
 public abstract class User {
     private final UUID uuid;
-    String name;
-    String lastName;
-    BirthDate birthDate;
-    String email;
-    String phone;
-    Address address;
-    Gender gender;
+    private String name;
+    private String lastName;
+    private BirthDate birthDate;
+    private String email;
+    private String phone;
+    private Address address;
+    private Gender gender;
 
     protected User(String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         this.uuid = UUID.randomUUID();

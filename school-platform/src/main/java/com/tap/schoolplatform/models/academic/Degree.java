@@ -1,41 +1,46 @@
 package com.tap.schoolplatform.models.academic;
 
 import com.tap.schoolplatform.models.academic.keys.GroupKey;
+import com.tap.schoolplatform.models.users.Teacher;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Degree {
-    private String degreeId;
-    private String degreeName;
-    private Map<GroupKey, List<Group>> groups = new HashMap<>();
+    private String name;
+    private final Map<GroupKey, List<Group>> groups = new HashMap<>();
+    private final List<Teacher> teachers = new ArrayList<>();
 
-    public Degree(String degreeId, String degreeName) {
-        this.degreeId = degreeId;
-        this.degreeName = degreeName;
-    }
-
-    public String getDegreeId() {
-        return degreeId;
-    }
-    public void setDegreeId(String degreeId) {
-        this.degreeId = degreeId;
+    public Degree(String name) {
+        this.name = name;
     }
 
-    public String getDegreeName() {
-        return degreeName;
-    }
-    public void setDegreeName(String degreeName) {
-        this.degreeName = degreeName;
-    }
-
-    public void addGroup(GroupKey key, Group group) {
-        groups.computeIfAbsent(key, k -> new ArrayList<>()).add(group);
+    public String getName() {return name;}
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Group> getGroups(GroupKey key) {
         return groups.get(key);
+    }
+    public void addGroup(GroupKey key, Group group) {
+        groups.computeIfAbsent(key, k -> new ArrayList<>()).add(group);
+    }
+
+    public List<Teacher> getTeachers() {return teachers;}
+    public void addTeacher(Teacher teacher) {
+        teachers.add(teacher);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Degree degree = (Degree) object;
+        return Objects.equals(name, degree.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

@@ -4,12 +4,23 @@ import com.tap.schoolplatform.models.shared.Address;
 import com.tap.schoolplatform.models.shared.BirthDate;
 import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.Status;
+import com.tap.schoolplatform.utils.SharedData;
+
+import java.time.LocalDate;
+import java.util.Map;
 
 public class Student extends User {
 
+    private final String studentId;
     private Status status = Status.ACTIVE;
-    protected Student(String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
+
+    public Student(int index, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         super(name, lastName, birthDate, email, phone, address, gender);
+        this.studentId = LocalDate.now().getYear() % 100 + LocalDate.now().getMonth().toString() + index;
+    }
+
+    public String getStudentId() {
+        return studentId;
     }
 
     public Status getStatus() {
