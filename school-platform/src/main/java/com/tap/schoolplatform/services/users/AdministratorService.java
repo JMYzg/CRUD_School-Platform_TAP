@@ -8,8 +8,8 @@ public class AdministratorService {
 
     // Degrees management
     public void createDegree(String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Degree name cannot be null or empty");
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Degree name cannot be null or blank");
         }
         if (readDegree(name) != null) {
             throw new IllegalArgumentException("Degree already exists"); // create custom exception: DuplicateEntryException
@@ -19,8 +19,8 @@ public class AdministratorService {
     }
 
     public Degree readDegree(String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Degree name cannot be null or empty");
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Degree name cannot be null or blank");
         }
         for (Degree degree : sharedData.getDegrees()) {
             if (degree.getName().equals(name)) {
@@ -42,4 +42,5 @@ public class AdministratorService {
     public void deleteDegree(Degree degree) {
         sharedData.getDegrees().remove(degree);
     }
+
 }
