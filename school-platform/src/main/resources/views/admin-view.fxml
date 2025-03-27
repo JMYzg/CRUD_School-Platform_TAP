@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Esto es un comentario 330 x 395 -->
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -9,13 +10,12 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="654.0" prefWidth="877.0" stylesheets="@../styles/Main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="654.0" prefWidth="877.0" stylesheets="@../Styles/Main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane prefHeight="30.0" prefWidth="655.0" style="-fx-background-color: #003b46;">
             <children>
@@ -33,7 +33,7 @@
                                     <children>
                                         <VBox prefHeight="583.0" prefWidth="378.0">
                                             <children>
-                                                <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage1" prefHeight="385.0" prefWidth="571.0" style="-fx-background-radius: 5; -fx-background-color: #ffffff;" stylesheets="@../styles/Main.css">
+                                                <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage1" prefHeight="388.0" prefWidth="378.0" style="-fx-background-radius: 5; -fx-background-color: #ffffff;" stylesheets="@../Styles/Main.css">
                                                     <children>
                                                         <Label id="TitleRegister" layoutX="21.0" layoutY="16.0" text="Alumn Register" />
                                                         <Label layoutX="21.0" layoutY="68.0" prefHeight="17.0" prefWidth="39.0" text="ID:" />
@@ -44,11 +44,11 @@
                                                         <Label layoutX="21.0" layoutY="346.0" prefHeight="17.0" prefWidth="51.0" text="Gender:" />
                                                         <TextField layoutX="82.0" layoutY="62.0" prefHeight="40.0" prefWidth="136.0" promptText="ID" />
                                                         <TextField layoutX="82.0" layoutY="102.0" prefHeight="40.0" prefWidth="136.0" promptText="Name" />
-                                                        <TextField layoutX="226.0" layoutY="221.0" prefHeight="40.0" prefWidth="134.0" promptText="P. C." />
+                                                        <TextField layoutX="226.0" layoutY="221.0" prefHeight="40.0" prefWidth="135.0" promptText="P. C." />
                                                         <TextField layoutX="81.0" layoutY="182.0" prefHeight="40.0" prefWidth="279.0" promptText="Example@anything.com" />
                                                         <ComboBox editable="true" layoutX="82.0" layoutY="142.0" prefHeight="82.0" prefWidth="75.0" promptText="LADA" />
                                                         <TextField layoutX="165.0" layoutY="142.0" prefHeight="40.0" prefWidth="196.0" promptText="123 4567" />
-                                                        <TextField layoutX="227.0" layoutY="102.0" prefHeight="40.0" prefWidth="134.0" promptText="Last Name" />
+                                                        <TextField layoutX="225.0" layoutY="102.0" prefHeight="40.0" prefWidth="136.0" promptText="Last Name" />
                                                         <TextField layoutX="82.0" layoutY="221.0" prefHeight="40.0" prefWidth="136.0" promptText="Street or Avenue" />
                                                         <TextField layoutX="82.0" layoutY="259.0" prefHeight="40.0" prefWidth="136.0" promptText="Colony" />
                                                         <TextField layoutX="226.0" layoutY="259.0" prefHeight="40.0" prefWidth="135.0" promptText="City" />
@@ -145,7 +145,7 @@
                                     <children>
                                         <VBox prefHeight="583.0" prefWidth="378.0">
                                             <children>
-                                                <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage" prefHeight="388.0" prefWidth="378.0" style="-fx-background-radius: 5; -fx-background-color: #ffffff;" stylesheets="@../styles/Main.css">
+                                                <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage" prefHeight="388.0" prefWidth="378.0" style="-fx-background-radius: 5; -fx-background-color: #ffffff;" stylesheets="@../Styles/Main.css">
                                                     <children>
                                                         <Label id="TitleRegister" layoutX="14.0" layoutY="14.0" text="Teacher register" />
                                                         <Label layoutX="21.0" layoutY="68.0" prefHeight="17.0" prefWidth="39.0" text="ID:" />
