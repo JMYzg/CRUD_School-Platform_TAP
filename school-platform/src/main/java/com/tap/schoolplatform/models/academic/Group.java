@@ -8,19 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
-    private final String groupId;
+    private String groupId;
     private Degree degree;
     private GroupKey key;
     private final List<Student> students = new ArrayList<>();
     private final List<Subject> subjects = new ArrayList<>();
 
-    public Group(int index, Degree degree, GroupKey key) {
+    public Group(Degree degree, GroupKey key) {
         this.degree = degree;
         this.key = key;
-        this.groupId = generateId(index, degree, key);
+        this.groupId = generateId(key);
     }
 
-    private String generateId(int index, Degree degree, GroupKey groupKey) {
+    private String generateId(GroupKey groupKey) {
+        int index = degree.getGroupList(groupKey).size();
         StringBuilder degreeInitials = new StringBuilder();
         for (Character character : degree.getName().toCharArray()) {
             if (Character.isUpperCase(character)) {
@@ -45,6 +46,7 @@ public class Group {
     }
     public void setDegree (Degree degree) {
         this.degree = degree;
+        groupId = generateId(this.key);
     }
 
     public GroupKey getKey() {
@@ -52,6 +54,7 @@ public class Group {
     }
     public void setKey(GroupKey key) {
         this.key = key;
+        groupId = generateId(this.key);
     }
 
     public List<Student> getStudents() {return students;}
