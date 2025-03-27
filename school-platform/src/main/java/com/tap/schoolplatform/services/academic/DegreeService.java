@@ -41,7 +41,7 @@ public class DegreeService extends Service {
         return degree.getGroupList(key);
     }
 
-    public void updateGroup(Group group) {
+    public void updateGroup(Group group, int semester) {
 
     }
 }
