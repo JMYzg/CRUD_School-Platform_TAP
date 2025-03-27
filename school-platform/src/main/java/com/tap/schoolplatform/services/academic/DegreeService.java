@@ -10,15 +10,25 @@ import java.util.List;
 
 public class DegreeService extends Service {
 
-    DegreeService() {}
+    private Degree degree;
 
-    public void createGroup(Degree degree, int semester, Shift shift) {
+    DegreeService() {
+    }
+
+    public Degree getDegree() {
+        return degree;
+    }
+    public void setDegree(Degree degree) {
+        this.degree = degree;
+    }
+
+    public void createGroup(int semester, Shift shift) {
         GroupKey groupKey = new GroupKey(shift, semester);
         Group group = new Group(degree.getGroupList(groupKey).size(), degree, groupKey);
         degree.addGroup(group);
     }
 
-    public Group readGroup(Degree degree, GroupKey key, String id) {
+    public Group readGroup(GroupKey key, String id) {
         for (Group group : degree.getGroupList(key)) {
             if (group.getId().equals(id)) {
                 return group;
@@ -27,11 +37,11 @@ public class DegreeService extends Service {
         return null;
     }
 
-    public List<Group> readGroupList(Degree degree, GroupKey key) {
+    public List<Group> readGroupList(GroupKey key) {
         return degree.getGroupList(key);
     }
 
-    public void updateGroup(Degree degree, GroupKey key) {
+    public void updateGroup(Group group) {
 
     }
 }
