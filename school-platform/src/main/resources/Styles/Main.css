@@ -123,3 +123,82 @@
     -fx-font-family: "Inter 24pt";
     -fx-text-fill: black; /* Color del texto */
 }
+
+/*ScrollPane*/
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Ocultar bordes internos (viewport) */
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Estilo de las barras de desplazamiento (vertical y horizontal) */
+.scroll-bar:vertical, .scroll-bar:horizontal {
+    -fx-background-color: transparent; /* Fondo de la barra */
+}
+
+/* Estilo del "track" (fondo de la barra) */
+.scroll-bar:vertical .track,
+.scroll-bar:horizontal .track {
+    -fx-background-color: #f0f0f0; /* Color del track */
+    -fx-border-color: transparent;
+}
+
+/* Estilo del "thumb" (barra deslizable) */
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #a0a0a0; /* Color sólido del thumb */
+    -fx-background-radius: 5px; /* Bordes redondeados */
+}
+
+/* Ocultar el rincón entre las barras */
+.scroll-pane .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view {
+    -fx-fit-to-width: true; /* Para que las columnas se ajusten */
+    -fx-fit-to-height: true; /* Opcional, si necesitas ajuste vertical */
+}
+
+/* Fondo general del TabPane */
+.tab-pane {
+    -fx-background-color: #ffffff; /* Color de fondo */
+    -fx-border-color: transparent; /* Sin bordes */
+}
+/* Estilo de las pestañas no seleccionadas */
+.tab {
+    -fx-background-color: #e0e0e0; /* Color de fondo */
+    -fx-border-radius: 5px 5px 0 0; /* Bordes redondeados superiores */
+    -fx-background-radius: 5px 5px 0 0;
+    -fx-padding: 1px 15px; /* Espaciado interno */
+    -fx-font-family: "Nirmala UI";
+    -fx-pref-height: bold;
+    -fx-cursor: hand;
+}
+.tab:selected {
+    -fx-background-color: #709a98; /* Color de resaltado */
+    -fx-text-fill: white; /* Texto en blanco */
+}
+/* Texto de las pestañas */
+.tab-label {
+    -fx-text-fill: black; /* Color del texto no seleccionado */
+}
+/* Contenedor de las pestañas (header) */
+.tab-header-area {
+    -fx-background-color: transparent; /* Fondo transparente */
+}
+
+/* Línea inferior del header (opcional) */
+.tab-header-background {
+    -fx-background-color: transparent;
+}
+
+/* Efecto hover para las pestañas */
+.tab:hover {
+    -fx-background-color: #bdbdbd; /* Color al pasar el mouse */
+}
