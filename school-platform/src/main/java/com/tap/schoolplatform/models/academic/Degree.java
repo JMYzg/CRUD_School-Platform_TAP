@@ -19,14 +19,15 @@ public class Degree {
         this.name = name;
     }
 
-    public List<Group> getGroups(GroupKey key) {
+    public List<Group> getGroupList(GroupKey key) {
         return groups.get(key);
     }
-    public void addGroup(GroupKey key, Group group) {
+    public void addGroup(Group group) {
+        GroupKey key = group.getKey();
         groups.computeIfAbsent(key, k -> new ArrayList<>()).add(group);
     }
 
-    public List<Teacher> getTeachers() {return teachers;}
+    public List<Teacher> getTeacherList() {return teachers;}
     public void addTeacher(Teacher teacher) {
         teachers.add(teacher);
     }

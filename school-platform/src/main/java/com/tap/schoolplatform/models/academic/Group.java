@@ -9,11 +9,15 @@ import java.util.List;
 
 public class Group {
     private final String groupId;
+    private Degree degree;
+    private GroupKey key;
     private final List<Student> students = new ArrayList<>();
     private final List<Subject> subjects = new ArrayList<>();
 
-    public Group(int index, Degree degree, GroupKey groupKey) {
-        this.groupId = generateId(index, degree, groupKey);
+    public Group(int index, Degree degree, GroupKey key) {
+        this.degree = degree;
+        this.key = key;
+        this.groupId = generateId(index, degree, key);
     }
 
     private String generateId(int index, Degree degree, GroupKey groupKey) {
@@ -32,8 +36,22 @@ public class Group {
         );
     }
 
-    public String getGroupId () {
+    public String getId() {
         return groupId;
+    }
+
+    public Degree getDegree () {
+        return degree;
+    }
+    public void setDegree (Degree degree) {
+        this.degree = degree;
+    }
+
+    public GroupKey getKey() {
+        return key;
+    }
+    public void setKey(GroupKey key) {
+        this.key = key;
     }
 
     public List<Student> getStudents() {return students;}
