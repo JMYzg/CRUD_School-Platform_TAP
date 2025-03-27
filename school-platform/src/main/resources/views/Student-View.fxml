@@ -1,37 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox prefHeight="654.0" prefWidth="877.0" stylesheets="@../Styles/Main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane prefHeight="30.0" prefWidth="655.0" style="-fx-background-color: #003b46;">
-         <children>
-            <Label layoutX="584.0" layoutY="8.0" text="Admin's name:" />
-            <Label layoutX="676.0" layoutY="8.0" text="Jeremy de Jesús Zarate Garcia" />
-         </children>
-      </AnchorPane>
-      <BorderPane prefHeight="566.0" prefWidth="877.0">
-         <left>
-            <VBox alignment="CENTER" prefHeight="499.0" prefWidth="107.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Button mnemonicParsing="false" text="Button" />
-               </children>
-            </VBox>
-         </left>
-         <top>
-            <AnchorPane prefHeight="67.0" prefWidth="877.0" BorderPane.alignment="CENTER" />
-         </top>
-         <center>
-            <StackPane prefHeight="486.0" prefWidth="709.0" BorderPane.alignment="CENTER" />
-         </center>
-      </BorderPane>
-   </children>
+<VBox prefHeight="654.0" prefWidth="877.0" stylesheets="@../styles/Main.css" xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1">
+   <AnchorPane prefHeight="30.0" prefWidth="655.0" style="-fx-background-color: #003b46;">
+      <Label layoutX="584.0" layoutY="8.0" text="Admin name:"/>
+      <Label layoutX="676.0" layoutY="8.0" text="Jeremy de Jesús Zarate Garcia"/>
+   </AnchorPane>
+   <BorderPane prefHeight="566.0" prefWidth="877.0">
+      <left>
+         <VBox alignment="CENTER" prefHeight="499.0" prefWidth="107.0" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" text="Button"/>
+            <Button mnemonicParsing="false" text="Button"/>
+            <Button mnemonicParsing="false" text="Button"/>
+            <Button mnemonicParsing="false" text="Button"/>
+         </VBox>
+      </left>
+      <top>
+         <AnchorPane prefHeight="67.0" prefWidth="877.0" BorderPane.alignment="CENTER"/>
+      </top>
+      <center>
+         <StackPane prefHeight="486.0" prefWidth="709.0" BorderPane.alignment="CENTER"/>
+      </center>
+   </BorderPane>
 </VBox>

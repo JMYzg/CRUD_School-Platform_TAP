@@ -7,15 +7,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="500.0" style="-fx-background-color: white;" stylesheets="@../styles/Main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label id="TitleRegister" layoutX="26.0" layoutY="20.0" text="Add new degree" />
-      <TextField layoutX="200.0" layoutY="114.0" prefWidth="275.0" />
-      <Label layoutX="26.0" layoutY="121.0" text="Enter the new degree: " />
-      <Label layoutX="26.0" layoutY="76.0" text="Careers already in existence:" />
-      <ComboBox editable="true" layoutX="200.0" layoutY="70.0" prefHeight="17.0" prefWidth="275.0" />
-      <Button id="btnH" layoutX="23.0" layoutY="174.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="133.0" text="Add" />
-      <Button layoutX="184.0" layoutY="174.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="133.0" text="Clear all" />
-      <Button id="btnM" layoutX="342.0" layoutY="174.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="133.0" text="Cancel" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0"
+            prefWidth="500.0" style="-fx-background-color: white;" stylesheets="@../styles/Main.css"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <Label id="TitleRegister" layoutX="26.0" layoutY="20.0" text="Add new degree"/>
+   <TextField layoutX="200.0" layoutY="114.0" prefWidth="275.0"/>
+   <Label layoutX="26.0" layoutY="121.0" text="Enter the new degree: "/>
+   <Label layoutX="26.0" layoutY="76.0" text="Careers already in existence:"/>
+   <ComboBox editable="true" layoutX="200.0" layoutY="70.0" prefHeight="17.0" prefWidth="275.0"/>
+   <Button id="btnH" layoutX="23.0" layoutY="174.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="133.0"
+           text="Add"/>
+   <Button layoutX="184.0" layoutY="174.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="133.0"
+           text="Clear all"/>
+   <Button id="btnM" layoutX="342.0" layoutY="174.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="133.0"
+           text="Cancel"/>
 </AnchorPane>
