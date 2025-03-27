@@ -19,6 +19,23 @@ public class Degree {
         this.name = name;
     }
 
+    public void updateGroupKey(Group group, GroupKey newKey) {
+        removeGroup(group);
+        group.setKey(newKey);
+        groups.computeIfAbsent(newKey, k -> new ArrayList<>()).add(group);
+    }
+
+    public void removeGroup(Group group) {
+        GroupKey oldKey = group.getKey();
+        List<Group> oldGroups = groups.get(oldKey);
+        if (oldGroups != null) {
+            oldGroups.remove(group);
+            if (oldGroups.isEmpty()) {
+                groups.remove(oldKey);
+            }
+        }
+    }
+
     public List<Group> getGroupList(GroupKey key) {
         return groups.get(key);
     }
