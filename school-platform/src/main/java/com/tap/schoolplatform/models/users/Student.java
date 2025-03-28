@@ -4,10 +4,8 @@ import com.tap.schoolplatform.models.shared.Address;
 import com.tap.schoolplatform.models.shared.BirthDate;
 import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.Status;
-import com.tap.schoolplatform.utils.SharedData;
 
 import java.time.LocalDate;
-import java.util.Map;
 
 public class Student extends User {
 
