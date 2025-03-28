@@ -1,7 +1,5 @@
-
 .text-field {
     -fx-background-color: #d5dbdb;
-    -fx-pref-width: 300px;   /* Ancho deseado */
     -fx-pref-height: 30px;
     -fx-background-radius: 5px;
     -fx-prompt-text-fill: #9d9f9f;
