@@ -1,165 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="654.0" prefWidth="877.0" stylesheets="@../styles/Main.css" xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="654.0" prefWidth="877.0" stylesheets="@../styles/Main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.AdminViewController">
     <AnchorPane prefHeight="30.0" prefWidth="655.0" style="-fx-background-color: #003b46;">
-        <Label layoutX="584.0" layoutY="8.0" text="Admin name:"/>
-        <Label layoutX="676.0" layoutY="8.0" text="Jeremy de Jesús Zarate Garcia"/>
+        <Label layoutX="584.0" layoutY="8.0" text="Admin's name:" />
+        <Label layoutX="676.0" layoutY="8.0" text="Jeremy de Jesús Zarate Garcia" />
     </AnchorPane>
     <TabPane prefHeight="625.0" prefWidth="877.0" tabClosingPolicy="UNAVAILABLE">
         <Tab text="Student">
             <AnchorPane prefHeight="595.0" prefWidth="860.0" style="-fx-background-color: #e6e9e9;">
                 <HBox layoutX="7.0" layoutY="6.0" prefHeight="583.0" prefWidth="861.0">
                     <VBox prefHeight="583.0" prefWidth="378.0">
-                        <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage1" prefHeight="388.0"
-                                    prefWidth="378.0"
-                                    style="-fx-background-radius: 5; -fx-background-color: #ffffff;"
-                                    stylesheets="@../styles/Main.css">
-                            <Label id="TitleRegister" layoutX="21.0" layoutY="16.0"
-                                   text="Student Register"/>
-                            <Label layoutX="21.0" layoutY="68.0" prefHeight="17.0"
-                                   prefWidth="39.0" text="ID:"/>
-                            <Label layoutX="21.0" layoutY="114.0" prefHeight="17.0"
-                                   prefWidth="39.0" text="Name:"/>
-                            <Label layoutX="21.0" layoutY="194.0" prefHeight="17.0"
-                                   prefWidth="39.0" text="E-mail:"/>
-                            <Label layoutX="21.0" layoutY="154.0" text="Phone:"/>
-                            <Label layoutX="21.0" layoutY="224.0" prefHeight="17.0"
-                                   prefWidth="58.0" text="Address:"/>
-                            <Label layoutX="21.0" layoutY="346.0" prefHeight="17.0"
-                                   prefWidth="51.0" text="Gender:"/>
-                            <TextField layoutX="82.0" layoutY="62.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="ID"/>
-                            <TextField layoutX="82.0" layoutY="102.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="Name"/>
-                            <TextField layoutX="226.0" layoutY="221.0" prefHeight="40.0"
-                                       prefWidth="135.0" promptText="P. C."/>
-                            <TextField layoutX="81.0" layoutY="182.0" prefHeight="40.0"
-                                       prefWidth="279.0" promptText="Example@anything.com"/>
-                            <ComboBox editable="true" layoutX="82.0" layoutY="142.0"
-                                      prefHeight="82.0" prefWidth="75.0" promptText="LADA"/>
-                            <TextField layoutX="165.0" layoutY="142.0" prefHeight="40.0"
-                                       prefWidth="196.0" promptText="123 4567"/>
-                            <TextField layoutX="225.0" layoutY="102.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="Last Name"/>
-                            <TextField layoutX="82.0" layoutY="221.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="Street or Avenue"/>
-                            <TextField layoutX="82.0" layoutY="259.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="Colony"/>
-                            <TextField layoutX="226.0" layoutY="259.0" prefHeight="40.0"
-                                       prefWidth="135.0" promptText="City"/>
-                            <TextField layoutX="82.0" layoutY="299.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="State"/>
-                            <TextField layoutX="225.0" layoutY="299.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="Country"/>
-                            <ComboBox editable="true" layoutX="82.0" layoutY="339.0"
-                                      prefHeight="82.0" prefWidth="66.0" promptText="M/F"/>
-                            <Button layoutX="226.0" layoutY="62.0" mnemonicParsing="false"
-                                    prefHeight="29.0" prefWidth="136.0" text="Next Available"/>
-                            <Button id="btnH" layoutX="225.0" layoutY="19.0"
-                                    mnemonicParsing="false" prefHeight="29.0" prefWidth="136.0"
-                                    text="New"/>
-                            <Label layoutX="157.0" layoutY="346.0" prefHeight="17.0"
-                                   prefWidth="58.0" text="Birthday:"/>
-                            <TextField layoutX="218.0" layoutY="340.0" prefHeight="27.0"
-                                       prefWidth="39.0" promptText="DD"/>
-                            <TextField layoutX="263.0" layoutY="340.0" prefHeight="27.0"
-                                       prefWidth="39.0" promptText="MM"/>
-                            <TextField layoutX="309.0" layoutY="340.0" prefHeight="30.0"
-                                       prefWidth="51.0" promptText="YYYY"/>
+                        <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage1" prefHeight="386.0" prefWidth="379.0" style="-fx-background-radius: 5; -fx-background-color: #ffffff;" stylesheets="@../styles/Main.css">
+                            <Label id="TitleRegister" layoutX="21.0" layoutY="16.0" text="Alumn Register" />
+                            <Label layoutX="21.0" layoutY="68.0" prefHeight="17.0" prefWidth="39.0" text="ID:" />
+                            <Label layoutX="21.0" layoutY="114.0" prefHeight="17.0" prefWidth="39.0" text="Name:" />
+                            <Label layoutX="21.0" layoutY="154.0" text="Phone:" />
+                            <Label layoutX="21.0" layoutY="194.0" prefHeight="17.0" prefWidth="39.0" text="E-mail:" />
+                            <Label layoutX="21.0" layoutY="224.0" prefHeight="17.0" prefWidth="58.0" text="Address:" />
+                            <Label layoutX="21.0" layoutY="346.0" prefHeight="17.0" prefWidth="51.0" text="Gender:" />
+                            <Button id="btnH" fx:id="studentUserNewButton" layoutX="225.0" layoutY="19.0" mnemonicParsing="false" onAction="#newButton" prefHeight="29.0" prefWidth="136.0" text="New" />
+                            <TextField fx:id="studentIdRegisterTF" layoutX="82.0" layoutY="62.0" prefHeight="40.0" prefWidth="136.0" promptText="ID" />
+                            <Button fx:id="studentNextAvailableButton" layoutX="226.0" layoutY="62.0" mnemonicParsing="false" onAction="#nextAvailableButton" prefHeight="29.0" prefWidth="136.0" text="Next Available" />
+                            <TextField fx:id="studentNameRegisterTF" layoutX="82.0" layoutY="102.0" prefHeight="40.0" prefWidth="136.0" promptText="Name" />
+                            <TextField fx:id="studentLastNameRegisterTF" layoutX="225.0" layoutY="102.0" prefHeight="40.0" prefWidth="136.0" promptText="Last Name" />
+                            <ComboBox fx:id="studentLadaComboBox" editable="true" layoutX="82.0" layoutY="142.0" onAction="#ladaCB" prefHeight="82.0" prefWidth="75.0" promptText="LADA" />
+                            <TextField fx:id="studentNumberRegisterTF" layoutX="165.0" layoutY="142.0" prefHeight="40.0" prefWidth="196.0" promptText="123 4567" />
+                            <TextField fx:id="studentEmailRegisterTF" layoutX="81.0" layoutY="182.0" prefHeight="40.0" prefWidth="279.0" promptText="Example@anything.com" />
+                            <TextField fx:id="studentStreetRegisterTF" layoutX="82.0" layoutY="221.0" prefHeight="40.0" prefWidth="136.0" promptText="Street or Avenue" />
+                            <TextField fx:id="studentPCRegisterTF" layoutX="226.0" layoutY="221.0" prefHeight="40.0" prefWidth="135.0" promptText="P. C." />
+                            <TextField fx:id="studentColonyRegisterTF" layoutX="82.0" layoutY="259.0" prefHeight="40.0" prefWidth="136.0" promptText="Colony" />
+                            <TextField fx:id="studentCityRegisterTF" layoutX="226.0" layoutY="259.0" prefHeight="40.0" prefWidth="135.0" promptText="City" />
+                            <TextField fx:id="studentStateRegisterTF" layoutX="82.0" layoutY="299.0" prefHeight="40.0" prefWidth="136.0" promptText="State" />
+                            <TextField fx:id="studentCountryRegisterTF" layoutX="225.0" layoutY="299.0" prefHeight="40.0" prefWidth="136.0" promptText="Country" />
+                            <ComboBox fx:id="studentGenderComboBox" editable="true" layoutX="82.0" layoutY="339.0" prefHeight="82.0" prefWidth="66.0" promptText="M/F" />
+                            <Label layoutX="157.0" layoutY="346.0" prefHeight="17.0" prefWidth="58.0" text="Birthday:" />
+                            <TextField fx:id="studentBDDayRegisterTF" layoutX="218.0" layoutY="340.0" prefHeight="27.0" prefWidth="39.0" promptText="DD" />
+                            <TextField fx:id="studentBDMonthRegisterTF" layoutX="263.0" layoutY="340.0" prefHeight="27.0" prefWidth="39.0" promptText="MM" />
+                            <TextField fx:id="studentBDYearRegisterTF" layoutX="309.0" layoutY="340.0" prefHeight="30.0" prefWidth="51.0" promptText="YYYY" />
                         </AnchorPane>
-                        <Region prefHeight="10.0" prefWidth="269.0"/>
-                        <AnchorPane prefHeight="188.0" prefWidth="363.0"
-                                    style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
-                            <ComboBox editable="true" layoutX="86.0" layoutY="6.0"
-                                      prefHeight="17.0" prefWidth="143.0"/>
-                            <ComboBox editable="true" layoutX="86.0" layoutY="79.0"
-                                      prefHeight="17.0" prefWidth="143.0"/>
-                            <ComboBox editable="true" layoutX="86.0" layoutY="42.0"
-                                      prefHeight="17.0" prefWidth="143.0"/>
-                            <ComboBox editable="true" layoutX="86.0" layoutY="116.0"
-                                      prefHeight="17.0" prefWidth="143.0"/>
-                            <ComboBox editable="true" layoutX="86.0" layoutY="152.0"
-                                      prefHeight="29.0" prefWidth="143.0"/>
-                            <Button layoutX="245.0" layoutY="43.0" mnemonicParsing="false"
-                                    prefHeight="29.0" prefWidth="109.0" text="Add"/>
-                            <Button layoutX="245.0" layoutY="79.0" mnemonicParsing="false"
-                                    prefHeight="29.0" prefWidth="109.0" text="Add"/>
-                            <Label layoutX="11.0" layoutY="11.0" prefHeight="17.0"
-                                   prefWidth="58.0" text="Modality:"/>
-                            <Label layoutX="11.0" layoutY="49.0" prefHeight="17.0"
-                                   prefWidth="58.0" text="Degree:"/>
-                            <Label layoutX="11.0" layoutY="85.0" prefHeight="17.0"
-                                   prefWidth="58.0" text="Group:"/>
-                            <Label layoutX="11.0" layoutY="123.0" prefHeight="17.0"
-                                   prefWidth="66.0" text="Classroom:"/>
-                            <Label layoutX="11.0" layoutY="159.0" prefHeight="17.0"
-                                   prefWidth="58.0" text="Status:"/>
+                        <Region prefHeight="10.0" prefWidth="269.0" />
+                        <AnchorPane prefHeight="188.0" prefWidth="363.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
+                            <ComboBox fx:id="studentModalityComboBox" editable="true" layoutX="86.0" layoutY="6.0" onAction="#modalityCB" prefHeight="17.0" prefWidth="143.0" />
+                            <ComboBox fx:id="studentDegreeComboBox" editable="true" layoutX="86.0" layoutY="42.0" onAction="#degreeCB" prefHeight="17.0" prefWidth="143.0" />
+                            <Button fx:id="studentAddDegreeButton" layoutX="245.0" layoutY="43.0" mnemonicParsing="false" onAction="#addNewDegreeAdmin" prefHeight="29.0" prefWidth="109.0" text="Add" />
+                            <ComboBox fx:id="studentGroupComboBox" editable="true" layoutX="86.0" layoutY="79.0" onAction="#groupCB" prefHeight="17.0" prefWidth="143.0" />
+                            <Button fx:id="studentAddGroupButton" layoutX="245.0" layoutY="79.0" mnemonicParsing="false" onAction="#addNewGroupAdmin" prefHeight="29.0" prefWidth="109.0" text="Add" />
+                            <ComboBox fx:id="studentClassroomComboBox" editable="true" layoutX="86.0" layoutY="116.0" onAction="#classroomCB" prefHeight="17.0" prefWidth="143.0" />
+                            <ComboBox fx:id="studentStatusComboBox" editable="true" layoutX="86.0" layoutY="152.0" onAction="#statusCB" prefHeight="29.0" prefWidth="143.0" />
+                            <Label layoutX="11.0" layoutY="11.0" prefHeight="17.0" prefWidth="58.0" text="Modality:" />
+                            <Label layoutX="11.0" layoutY="49.0" prefHeight="17.0" prefWidth="58.0" text="Degree:" />
+                            <Label layoutX="11.0" layoutY="85.0" prefHeight="17.0" prefWidth="58.0" text="Group:" />
+                            <Label layoutX="11.0" layoutY="123.0" prefHeight="17.0" prefWidth="66.0" text="Classroom:" />
+                            <Label layoutX="11.0" layoutY="159.0" prefHeight="17.0" prefWidth="58.0" text="Status:" />
                         </AnchorPane>
                     </VBox>
                     <HBox prefHeight="555.0" prefWidth="485.0">
-                        <Region prefHeight="359.0" prefWidth="15.0"/>
+                        <Region prefHeight="359.0" prefWidth="15.0" />
                         <VBox prefHeight="555.0" prefWidth="472.0">
                             <HBox prefHeight="118.0" prefWidth="471.0">
-                                <AnchorPane prefHeight="116.0" prefWidth="136.0"
-                                            style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
-                                    <Button id="btnH" layoutX="14.0" layoutY="7.0"
-                                            mnemonicParsing="false" prefHeight="29.0"
-                                            prefWidth="109.0" text="Edit"/>
-                                    <Button id="btnM" layoutX="14.0" layoutY="44.0"
-                                            mnemonicParsing="false" prefHeight="29.0"
-                                            prefWidth="109.0" text="Accept"/>
-                                    <Button id="btnN" layoutX="14.0" layoutY="80.0"
-                                            mnemonicParsing="false" prefHeight="29.0"
-                                            prefWidth="109.0" text="Cancel"/>
+                                <AnchorPane prefHeight="116.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
+                                    <Button id="btnH" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Edit" />
+                                    <Button id="btnM" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Accept" />
+                                    <Button id="btnN" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
                                 </AnchorPane>
-                                <Region prefHeight="106.0" prefWidth="10.0"/>
-                                <AnchorPane prefHeight="118.0" prefWidth="327.0"
-                                            style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
-                                    <TextField layoutX="14.0" layoutY="7.0"
-                                               prefHeight="40.0" prefWidth="220.0"/>
-                                    <Button id="btnM" layoutX="245.0" layoutY="7.0"
-                                            mnemonicParsing="false" prefHeight="29.0"
-                                            prefWidth="66.0" text="Search"/>
-                                    <ComboBox editable="true" layoutX="14.0"
-                                              layoutY="44.0" prefHeight="17.0"
-                                              prefWidth="220.0"/>
-                                    <Button id="btnH" layoutX="245.0" layoutY="45.0"
-                                            mnemonicParsing="false" prefHeight="29.0"
-                                            prefWidth="66.0" text="Filter"/>
-                                    <CheckBox layoutX="14.0" layoutY="80.0"
-                                              mnemonicParsing="false" prefHeight="19.0"
-                                              prefWidth="84.0" text="Last Name"/>
-                                    <CheckBox layoutX="14.0" layoutY="95.0"
-                                              mnemonicParsing="false" prefHeight="17.0"
-                                              prefWidth="69.0" text="Email"/>
-                                    <CheckBox layoutX="98.0" layoutY="80.0"
-                                              mnemonicParsing="false" prefHeight="19.0"
-                                              prefWidth="84.0" text="Sex"/>
-                                    <CheckBox layoutX="98.0" layoutY="95.0"
-                                              mnemonicParsing="false" prefHeight="19.0"
-                                              prefWidth="84.0" text="Degree"/>
-                                    <CheckBox layoutX="173.0" layoutY="80.0"
-                                              mnemonicParsing="false" prefHeight="19.0"
-                                              prefWidth="84.0" text="Modality"/>
-                                    <CheckBox layoutX="173.0" layoutY="95.0"
-                                              mnemonicParsing="false" prefHeight="19.0"
-                                              prefWidth="84.0" text="Group"/>
+                                <Region prefHeight="106.0" prefWidth="10.0" />
+                                <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
+                                    <TextField layoutX="14.0" layoutY="7.0" prefHeight="40.0" prefWidth="220.0" />
+                                    <Button id="btnM" layoutX="245.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="66.0" text="Search" />
+                                    <ComboBox editable="true" layoutX="14.0" layoutY="44.0" prefHeight="17.0" prefWidth="220.0" />
+                                    <Button id="btnH" layoutX="245.0" layoutY="45.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="66.0" text="Filter" />
+                                    <CheckBox layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="84.0" text="Last Name" />
+                                    <CheckBox layoutX="14.0" layoutY="95.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="69.0" text="Email" />
+                                    <CheckBox layoutX="98.0" layoutY="80.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="84.0" text="Sex" />
+                                    <CheckBox layoutX="98.0" layoutY="95.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="84.0" text="Degree" />
+                                    <CheckBox layoutX="173.0" layoutY="80.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="84.0" text="Modality" />
+                                    <CheckBox layoutX="173.0" layoutY="95.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="84.0" text="Group" />
                                 </AnchorPane>
                             </HBox>
-                            <Region prefHeight="10.0" prefWidth="471.0"/>
+                            <Region prefHeight="10.0" prefWidth="471.0" />
                             <ScrollPane prefHeight="457.0" prefWidth="471.0">
-                                <TableView prefHeight="460.0" prefWidth="453.0"
-                                           style="-fx-background-color: white; -fx-background-radius: 5;">
+                                <TableView prefHeight="460.0" prefWidth="453.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                                     <columns>
-                                        <TableColumn prefWidth="66.0" text="ID"/>
-                                        <TableColumn prefWidth="107.0" text="Last Name"/>
-                                        <TableColumn prefWidth="105.0" text="Name"/>
-                                        <TableColumn prefWidth="94.0" text="Degree"/>
-                                        <TableColumn prefWidth="98.0" text="Group"/>
+                                        <TableColumn prefWidth="66.0" text="ID" />
+                                        <TableColumn prefWidth="107.0" text="Last Name" />
+                                        <TableColumn prefWidth="105.0" text="Name" />
+                                        <TableColumn prefWidth="94.0" text="Degree" />
+                                        <TableColumn prefWidth="98.0" text="Group" />
                                     </columns>
                                 </TableView>
                             </ScrollPane>
@@ -172,139 +113,73 @@
             <AnchorPane prefHeight="616.0" prefWidth="877.0" style="-fx-background-color: #e6e9e9;">
                 <HBox layoutX="7.0" layoutY="6.0" prefHeight="583.0" prefWidth="861.0">
                     <VBox prefHeight="583.0" prefWidth="378.0">
-                        <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage" prefHeight="388.0"
-                                    prefWidth="378.0"
-                                    style="-fx-background-radius: 5; -fx-background-color: #ffffff;"
-                                    stylesheets="@../styles/Main.css">
-                            <Label id="TitleRegister" layoutX="14.0" layoutY="14.0"
-                                   text="Teacher register"/>
-                            <Label layoutX="21.0" layoutY="68.0" prefHeight="17.0"
-                                   prefWidth="39.0" text="ID:"/>
-                            <Label layoutX="21.0" layoutY="114.0" prefHeight="17.0"
-                                   prefWidth="39.0" text="Name:"/>
-                            <Label layoutX="21.0" layoutY="194.0" prefHeight="17.0"
-                                   prefWidth="39.0" text="E-mail:"/>
-                            <Label layoutX="21.0" layoutY="154.0" text="Phone:"/>
-                            <Label layoutX="21.0" layoutY="224.0" prefHeight="17.0"
-                                   prefWidth="58.0" text="Address:"/>
-                            <Label layoutX="21.0" layoutY="346.0" prefHeight="17.0"
-                                   prefWidth="51.0" text="Gender:"/>
-                            <TextField layoutX="82.0" layoutY="62.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="ID"/>
-                            <TextField layoutX="82.0" layoutY="102.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="Name"/>
-                            <TextField layoutX="226.0" layoutY="221.0" prefHeight="40.0"
-                                       prefWidth="135.0" promptText="P. C."/>
-                            <TextField layoutX="81.0" layoutY="182.0" prefHeight="40.0"
-                                       prefWidth="279.0" promptText="Example@anything.com"/>
-                            <ComboBox editable="true" layoutX="82.0" layoutY="142.0"
-                                      prefHeight="82.0" prefWidth="75.0" promptText="LADA"/>
-                            <TextField layoutX="165.0" layoutY="142.0" prefHeight="40.0"
-                                       prefWidth="196.0" promptText="123 4567"/>
-                            <TextField layoutX="225.0" layoutY="102.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="Last Name"/>
-                            <TextField layoutX="82.0" layoutY="221.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="Street or Avenue"/>
-                            <TextField layoutX="82.0" layoutY="259.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="Colony"/>
-                            <TextField layoutX="226.0" layoutY="259.0" prefHeight="40.0"
-                                       prefWidth="135.0" promptText="City"/>
-                            <TextField layoutX="82.0" layoutY="299.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="State"/>
-                            <TextField layoutX="225.0" layoutY="299.0" prefHeight="40.0"
-                                       prefWidth="136.0" promptText="Country"/>
-                            <ComboBox editable="true" layoutX="82.0" layoutY="339.0"
-                                      prefHeight="82.0" prefWidth="66.0" promptText="M/F"/>
-                            <Button layoutX="226.0" layoutY="62.0" mnemonicParsing="false"
-                                    prefHeight="29.0" prefWidth="136.0" text="Next Available"/>
-                            <Button id="btnH" layoutX="226.0" layoutY="20.0"
-                                    mnemonicParsing="false" prefHeight="29.0" prefWidth="136.0"
-                                    text="New"/>
-                            <Label layoutX="157.0" layoutY="346.0" prefHeight="17.0"
-                                   prefWidth="58.0" text="Birthday:"/>
-                            <TextField layoutX="218.0" layoutY="340.0" prefHeight="27.0"
-                                       prefWidth="39.0" promptText="DD"/>
-                            <TextField layoutX="263.0" layoutY="340.0" prefHeight="27.0"
-                                       prefWidth="39.0" promptText="MM"/>
-                            <TextField layoutX="309.0" layoutY="340.0" prefHeight="30.0"
-                                       prefWidth="51.0" promptText="YYYY"/>
+                        <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage" prefHeight="388.0" prefWidth="378.0" style="-fx-background-radius: 5; -fx-background-color: #ffffff;" stylesheets="@../styles/Main.css">
+                            <Label id="TitleRegister" layoutX="14.0" layoutY="14.0" text="Teacher register" />
+                            <Label layoutX="21.0" layoutY="68.0" prefHeight="17.0" prefWidth="39.0" text="ID:" />
+                            <Label layoutX="21.0" layoutY="114.0" prefHeight="17.0" prefWidth="39.0" text="Name:" />
+                            <Label layoutX="21.0" layoutY="194.0" prefHeight="17.0" prefWidth="39.0" text="E-mail:" />
+                            <Label layoutX="21.0" layoutY="154.0" text="Phone:" />
+                            <Label layoutX="21.0" layoutY="224.0" prefHeight="17.0" prefWidth="58.0" text="Address:" />
+                            <Label layoutX="21.0" layoutY="346.0" prefHeight="17.0" prefWidth="51.0" text="Gender:" />
+                            <TextField layoutX="82.0" layoutY="62.0" prefHeight="40.0" prefWidth="136.0" promptText="ID" />
+                            <TextField layoutX="82.0" layoutY="102.0" prefHeight="40.0" prefWidth="136.0" promptText="Name" />
+                            <TextField layoutX="226.0" layoutY="221.0" prefHeight="40.0" prefWidth="135.0" promptText="P. C." />
+                            <TextField layoutX="81.0" layoutY="182.0" prefHeight="40.0" prefWidth="279.0" promptText="Example@anything.com" />
+                            <ComboBox editable="true" layoutX="82.0" layoutY="142.0" prefHeight="82.0" prefWidth="75.0" promptText="LADA" />
+                            <TextField layoutX="165.0" layoutY="142.0" prefHeight="40.0" prefWidth="196.0" promptText="123 4567" />
+                            <TextField layoutX="225.0" layoutY="102.0" prefHeight="40.0" prefWidth="136.0" promptText="Last Name" />
+                            <TextField layoutX="82.0" layoutY="221.0" prefHeight="40.0" prefWidth="136.0" promptText="Street or Avenue" />
+                            <TextField layoutX="82.0" layoutY="259.0" prefHeight="40.0" prefWidth="136.0" promptText="Colony" />
+                            <TextField layoutX="226.0" layoutY="259.0" prefHeight="40.0" prefWidth="135.0" promptText="City" />
+                            <TextField layoutX="82.0" layoutY="299.0" prefHeight="40.0" prefWidth="136.0" promptText="State" />
+                            <TextField layoutX="225.0" layoutY="299.0" prefHeight="40.0" prefWidth="136.0" promptText="Country" />
+                            <ComboBox editable="true" layoutX="82.0" layoutY="339.0" prefHeight="82.0" prefWidth="66.0" promptText="M/F" />
+                            <Button layoutX="226.0" layoutY="62.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="136.0" text="Next Available" />
+                            <Button id="btnH" layoutX="226.0" layoutY="20.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="136.0" text="New" />
+                            <Label layoutX="157.0" layoutY="346.0" prefHeight="17.0" prefWidth="58.0" text="Birthday:" />
+                            <TextField layoutX="218.0" layoutY="340.0" prefHeight="27.0" prefWidth="39.0" promptText="DD" />
+                            <TextField layoutX="263.0" layoutY="340.0" prefHeight="27.0" prefWidth="39.0" promptText="MM" />
+                            <TextField layoutX="309.0" layoutY="340.0" prefHeight="30.0" prefWidth="51.0" promptText="YYYY" />
                         </AnchorPane>
-                        <Region prefHeight="10.0" prefWidth="269.0"/>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                                    minWidth="-Infinity" prefHeight="188.0" prefWidth="379.0"
-                                    style="-fx-background-color: White; -fx-background-radius: 5;">
-                            <TextField layoutX="14.0" layoutY="34.0" prefHeight="40.0"
-                                       prefWidth="220.0"/>
-                            <Button id="btnN" layoutX="250.0" layoutY="34.0"
-                                    mnemonicParsing="false" prefHeight="29.0" prefWidth="116.0"
-                                    text="Create"/>
-                            <ComboBox editable="true" layoutX="14.0" layoutY="88.0"
-                                      prefHeight="17.0" prefWidth="220.0"/>
-                            <Button id="btnM" layoutX="250.0" layoutY="88.0"
-                                    mnemonicParsing="false" prefHeight="29.0" prefWidth="116.0"
-                                    text="Select"/>
-                            <Button id="btnH" layoutX="14.0" layoutY="137.0"
-                                    mnemonicParsing="false" prefHeight="29.0" prefWidth="353.0"
-                                    text="Add assignment"/>
+                        <Region prefHeight="10.0" prefWidth="269.0" />
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="379.0" style="-fx-background-color: White; -fx-background-radius: 5;">
+                            <TextField layoutX="14.0" layoutY="34.0" prefHeight="40.0" prefWidth="220.0" />
+                            <Button id="btnN" layoutX="250.0" layoutY="34.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="116.0" text="Create" />
+                            <ComboBox editable="true" layoutX="14.0" layoutY="88.0" prefHeight="17.0" prefWidth="220.0" />
+                            <Button id="btnM" layoutX="250.0" layoutY="88.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="116.0" text="Select" />
+                            <Button id="btnH" layoutX="14.0" layoutY="137.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="353.0" text="Add assignment" />
                         </AnchorPane>
                     </VBox>
                     <HBox prefHeight="555.0" prefWidth="485.0">
-                        <Region prefHeight="359.0" prefWidth="15.0"/>
+                        <Region prefHeight="359.0" prefWidth="15.0" />
                         <VBox prefHeight="555.0" prefWidth="472.0">
                             <HBox prefHeight="118.0" prefWidth="471.0">
-                                <AnchorPane prefHeight="116.0" prefWidth="136.0"
-                                            style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
-                                    <Button id="btnH" layoutX="14.0" layoutY="7.0"
-                                            mnemonicParsing="false" prefHeight="29.0"
-                                            prefWidth="109.0" text="Edit"/>
-                                    <Button id="btnM" layoutX="14.0" layoutY="44.0"
-                                            mnemonicParsing="false" prefHeight="29.0"
-                                            prefWidth="109.0" text="Accept"/>
-                                    <Button id="btnN" layoutX="14.0" layoutY="80.0"
-                                            mnemonicParsing="false" prefHeight="29.0"
-                                            prefWidth="109.0" text="Cancel"/>
+                                <AnchorPane prefHeight="116.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
+                                    <Button id="btnH" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Edit" />
+                                    <Button id="btnM" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Accept" />
+                                    <Button id="btnN" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
                                 </AnchorPane>
-                                <Region prefHeight="106.0" prefWidth="10.0"/>
-                                <AnchorPane prefHeight="118.0" prefWidth="327.0"
-                                            style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
-                                    <TextField layoutX="14.0" layoutY="7.0"
-                                               prefHeight="40.0" prefWidth="220.0"/>
-                                    <Button id="btnM" layoutX="245.0" layoutY="7.0"
-                                            mnemonicParsing="false" prefHeight="29.0"
-                                            prefWidth="66.0" text="Search"/>
-                                    <ComboBox editable="true" layoutX="14.0"
-                                              layoutY="44.0" prefHeight="17.0"
-                                              prefWidth="220.0"/>
-                                    <Button id="btnH" layoutX="245.0" layoutY="45.0"
-                                            mnemonicParsing="false" prefHeight="29.0"
-                                            prefWidth="66.0" text="Filter"/>
-                                    <CheckBox layoutX="14.0" layoutY="80.0"
-                                              mnemonicParsing="false" prefHeight="19.0"
-                                              prefWidth="84.0" text="Last Name"/>
-                                    <CheckBox layoutX="14.0" layoutY="95.0"
-                                              mnemonicParsing="false" prefHeight="17.0"
-                                              prefWidth="69.0" text="Email"/>
-                                    <CheckBox layoutX="98.0" layoutY="80.0"
-                                              mnemonicParsing="false" prefHeight="19.0"
-                                              prefWidth="84.0" text="Gender"/>
-                                    <CheckBox layoutX="98.0" layoutY="95.0"
-                                              mnemonicParsing="false" prefHeight="19.0"
-                                              prefWidth="84.0" text="Degree"/>
-                                    <CheckBox layoutX="173.0" layoutY="80.0"
-                                              mnemonicParsing="false" prefHeight="19.0"
-                                              prefWidth="84.0" text="Modality"/>
+                                <Region prefHeight="106.0" prefWidth="10.0" />
+                                <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
+                                    <TextField layoutX="14.0" layoutY="7.0" prefHeight="40.0" prefWidth="220.0" />
+                                    <Button id="btnM" layoutX="245.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="66.0" text="Search" />
+                                    <ComboBox editable="true" layoutX="14.0" layoutY="44.0" prefHeight="17.0" prefWidth="220.0" />
+                                    <Button id="btnH" layoutX="245.0" layoutY="45.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="66.0" text="Filter" />
+                                    <CheckBox layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="84.0" text="Last Name" />
+                                    <CheckBox layoutX="14.0" layoutY="95.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="69.0" text="Email" />
+                                    <CheckBox layoutX="98.0" layoutY="80.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="84.0" text="Gender" />
+                                    <CheckBox layoutX="98.0" layoutY="95.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="84.0" text="Degree" />
+                                    <CheckBox layoutX="173.0" layoutY="80.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="84.0" text="Modality" />
                                 </AnchorPane>
                             </HBox>
-                            <Region prefHeight="10.0" prefWidth="471.0"/>
+                            <Region prefHeight="10.0" prefWidth="471.0" />
                             <ScrollPane prefHeight="457.0" prefWidth="470.0">
-                                <TableView prefHeight="457.0" prefWidth="453.0"
-                                           style="-fx-background-color: white; -fx-background-radius: 5;">
+                                <TableView prefHeight="457.0" prefWidth="453.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                                     <columns>
-                                        <TableColumn prefWidth="105.0" text="ID"/>
-                                        <TableColumn prefWidth="85.0" text="Last name"/>
-                                        <TableColumn prefWidth="143.0" text="Name"/>
-                                        <TableColumn minWidth="0.0" prefWidth="135.0"
-                                                     text="Degree"/>
+                                        <TableColumn prefWidth="105.0" text="ID" />
+                                        <TableColumn prefWidth="85.0" text="Last name" />
+                                        <TableColumn prefWidth="143.0" text="Name" />
+                                        <TableColumn minWidth="0.0" prefWidth="135.0" text="Degree" />
                                     </columns>
                                 </TableView>
                             </ScrollPane>
