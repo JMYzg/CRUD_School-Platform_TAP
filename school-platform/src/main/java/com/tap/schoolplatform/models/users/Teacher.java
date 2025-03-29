@@ -1,10 +1,7 @@
 package com.tap.schoolplatform.models.users;
 
-import com.tap.schoolplatform.models.academic.Degree;
-import com.tap.schoolplatform.models.academic.Group;
-import com.tap.schoolplatform.models.academic.Subject;
-import com.tap.schoolplatform.models.shared.Address;
-import com.tap.schoolplatform.models.shared.BirthDate;
+import com.tap.schoolplatform.models.academic.*;
+import com.tap.schoolplatform.models.shared.*;
 import com.tap.schoolplatform.models.enums.Gender;
 
 import java.util.HashMap;

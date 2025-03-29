@@ -2,7 +2,6 @@ package com.tap.schoolplatform.models.academic;
 
 import com.tap.schoolplatform.models.academic.keys.GroupKey;
 import com.tap.schoolplatform.models.users.Teacher;
-import javafx.collections.FXCollections;
 
 import java.util.*;
 
@@ -10,6 +9,7 @@ public class Degree {
     private String name;
     private final Map<GroupKey, List<Group>> groups = new HashMap<>();
     private final List<Teacher> teachers = new ArrayList<>();
+    private final Map<Integer, List<Subject>> subjects = new HashMap<>();
 
     public Degree(String name) {
         this.name = name;
@@ -18,12 +18,6 @@ public class Degree {
     public String getName() {return name;}
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void updateGroupKey(Group group, GroupKey newKey) {
-        removeGroup(group);
-        group.setKey(newKey);
-        groups.computeIfAbsent(newKey, k -> new ArrayList<>()).add(group);
     }
 
     public void removeGroup(Group group) {
@@ -51,6 +45,24 @@ public class Degree {
     }
     public void removeTeacher(Teacher teacher) {
         teachers.remove(teacher);
+    }
+
+    public List<Subject> getSubjectList(int semester) {
+        return Collections.unmodifiableList(subjects.get(semester));
+    }
+    public void addSubject(Subject subject) {
+        int semester = subject.getSemester();
+        this.subjects.computeIfAbsent(semester, sem -> new ArrayList<>()).add(subject);
+    }
+    public void removeSubject(Subject subject) {
+        int oldSemester = subject.getSemester();
+        List<Subject> oldSubjects = subjects.get(oldSemester);
+        if (oldSubjects != null) {
+            oldSubjects.remove(subject);
+            if (oldSubjects.isEmpty()) {
+                subjects.remove(oldSemester);
+            }
+        }
     }
 
     @Override
