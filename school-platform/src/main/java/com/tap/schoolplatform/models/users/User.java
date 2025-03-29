@@ -1,8 +1,7 @@
 package com.tap.schoolplatform.models.users;
 
 import com.tap.schoolplatform.models.enums.UserRole;
-import com.tap.schoolplatform.models.shared.Address;
-import com.tap.schoolplatform.models.shared.BirthDate;
+import com.tap.schoolplatform.models.shared.*;
 import com.tap.schoolplatform.models.enums.Gender;
 
 import java.util.UUID;

@@ -1,11 +1,9 @@
 package com.tap.schoolplatform.utils;
 
 import com.tap.schoolplatform.models.academic.Degree;
-import com.tap.schoolplatform.models.enums.Gender;
-import com.tap.schoolplatform.models.enums.Status;
-import com.tap.schoolplatform.models.enums.UserRole;
-import com.tap.schoolplatform.models.shared.Address;
-import com.tap.schoolplatform.models.shared.BirthDate;
+import com.tap.schoolplatform.models.academic.Group;
+import com.tap.schoolplatform.models.enums.*;
+import com.tap.schoolplatform.models.shared.*;
 
 public class UserDTO {
 
@@ -27,6 +25,7 @@ public class UserDTO {
 
     // Student attributes
     private Status status;
+    private Group group;
 
     // Getters and setters for common user attributes
     public String getPassword() {
@@ -120,5 +119,12 @@ public class UserDTO {
     }
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }
