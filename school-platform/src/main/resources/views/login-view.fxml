@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="326.0" style="-fx-background-color: #ffffff;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="CENTER" layoutX="36.0" layoutY="8.0" prefHeight="341.0" prefWidth="254.0">
         <Label id="titleLogin" alignment="TOP_CENTER" text="Log in" textAlignment="CENTER" textFill="#39c2cc">
