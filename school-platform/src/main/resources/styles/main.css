@@ -1,10 +1,10 @@
-#txtbold {
+#txtbold{
     -fx-font-family: "Inter Semi Bold";
     -fx-font-weight: bold;
     -fx-font-size: 12px;
     -fx-text-fill: #000000;
 }
-#txtregular {
+#txtregular{
     -fx-font-family: "Inter";
     -fx-font-weight: bold;
     -fx-font-size: 12px;
@@ -237,4 +237,22 @@
 .separator .line {
     -fx-border-color:#bdbdbd; /* Color rojo */
     -fx-border-width: 1px 0 0 0; /* Grosor superior de 3px (horizontal) */
+}
+#BtnTest{
+    -fx-background-color: transparent;
+    -fx-pref-height: 100px; /* Ancho preferido */
+    -fx-background-insets: 0; /* Sin márgenes internos */
+    -fx-border-width: 0; /* Sin bordes */
+    -fx-padding: 0px 0px; /* Elimina el espacio interno */
+    -fx-cursor: hand; /* Opcional: cursor de mano */
+}
+#BtnclassColor{
+    -fx-background-radius: 5 0 0 5; /* Esquinas: top-left, top-right, bottom-right, bottom-left */
+    -fx-border-radius: 5 0 0 5;
+}
+/* Estilo para el HBox con borde difuminado */
+#Difuminado {
+    -fx-effect: dropshadow(gaussian, rgba(128, 128, 128, 0.5), 10, 0, 0, 0);
+    -fx-background-color: #ffffff; /* Fondo del HBox (opcional) */
+    -fx-background-radius: 5px;    /* Esquinas redondeadas (opcional) */
 }

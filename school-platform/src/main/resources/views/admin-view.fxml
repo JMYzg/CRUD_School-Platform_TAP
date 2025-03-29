@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox prefHeight="654.0" prefWidth="877.0" stylesheets="@../Styles/Main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="656.0" prefWidth="879.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane prefHeight="30.0" prefWidth="655.0" style="-fx-background-color: #003b46;">
             <children>
@@ -34,7 +22,9 @@
                                     <children>
                                         <VBox prefHeight="583.0" prefWidth="378.0">
                                             <children>
-                                                <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage1" prefHeight="388.0" prefWidth="378.0" style="-fx-background-radius: 5; -fx-background-color: #ffffff;" stylesheets="@../Styles/Main.css">
+
+                                                <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage1" prefHeight="385.0" prefWidth="571.0" style="-fx-background-radius: 5; -fx-background-color: #ffffff;" stylesheets="@../styles/main.css">
+
                                                     <children>
                                                         <Label id="TitleRegister" layoutX="21.0" layoutY="16.0" text="Alumn Register" />
                                                         <Label layoutX="21.0" layoutY="68.0" prefHeight="17.0" prefWidth="39.0" text="ID:" />
@@ -146,7 +136,8 @@
                                     <children>
                                         <VBox prefHeight="583.0" prefWidth="378.0">
                                             <children>
-                                                <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage" prefHeight="388.0" prefWidth="378.0" style="-fx-background-radius: 5; -fx-background-color: #ffffff;" stylesheets="@../Styles/Main.css">
+
+                                                <AnchorPane id="AnchorPaneImage" fx:id="AnchorPaneImage" prefHeight="388.0" prefWidth="378.0" style="-fx-background-radius: 5; -fx-background-color: #ffffff;" stylesheets="@../styles/main.css">
                                                     <children>
                                                         <Label id="TitleRegister" layoutX="14.0" layoutY="14.0" text="Teacher register" />
                                                         <Label layoutX="21.0" layoutY="68.0" prefHeight="17.0" prefWidth="39.0" text="ID:" />
