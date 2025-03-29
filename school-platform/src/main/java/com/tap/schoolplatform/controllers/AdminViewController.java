@@ -2,7 +2,7 @@ package com.tap.schoolplatform.controllers;
 
 import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.Status;
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,31 +12,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
+
 
 public class AdminViewController {
 
     public AnchorPane AnchorPaneImage1;
-    public TextField studentIdRegisterTF;
-    public Button studentUserNewButton;
-    public Button studentNextAvailableButton;
-    public TextField studentNameRegisterTF;
-    public TextField studentLastNameRegisterTF;
-    public ComboBox studentLadaComboBox;
-    public TextField studentNumberRegisterTF;
-    public TextField studentEmailRegisterTF;
-    public TextField studentStreetRegisterTF;
-    public TextField studentPCRegisterTF;
-    public TextField studentColonyRegisterTF;
-    public TextField studentCityRegisterTF;
-    public TextField studentStateRegisterTF;
-    public TextField studentCountryRegisterTF;
     public ComboBox studentGenderComboBox;
-    public TextField studentBDDayRegisterTF;
-    public TextField studentBDMonthRegisterTF;
-    public TextField studentBDYearRegisterTF;
     public ComboBox studentModalityComboBox;
     public ComboBox studentDegreeComboBox;
     public Button studentAddDegreeButton;
@@ -45,34 +27,58 @@ public class AdminViewController {
     public ComboBox studentClassroomComboBox;
     public AnchorPane AnchorPaneImage;
     public ComboBox studentStatusComboBox;
+    public ComboBox teacherGenderComboBox;
+    public ComboBox studentLadaComboBox;
+    public ComboBox teacherLadaComboBox;
+
 
     public void initialize() {
-        studentGenderComboBox.getItems().addAll(Arrays.asList(Gender.values()));
-        studentStatusComboBox.getItems().addAll(Status.values());
+        studentGenderComboBox.getItems().setAll(Gender.values());
+        studentGenderComboBox.setEditable(false);
+        //studentModalityComboBox.getItems().setAll(something);
+        studentModalityComboBox.setEditable(false);
+        //studentDegreeComboBox.getItems().setAll(something);
+        studentDegreeComboBox.setEditable(false);
+        //studentGroupComboBox.getItems().setAll(something);
+        studentGroupComboBox.setEditable(false);
+        //studentClassroomComboBox.getItems().setAll(something);
+        studentClassroomComboBox.setEditable(false);
+        studentStatusComboBox.getItems().setAll(Status.values());
+        studentStatusComboBox.setEditable(false);
+        teacherGenderComboBox.getItems().setAll(Gender.values());
+        teacherGenderComboBox.setEditable(false);
+        //studentLadaComboBox.getItems().setAll(something);
+        studentLadaComboBox.setEditable(false);
+        //teacherLadaComboBox.getItems().setAll(something);
+        teacherLadaComboBox.setEditable(false);
     }
 
-    public void newButton(ActionEvent actionEvent) {
+    public ComboBox getStudentDegreeComboBox() {
+        return studentDegreeComboBox;
     }
 
-    public void nextAvailableButton(ActionEvent actionEvent) {
+    public void newButton() {
     }
 
-    public void ladaCB(ActionEvent actionEvent) {
+    public void nextAvailableButton() {
     }
 
-    public void modalityCB(ActionEvent actionEvent) {
+    public void ladaCB() {
     }
 
-    public void degreeCB(ActionEvent actionEvent) {
+    public void modalityCB() {
     }
 
-    public void groupCB(ActionEvent actionEvent) {
+    public void degreeCB() {
     }
 
-    public void classroomCB(ActionEvent actionEvent) {
+    public void groupCB() {
     }
 
-    public void statusCB(ActionEvent actionEvent) {
+    public void classroomCB() {
+    }
+
+    public void statusCB() {
     }
 
     public void addNewDegreeAdmin() throws IOException {

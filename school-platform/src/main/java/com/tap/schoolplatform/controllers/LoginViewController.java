@@ -37,7 +37,7 @@ public class LoginViewController {
         Stage stage = (Stage) userLoginButton.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/Admin-View.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-view.fxml")));
         primaryStage.setTitle("Administrator");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
