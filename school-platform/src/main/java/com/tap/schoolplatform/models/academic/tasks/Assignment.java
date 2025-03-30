@@ -4,20 +4,22 @@ import com.tap.schoolplatform.models.academic.tasks.enums.TaskType;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Assignment extends Task {
 
-    private File file;
+    private final Map<String, File> completed = new HashMap<>();
 
     public Assignment(String title, String description, double score, LocalDate deadline) {
         super(TaskType.ASSIGNMENT, title, description, score, deadline);
     }
 
-    public File getFile() {return file;}
-    public void setFile(File file) {
+    public File getFile(String studentId) {return completed.get(studentId);}
+    public void setFile(String studentId, File file) {
         if (!file.exists()) {
             throw new IllegalArgumentException("File does not exist");
         }
-        this.file = file;
+        this.completed.put(studentId, file);
     }
 }

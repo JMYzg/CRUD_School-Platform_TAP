@@ -11,8 +11,7 @@ public class Group {
     private String groupId;
     private Degree degree;
     private GroupKey key;
-    private final List<Student> students = new ArrayList<>();
-    private final List<Subject> subjects = new ArrayList<>();
+    private final List<Student> students = new ArrayList<>(); // Convert to a set
 
     public Group(Degree degree, GroupKey key) {
         this.degree = degree;
@@ -28,9 +27,9 @@ public class Group {
                 degreeInitials.append(character);
             }
         }
-        String shift = groupKey.getShift() == Shift.MORNINGS ? "M" : "E";
+        String shift = groupKey.shift() == Shift.MORNINGS ? "M" : "E";
         return String.format("%d%s-%d%s",
-                groupKey.getSemester(),
+                groupKey.semester(),
                 degreeInitials,
                 index,
                 shift
@@ -57,7 +56,7 @@ public class Group {
         groupId = generateId(this.key);
     }
 
-    public List<Student> getStudents() {return students;}
+    public List<Student> getStudentList() {return students;}
     public void addStudents(List<Student> students) {this.students.addAll(students);}
 
     public Student getStudent(int index) {return students.get(index);}
@@ -65,9 +64,9 @@ public class Group {
         students.add(student);
     }
 
-    public List<Subject> getSubjects() {return subjects;}
-    public void addSubjects(List<Subject> subjects) {this.subjects.addAll(subjects);}
+    public List<Subject> getSubjectList() {return degree.getSubjectList(key.semester());}
 
-    public Subject getSubject(int index) {return subjects.get(index);}
-    public void addSubject(Subject subject) {this.subjects.add(subject);}
+    public Subject getSubject(int index) {
+        return degree.getSubjectList(key.semester()).get(index);
+    }
 }

@@ -1,22 +1,19 @@
 package com.tap.schoolplatform.models.users;
 
-import com.tap.schoolplatform.models.academic.Degree;
-import com.tap.schoolplatform.models.academic.Subject;
-import com.tap.schoolplatform.models.enums.UserRole;
-import com.tap.schoolplatform.models.shared.Address;
-import com.tap.schoolplatform.models.shared.BirthDate;
+import com.tap.schoolplatform.models.academic.*;
+import com.tap.schoolplatform.models.shared.*;
 import com.tap.schoolplatform.models.enums.Gender;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Teacher extends User {
 
-    private UserRole role = UserRole.TEACHER;
     private String license;
     private Degree degree;
     private String specialization;
-    private final List<Subject> assignedSubjects = new ArrayList<>();
+    private final Map<Group, List<Subject>> assignedSubjects = new HashMap<>();
 
     public Teacher(Degree degree, String license, String specialization, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         super(name, lastName, birthDate, email, phone, address, gender);
@@ -24,13 +21,6 @@ public class Teacher extends User {
         this.degree = degree;
         this.specialization = specialization;
     }
-
-    public UserRole getRole() {
-        return role;
-    }
-    public void setRole(UserRole role) {
-        this.role = role;
-    } // Temp
 
     public String getLicense() {
         return license;
@@ -53,18 +43,22 @@ public class Teacher extends User {
         this.specialization = specialization;
     }
 
-    public List<Subject> getAssignedSubjects() {
-        return assignedSubjects;
+    public List<Subject> getAssignedSubjects(Group group) {
+        return assignedSubjects.get(group);
     }
 
-    public void assignSubject(Subject subject) {
-        this.assignedSubjects.add(subject);
-    }
-    public void unassignSubject(Subject subject) {
-        this.assignedSubjects.remove(subject);
+    public void setAssignedSubjects(Group group, List<Subject> subjects) {
+        assignedSubjects.put(group, subjects);
     }
 
-    public Subject getSubject(Subject subject) {
-        return this.assignedSubjects.get(this.assignedSubjects.indexOf(subject));
+    public void assignSubject(Group group, Subject subject) {
+        assignedSubjects.get(group).add(subject);
+    }
+    public void unassignSubject(Group group, Subject subject) {
+        assignedSubjects.get(group).remove(subject);
+    }
+
+    public Subject getSubject(Group group, Subject subject) {
+        return assignedSubjects.get(group).get(assignedSubjects.get(group).indexOf(subject));
     }
 }

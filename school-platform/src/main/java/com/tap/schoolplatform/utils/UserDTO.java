@@ -1,15 +1,15 @@
-package com.tap.schoolplatform.models.users;
+package com.tap.schoolplatform.utils;
 
-import com.tap.schoolplatform.models.enums.UserRole;
+import com.tap.schoolplatform.models.academic.Degree;
+import com.tap.schoolplatform.models.academic.Group;
+import com.tap.schoolplatform.models.enums.*;
 import com.tap.schoolplatform.models.shared.*;
-import com.tap.schoolplatform.models.enums.Gender;
 
-import java.util.UUID;
+public class UserDTO {
 
-public abstract class User {
-    private final UUID uuid;
+    // Common user attributes
     private String password;
-    private UserRole role = null;
+    private UserRole role;
     private String name;
     private String lastName;
     private BirthDate birthDate;
@@ -18,22 +18,16 @@ public abstract class User {
     private Address address;
     private Gender gender;
 
-    protected User(String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
-        this.uuid = UUID.randomUUID();
-        this.password = "systems123";
-        this.name = name;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.gender = gender;
-    }
+    // Teacher attributes
+    private String license;
+    private Degree degree;
+    private String specialization;
 
-    public UUID getId() {
-        return uuid;
-    }
+    // Student attributes
+    private Status status;
+    private Group group;
 
+    // Getters and setters for common user attributes
     public String getPassword() {
         return password;
     }
@@ -95,5 +89,42 @@ public abstract class User {
     }
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    // Getters and setters for Teacher attributes
+    public String getLicense() {
+        return license;
+    }
+    public void setLicense(String license) {
+        this.license = license;
+    }
+
+    public Degree getDegree() {
+        return degree;
+    }
+    public void setDegree(Degree degree) {
+        this.degree = degree;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+    // Getters and setters for Student attributes
+    public Status getStatus() {
+        return status;
+    }
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

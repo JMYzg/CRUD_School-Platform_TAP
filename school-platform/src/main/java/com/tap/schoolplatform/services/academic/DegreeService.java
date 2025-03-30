@@ -1,23 +1,18 @@
 package com.tap.schoolplatform.services.academic;
 
-import com.tap.schoolplatform.models.academic.Degree;
-import com.tap.schoolplatform.models.academic.Group;
+import com.tap.schoolplatform.models.academic.*;
 import com.tap.schoolplatform.models.academic.enums.Shift;
 import com.tap.schoolplatform.models.academic.keys.GroupKey;
-import com.tap.schoolplatform.models.enums.Gender;
-import com.tap.schoolplatform.models.shared.Address;
-import com.tap.schoolplatform.models.shared.BirthDate;
 import com.tap.schoolplatform.models.users.Teacher;
-import com.tap.schoolplatform.models.users.User;
 import com.tap.schoolplatform.services.Service;
-
-import java.util.List;
+import com.tap.schoolplatform.utils.*;
 
 public class DegreeService extends Service {
 
     private Degree degree;
 
-    DegreeService() {
+    public DegreeService(Degree degree) {
+        this.degree = degree;
     }
 
     public Degree getDegree() {
@@ -42,18 +37,17 @@ public class DegreeService extends Service {
         return null;
     }
 
-    public List<Group> readGroupList(GroupKey key) {
-        return degree.getGroupList(key);
-    }
-
-    public void updateGroup(Group group, GroupKey key) {
-        degree.updateGroupKey(group, key);
-    }
-
-    public void updateGroup(Group group, Degree degree) {
-        this.degree.removeGroup(group);
-        degree.addGroup(group);
-        group.setDegree(degree);
+    public void updateGroup(Group group, GroupDTO groupDTO) {
+        if (groupDTO.getDegree() != null) {
+            group.setDegree(groupDTO.getDegree());
+            degree.removeGroup(group);
+            group.getDegree().addGroup(group);
+        }
+        if (groupDTO.getKey() != null) {
+            degree.removeGroup(group);
+            group.setKey(groupDTO.getKey());
+            degree.addGroup(group);
+        }
     }
 
     public void deleteGroup(Group group) {
@@ -61,7 +55,69 @@ public class DegreeService extends Service {
     }
 
     // Teacher Management
-    public void createTeacher(Degree degree, String license, String specialization, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
-        Teacher teacher = new Teacher(degree, license, specialization, name, lastName, birthDate, email, phone, address, gender);
+    public void createTeacher(Teacher teacher, String license, String specialization) {
+        teacher.setLicense(license);
+        teacher.setDegree(degree);
+        teacher.setSpecialization(specialization);
+        degree.addTeacher(teacher);
+    }
+
+    public Teacher readTeacher(String license) {
+        for (Teacher teacher : degree.getTeacherList()) {
+            if (teacher.getLicense().equals(license)) {
+                return teacher;
+            }
+        }
+        return null;
+    }
+
+    public void updateTeacher(Teacher teacher, UserDTO userDTO) {
+        if (userDTO.getLicense() != null) teacher.setLicense(userDTO.getLicense());
+        if (userDTO.getDegree() != null) {
+            teacher.setDegree(userDTO.getDegree());
+            degree.removeTeacher(teacher);
+            teacher.getDegree().addTeacher(teacher);
+        }
+        if (userDTO.getSpecialization() != null) {
+            teacher.setSpecialization(userDTO.getSpecialization());
+        }
+    }
+
+    public void deleteTeacher(Teacher teacher) {
+        degree.removeTeacher(teacher);
+    }
+
+    // Subject management
+    public void createSubject(int semester, String name, String description) {
+        Subject subject = new Subject(degree, semester, name, description);
+        degree.addSubject(subject);
+    }
+
+    public  Subject readSubject(int semester, String name) {
+        for (Subject subject : degree.getSubjectList(semester)) {
+            if (subject.getName().equals(name)) {
+                return subject;
+            }
+        }
+        return null;
+    }
+
+    public void updateSubject(Subject subject, SubjectDTO subjectDTO) {
+        if (subjectDTO.getDegree() != null) {
+            subject.setDegree(subjectDTO.getDegree());
+            degree.removeSubject(subject);
+            subject.getDegree().addSubject(subject);
+        }
+        if (subjectDTO.getSemester() != 0) {
+            degree.removeSubject(subject);
+            subject.setSemester(subjectDTO.getSemester());
+            degree.addSubject(subject);
+        }
+        if (subjectDTO.getName() != null) subject.setName(subjectDTO.getName());
+        if (subjectDTO.getDescription() != null) subject.setDescription(subjectDTO.getDescription());
+    }
+
+    public void deleteSubject(Subject subject) {
+        degree.removeSubject(subject);
     }
 }
