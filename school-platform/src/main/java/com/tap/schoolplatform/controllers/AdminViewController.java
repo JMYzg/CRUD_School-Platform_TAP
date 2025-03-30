@@ -1,14 +1,25 @@
 package com.tap.schoolplatform.controllers;
 
+import com.tap.schoolplatform.models.academic.Degree;
+import com.tap.schoolplatform.models.academic.Group;
 import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.Status;
-import javafx.collections.FXCollections;
+import com.tap.schoolplatform.models.shared.Address;
+import com.tap.schoolplatform.models.shared.BirthDate;
+import com.tap.schoolplatform.models.users.Student;
+import com.tap.schoolplatform.models.users.Teacher;
+import com.tap.schoolplatform.services.users.AdministratorService;
+import com.tap.schoolplatform.utils.UserDTO;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.*;
@@ -28,6 +39,27 @@ public class AdminViewController {
     public ComboBox teacherGenderComboBox;
     public ComboBox studentLadaComboBox;
     public ComboBox teacherLadaComboBox;
+    public TextField studentIdTF;
+    public TextField studentNameTF;
+    public TextField studentPCTF;
+    public TextField studentEmailTF;
+    public TextField studentPhoneTF;
+    public TextField studentLastNameTF;
+    public TextField studentStreetTF;
+    public TextField studentColonyTF;
+    public TextField studentCityTF;
+    public TextField studentStateTF;
+    public TextField studentCountryTF;
+    public Button studentNextAvailableButton;
+    public Button studentNewButton;
+    public TextField studentDayTF;
+    public TextField studentYearTF;
+    public TextField studentMonthTF;
+    AdministratorService adminUser;
+    Student studentUser;
+    Teacher teacherUser;
+    Degree degree;
+    UserDTO userDTO;
 
 
     public void initialize() {
@@ -51,47 +83,49 @@ public class AdminViewController {
         teacherLadaComboBox.setEditable(false);
     }
 
-    public ComboBox getStudentDegreeComboBox() {
-        return studentDegreeComboBox;
-    }
 
-    public void newButton() {
-    }
-
-    public void nextAvailableButton() {
-    }
-
-    public void ladaCB() {
-    }
-
-    public void modalityCB() {
-    }
-
-    public void degreeCB() {
-    }
-
-    public void groupCB() {
-    }
-
-    public void classroomCB() {
-    }
-
-    public void statusCB() {
-    }
-
-    public void addNewDegreeAdmin() throws IOException {
+    public void addNewDegreeAdmin(ActionEvent event) throws IOException {
+        Stage ownerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        primaryStage.initOwner(ownerStage);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/degree-view.fxml")));
         primaryStage.setTitle("Add new degree");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
-
-    public void addNewGroupAdmin() throws IOException {
+    public void addNewGroupAdmin(ActionEvent event) throws IOException {
+        Stage ownerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.WINDOW_MODAL);
+        primaryStage.initOwner(ownerStage);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/group-view.fxml")));
         primaryStage.setTitle("Add new group");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+    }
+
+    public void addStudentButton(ActionEvent event) {
+        adminUser.createUser(studentUser, userDTO);
+
+    }
+
+    public void createStudent(Student student) {
+        //BirthDate BD = createBrithDate(studentDayTF, studentMonthTF, studentYearTF);
+        int id = Integer.parseInt(studentIdTF.getSelectedText());
+        //Group group = studentGroupComboBox.getSelectionModel();
+        //return new Student(studentGroupComboBox.getSelectionModel(), id, studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDayTF, studentMonthTF, studentYearTF), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getSelectionModel());
+    }
+
+    public BirthDate createBrithDate (TextField dayTF, TextField monthTF, TextField yearTF) {
+        int d = Integer.parseInt(dayTF.getSelectedText());
+        int m = Integer.parseInt(monthTF.getSelectedText());
+        int y = Integer.parseInt(yearTF.getSelectedText());
+        return new BirthDate(d, m, y);
+    }
+
+    public Address createAddress(TextField street, TextField PC, TextField colony, TextField city, TextField state, TextField country){
+        int pc = Integer.parseInt(studentPCTF.getSelectedText());
+        return new Address(studentStreetTF.getSelectedText(), pc, studentColonyTF.getSelectedText(), studentCityTF.getSelectedText(), studentStateTF.getSelectedText(), studentCountryTF.getSelectedText());
     }
 }
