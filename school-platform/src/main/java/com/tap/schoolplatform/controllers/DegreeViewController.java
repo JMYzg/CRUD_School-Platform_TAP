@@ -1,12 +1,12 @@
 package com.tap.schoolplatform.controllers;
 
 import com.tap.schoolplatform.models.academic.Degree;
-import com.tap.schoolplatform.models.users.Administrator;
-import com.tap.schoolplatform.services.academic.DegreeService;
 import com.tap.schoolplatform.services.users.AdministratorService;
+import com.tap.schoolplatform.utils.SharedData;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 public class DegreeViewController {
     public TextField newDegreeTextField;
@@ -16,12 +16,13 @@ public class DegreeViewController {
     public Button cancelButton;
     AdministratorService adminDegree;
     Degree degree;
+    SharedData sharedDataObject = SharedData.getInstance();
 
     public void initialize() {
         degreeComboBox.setEditable(false);
+        refreshCBDegree();
         adminDegree = new AdministratorService(degree);
         degree = new Degree(newDegreeTextField.getText());
-        //degreeComboBox.getItems().addAll(adminDegree.readDegree(degree.getName()));
     }
 
     public void addDegree(ActionEvent actionEvent) {
@@ -52,6 +53,22 @@ public class DegreeViewController {
         alertWindow.setTitle("Error");
         alertWindow.setContentText(alertMsg);
         alertWindow.showAndWait();
+    }
+
+    public void refreshCBDegree () {
+        degreeComboBox.getItems().setAll(sharedDataObject.getDegrees());
+        degreeComboBox.setConverter(new StringConverter<Degree>() {
+            @Override
+            public String toString(Degree degree) {
+                if(degree != null) return degree.getName();
+                else return null;
+            }
+
+            @Override
+            public Degree fromString(String s) {
+                return null;
+            }
+        });
     }
 
 }
