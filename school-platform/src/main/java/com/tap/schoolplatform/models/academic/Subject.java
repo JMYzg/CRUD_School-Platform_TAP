@@ -42,13 +42,17 @@ public class Subject {
     public List<Task> getTaskList(int unit) {return tasks.get(unit);}
     public Task getTask(int unit, UUID taskId) {
         for (Task task : getTaskList(unit)) {
-            if (task.getTaskId().equals(taskId)) {
+            if (task.getId().equals(taskId)) {
                 return task;
             }
         }
         return null;
     }
+
     public void addTask(int unit, Task task) {
         this.tasks.computeIfAbsent(unit, u -> new ArrayList<>()).add(task);
+    }
+    public void removeTask(int unit, Task task) {
+        getTaskList(unit).remove(task);
     }
 }

@@ -3,6 +3,7 @@ package com.tap.schoolplatform.services.users;
 import com.tap.schoolplatform.models.academic.*;
 import com.tap.schoolplatform.models.academic.enums.Shift;
 import com.tap.schoolplatform.models.academic.keys.GroupKey;
+import com.tap.schoolplatform.models.enums.UserRole;
 import com.tap.schoolplatform.models.users.*;
 import com.tap.schoolplatform.services.Service;
 import com.tap.schoolplatform.services.academic.*;
@@ -37,14 +38,15 @@ public class AdministratorService extends Service {
             groupService.createStudent(student);
         }
 
-        if (sharedData.getUsers().contains(user)) {
-            sharedData.getUsers().removeIf(u -> u.getId().equals(user.getId()));
+        UserRole role = user.getRole();
+        if (sharedData.getUsers(role).contains(user)) {
+            sharedData.getUsers(role).removeIf(u -> u.getId().equals(user.getId()));
         }
-        sharedData.getUsers().add(user);
+        sharedData.getUsers(role).add(user);
     }
 
-    public User readUser(UUID id) {
-        for (User user : sharedData.getUsers()) {
+    public User readUser(UserRole role, UUID id) {
+        for (User user : sharedData.getUsers(role)) {
             if (user.getId().equals(id)) {
                 return user;
             }
@@ -72,10 +74,12 @@ public class AdministratorService extends Service {
             GroupService groupService = new GroupService(student.getGroup());
             groupService.updateStudent(student, userDTO);
         }
-        if (sharedData.getUsers().contains(user)) {
-            sharedData.getUsers().removeIf(u -> u.getId().equals(user.getId()));
+
+        UserRole role = user.getRole();
+        if (sharedData.getUsers(role).contains(user)) {
+            sharedData.getUsers(role).removeIf(u -> u.getId().equals(user.getId()));
         }
-        sharedData.getUsers().add(user);
+        sharedData.getUsers(role).add(user);
     }
 
     public void deleteUser(User user) {
@@ -88,7 +92,7 @@ public class AdministratorService extends Service {
             GroupService groupService = new GroupService(student.getGroup());
             groupService.deleteStudent(student);
         }
-        sharedData.getUsers().removeIf(u -> u.getId().equals(user.getId()));
+        sharedData.getUsers(user.getRole()).removeIf(u -> u.getId().equals(user.getId()));
     }
 
     // Degrees management
@@ -178,5 +182,9 @@ public class AdministratorService extends Service {
         Subject subject = readSubject(semester, name);
         DegreeService degreeService = new DegreeService(degree);
         degreeService.deleteSubject(subject);
+    }
+
+    public void assignSubject(Teacher teacher, Subject subject) {
+        teacher.getAssignedSubjectSet().add(subject);
     }
 }

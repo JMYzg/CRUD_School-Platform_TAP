@@ -107,7 +107,7 @@ public class DegreeService extends Service {
             subject.setDegree(subjectDTO.getDegree());
             degree.removeSubject(subject);
             subject.getDegree().addSubject(subject);
-        }
+    }
         if (subjectDTO.getSemester() != 0) {
             degree.removeSubject(subject);
             subject.setSemester(subjectDTO.getSemester());

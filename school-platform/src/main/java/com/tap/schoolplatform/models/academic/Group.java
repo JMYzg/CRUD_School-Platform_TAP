@@ -13,23 +13,23 @@ public class Group {
     private GroupKey key;
     private final List<Student> students = new ArrayList<>(); // Convert to a set
 
-    public Group(Degree degree, GroupKey key) {
+    public Group(Degree degree, GroupKey key) { // Check to add instantaneously to the degree when create group
         this.degree = degree;
         this.key = key;
-        this.groupId = generateId(key);
+        generateId();
     }
 
-    private String generateId(GroupKey groupKey) {
-        int index = degree.getGroupList(groupKey).size();
+    private void generateId() {
+        int index = degree.getGroupList(key).size(); // Check index
         StringBuilder degreeInitials = new StringBuilder();
         for (Character character : degree.getName().toCharArray()) {
             if (Character.isUpperCase(character)) {
                 degreeInitials.append(character);
             }
         }
-        String shift = groupKey.shift() == Shift.MORNINGS ? "M" : "E";
-        return String.format("%d%s-%d%s",
-                groupKey.semester(),
+        String shift = key.shift() == Shift.MORNINGS ? "M" : "E";
+        groupId = String.format("%d%s-%d%s",
+                key.semester(),
                 degreeInitials,
                 index,
                 shift
@@ -45,7 +45,7 @@ public class Group {
     }
     public void setDegree (Degree degree) {
         this.degree = degree;
-        groupId = generateId(this.key);
+        generateId();
     }
 
     public GroupKey getKey() {
@@ -53,7 +53,7 @@ public class Group {
     }
     public void setKey(GroupKey key) {
         this.key = key;
-        groupId = generateId(this.key);
+        generateId();
     }
 
     public List<Student> getStudentList() {return students;}

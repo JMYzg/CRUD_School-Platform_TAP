@@ -11,8 +11,8 @@ public class Assignment extends Task {
 
     private final Map<String, File> completed = new HashMap<>();
 
-    public Assignment(String title, String description, double score, LocalDate deadline) {
-        super(TaskType.ASSIGNMENT, title, description, score, deadline);
+    public Assignment(String title, String description, LocalDate deadline) {
+        super(TaskType.ASSIGNMENT, title, description, deadline);
     }
 
     public File getFile(String studentId) {return completed.get(studentId);}

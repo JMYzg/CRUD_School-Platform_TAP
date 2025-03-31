@@ -1,15 +1,15 @@
-package com.tap.schoolplatform.models.academic.tasks;
+package com.tap.schoolplatform.utils;
 
-import java.util.*;
+import com.tap.schoolplatform.models.academic.tasks.Answer;
 
-public class Question {
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class QuestionDTO {
 
     private String description;
-    private final Set<Answer> answers = new TreeSet<>(Comparator.comparing(Answer::getIndex));
-
-    public Question(String description) {
-        this.description = description;
-    }
+    private Set<Answer> answers;
 
     public String getDescription() {
         return description;
@@ -46,4 +46,5 @@ public class Question {
             index++;
         }
     }
+
 }

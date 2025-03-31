@@ -1,22 +1,22 @@
 package com.tap.schoolplatform.models.users;
 
 import com.tap.schoolplatform.models.academic.*;
+import com.tap.schoolplatform.models.enums.UserRole;
 import com.tap.schoolplatform.models.shared.*;
 import com.tap.schoolplatform.models.enums.Gender;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Teacher extends User {
 
     private String license;
     private Degree degree;
     private String specialization;
-    private final Map<Group, List<Subject>> assignedSubjects = new HashMap<>();
+    private final Set<Subject> assignedSubjects = new TreeSet<>(Comparator.comparing(Subject::getName));
 
     public Teacher(Degree degree, String license, String specialization, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         super(name, lastName, birthDate, email, phone, address, gender);
+        super.setRole(UserRole.TEACHER);
         this.license = license;
         this.degree = degree;
         this.specialization = specialization;
@@ -43,22 +43,17 @@ public class Teacher extends User {
         this.specialization = specialization;
     }
 
-    public List<Subject> getAssignedSubjects(Group group) {
-        return assignedSubjects.get(group);
+    public List<Subject> getAssignedSubjectList() {
+        return List.copyOf(assignedSubjects);
+    }
+    public Set<Subject> getAssignedSubjectSet() {
+        return assignedSubjects;
     }
 
-    public void setAssignedSubjects(Group group, List<Subject> subjects) {
-        assignedSubjects.put(group, subjects);
-    }
-
-    public void assignSubject(Group group, Subject subject) {
-        assignedSubjects.get(group).add(subject);
+    public void assignSubject(Subject subject) {
+        assignedSubjects.add(subject);
     }
     public void unassignSubject(Group group, Subject subject) {
-        assignedSubjects.get(group).remove(subject);
-    }
-
-    public Subject getSubject(Group group, Subject subject) {
-        return assignedSubjects.get(group).get(assignedSubjects.get(group).indexOf(subject));
+        assignedSubjects.remove(subject);
     }
 }

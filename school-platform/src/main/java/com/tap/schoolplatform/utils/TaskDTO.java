@@ -1,43 +1,30 @@
-package com.tap.schoolplatform.models.academic.tasks;
+package com.tap.schoolplatform.utils;
 
 import com.tap.schoolplatform.models.academic.tasks.enums.TaskType;
 
 import java.time.LocalDate;
-import java.util.UUID;
+import java.util.Timer;
 
-public abstract class Task {
-    public static final double MAX_SCORE = 10;
-    private final UUID id;
-    private TaskType type; // same
-    private final LocalDate creationDate;
+public class TaskDTO {
+
+    // Common Task attributes
+    private TaskType type;
     private String title;
     private String description;
     private double score;
     private LocalDate deadline;
 
-    public Task(TaskType type, String title, String description, LocalDate deadline) {
-        this.id = UUID.randomUUID();
-        this.type = type;
-        creationDate = LocalDate.now();
-        this.title = title;
-        this.description = description;
-        this.score = 0;
-        this.deadline = deadline;
-    }
+    // Evaluation attributes
 
-    public UUID getId() {
-        return id;
-    }
+    private LocalDate startDate;
+    private Timer timer;
 
+    // Getters and setters for common Task attributes
     public TaskType getType() {
         return type;
     }
     public void setType(TaskType type) {
         this.type = type;
-    }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
     }
 
     public String getTitle() {
@@ -66,5 +53,20 @@ public abstract class Task {
     }
     public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
+    }
+
+    // Getters and setters for Evaluation attributes
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+    public void setTimer(Timer timer) {
+        this.timer = timer;
     }
 }

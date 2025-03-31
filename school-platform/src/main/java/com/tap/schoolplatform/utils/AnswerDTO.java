@@ -1,24 +1,11 @@
-package com.tap.schoolplatform.models.academic.tasks;
+package com.tap.schoolplatform.utils;
 
 import com.tap.schoolplatform.models.academic.tasks.enums.AnswerType;
 
-public class Answer {
+public class AnswerDTO {
 
-    private int index;
     private AnswerType type;
     private String text;
-
-    public Answer(AnswerType type, String text) {
-        this.type = type;
-        this.text = text;
-    }
-
-    public int getIndex() {
-        return index;
-    }
-    public void setIndex(int index) {
-        this.index = index;
-    }
 
     public AnswerType getType() {
         return type;

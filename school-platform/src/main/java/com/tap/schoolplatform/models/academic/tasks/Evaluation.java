@@ -1,26 +1,43 @@
 package com.tap.schoolplatform.models.academic.tasks;
 
-import com.tap.schoolplatform.models.academic.tasks.enums.QuestionType;
 import com.tap.schoolplatform.models.academic.tasks.enums.TaskType;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Evaluation extends Task {
 
-    private final Map<QuestionType, List<Question>> questions = new HashMap<>();
+    private LocalDate startDate;
+    private Timer timer;
 
-    public Evaluation(String title, String description, double score, LocalDate deadline) {
-        super(TaskType.EVALUATION, title, description, score, deadline);
+    private final Set<Question> questions = new HashSet<>();
+
+    public Evaluation(String title, String description, LocalDate deadline) {
+        super(TaskType.EVALUATION, title, description, deadline);
     }
 
-    public List<Question> getQuestions(QuestionType type) {
-        return questions.get(type);
+    public LocalDate getStartDate() {
+        return startDate;
     }
-    public void addQuestion(QuestionType type, Question question) {
-        questions.computeIfAbsent(type, t -> new ArrayList<>()).add(question);
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+
+    public Set<Question> getQuestionSet() {
+        return questions;
+    }
+    public void addQuestion(Question question) {
+        questions.add(question);
+    }
+
+    public void removeQuestion(Question question) {
+        questions.remove(question);
     }
 }
