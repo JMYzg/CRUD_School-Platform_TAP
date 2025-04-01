@@ -4,15 +4,15 @@ import com.tap.schoolplatform.models.academic.*;
 import com.tap.schoolplatform.models.enums.UserRole;
 import com.tap.schoolplatform.models.shared.*;
 import com.tap.schoolplatform.models.enums.Gender;
-
-import java.util.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Teacher extends User {
 
     private String license;
     private Degree degree;
     private String specialization;
-    private final Set<Subject> assignedSubjects = new TreeSet<>(Comparator.comparing(Subject::getName));
+    private final ObservableList<Subject> assignedSubjects = FXCollections.observableArrayList();
 
     public Teacher(Degree degree, String license, String specialization, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         super(name, lastName, birthDate, email, phone, address, gender);
@@ -43,17 +43,16 @@ public class Teacher extends User {
         this.specialization = specialization;
     }
 
-    public List<Subject> getAssignedSubjectList() {
-        return List.copyOf(assignedSubjects);
-    }
-    public Set<Subject> getAssignedSubjectSet() {
-        return assignedSubjects;
+    public ObservableList<Subject> getAssignedSubjectList() {
+        return FXCollections.unmodifiableObservableList(assignedSubjects);
     }
 
     public void assignSubject(Subject subject) {
         assignedSubjects.add(subject);
+        subject.setTeacher(this);
     }
-    public void unassignSubject(Group group, Subject subject) {
+    public void unassignSubject(Subject subject) {
         assignedSubjects.remove(subject);
+        subject.setTeacher(null);
     }
 }

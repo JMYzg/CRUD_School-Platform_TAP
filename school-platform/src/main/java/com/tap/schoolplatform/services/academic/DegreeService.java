@@ -23,13 +23,13 @@ public class DegreeService extends Service {
     }
 
     public void createGroup(int semester, Shift shift) {
-        GroupKey groupKey = new GroupKey(shift, semester);
-        Group group = new Group(degree, groupKey);
+        if (semester == 0 || shift == null) throw new IllegalArgumentException("Semester and Shift are required");
+        Group group = new Group(degree, semester, shift);
         degree.addGroup(group);
     }
 
-    public Group readGroup(GroupKey key, String id) {
-        for (Group group : degree.getGroupList(key)) {
+    public Group readGroup(int semester, String id) {
+        for (Group group : degree.getGroupList(semester)) {
             if (group.getId().equals(id)) {
                 return group;
             }
@@ -40,13 +40,16 @@ public class DegreeService extends Service {
     public void updateGroup(Group group, GroupDTO groupDTO) {
         if (groupDTO.getDegree() != null) {
             group.setDegree(groupDTO.getDegree());
-            degree.removeGroup(group);
+            degree.removeGroup(group.getSemester(), group);
             group.getDegree().addGroup(group);
         }
         if (groupDTO.getKey() != null) {
             degree.removeGroup(group);
             group.setKey(groupDTO.getKey());
             degree.addGroup(group);
+        }
+        if (groupDTO.getShift() != null) {
+            group.setShift(groupDTO.getShift());
         }
     }
 

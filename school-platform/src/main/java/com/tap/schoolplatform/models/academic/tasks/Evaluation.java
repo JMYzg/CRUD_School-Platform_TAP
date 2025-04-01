@@ -1,25 +1,24 @@
 package com.tap.schoolplatform.models.academic.tasks;
 
-import com.tap.schoolplatform.models.academic.tasks.enums.TaskType;
-
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Evaluation extends Task {
 
-    private LocalDate startDate;
+    private LocalDateTime startDate;
     private Timer timer;
 
     private final Set<Question> questions = new HashSet<>();
 
-    public Evaluation(String title, String description, LocalDate deadline) {
-        super(TaskType.EVALUATION, title, description, deadline);
+    public Evaluation(String title, String description, LocalDateTime deadline) {
+        super(title, description, deadline);
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
