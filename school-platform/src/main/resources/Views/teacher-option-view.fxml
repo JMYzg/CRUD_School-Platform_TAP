@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="604.0" prefWidth="861.0" style="-fx-background-radius: 5; -fx-background-color: dedede;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPane" prefHeight="604.0" prefWidth="861.0" style="-fx-background-radius: 5; -fx-background-color: dedede;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.TeacherViewController">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="599.0" prefWidth="217.0" spacing="10.0" style="-fx-background-color: f6f6f6; -fx-background-radius: 5;" BorderPane.alignment="CENTER">
          <children>
@@ -27,11 +27,11 @@
                   <Insets left="15.0" right="15.0" />
                </padding>
             </Separator>
-            <Button id="btnOptions" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="31.0" prefWidth="193.0" text="Studens" />
-            <Button id="btnOptions" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="31.0" prefWidth="193.0" text="Exams" />
-            <Button id="btnOptions" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="31.0" prefWidth="193.0" text="Homework" />
-            <Button id="btnOptions" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="31.0" prefWidth="193.0" text="Grades" />
-            <Button id="btnLogout" mnemonicParsing="false" text="Log out">
+            <Button id="btnOptions" fx:id="studentsButton" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#openStudentTab" prefHeight="31.0" prefWidth="193.0" text="Students" />
+            <Button id="btnOptions" fx:id="examsButton" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#openExamsTab" prefHeight="31.0" prefWidth="193.0" text="Exams" />
+            <Button id="btnOptions" fx:id="homeworkButton" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#openHomeworkTab" prefHeight="31.0" prefWidth="193.0" text="Homework" />
+            <Button id="btnOptions" fx:id="gradesButton" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#openGradesTap" prefHeight="31.0" prefWidth="193.0" text="Grades" />
+            <Button id="btnLogout" fx:id="logOutButton" mnemonicParsing="false" onAction="#logOut" text="Log out">
                <graphic>
                   <ImageView fitHeight="15" fitWidth="15">
                      <image>

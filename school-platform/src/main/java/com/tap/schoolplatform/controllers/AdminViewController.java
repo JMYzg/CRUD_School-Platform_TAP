@@ -7,11 +7,12 @@ import com.tap.schoolplatform.models.academic.keys.GroupKey;
 import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.Status;
 import com.tap.schoolplatform.models.enums.UserRole;
-import com.tap.schoolplatform.models.shared.Address;
 import com.tap.schoolplatform.models.shared.BirthDate;
 import com.tap.schoolplatform.models.users.Student;
 import com.tap.schoolplatform.models.users.Teacher;
+import com.tap.schoolplatform.models.users.User;
 import com.tap.schoolplatform.services.users.AdministratorService;
+import com.tap.schoolplatform.services.users.TeacherService;
 import com.tap.schoolplatform.utils.SharedData;
 import com.tap.schoolplatform.utils.UserDTO;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,7 +30,7 @@ import javafx.util.StringConverter;
 import java.io.IOException;
 import java.util.*;
 
-public class AdminViewController {
+public class AdminViewController extends ViewController {
 
     public AnchorPane AnchorPaneImage1;
     public ComboBox<Gender> studentGenderComboBox;
@@ -86,6 +88,7 @@ public class AdminViewController {
     private final SharedData sharedDataObject = SharedData.getInstance();
 
     public void initialize() {
+        //teacherUser = new Teacher();
         studentGenderComboBox.getItems().setAll(Gender.values());
         studentGenderComboBox.setEditable(false);
         //studentModalityComboBox.getItems().setAll(something);
@@ -117,6 +120,7 @@ public class AdminViewController {
         primaryStage.setTitle("Add new degree");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        primaryStage.setResizable(false);
     }
     public void addNewGroupAdmin(ActionEvent event) throws IOException {
         Stage ownerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -127,6 +131,7 @@ public class AdminViewController {
         primaryStage.setTitle("Add new group");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        primaryStage.setResizable(false);
     }
 
     public void addStudent(ActionEvent event) {
@@ -141,7 +146,6 @@ public class AdminViewController {
     *   2.2 Select
     * */
     public Student createStudent(Student student) {
-        //BirthDate BD = createBrithDate(studentDayTF, studentMonthTF, studentYearTF);
         int id = Integer.parseInt(studentIdTF.getSelectedText());
         //Group group = studentGroupComboBox.getSelectionModel();
         GroupKey key = new GroupKey(Shift.MORNINGS, 1);
@@ -150,7 +154,7 @@ public class AdminViewController {
         //group.getStudentSet();
         Set<Integer> setExample = new TreeSet<>();
         for (Student student1 : group.getStudentList()) {
-            if (student1.getStudentId().equals(student.getStudentId())){
+            if (student1.getStudentId().equals(student.getStudentId())) {
                 id = group.getStudentList().indexOf(student1);
             }
         }
@@ -164,18 +168,6 @@ public class AdminViewController {
             if (group.getId().equals(id)) return group;
         }
         return null;
-    }
-
-    public BirthDate createBrithDate (TextField dayTF, TextField monthTF, TextField yearTF) {
-        int d = Integer.parseInt(dayTF.getSelectedText());
-        int m = Integer.parseInt(monthTF.getSelectedText());
-        int y = Integer.parseInt(yearTF.getSelectedText());
-        return new BirthDate(d, m, y);
-    }
-
-    public Address createAddress(TextField street, TextField PC, TextField colony, TextField city, TextField state, TextField country){
-        int pc = Integer.parseInt(PC.getSelectedText());
-        return new Address(street.getSelectedText(), pc, colony.getSelectedText(), city.getSelectedText(), state.getSelectedText(), country.getSelectedText());
     }
 
     public void refreshCBDegree (ComboBox<Degree> CBD) {
@@ -195,12 +187,13 @@ public class AdminViewController {
     }
 
     public void addTeacher(ActionEvent event) {
+        User userTeacher = createTeacher(teacherUser);
         userDTO = createDTO(teacherUser.getRole(), teacherNameTF, teacherLastNameTF, createBrithDate(teacherDayTF, teacherMonthTF, teacherYearTF), teacherPhoneTF, teacherEmailTF, teacherGenderComboBox.getSelectionModel().getSelectedItem());
-        adminUser.createUser(createTeacher(teacherUser), userDTO);
+        adminUser.createUser(userTeacher, userDTO);
     }
 
     public Teacher createTeacher (Teacher teacher) {
-     return new Teacher(teacherDegreeComboBox.getSelectionModel().getSelectedItem(), teacher.getLicense(), teacher.getSpecialization(), teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDayTF, teacherMonthTF, teacherYearTF), studentEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getSelectionModel().getSelectedItem());
+     return new Teacher(teacherDegreeComboBox.getValue(), teacher.getLicense(), teacher.getSpecialization(), teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDayTF, teacherMonthTF, teacherYearTF), studentEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getSelectionModel().getSelectedItem());
     }
 
     public void createDegree(ActionEvent event) {
@@ -218,7 +211,7 @@ public class AdminViewController {
         return new UserDTO();
     }
 
-    public void refreshCBStudentDegree(ActionEvent event) {
+    public void refreshCBStudentDegree(MouseEvent event) {
         refreshCBDegree(studentDegreeComboBox);
     }
 }
