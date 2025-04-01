@@ -9,17 +9,30 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class LoginViewController {
-    public TextField userId;
-    public TextField userPassword;
-    public CheckBox userRememberUserCheckBox;
-    public Hyperlink userForgotPasswordHyperlink;
-    public Button userLoginButton;
+    public Button loginButton;
+    public TextField id;
+    public TextField password;
+    public CheckBox rememberUserCB;
+    public Hyperlink ForgotPasswordHL;
 
     //public SharedData getUser;
 
-    public void userLogin() throws IOException {
-        toAdminView();
+    public void userLogin() throws IOException { //Temporal log in system so we can access to the different view windows
+        if (id.getText().isEmpty() || password.getText().isEmpty()) {
+            alert("", "Please full fill all the text boxes", Alert.AlertType.INFORMATION);
+        }
+        else {
+            if (id.getText().equals("1")) {
+                toAdminView();
+            } else {
+                if (id.getText().equals("2")) {
+                    toTeacherView();
+                } else {
+                    toStudentView();
+                }
+            }
             System.out.println("The user logged in");
+        }
     }
 
     /*public boolean confirmCredentials(int id)
@@ -34,7 +47,7 @@ public class LoginViewController {
     }*/
 
     public void toAdminView() throws IOException {
-        Stage stage = (Stage) userLoginButton.getScene().getWindow();
+        Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-view.fxml")));
@@ -43,4 +56,30 @@ public class LoginViewController {
         primaryStage.show();
     }
 
+    public void toTeacherView() throws IOException {
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.close();
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/teacher-option-view.fxml")));
+        primaryStage.setTitle("Student");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
+
+    public void toStudentView() throws IOException {
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.close();
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/student-view.fxml")));
+        primaryStage.setTitle("Student");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
+
+    public void alert(String alertTitle, String alertMsg, Alert.AlertType alertType) {
+        Alert alertWindow = new Alert(alertType);
+        alertWindow.setTitle(alertTitle);
+        alertWindow.setContentText(alertMsg);
+        alertWindow.showAndWait();
+    }
 }

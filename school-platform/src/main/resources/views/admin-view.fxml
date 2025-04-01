@@ -56,7 +56,7 @@
                         <Region prefHeight="10.0" prefWidth="269.0" />
                         <AnchorPane prefHeight="188.0" prefWidth="363.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
                             <ComboBox fx:id="studentModalityComboBox" editable="true" layoutX="86.0" layoutY="6.0" prefHeight="17.0" prefWidth="143.0" />
-                            <ComboBox fx:id="studentDegreeComboBox" editable="true" layoutX="86.0" layoutY="42.0" prefHeight="17.0" prefWidth="143.0" />
+                            <ComboBox fx:id="studentDegreeComboBox" editable="true" layoutX="86.0" layoutY="42.0" onAction="#refreshCBStudentDegree" prefHeight="17.0" prefWidth="143.0" />
                             <Button fx:id="studentAddDegreeButton" layoutX="245.0" layoutY="43.0" mnemonicParsing="false" onAction="#addNewDegreeAdmin" prefHeight="29.0" prefWidth="109.0" text="Add" />
                             <ComboBox fx:id="studentGroupComboBox" editable="true" layoutX="86.0" layoutY="79.0" prefHeight="17.0" prefWidth="143.0" />
                             <Button fx:id="studentAddGroupButton" layoutX="245.0" layoutY="79.0" mnemonicParsing="false" onAction="#addNewGroupAdmin" prefHeight="29.0" prefWidth="109.0" text="Add" />

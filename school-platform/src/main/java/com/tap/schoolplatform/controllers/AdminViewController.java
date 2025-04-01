@@ -25,7 +25,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-import javax.management.relation.Role;
 import java.io.IOException;
 import java.util.*;
 
@@ -33,7 +32,7 @@ public class AdminViewController {
 
     public AnchorPane AnchorPaneImage1;
     public ComboBox<Gender> studentGenderComboBox;
-    public ComboBox studentModalityComboBox;
+    public ComboBox<Modality> studentModalityComboBox;
     public ComboBox studentDegreeComboBox;
     public Button studentAddDegreeButton;
     public ComboBox<Group> studentGroupComboBox;
@@ -85,7 +84,6 @@ public class AdminViewController {
     Degree degree;
     UserDTO userDTO;
     private final SharedData sharedDataObject = SharedData.getInstance();
-
 
     public void initialize() {
         studentGenderComboBox.getItems().setAll(Gender.values());
@@ -181,7 +179,7 @@ public class AdminViewController {
     }
 
     public void refreshCBDegree (ComboBox<Degree> CBD) {
-        CBD.getItems().setAll(SharedData.getInstance().getDegrees());
+        CBD.getItems().setAll(sharedDataObject.getDegrees());
         CBD.setConverter(new StringConverter<Degree>() {
             @Override
             public String toString(Degree degree) {
@@ -218,5 +216,9 @@ public class AdminViewController {
         userDTO.setEmail(email.getText());
         userDTO.setGender(gender);
         return new UserDTO();
+    }
+
+    public void refreshCBStudentDegree(ActionEvent event) {
+        refreshCBDegree(studentDegreeComboBox);
     }
 }
