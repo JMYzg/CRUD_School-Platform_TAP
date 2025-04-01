@@ -46,6 +46,8 @@ public class Student extends User {
     }
     public void setGroup(Group group) {
         this.group = group;
+        group.addStudent(this); // Check this shit
+        obtainIndex();
     }
 
     public int getIndex() {
