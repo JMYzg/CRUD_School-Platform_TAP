@@ -4,6 +4,12 @@
     -fx-font-size: 12px;
     -fx-text-fill: #000000;
 }
+#TopData{
+    -fx-font-family: "Inter Semi Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+}
 #txtregular{
     -fx-font-family: "Inter";
     -fx-font-weight: bold;
@@ -13,6 +19,20 @@
 .text-field {
     -fx-background-color: #d5dbdb;
     -fx-pref-height: 30px;
+    -fx-background-radius: 5px;
+    -fx-prompt-text-fill: #9d9f9f;
+    -fx-font-family: "Inter 24pt";
+    -fx-font-style: italic;
+    -fx-font-weight: normal;
+    -fx-text-fill: black;
+
+    -fx-border-color: transparent transparent transparent transparent;
+    -fx-border-width: 0 0 0 0;
+}
+.text-area{
+    -fx-background-color: #d5dbdb;
+    -fx-control-inner-background: #d5dbdb; /* Color oscuro en hexadecimal */
+
     -fx-background-radius: 5px;
     -fx-prompt-text-fill: #9d9f9f;
     -fx-font-family: "Inter 24pt";
@@ -34,12 +54,11 @@
     -fx-font-family: "Inter Semi Bold";
     -fx-font-weight: bold;
     -fx-background-radius: 5px;
-    -fx-font-size: 9px;
+    -fx-font-size: 12px;
     -fx-background-color: #20b1aa;
     -fx-text-fill: #ffffff;
     -fx-pref-height: 25px; /* Ancho preferido */
 
-    -fx-padding: 8px 16px;
     -fx-cursor: hand;
 
     /* Transición suave para animaciones */
@@ -257,3 +276,8 @@
     -fx-background-radius: 5px;    /* Esquinas redondeadas (opcional) */
 }
 /*29 / 03 /25*/
+
+#HomeworkContainer{
+    -fx-background-color: #f6f6f6;
+    -fx-background-radius: 5px;
+}
