@@ -1,4 +1,4 @@
-package com.tap.schoolplatform.utils;
+package com.tap.schoolplatform.utils.dtos;
 
 import com.tap.schoolplatform.models.academic.Degree;
 import com.tap.schoolplatform.models.academic.Group;
@@ -91,7 +91,7 @@ public class UserDTO {
         this.gender = gender;
     }
 
-    // Getters and setters for Teacher attributes
+    // Getters and setters for teacher attributes
     public String getLicense() {
         return license;
     }
@@ -113,7 +113,7 @@ public class UserDTO {
         this.specialization = specialization;
     }
 
-    // Getters and setters for Student attributes
+    // Getters and setters for student attributes
     public Status getStatus() {
         return status;
     }

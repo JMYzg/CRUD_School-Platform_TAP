@@ -2,11 +2,14 @@ package com.tap.schoolplatform.services.users;
 
 import com.tap.schoolplatform.models.academic.*;
 import com.tap.schoolplatform.models.academic.enums.Shift;
-import com.tap.schoolplatform.models.academic.keys.GroupKey;
+import com.tap.schoolplatform.models.enums.Status;
+import com.tap.schoolplatform.models.enums.UserRole;
 import com.tap.schoolplatform.models.users.*;
 import com.tap.schoolplatform.services.Service;
 import com.tap.schoolplatform.services.academic.*;
-import com.tap.schoolplatform.utils.*;
+import com.tap.schoolplatform.utils.dtos.UserDTO;
+import com.tap.schoolplatform.utils.dtos.academic.GroupDTO;
+import com.tap.schoolplatform.utils.dtos.academic.SubjectDTO;
 
 import java.util.UUID;
 
@@ -28,24 +31,27 @@ public class AdministratorService extends Service {
     // User management
     public void createUser(User user, UserDTO userDTO) {
         if (user instanceof Teacher teacher) {
-            DegreeService degreeService = new DegreeService(userDTO.getDegree());
-            degreeService.createTeacher(teacher, userDTO.getLicense(), userDTO.getSpecialization());
+            teacher.setRole(UserRole.TEACHER);
+            DegreeService degreeService = new DegreeService(degree);
+            degreeService.createTeacher(teacher, userDTO);
         }
-
         if (user instanceof Student student) {
+            student.setRole(UserRole.STUDENT);
+            student.setStatus(Status.ACTIVE);
             GroupService groupService = new GroupService(userDTO.getGroup());
             groupService.createStudent(student);
         }
 
-        if (sharedData.getUsers().contains(user)) {
-            sharedData.getUsers().removeIf(u -> u.getId().equals(user.getId()));
+        UserRole role = user.getRole();
+        if (sharedData.getUsers(role).contains(user)) {
+            sharedData.getUsers(role).removeIf(u -> u.getUUID().equals(user.getUUID()));
         }
-        sharedData.getUsers().add(user);
+        sharedData.getUsers(role).add(user);
     }
 
-    public User readUser(UUID id) {
-        for (User user : sharedData.getUsers()) {
-            if (user.getId().equals(id)) {
+    public User readUser(UserRole role, UUID ID) {
+        for (User user : sharedData.getUsers(role)) {
+            if (user.getUUID().equals(ID)) {
                 return user;
             }
         }
@@ -53,29 +59,31 @@ public class AdministratorService extends Service {
     }
 
     public void updateUser(User user, UserDTO userDTO) { // can I do it better?
-        if (userDTO.getPassword() != null) user.setPassword(userDTO.getPassword());
+        if (userDTO.getPassword() != null) user.setPassword(userDTO.getPassword().trim());
         if (userDTO.getRole() != null) user.setRole(userDTO.getRole());
-        if (userDTO.getName() != null) user.setName(userDTO.getName());
-        if (userDTO.getLastName() != null) user.setLastName(userDTO.getLastName());
+        if (userDTO.getName() != null) user.setName(userDTO.getName().trim());
+        if (userDTO.getLastName() != null) user.setLastName(userDTO.getLastName().trim());
         if (userDTO.getBirthDate() != null) user.setBirthDate(userDTO.getBirthDate());
-        if (userDTO.getEmail() != null) user.setEmail(userDTO.getEmail());
-        if (userDTO.getPhone() != null) user.setPhone(userDTO.getPhone());
+        if (userDTO.getEmail() != null) user.setEmail(userDTO.getEmail().trim());
+        if (userDTO.getPhone() != null) user.setPhone(userDTO.getPhone().trim());
         if (userDTO.getAddress() != null) user.setAddress(userDTO.getAddress());
         if (userDTO.getGender() != null) user.setGender(userDTO.getGender());
 
         if (user instanceof Teacher teacher) {
-            DegreeService degreeService = new DegreeService(teacher.getDegree());
+            DegreeService degreeService = new DegreeService(degree);
             degreeService.updateTeacher(teacher, userDTO);
         }
 
         if (user instanceof Student student) {
-            GroupService groupService = new GroupService(student.getGroup());
+            GroupService groupService = new GroupService(userDTO.getGroup());
             groupService.updateStudent(student, userDTO);
         }
-        if (sharedData.getUsers().contains(user)) {
-            sharedData.getUsers().removeIf(u -> u.getId().equals(user.getId()));
+
+        UserRole role = user.getRole();
+        if (sharedData.getUsers(role).contains(user)) {
+            sharedData.getUsers(role).removeIf(u -> u.getUUID().equals(user.getUUID()));
         }
-        sharedData.getUsers().add(user);
+        sharedData.getUsers(role).add(user);
     }
 
     public void deleteUser(User user) {
@@ -88,7 +96,7 @@ public class AdministratorService extends Service {
             GroupService groupService = new GroupService(student.getGroup());
             groupService.deleteStudent(student);
         }
-        sharedData.getUsers().removeIf(u -> u.getId().equals(user.getId()));
+        sharedData.getUsers(user.getRole()).removeIf(u -> u.getUUID().equals(user.getUUID()));
     }
 
     // Degrees management
@@ -99,7 +107,7 @@ public class AdministratorService extends Service {
         if (readDegree(name) != null) {
             throw new IllegalArgumentException("Degree already exists"); // create custom exception: DuplicateEntryException
         }
-        Degree degree = new Degree(name);
+        Degree degree = new Degree(name.trim());
         sharedData.getDegrees().add(degree);
     }
 
@@ -108,17 +116,17 @@ public class AdministratorService extends Service {
             throw new IllegalArgumentException("Degree name cannot be null or blank");
         }
         for (Degree degree : sharedData.getDegrees()) {
-            if (degree.getName().equals(name)) {
+            if (degree.getName().equals(name.trim())) {
                 return degree;
             }
         }
         return null;
     }
 
-    public void updateDegree(String newName) {
-        for (Degree d : sharedData.getDegrees()) {
-            if (d.equals(degree)) {
-                degree.setName(newName);
+    public void updateDegree(String name) {
+        for (Degree degree : sharedData.getDegrees()) {
+            if (degree == this.degree) {
+                this.degree.setName(name.trim());
                 break;
             }
         }
@@ -134,9 +142,9 @@ public class AdministratorService extends Service {
         degreeService.createGroup(semester, shift);
     }
 
-    public Group readGroup(GroupKey key, String id) {
-        for (Group group : degree.getGroupList(key)) {
-            if (group.getId().equals(id)) {
+    public Group readGroup(int semester, String ID) {
+        for (Group group : degree.getGroupList(semester)) {
+            if (group.getID().equals(ID)) {
                 return group;
             }
         }
@@ -148,8 +156,7 @@ public class AdministratorService extends Service {
         degreeService.updateGroup(group, groupDTO);
     }
 
-    public void deleteGroup(GroupKey key, String id) {
-        Group group = readGroup(key, id);
+    public void deleteGroup(Group group) {
         DegreeService degreeService = new DegreeService(degree);
         degreeService.deleteGroup(group);
     }
@@ -178,5 +185,9 @@ public class AdministratorService extends Service {
         Subject subject = readSubject(semester, name);
         DegreeService degreeService = new DegreeService(degree);
         degreeService.deleteSubject(subject);
+    }
+
+    public void assignSubject(Teacher teacher, Subject subject) {
+        teacher.assignSubject(subject);
     }
 }

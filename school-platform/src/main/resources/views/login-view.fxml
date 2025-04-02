@@ -2,9 +2,16 @@
 
 <!-- This is a comment 330 x 395 -->
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="326.0" style="-fx-background-color: #ffffff;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.LoginViewController">
     <VBox alignment="CENTER" layoutX="36.0" layoutY="8.0" prefHeight="341.0" prefWidth="254.0">
@@ -14,23 +21,23 @@
             </font>
         </Label>
         <Region prefHeight="53.0" prefWidth="254.0" visible="false" />
-        <TextField prefHeight="40.0" prefWidth="254.0" promptText=" ID" />
+        <TextField fx:id="id" prefHeight="40.0" prefWidth="254.0" promptText=" ID" />
       <Region prefHeight="17.0" prefWidth="254.0" />
-        <TextField prefHeight="27.0" prefWidth="254.0" promptText=" Password" />
+        <TextField fx:id="password" prefHeight="27.0" prefWidth="254.0" promptText=" Password" />
         <HBox prefHeight="31.0" prefWidth="254.0">
-            <CheckBox mnemonicParsing="false" prefHeight="32.0" prefWidth="162.0" text="Remember me?">
+            <CheckBox fx:id="rememberUserCB" mnemonicParsing="false" prefHeight="32.0" prefWidth="162.0" text="Remember me?">
                 <font>
                     <Font name="Nirmala UI" size="12.0" />
                 </font>
             </CheckBox>
-            <Hyperlink prefHeight="31.0" prefWidth="126.0" text="Forgot Password?" textAlignment="RIGHT">
+            <Hyperlink fx:id="ForgotPasswordHL" prefHeight="31.0" prefWidth="126.0" text="Forgot Password?" textAlignment="RIGHT">
                 <font>
                     <Font name="Nirmala UI" size="12.0" />
                 </font>
             </Hyperlink>
         </HBox>
         <Region prefHeight="12.0" prefWidth="254.0" />
-        <Button id="btnLogin" fx:id="userLoginButton" mnemonicParsing="false" onAction="#userLogin" prefHeight="33.0" prefWidth="254.0" text="Login" textFill="WHITE">
+        <Button id="btnLogin" fx:id="loginButton" mnemonicParsing="false" onAction="#userLogin" prefHeight="33.0" prefWidth="254.0" text="Login" textFill="WHITE">
             <font>
                 <Font name="Nirmala UI Bold" size="13.0" />
             </font>
