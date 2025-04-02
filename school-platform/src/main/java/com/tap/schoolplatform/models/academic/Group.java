@@ -1,72 +1,115 @@
 package com.tap.schoolplatform.models.academic;
 
 import com.tap.schoolplatform.models.academic.enums.Shift;
-import com.tap.schoolplatform.models.academic.keys.GroupKey;
 import com.tap.schoolplatform.models.users.Student;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
+import javafx.collections.SetChangeListener;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Group {
-    private String groupId;
+    private String ID;
     private Degree degree;
-    private GroupKey key;
-    private final List<Student> students = new ArrayList<>(); // Convert to a set
+    private Integer semester;
+    private Shift shift;
+    private final ObservableSet<Student> studentSet = FXCollections.observableSet(new TreeSet<>(Comparator.comparing(Student::getLastName))); // Convert to a set : OK
+    private final ObservableList<Student> studentList = FXCollections.observableArrayList();
 
-    public Group(Degree degree, GroupKey key) {
+    public Group(Degree degree, int semester, Shift shift) { // Check to add instantaneously to the degree when create group : OK?
         this.degree = degree;
-        this.key = key;
-        this.groupId = generateId(key);
+        this.semester = semester;
+        this.shift = shift;
+        degree.addGroup(this); // Check the degree service for this implementation
+        generateID();
+        studentList.addAll(studentSet);
+        studentSet.addListener((SetChangeListener.Change<? extends Student> change) -> {
+            if (change.wasAdded()) studentList.add(change.getElementAdded());
+            else if (change.wasRemoved()) studentList.remove(change.getElementRemoved());
+        });
     }
 
-    private String generateId(GroupKey groupKey) {
-        int index = degree.getGroupList(groupKey).size();
+    private void generateID() {
+        int index = degree.getGroupList(semester).size(); // Check index
         StringBuilder degreeInitials = new StringBuilder();
-        for (Character character : degree.getName().toCharArray()) {
+        for (char character : degree.getName().toCharArray()) {
             if (Character.isUpperCase(character)) {
                 degreeInitials.append(character);
             }
         }
-        String shift = groupKey.shift() == Shift.MORNINGS ? "M" : "E";
-        return String.format("%d%s-%d%s",
-                groupKey.semester(),
+        String shift = this.shift == Shift.MORNINGS ? "M" : "E";
+        ID = String.format("%d%s-%d%s",
+                semester,
                 degreeInitials,
                 index,
                 shift
         );
     }
 
-    public String getId() {
-        return groupId;
+    public String getID() {
+        return ID;
     }
 
-    public Degree getDegree () {
+    public Degree getDegree() {
         return degree;
     }
-    public void setDegree (Degree degree) {
+
+    /**Remove {@code this} group from the current degree, set the new {@code degree} as the current degree and add {@code this} group to the current degree on the current semester using {@link Degree#addGroup(Group)}:
+     * <blockquote><pre>
+     *     public void setDegree(Degree degree) {
+     *         this.degree = degree;
+     *         degree.addGroup(this);
+     *         generateId();
+     *     }
+     * </pre></blockquote>*/
+    public void setDegree(Degree degree) {
+        this.degree.removeGroup(this);
         this.degree = degree;
-        groupId = generateId(this.key);
+        this.degree.addGroup(this);
+        generateID();
     }
 
-    public GroupKey getKey() {
-        return key;
-    }
-    public void setKey(GroupKey key) {
-        this.key = key;
-        groupId = generateId(this.key);
+    public Integer getSemester() {
+        return semester;
     }
 
-    public List<Student> getStudentList() {return students;}
-    public void addStudents(List<Student> students) {this.students.addAll(students);}
+    /**Remove {@code this} group from the current degree, set the new {@code semester} as the current semester and add {@code this} group to the current degree on the current semester using {@link Degree#addGroup(Group)}:
+     * <blockquote><pre>
+     *     public void setSemester(int semester) {
+     *         degree.removeGroup(this);
+     *         this.semester = semester;
+     *         degree.addGroup(this);
+     *         generateId();
+     *     }
+     * </pre></blockquote>*/
+    public void setSemester(int semester) {
+        degree.removeGroup(this);
+        this.semester = semester;
+        degree.addGroup(this);
+        generateID();
+    }
 
-    public Student getStudent(int index) {return students.get(index);}
+    public Shift getShift() {
+        return shift;
+    }
+    public void setShift(Shift shift) {
+        this.shift = shift;
+        generateID();
+    }
+
+    public ObservableList<Student> getStudentList() {
+        return FXCollections.unmodifiableObservableList(studentList);
+    }
+
     public void addStudent(Student student) {
-        students.add(student);
+        studentSet.add(student);
+    }
+    public void removeStudent(Student student) {
+        studentSet.remove(student);
     }
 
-    public List<Subject> getSubjectList() {return degree.getSubjectList(key.semester());}
-
-    public Subject getSubject(int index) {
-        return degree.getSubjectList(key.semester()).get(index);
+    public ObservableList<Subject> getSubjectList() { // Should I make it unmodifiable? : I think it works
+        return degree.getSubjectList(semester);
     }
 }

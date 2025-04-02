@@ -2,10 +2,11 @@ package com.tap.schoolplatform.services.academic;
 
 import com.tap.schoolplatform.models.academic.*;
 import com.tap.schoolplatform.models.academic.enums.Shift;
-import com.tap.schoolplatform.models.academic.keys.GroupKey;
 import com.tap.schoolplatform.models.users.Teacher;
 import com.tap.schoolplatform.services.Service;
-import com.tap.schoolplatform.utils.*;
+import com.tap.schoolplatform.utils.dtos.UserDTO;
+import com.tap.schoolplatform.utils.dtos.academic.GroupDTO;
+import com.tap.schoolplatform.utils.dtos.academic.SubjectDTO;
 
 public class DegreeService extends Service {
 
@@ -23,14 +24,12 @@ public class DegreeService extends Service {
     }
 
     public void createGroup(int semester, Shift shift) {
-        GroupKey groupKey = new GroupKey(shift, semester);
-        Group group = new Group(degree, groupKey);
-        degree.addGroup(group);
+        new Group(degree, semester, shift);
     }
 
-    public Group readGroup(GroupKey key, String id) {
-        for (Group group : degree.getGroupList(key)) {
-            if (group.getId().equals(id)) {
+    public Group readGroup(int semester, String ID) { // discuss this bullshit with Gary and Brisa
+        for (Group group : degree.getGroupList(semester)) {
+            if (group.getID().equals(ID)) {
                 return group;
             }
         }
@@ -38,16 +37,9 @@ public class DegreeService extends Service {
     }
 
     public void updateGroup(Group group, GroupDTO groupDTO) {
-        if (groupDTO.getDegree() != null) {
-            group.setDegree(groupDTO.getDegree());
-            degree.removeGroup(group);
-            group.getDegree().addGroup(group);
-        }
-        if (groupDTO.getKey() != null) {
-            degree.removeGroup(group);
-            group.setKey(groupDTO.getKey());
-            degree.addGroup(group);
-        }
+        if (groupDTO.getDegree() != null) group.setDegree(groupDTO.getDegree());
+        if (groupDTO.getSemester() != null) group.setSemester(groupDTO.getSemester());
+        if (groupDTO.getShift() != null) group.setShift(groupDTO.getShift());
     }
 
     public void deleteGroup(Group group) {
@@ -55,16 +47,16 @@ public class DegreeService extends Service {
     }
 
     // Teacher Management
-    public void createTeacher(Teacher teacher, String license, String specialization) {
-        teacher.setLicense(license);
+    public void createTeacher(Teacher teacher, UserDTO userDTO) {
+        teacher.setLicense(userDTO.getLicense().trim());
         teacher.setDegree(degree);
-        teacher.setSpecialization(specialization);
-        degree.addTeacher(teacher);
+        teacher.setSpecialization(userDTO.getSpecialization().trim());
     }
 
-    public Teacher readTeacher(String license) {
+    public Teacher readTeacher(String license) { // discuss this bullshit with Gary and Brisa
+        if (license == null) throw new IllegalArgumentException("License is required");
         for (Teacher teacher : degree.getTeacherList()) {
-            if (teacher.getLicense().equals(license)) {
+            if (teacher.getLicense().equals(license.trim())) {
                 return teacher;
             }
         }
@@ -72,15 +64,9 @@ public class DegreeService extends Service {
     }
 
     public void updateTeacher(Teacher teacher, UserDTO userDTO) {
-        if (userDTO.getLicense() != null) teacher.setLicense(userDTO.getLicense());
-        if (userDTO.getDegree() != null) {
-            teacher.setDegree(userDTO.getDegree());
-            degree.removeTeacher(teacher);
-            teacher.getDegree().addTeacher(teacher);
-        }
-        if (userDTO.getSpecialization() != null) {
-            teacher.setSpecialization(userDTO.getSpecialization());
-        }
+        if (userDTO.getLicense() != null) teacher.setLicense(userDTO.getLicense().trim());
+        if (userDTO.getDegree() != null) teacher.setDegree(userDTO.getDegree());
+        if (userDTO.getSpecialization() != null) teacher.setSpecialization(userDTO.getSpecialization().trim());
     }
 
     public void deleteTeacher(Teacher teacher) {
@@ -89,13 +75,12 @@ public class DegreeService extends Service {
 
     // Subject management
     public void createSubject(int semester, String name, String description) {
-        Subject subject = new Subject(degree, semester, name, description);
-        degree.addSubject(subject);
+        new Subject(degree, semester, name.trim(), description.trim());
     }
 
     public  Subject readSubject(int semester, String name) {
         for (Subject subject : degree.getSubjectList(semester)) {
-            if (subject.getName().equals(name)) {
+            if (subject.getName().equals(name.trim())) {
                 return subject;
             }
         }
@@ -103,18 +88,11 @@ public class DegreeService extends Service {
     }
 
     public void updateSubject(Subject subject, SubjectDTO subjectDTO) {
-        if (subjectDTO.getDegree() != null) {
-            subject.setDegree(subjectDTO.getDegree());
-            degree.removeSubject(subject);
-            subject.getDegree().addSubject(subject);
-        }
-        if (subjectDTO.getSemester() != 0) {
-            degree.removeSubject(subject);
-            subject.setSemester(subjectDTO.getSemester());
-            degree.addSubject(subject);
-        }
-        if (subjectDTO.getName() != null) subject.setName(subjectDTO.getName());
-        if (subjectDTO.getDescription() != null) subject.setDescription(subjectDTO.getDescription());
+        if (subjectDTO.getName() != null) subject.setName(subjectDTO.getName().trim());
+        if (subjectDTO.getDegree() != null) subject.setDegree(subjectDTO.getDegree());
+        if (subjectDTO.getSemester() != null) subject.setSemester(subjectDTO.getSemester());
+        if (subjectDTO.getTeacher() != null) subject.setTeacher(subjectDTO.getTeacher());
+        if (subjectDTO.getDescription() != null) subject.setDescription(subjectDTO.getDescription().trim());
     }
 
     public void deleteSubject(Subject subject) {

@@ -1,39 +1,33 @@
 package com.tap.schoolplatform.models.academic.tasks;
 
-import com.tap.schoolplatform.models.academic.tasks.enums.TaskType;
+import com.tap.schoolplatform.models.enums.Status;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public abstract class Task {
     public static final double MAX_SCORE = 10;
-    private final UUID taskId;
-    private TaskType type;
+    private final UUID id;
     private final LocalDate creationDate;
     private String title;
     private String description;
-    private double score;
-    private LocalDate deadline;
+    private double score; // Should I delete this?
+    private LocalDateTime deadline;
+    private Status status;
 
-    public Task(TaskType type, String title, String description, double score, LocalDate deadline) {
-        this.taskId = UUID.randomUUID();
-        this.type = type;
+    public Task(String title, String description, LocalDateTime deadline) {
+        this.id = UUID.randomUUID(); // Maybe the title could work as id
         creationDate = LocalDate.now();
         this.title = title;
         this.description = description;
-        this.score = score;
+        this.score = 0;
         this.deadline = deadline;
+        updateStatus();
     }
 
-    public UUID getTaskId() {
-        return taskId;
-    }
-
-    public TaskType getType() {
-        return type;
-    }
-    public void setType(TaskType type) {
-        this.type = type;
+    public UUID getId() {
+        return id;
     }
 
     public LocalDate getCreationDate() {
@@ -61,10 +55,24 @@ public abstract class Task {
         this.score = score;
     }
 
-    public LocalDate getDeadline() {
+    public LocalDateTime getDeadline() {
         return deadline;
     }
-    public void setDeadline(LocalDate deadline) {
+    public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
+        updateStatus();
+    }
+
+    public Status getStatus() {
+        updateStatus();
+        return status;
+    }
+
+    public void updateStatus() {
+        if (LocalDateTime.now().isAfter(deadline)) {
+            this.status = Status.INACTIVE;
+        } else {
+            this.status = Status.ACTIVE;
+        }
     }
 }

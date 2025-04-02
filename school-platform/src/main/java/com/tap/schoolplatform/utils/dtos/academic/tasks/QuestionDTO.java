@@ -1,19 +1,13 @@
-package com.tap.schoolplatform.models.academic.tasks;
+package com.tap.schoolplatform.utils.dtos.academic.tasks;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
+import com.tap.schoolplatform.models.academic.tasks.Answer;
 
-import java.util.*;
+import java.util.Set;
 
-public class Question {
+public class QuestionDTO {
 
     private String description;
-    private final ObservableSet<Answer> answerSet = FXCollections.observableSet(new TreeSet<>(Comparator.comparing(Answer::getIndex)));
-
-    public Question(String description) {
-        this.description = description;
-    }
+    private Set<Answer> answers;
 
     public String getDescription() {
         return description;
@@ -22,23 +16,28 @@ public class Question {
         this.description = description;
     }
 
+    public Set<Answer> getAnswerSet() {
+        return answers;
+    }
+
     public Answer getAnswer(int index) {
-        return answerSet.stream()
+        return answers.stream()
                 .filter(answer -> answer.getIndex() == index)
                 .findFirst().orElse(null);
     }
 
     public void addAnswer(Answer answer) {
-        answerSet.add(answer);
+        answers.add(answer);
         sortIndexes();
     }
+
     public void removeAnswer(Answer answer) {
-        answerSet.remove(answer);
+        answers.remove(answer);
     }
 
     private void sortIndexes() {
         int index = 1;
-        for (Answer answer : answerSet) {
+        for (Answer answer : answers) {
             if (answer.getIndex() != index) {
                 answer.setIndex(index);
             }
