@@ -4,6 +4,12 @@
     -fx-font-size: 12px;
     -fx-text-fill: #000000;
 }
+#txtboldW{
+    -fx-font-family: "Inter Semi Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-text-fill: #ffffff;
+}
 #TopData{
     -fx-font-family: "Inter Semi Bold";
     -fx-font-weight: bold;
