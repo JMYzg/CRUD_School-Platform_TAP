@@ -2,7 +2,7 @@ package com.tap.schoolplatform.controllers;
 
 import com.tap.schoolplatform.auth.AuthenticationService;
 import com.tap.schoolplatform.models.users.User;
-import javafx.event.ActionEvent;
+import com.tap.schoolplatform.utils.SharedData;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
@@ -18,9 +18,8 @@ public class LoginViewController extends ViewController {
     public CheckBox rememberUserCB;
     public Hyperlink ForgotPasswordHL;
 
-    //public SharedData getUser;
 
-    public void handeLogin(ActionEvent actionEvent) throws IOException {
+    public void handeLogin() throws IOException {
         AuthenticationService authenticationService = new AuthenticationService();
         User user = authenticationService.login(email.getText(), password.getText());
 
@@ -41,9 +40,12 @@ public class LoginViewController extends ViewController {
         }
     }
 
-    public void validateCredentials() /*throws IOException*/ { //Temporal log in system so we can access to the different view windows
+    public void validateCredentials() throws IOException /*throws IOException*/ { //Temporal log in system so we can access to the different view windows
         if (email == null || password == null) {
             alert("", "Please make sure to full fill all the text boxes", Alert.AlertType.INFORMATION);
+        }
+        else {
+            handeLogin();
         }
 //        else {
 //            if (email.getText().equals("1")) {
