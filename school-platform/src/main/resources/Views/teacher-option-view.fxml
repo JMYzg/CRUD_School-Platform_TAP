@@ -8,8 +8,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="872.0" style="-fx-background-color: dedede;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -51,12 +51,34 @@
             </VBox>
          </left>
          <center>
-            <AnchorPane prefHeight="604.0" prefWidth="658.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane layoutX="129.0" layoutY="142.0" prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane layoutX="25.0" layoutY="42.0" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </AnchorPane>
          </center>
       </BorderPane>
+      <HBox layoutX="238.0" layoutY="10.0" prefHeight="32.0" prefWidth="619.0" spacing="10.0" stylesheets="@../styles/main.css">
+         <children>
+            <AnchorPane prefHeight="32.0" prefWidth="201.0" style="-fx-background-color: #709a98; -fx-background-radius: 5;">
+               <children>
+                  <Label id="TopData" layoutX="14.0" layoutY="6.0" text="Group:" />
+                  <Label id="TopData" layoutX="62.0" layoutY="6.0" prefHeight="17.0" prefWidth="52.0" text="3IS-01M" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="32.0" prefWidth="209.0" style="-fx-background-color: #709a98; -fx-background-radius: 5;">
+               <children>
+                  <Label id="TopData" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="167.0" text="Semester:" />
+                  <Label id="TopData" layoutX="78.0" layoutY="6.0" text="Forty" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="32.0" prefWidth="195.0" style="-fx-background-color: #709a98; -fx-background-radius: 5;">
+               <children>
+                  <Label id="TopData" layoutX="14.0" layoutY="6.0" text="Shift:" />
+                  <Label id="TopData" layoutX="53.0" layoutY="6.0" prefHeight="17.0" prefWidth="52.0" text="Morning" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
