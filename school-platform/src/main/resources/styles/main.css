@@ -79,7 +79,23 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
+#btnQuestion{
+    -fx-font-family: "Inter";
+    -fx-font-weight: bold;
+    -fx-pref-height: 30px; /* Ancho preferido */
+    -fx-font-size: 12px;
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-border-width: 0;
 
+    -fx-effect: dropshadow(gaussian, rgba(128, 128, 128, 0.5), 10, 0, 0, 0);
+    -fx-background-radius: 5px;    /* Esquinas redondeadas (opcional) */
+}
+#btnplus {
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px; /* Ancho preferido */
+    -fx-background-color:  #9d9f9f;
+}
 
 #btnOptions:hover {
     -fx-background-color: rgba(211, 211, 211, 0.5); /* Gris claro con transparencia */
