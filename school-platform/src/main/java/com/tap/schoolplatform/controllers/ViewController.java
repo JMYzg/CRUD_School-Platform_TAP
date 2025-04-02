@@ -21,14 +21,15 @@ public abstract class ViewController {
     }
 
     public BirthDate createBrithDate (TextField dayTF, TextField monthTF, TextField yearTF) {
-        int d = Integer.parseInt(dayTF.getSelectedText());
-        int m = Integer.parseInt(monthTF.getSelectedText());
-        int y = Integer.parseInt(yearTF.getSelectedText());
+        int d = Integer.parseInt(dayTF.getText());
+        int m = Integer.parseInt(monthTF.getText());
+        int y = Integer.parseInt(yearTF.getText());
+
         return new BirthDate(d, m, y);
     }
 
     public Address createAddress(TextField street, TextField PC, TextField colony, TextField city, TextField state, TextField country){
-        int pc = Integer.parseInt(PC.getSelectedText());
+        int pc = Integer.parseInt(PC.getText());
         return new Address(street.getSelectedText(), pc, colony.getSelectedText(), city.getSelectedText(), state.getSelectedText(), country.getSelectedText());
     }
 
