@@ -35,11 +35,6 @@ public class GroupViewController extends ViewController {
         semesterComboBox.setEditable(false);
     }
 
-    public void cancelGroup() {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
-    }
-
     public void addGroup(ActionEvent event) {
         Degree selectedDegree = degreeComboBox.getValue();
         Shift selectedShift = shiftComboBox.getValue();
@@ -51,6 +46,8 @@ public class GroupViewController extends ViewController {
             adminUser = new AdministratorService(selectedDegree);
             adminUser.createGroup(1, selectedShift);
             alert("", "Group added correctly", Alert.AlertType.INFORMATION);
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            stage.close();
         }
     }
 
@@ -58,6 +55,11 @@ public class GroupViewController extends ViewController {
         shiftComboBox.valueProperty().set(null);
         semesterComboBox.valueProperty().set(null);
         degreeComboBox.valueProperty().set(null);
+    }
+
+    public void cancelGroup() {
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 
     public void refreshDegreeCB () {

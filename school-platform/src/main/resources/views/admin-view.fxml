@@ -58,7 +58,7 @@
                             <ComboBox fx:id="studentModalityComboBox" editable="true" layoutX="86.0" layoutY="6.0" prefHeight="17.0" prefWidth="143.0" />
                             <ComboBox fx:id="studentDegreeComboBox" editable="true" layoutX="86.0" layoutY="42.0" onMouseClicked="#refreshCBStudentDegree" prefHeight="17.0" prefWidth="143.0" />
                             <Button fx:id="studentAddDegreeButton" layoutX="245.0" layoutY="43.0" mnemonicParsing="false" onAction="#addNewDegreeAdmin" prefHeight="29.0" prefWidth="109.0" text="Add" />
-                            <ComboBox fx:id="studentGroupComboBox" editable="true" layoutX="86.0" layoutY="79.0" prefHeight="17.0" prefWidth="143.0" />
+                            <ComboBox fx:id="studentGroupComboBox" editable="true" layoutX="86.0" layoutY="79.0" onMouseClicked="#refreshCBStudentGroup" prefHeight="17.0" prefWidth="143.0" />
                             <Button fx:id="studentAddGroupButton" layoutX="245.0" layoutY="79.0" mnemonicParsing="false" onAction="#addNewGroupAdmin" prefHeight="29.0" prefWidth="109.0" text="Add" />
                             <ComboBox fx:id="studentClassroomComboBox" editable="true" layoutX="86.0" layoutY="116.0" prefHeight="17.0" prefWidth="143.0" />
                             <ComboBox fx:id="studentStatusComboBox" editable="true" layoutX="86.0" layoutY="152.0" prefHeight="29.0" prefWidth="143.0" />

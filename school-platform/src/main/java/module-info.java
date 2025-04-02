@@ -8,6 +8,7 @@ module com.tap.schoolplatform {
     requires org.kordamp.bootstrapfx.core;
     requires java.xml;
     requires java.logging;
+    requires java.management;
 
     opens com.tap.schoolplatform to javafx.fxml;
     exports com.tap.schoolplatform;
