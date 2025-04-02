@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="619.0" prefWidth="477.0" spacing="10.0">
+         <children>
+            <Label id="titleOptions" text="New/Edit Exam" />
+            <Separator prefHeight="23.0" prefWidth="477.0" />
+            <TextField promptText="Title" />
+            <TextField promptText="Limit time" />
+            <HBox prefHeight="32.0" prefWidth="457.0" spacing="10.0">
+               <children>
+                  <DatePicker prefHeight="42.0" prefWidth="143.0" promptText="DD/MM/YYYY" />
+                  <Button id="btnplus" mnemonicParsing="false" prefHeight="35.0" prefWidth="31.0">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Plus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <ScrollPane prefHeight="371.0" prefWidth="457.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="436.0">
+                     <children>
+                        <VBox prefHeight="650.0" prefWidth="437.0" spacing="10.0">
+                           <children>
+                              <AnchorPane prefHeight="7.0" prefWidth="437.0" />
+                              <Button id="btnQuestion" mnemonicParsing="false" prefHeight="43.0" prefWidth="415.0" stylesheets="@../styles/main.css">
+                                 <graphic>
+                                    <Label id="txtregular" prefHeight="20.0" prefWidth="399.0" text="1. ¿Question example?" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <HBox prefHeight="29.0" prefWidth="457.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Clean">
+                     <HBox.margin>
+                        <Insets right="210.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="btnN" mnemonicParsing="false" prefHeight="30.0" prefWidth="73.0" text="Cancel" />
+                  <Button id="btnM" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Accept" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../styles/main.css" />
+      <URL value="@../styles/main.css" />
+   </stylesheets>
+</AnchorPane>

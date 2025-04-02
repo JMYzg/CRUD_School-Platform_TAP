@@ -27,6 +27,7 @@
                                     <Insets left="10.0" top="10.0" />
                                  </padding>
                               </AnchorPane>
+                              <AnchorPane layoutX="131.0" layoutY="73.0" prefHeight="200.0" prefWidth="200.0" />
                            </children>
                         </AnchorPane>
                      </content>
