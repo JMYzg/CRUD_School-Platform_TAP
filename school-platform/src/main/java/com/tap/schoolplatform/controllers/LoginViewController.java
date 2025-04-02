@@ -8,7 +8,7 @@ import javafx.stage.*;
 import java.io.IOException;
 import java.util.Objects;
 
-public class LoginViewController {
+public class LoginViewController extends ViewController {
     public Button loginButton;
     public TextField id;
     public TextField password;
@@ -18,8 +18,8 @@ public class LoginViewController {
     //public SharedData getUser;
 
     public void userLogin() throws IOException { //Temporal log in system so we can access to the different view windows
-        if (id.getText().isEmpty() || password.getText().isEmpty()) {
-            alert("", "Please full fill all the text boxes", Alert.AlertType.INFORMATION);
+        if (id == null || password == null) {
+            alert("", "Please make sure to full fill all the text boxes", Alert.AlertType.INFORMATION);
         }
         else {
             if (id.getText().equals("1")) {
@@ -54,6 +54,7 @@ public class LoginViewController {
         primaryStage.setTitle("Administrator");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        primaryStage.setResizable(false);
     }
 
     public void toTeacherView() throws IOException {
@@ -64,6 +65,7 @@ public class LoginViewController {
         primaryStage.setTitle("Student");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        primaryStage.setResizable(false);
     }
 
     public void toStudentView() throws IOException {
@@ -74,12 +76,6 @@ public class LoginViewController {
         primaryStage.setTitle("Student");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-    }
-
-    public void alert(String alertTitle, String alertMsg, Alert.AlertType alertType) {
-        Alert alertWindow = new Alert(alertType);
-        alertWindow.setTitle(alertTitle);
-        alertWindow.setContentText(alertMsg);
-        alertWindow.showAndWait();
+        primaryStage.setResizable(false);
     }
 }

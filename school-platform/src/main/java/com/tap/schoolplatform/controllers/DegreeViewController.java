@@ -5,10 +5,11 @@ import com.tap.schoolplatform.services.users.AdministratorService;
 import com.tap.schoolplatform.utils.SharedData;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-public class DegreeViewController {
+public class DegreeViewController extends ViewController {
     public TextField newDegreeTextField;
     public ComboBox degreeComboBox;
     public Button addButton;
@@ -27,14 +28,14 @@ public class DegreeViewController {
 
     public void addDegree(ActionEvent actionEvent) {
         if(newDegreeTextField.getText().isEmpty()) {
-            alert("Please write a name for the degree.", Alert.AlertType.ERROR);
+            alert("Error", "Please write a name for the degree.", Alert.AlertType.ERROR);
         }
-        if(newDegreeTextField.getText().equals(degree.getName())) {
-            alert("There is already a degree with this name, please write a non existing degree.", Alert.AlertType.ERROR);
+        if(newDegreeTextField.getText().equals(sharedDataObject.getDegrees().toString())) {
+            alert("Error", "There is already a degree with this name, please write a non existing degree.", Alert.AlertType.ERROR);
         }
         adminDegree.createDegree(newDegreeTextField.getText());
         System.out.println(newDegreeTextField.getText());
-        alert("Degree added correctly", Alert.AlertType.INFORMATION);
+        alert("", "Degree added correctly", Alert.AlertType.INFORMATION);
         Stage stage = (Stage) addButton.getScene().getWindow();
         stage.close();
     }
@@ -46,13 +47,6 @@ public class DegreeViewController {
 
     public void clearNewDegree(ActionEvent actionEvent) {
         //newDegreeTextField.set
-    }
-
-    public void alert(String alertMsg, Alert.AlertType alertType) {
-        Alert alertWindow = new Alert(alertType);
-        alertWindow.setTitle("Error");
-        alertWindow.setContentText(alertMsg);
-        alertWindow.showAndWait();
     }
 
     public void refreshCBDegree () {
@@ -71,4 +65,8 @@ public class DegreeViewController {
         });
     }
 
+    public void clearAll(MouseEvent mouseEvent) {
+        degreeComboBox.valueProperty().set(null);
+        newDegreeTextField.clear();
+    }
 }
