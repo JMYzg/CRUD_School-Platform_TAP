@@ -13,6 +13,8 @@ import javafx.collections.ObservableMap;
 public class SharedData {
     private static SharedData instance;
 
+
+
     private final ObservableMap<UserRole, ObservableList<User>> users;
     private final ObservableList<Administrator> administrators;
     private final ObservableList<Degree> degrees;
