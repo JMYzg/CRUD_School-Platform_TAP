@@ -22,7 +22,7 @@
     <AnchorPane prefHeight="30.0" prefWidth="655.0" style="-fx-background-color: #003b46;">
         <Label layoutX="584.0" layoutY="8.0" text="Admin's name:" />
         <Label layoutX="676.0" layoutY="8.0" text="Jeremy de Jesús Zarate Garcia" />
-      <Button id="btnLogout" fx:id="logOutButton" layoutX="10.0" layoutY="1.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #003b46;" text="Log out">
+      <Button id="btnLogout" fx:id="logOutButton" layoutX="10.0" layoutY="1.0" mnemonicParsing="false" style="-fx-background-color: #003b46;" text="Log out">
          <graphic>
             <ImageView fitHeight="15" fitWidth="15">
                <image>
