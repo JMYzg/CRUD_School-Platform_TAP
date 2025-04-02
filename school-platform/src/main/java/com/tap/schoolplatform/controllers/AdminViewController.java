@@ -139,15 +139,12 @@ public class AdminViewController extends ViewController {
             alert("Error", "Please make sure to full fill all the tex boxes", Alert.AlertType.ERROR);
         } else {
             adminUser = new AdministratorService(studentDegreeComboBox.getValue());
-            Student studentUser = new Student(studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDayTF, studentMonthTF, studentYearTF), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
-            studentUser.setGroup(studentGroupComboBox.getValue());
+            Student student = new Student(studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDayTF, studentMonthTF, studentYearTF), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
+            student.setGroup(studentGroupComboBox.getSelectionModel().getSelectedItem());
             UserDTO userDTO = new UserDTO();
-            createUserDTO(studentUser);
-            adminUser.createUser(studentUser, userDTO);
-            //adminUser.createUser(createStudent(studentUser), userDTO);
-
+            createUserDTO(student);
+            adminUser.createUser(student, userDTO);
         }
-
     }
     /*
     * 1. Create Student
@@ -156,10 +153,6 @@ public class AdminViewController extends ViewController {
     *   2.2 Select
     * */
     public void createStudent(Student student) {
-
-
-
-
 
         /*int id = Integer.parseInt(studentIdTF.getSelectedText());
         //Group group = studentGroupComboBox.getSelectionModel();
@@ -214,6 +207,17 @@ public class AdminViewController extends ViewController {
     }
 
     public void addTeacher(ActionEvent event) {
+        /*if (teacherIDTF.getText() == null || teacherNameTF.getText() == null || teacherLastNameTF.getText() == null /*|| teacherLadaComboBox.getValue() == null  || teacherPhoneTF.getText() == null || teacherEmailTF.getText() == null || teacherStreetTF.getText() == null || teacherPCTF.getText() == null || teacherColonyTF.getText() == null || teacherCityTF.getText() == null || teacherStreetTF.getText() == null || teacherCountryTF.getText() == null || teacherCountryTF.getText() == null || teacherGenderComboBox.getValue() == null || teacherDayTF.getText() == null || teacherMonthTF.getText() == null || teacherYearTF.getText() == null || teacherDegreeComboBox.getValue() == null /*|| teacherGroupComboBox.getValue() == null || teacStatusComboBox.getValue() == null) {
+            alert("Error", "Please make sure to full fill all the tex boxes", Alert.AlertType.ERROR);
+        } else {
+            adminUser = new AdministratorService(studentDegreeComboBox.getValue());
+            Student student = new Student(studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDayTF, studentMonthTF, studentYearTF), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
+            student.setGroup(studentGroupComboBox.getValue());
+            UserDTO userDTO = new UserDTO();
+            createUserDTO(student);
+            adminUser.createUser(student, userDTO);
+        }
+        */
     }
 
     public UserDTO createUserDTO (Student studentUser) {
@@ -226,6 +230,8 @@ public class AdminViewController extends ViewController {
         userDTO.setPhone(studentUser.getPhone());
         userDTO.setAddress(studentUser.getAddress());
         userDTO.setGender(studentUser.getGender());
+        userDTO.setStatus(studentUser.getStatus());
+        userDTO.setGroup(studentUser.getGroup());
         return userDTO;
     }
 
