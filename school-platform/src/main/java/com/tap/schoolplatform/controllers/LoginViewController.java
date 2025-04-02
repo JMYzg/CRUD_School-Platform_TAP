@@ -88,7 +88,7 @@ public class LoginViewController extends ViewController {
         stage.close();
         Stage primaryStage = new Stage();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/teacher-option-view.fxml")));
-        primaryStage.setTitle("Student");
+        primaryStage.setTitle("Teacher");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         primaryStage.setResizable(false);

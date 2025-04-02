@@ -32,7 +32,6 @@ public class AdminViewController extends ViewController {
 
     public AnchorPane AnchorPaneImage1;
     public ComboBox<Gender> studentGenderComboBox;
-    public ComboBox<Modality> studentModalityComboBox;
     public ComboBox<Degree> studentDegreeComboBox;
     public Button studentAddDegreeButton;
     public ComboBox<Group> studentGroupComboBox;
@@ -91,13 +90,11 @@ public class AdminViewController extends ViewController {
         studentGenderComboBox.getItems().setAll(Gender.values());
         studentGenderComboBox.setEditable(false);
         //studentModalityComboBox.getItems().setAll(something);
-        studentModalityComboBox.setEditable(false);
         refreshCBDegree(studentDegreeComboBox);
         studentDegreeComboBox.setEditable(false);
         //studentGroupComboBox.getItems().setAll(something);
         studentGroupComboBox.setEditable(false);
         //studentClassroomComboBox.getItems().setAll(something);
-        studentClassroomComboBox.setEditable(false);
         studentStatusComboBox.getItems().setAll(Status.values());
         studentStatusComboBox.setEditable(false);
         teacherGenderComboBox.getItems().setAll(Gender.values());
