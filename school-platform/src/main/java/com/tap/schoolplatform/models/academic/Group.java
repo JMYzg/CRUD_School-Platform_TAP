@@ -10,9 +10,9 @@ import javafx.collections.SetChangeListener;
 import java.util.*;
 
 public class Group {
-    private String id;
+    private String ID;
     private Degree degree;
-    private int semester;
+    private Integer semester;
     private Shift shift;
     private final ObservableSet<Student> studentSet = FXCollections.observableSet(new TreeSet<>(Comparator.comparing(Student::getLastName))); // Convert to a set : OK
     private final ObservableList<Student> studentList = FXCollections.observableArrayList();
@@ -22,7 +22,7 @@ public class Group {
         this.semester = semester;
         this.shift = shift;
         degree.addGroup(this); // Check the degree service for this implementation
-        generateId();
+        generateID();
         studentList.addAll(studentSet);
         studentSet.addListener((SetChangeListener.Change<? extends Student> change) -> {
             if (change.wasAdded()) studentList.add(change.getElementAdded());
@@ -30,7 +30,7 @@ public class Group {
         });
     }
 
-    private void generateId() {
+    private void generateID() {
         int index = degree.getGroupList(semester).size(); // Check index
         StringBuilder degreeInitials = new StringBuilder();
         for (char character : degree.getName().toCharArray()) {
@@ -39,7 +39,7 @@ public class Group {
             }
         }
         String shift = this.shift == Shift.MORNINGS ? "M" : "E";
-        id = String.format("%d%s-%d%s",
+        ID = String.format("%d%s-%d%s",
                 semester,
                 degreeInitials,
                 index,
@@ -47,35 +47,55 @@ public class Group {
         );
     }
 
-    public String getId() {
-        return id;
+    public String getID() {
+        return ID;
     }
 
     public Degree getDegree() {
         return degree;
     }
 
+    /**Remove {@code this} group from the current degree, set the new {@code degree} as the current degree and add {@code this} group to the current degree on the current semester using {@link Degree#addGroup(Group)}:
+     * <blockquote><pre>
+     *     public void setDegree(Degree degree) {
+     *         this.degree = degree;
+     *         degree.addGroup(this);
+     *         generateId();
+     *     }
+     * </pre></blockquote>*/
     public void setDegree(Degree degree) {
+        this.degree.removeGroup(this);
         this.degree = degree;
-        generateId();
+        this.degree.addGroup(this);
+        generateID();
     }
 
-    public int getSemester() {
+    public Integer getSemester() {
         return semester;
     }
 
+    /**Remove {@code this} group from the current degree, set the new {@code semester} as the current semester and add {@code this} group to the current degree on the current semester using {@link Degree#addGroup(Group)}:
+     * <blockquote><pre>
+     *     public void setSemester(int semester) {
+     *         degree.removeGroup(this);
+     *         this.semester = semester;
+     *         degree.addGroup(this);
+     *         generateId();
+     *     }
+     * </pre></blockquote>*/
     public void setSemester(int semester) {
+        degree.removeGroup(this);
         this.semester = semester;
-        generateId();
+        degree.addGroup(this);
+        generateID();
     }
 
     public Shift getShift() {
         return shift;
     }
-
     public void setShift(Shift shift) {
         this.shift = shift;
-        generateId();
+        generateID();
     }
 
     public ObservableList<Student> getStudentList() {
@@ -85,12 +105,11 @@ public class Group {
     public void addStudent(Student student) {
         studentSet.add(student);
     }
-
     public void removeStudent(Student student) {
         studentSet.remove(student);
     }
 
-    public ObservableList<Subject> getSubjectList() { // Should I make it unmodifiable?
+    public ObservableList<Subject> getSubjectList() { // Should I make it unmodifiable? : I think it works
         return degree.getSubjectList(semester);
     }
 }

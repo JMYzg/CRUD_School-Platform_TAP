@@ -4,7 +4,7 @@ import com.tap.schoolplatform.models.academic.tasks.enums.AnswerType;
 
 public class Answer {
 
-    private int index;
+    private Integer index;
     private AnswerType type;
     private String text;
 
@@ -13,10 +13,10 @@ public class Answer {
         this.text = text;
     }
 
-    public int getIndex() {
+    public Integer getIndex() {
         return index;
     }
-    public void setIndex(int index) {
+    public void setIndex(Integer index) {
         this.index = index;
     }
 

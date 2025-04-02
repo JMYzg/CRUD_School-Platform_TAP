@@ -2,8 +2,7 @@ package com.tap.schoolplatform.services.academic;
 
 import com.tap.schoolplatform.models.academic.Group;
 import com.tap.schoolplatform.models.users.Student;
-import com.tap.schoolplatform.models.users.User;
-import com.tap.schoolplatform.utils.UserDTO;
+import com.tap.schoolplatform.utils.dtos.UserDTO;
 
 public class GroupService {
 
@@ -20,14 +19,13 @@ public class GroupService {
         this.group = group;
     }
 
-    public void createStudent(User user) {
-        Student student = (Student) user;
+    public void createStudent(Student student) {
         student.setGroup(group);
     }
 
-    public Student readStudent(String studentId) {
+    public Student readStudent(String ID) {
         for (Student student : group.getStudentList()) {
-            if (student.getStudentId().equals(studentId)) {
+            if (student.getID().equals(ID)) {
                 return student;
             }
         }
@@ -40,6 +38,6 @@ public class GroupService {
     }
 
     public void deleteStudent(Student student) {
-        group.getStudentList().remove(student);
+        group.removeStudent(student);
     }
 }

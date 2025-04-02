@@ -1,8 +1,8 @@
-package com.tap.schoolplatform.utils;
+package com.tap.schoolplatform.utils.dtos.academic.tasks;
 
 import com.tap.schoolplatform.models.academic.tasks.enums.TaskType;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Timer;
 
 public class TaskDTO {
@@ -11,12 +11,12 @@ public class TaskDTO {
     private TaskType type;
     private String title;
     private String description;
-    private double score;
-    private LocalDate deadline;
+    private Double score;
+    private LocalDateTime deadline;
 
     // Evaluation attributes
 
-    private LocalDate startDate;
+    private LocalDateTime startDate;
     private Timer timer;
 
     // Getters and setters for common Task attributes
@@ -41,25 +41,25 @@ public class TaskDTO {
         this.description = description;
     }
 
-    public double getScore() {
+    public Double getScore() {
         return score;
     }
-    public void setScore(double score) {
+    public void setScore(Double score) {
         this.score = score;
     }
 
-    public LocalDate getDeadline() {
+    public LocalDateTime getDeadline() {
         return deadline;
     }
-    public void setDeadline(LocalDate deadline) {
+    public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
     }
 
     // Getters and setters for Evaluation attributes
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 

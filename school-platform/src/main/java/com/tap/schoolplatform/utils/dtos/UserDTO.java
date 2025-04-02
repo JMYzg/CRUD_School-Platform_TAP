@@ -1,4 +1,4 @@
-package com.tap.schoolplatform.utils;
+package com.tap.schoolplatform.utils.dtos;
 
 import com.tap.schoolplatform.models.academic.Degree;
 import com.tap.schoolplatform.models.academic.Group;

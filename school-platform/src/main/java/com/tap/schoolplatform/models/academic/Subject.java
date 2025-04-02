@@ -13,17 +13,18 @@ public class Subject {
 
     private String name;
     private Degree degree;
-    private int semester;
+    private Integer semester;
     private Teacher teacher;
     private String description;
     private final Map<Integer, ObservableSet<Task>> taskSets = new HashMap<>();
     private final Map<Integer, ObservableList<Task>> taskLists = new HashMap<>();
 
-    public Subject(Degree degree, int semester, String name, String description) {
+    public Subject(Degree degree, Integer semester, String name, String description) {
         this.degree = degree;
         this.name = name;
         this.semester = semester;
         this.description = description;
+        degree.addSubject(this);
     }
 
     public String getName() {return name;}
@@ -33,21 +34,32 @@ public class Subject {
         return degree;
     }
     public void setDegree(Degree degree) {
+        this.degree.removeSubject(this);
         this.degree = degree;
+        this.degree.addSubject(this);
     }
 
-    public int getSemester() {
+    public Integer getSemester() {
         return semester;
     }
     public void setSemester(int semester) {
+        this.degree.removeSubject(this);
         this.semester = semester;
+        this.degree.addSubject(this);
     }
 
     public Teacher getTeacher() {
         return teacher;
     }
     public void setTeacher(Teacher teacher) {
+        if (this.teacher == teacher) return;
+        if (teacher == null) {
+            this.teacher = null;
+            return;
+        }
+        this.teacher.unassignSubject(this);
         this.teacher = teacher;
+        this.teacher.assignSubject(this);
     }
 
     public String getDescription() {return description;}

@@ -12,7 +12,7 @@ public abstract class Task {
     private final LocalDate creationDate;
     private String title;
     private String description;
-    private double score;
+    private double score; // Should I delete this?
     private LocalDateTime deadline;
     private Status status;
 

@@ -3,7 +3,7 @@ package com.tap.schoolplatform.services.academic;
 import com.tap.schoolplatform.models.academic.tasks.Answer;
 import com.tap.schoolplatform.models.academic.tasks.Evaluation;
 import com.tap.schoolplatform.models.academic.tasks.Question;
-import com.tap.schoolplatform.utils.QuestionDTO;
+import com.tap.schoolplatform.utils.dtos.academic.tasks.QuestionDTO;
 
 import java.util.List;
 

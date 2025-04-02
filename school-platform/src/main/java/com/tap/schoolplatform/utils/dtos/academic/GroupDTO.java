@@ -1,13 +1,12 @@
-package com.tap.schoolplatform.utils;
+package com.tap.schoolplatform.utils.dtos.academic;
 
 import com.tap.schoolplatform.models.academic.Degree;
 import com.tap.schoolplatform.models.academic.enums.Shift;
-import com.tap.schoolplatform.models.academic.keys.GroupKey;
 
 public class GroupDTO {
 
     private Degree degree;
-    private int semester;
+    private Integer semester;
     private Shift shift;
 
     public Degree getDegree() {
@@ -17,7 +16,7 @@ public class GroupDTO {
         this.degree = degree;
     }
 
-    public int getSemester() {
+    public Integer getSemester() {
         return semester;
     }
     public void setSemester(int semester) {

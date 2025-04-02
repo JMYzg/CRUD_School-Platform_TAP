@@ -3,7 +3,7 @@ package com.tap.schoolplatform.services.academic;
 import com.tap.schoolplatform.models.academic.tasks.Answer;
 import com.tap.schoolplatform.models.academic.tasks.Question;
 import com.tap.schoolplatform.models.academic.tasks.enums.AnswerType;
-import com.tap.schoolplatform.utils.AnswerDTO;
+import com.tap.schoolplatform.utils.dtos.academic.tasks.AnswerDTO;
 
 public class QuestionService {
 

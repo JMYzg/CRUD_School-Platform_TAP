@@ -32,7 +32,6 @@ public class Question {
         answerSet.add(answer);
         sortIndexes();
     }
-
     public void removeAnswer(Answer answer) {
         answerSet.remove(answer);
     }

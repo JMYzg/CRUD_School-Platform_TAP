@@ -1,10 +1,8 @@
-package com.tap.schoolplatform.utils;
+package com.tap.schoolplatform.utils.dtos.academic.tasks;
 
 import com.tap.schoolplatform.models.academic.tasks.Answer;
 
-import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class QuestionDTO {
 
@@ -46,5 +44,4 @@ public class QuestionDTO {
             index++;
         }
     }
-
 }

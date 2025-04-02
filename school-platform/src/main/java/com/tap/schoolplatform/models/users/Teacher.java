@@ -12,14 +12,14 @@ public class Teacher extends User {
     private String license;
     private Degree degree;
     private String specialization;
-    private final ObservableList<Subject> assignedSubjects = FXCollections.observableArrayList();
+    private final ObservableList<Subject> assignedSubjects = FXCollections.observableArrayList(); // Make it a set
 
-    public Teacher(Degree degree, String license, String specialization, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
+    public Teacher(/*Degree degree, String license, String specialization,*/ String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         super(name, lastName, birthDate, email, phone, address, gender);
-        super.setRole(UserRole.TEACHER);
-        this.license = license;
-        this.degree = degree;
-        this.specialization = specialization;
+//        super.setRole(UserRole.TEACHER);
+//        this.license = license;
+//        this.degree = degree;
+//        this.specialization = specialization;
     }
 
     public String getLicense() {
@@ -33,7 +33,9 @@ public class Teacher extends User {
         return degree;
     }
     public void setDegree(Degree degree) {
+        this.degree.removeTeacher(this);
         this.degree = degree;
+        this.degree.addTeacher(this);
     }
 
     public String getSpecialization() {
@@ -48,11 +50,11 @@ public class Teacher extends User {
     }
 
     public void assignSubject(Subject subject) {
-        assignedSubjects.add(subject);
         subject.setTeacher(this);
+        assignedSubjects.add(subject);
     }
     public void unassignSubject(Subject subject) {
-        assignedSubjects.remove(subject);
         subject.setTeacher(null);
+        assignedSubjects.remove(subject);
     }
 }

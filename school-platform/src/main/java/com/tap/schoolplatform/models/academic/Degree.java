@@ -30,8 +30,8 @@ public class Degree {
     public void addGroup(Group group) {
         groups.computeIfAbsent(group.getSemester(), semester -> FXCollections.observableArrayList()).add(group);
     }
-    public void removeGroup(int semester, Group group) {
-        if (!groups.containsKey(semester)) return;
+    public void removeGroup(Group group) {
+        int semester = group.getSemester();
         groups.get(semester).remove(group);
         if (groups.get(semester).isEmpty()) groups.remove(semester);
     }
@@ -43,7 +43,7 @@ public class Degree {
     public void addTeacher(Teacher teacher) {
         teachers.add(teacher);
     }
-    public void removeTeacher(Teacher teacher) {
+    public void removeTeacher(Teacher teacher) { // check validation
         if (!teachers.contains(teacher)) return;
         teachers.remove(teacher);
     }
