@@ -139,17 +139,17 @@ public class AdminViewController extends ViewController {
     public void addStudent(ActionEvent event) {
         //userDTO = createDTO(studentUser.getRole(), studentNameTF, studentLastNameTF, createBrithDate(studentDayTF, studentMonthTF, studentYearTF), studentPhoneTF, studentEmailTF, studentGenderComboBox.getSelectionModel().getSelectedItem());
         if (studentIdTF.getText() == null || studentNameTF.getText() == null || studentLastNameTF.getText() == null /*|| studentLadaComboBox.getValue() == null */ || studentPhoneTF.getText() == null || studentEmailTF.getText() == null || studentStreetTF.getText() == null || studentPCTF.getText() == null || studentColonyTF.getText() == null || studentCityTF.getText() == null || studentStateTF.getText() == null || studentCountryTF.getText() == null || studentCountryTF.getText() == null || studentGenderComboBox.getValue() == null || studentDayTF.getText() == null || studentMonthTF.getText() == null || studentYearTF.getText() == null || studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null || studentStatusComboBox.getValue() == null) {
-            alert("Error", "Please make sure to full fill all the tex boxes", Alert.AlertType.ERROR);
-        } else {
+            alert("Error", "Please make sure to full fill all the text boxes", Alert.AlertType.ERROR);
+        } //else {
             adminService = new AdministratorService(studentDegreeComboBox.getValue());
             Student studentUser = new Student(studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDayTF, studentMonthTF, studentYearTF), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
-            studentUser.setGroup(studentGroupComboBox.getValue());
             UserDTO userDTO = new UserDTO();
+            userDTO.setGroup(studentGroupComboBox.getValue());
             createUserDTO(studentUser, UserRole.STUDENT);
             adminService.createUser(studentUser, userDTO);
             //adminUser.createUser(createStudent(studentUser), userDTO);
 
-        }
+        //}
 
     }
     /*
@@ -202,7 +202,7 @@ public class AdminViewController extends ViewController {
 
     public void createTeacher () {
         if (teacherIDTF.getText() == null || teacherNameTF.getText() == null || teacherLastNameTF.getText() == null || teacherPhoneTF.getText() == null || teacherEmailTF.getText() == null || teacherStreetTF.getText() == null || teacherPCTF.getText() == null || teacherColonyTF.getText() == null || teacherCityTF.getText() == null || teacherStreetTF.getText() == null || teacherCountryTF.getText() == null || teacherCountryTF.getText() == null || teacherGenderComboBox.getValue() == null || teacherDayTF.getText() == null || teacherMonthTF.getText() == null || teacherYearTF.getText() == null || teacherDegreeComboBox.getValue() == null) {
-            alert("Error", "Please make sure to full fill all the tex boxes", Alert.AlertType.ERROR);
+            alert("Error", "Please make sure to full fill all the text boxes", Alert.AlertType.ERROR);
         } else {
             adminService = new AdministratorService(null);
             Teacher teacher = new Teacher(teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDayTF, teacherMonthTF, teacherYearTF), teacherEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getValue());
@@ -233,15 +233,16 @@ public class AdminViewController extends ViewController {
         userDTO.setPhone(user.getPhone());
         userDTO.setAddress(user.getAddress());
         userDTO.setGender(user.getGender());
-        if (role == UserRole.TEACHER) {
-            userDTO.setLicense();
-            userDTO.setDegree();
-            userDTO.setSpecialization();
-        }
-        if (role == UserRole.STUDENT) {
-            userDTO.setStatus();
-            userDTO.setGroup();
-        }
+        userDTO.setStatus(userDTO.getStatus());
+        userDTO.setGroup(userDTO.getGroup());
+        //if (role == UserRole.TEACHER) {
+           // userDTO.setLicense(null);
+           // userDTO.setDegree(teacherDegreeComboBox.getValue());
+           // userDTO.setSpecialization(null);
+        //}
+        //if (role == UserRole.STUDENT) {
+
+        //}
         return userDTO;
     }
 

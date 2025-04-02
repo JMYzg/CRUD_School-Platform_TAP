@@ -1,4 +1,5 @@
 package com.tap.schoolplatform;
+import com.tap.schoolplatform.utils.SharedData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ public class MainApplication extends Application {
     @Override
 
     public void start(Stage stage) throws IOException {
+        SharedData.getInstance().initialize();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/views/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);

@@ -57,7 +57,7 @@ public class Subject {
             this.teacher = null;
             return;
         }
-        this.teacher.unassignSubject(this);
+        if (this.teacher != null) this.teacher.unassignSubject(this);
         this.teacher = teacher;
         this.teacher.assignSubject(this);
     }
