@@ -1,5 +1,8 @@
 package com.tap.schoolplatform.controllers;
 
+import com.tap.schoolplatform.auth.AuthenticationService;
+import com.tap.schoolplatform.models.users.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
@@ -10,29 +13,50 @@ import java.util.Objects;
 
 public class LoginViewController extends ViewController {
     public Button loginButton;
-    public TextField id;
+    public TextField email;
     public TextField password;
     public CheckBox rememberUserCB;
     public Hyperlink ForgotPasswordHL;
 
     //public SharedData getUser;
 
-    public void userLogin() throws IOException { //Temporal log in system so we can access to the different view windows
-        if (id == null || password == null) {
+    public void handeLogin(ActionEvent actionEvent) throws IOException {
+        AuthenticationService authenticationService = new AuthenticationService();
+        User user = authenticationService.login(email.getText(), password.getText());
+
+        if (user != null) {
+            switch (user.getRole()) {
+                case ADMIN:
+                    toAdminView();
+                    break;
+                case TEACHER:
+                    toTeacherView();
+                    break;
+                case STUDENT:
+                    toStudentView();
+                    break;
+            }
+        } else {
+            alert("Error", "Make sure your credentials are right", Alert.AlertType.ERROR);
+        }
+    }
+
+    public void validateCredentials() /*throws IOException*/ { //Temporal log in system so we can access to the different view windows
+        if (email == null || password == null) {
             alert("", "Please make sure to full fill all the text boxes", Alert.AlertType.INFORMATION);
         }
-        else {
-            if (id.getText().equals("1")) {
-                toAdminView();
-            } else {
-                if (id.getText().equals("2")) {
-                    toTeacherView();
-                } else {
-                    toStudentView();
-                }
-            }
-            System.out.println("The user logged in");
-        }
+//        else {
+//            if (email.getText().equals("1")) {
+//                toAdminView();
+//            } else {
+//                if (email.getText().equals("2")) {
+//                    toTeacherView();
+//                } else {
+//                    toStudentView();
+//                }
+//            }
+//            System.out.println("The user logged in");
+//        }
     }
 
     /*public boolean confirmCredentials(int id)

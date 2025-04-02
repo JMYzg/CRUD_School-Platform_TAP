@@ -21,7 +21,7 @@
             </font>
         </Label>
         <Region prefHeight="53.0" prefWidth="254.0" visible="false" />
-        <TextField fx:id="id" prefHeight="40.0" prefWidth="254.0" promptText=" ID" />
+        <TextField fx:id="email" prefHeight="40.0" prefWidth="254.0" promptText="Email" />
       <Region prefHeight="17.0" prefWidth="254.0" />
         <TextField fx:id="password" prefHeight="27.0" prefWidth="254.0" promptText=" Password" />
         <HBox prefHeight="31.0" prefWidth="254.0">
@@ -37,7 +37,7 @@
             </Hyperlink>
         </HBox>
         <Region prefHeight="12.0" prefWidth="254.0" />
-        <Button id="btnLogin" fx:id="loginButton" mnemonicParsing="false" onAction="#userLogin" prefHeight="33.0" prefWidth="254.0" text="Login" textFill="WHITE">
+        <Button id="btnLogin" fx:id="loginButton" mnemonicParsing="false" onAction="#validateCredentials" prefHeight="33.0" prefWidth="254.0" text="Login" textFill="WHITE">
             <font>
                 <Font name="Nirmala UI Bold" size="13.0" />
             </font>

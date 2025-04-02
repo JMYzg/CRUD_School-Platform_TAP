@@ -22,7 +22,7 @@ public class DegreeViewController extends ViewController {
     public void initialize() {
         degreeComboBox.setEditable(false);
         refreshCBDegree();
-        adminDegree = new AdministratorService(degree);
+        adminDegree = new AdministratorService(null);
         degree = new Degree(newDegreeTextField.getText());
     }
 
