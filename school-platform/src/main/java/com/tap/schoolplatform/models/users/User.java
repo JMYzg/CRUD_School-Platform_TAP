@@ -7,7 +7,7 @@ import com.tap.schoolplatform.models.enums.Gender;
 import java.util.UUID;
 
 public abstract class User {
-    private final UUID uuid;
+    private final UUID ID;
     private String password;
     private UserRole role = null;
     private String name;
@@ -19,7 +19,7 @@ public abstract class User {
     private Gender gender;
 
     protected User(String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
-        this.uuid = UUID.randomUUID();
+        this.ID = UUID.randomUUID();
         this.password = "systems123";
         this.name = name;
         this.lastName = lastName;
@@ -30,8 +30,8 @@ public abstract class User {
         this.gender = gender;
     }
 
-    public UUID getId() {
-        return uuid;
+    public UUID getUUID() {
+        return ID;
     }
 
     public String getPassword() {

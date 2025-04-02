@@ -1,15 +1,18 @@
 package com.tap.schoolplatform.models.academic;
 
-import com.tap.schoolplatform.models.academic.keys.GroupKey;
 import com.tap.schoolplatform.models.users.Teacher;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Degree {
     private String name;
-    private final Map<GroupKey, List<Group>> groups = new HashMap<>();
-    private final List<Teacher> teachers = new ArrayList<>();
-    private final Map<Integer, List<Subject>> subjects = new HashMap<>();
+    private final Map<Integer, ObservableList<Group>> groups = new HashMap<>();
+    private final ObservableList<Teacher> teachers = FXCollections.observableArrayList();
+    private final Map<Integer, ObservableList<Subject>> subjects = new HashMap<>();
 
     public Degree(String name) {
         this.name = name;
@@ -20,49 +23,43 @@ public class Degree {
         this.name = name;
     }
 
-    public void removeGroup(Group group) {
-        GroupKey oldKey = group.getKey();
-        List<Group> oldGroups = groups.get(oldKey);
-        if (oldGroups != null) {
-            oldGroups.remove(group);
-            if (oldGroups.isEmpty()) {
-                groups.remove(oldKey);
-            }
-        }
+    public ObservableList<Group> getGroupList(int semester) {
+        return FXCollections.unmodifiableObservableList(groups.get(semester));
     }
 
-    public List<Group> getGroupList(GroupKey key) {
-        return groups.get(key);
-    }
     public void addGroup(Group group) {
-        GroupKey key = group.getKey();
-        groups.computeIfAbsent(key, k -> new ArrayList<>()).add(group);
+        groups.computeIfAbsent(group.getSemester(), semester -> FXCollections.observableArrayList()).add(group);
+    }
+    public void removeGroup(Group group) {
+        int semester = group.getSemester();
+        groups.get(semester).remove(group);
+        if (groups.get(semester).isEmpty()) groups.remove(semester);
     }
 
-    public List<Teacher> getTeacherList() {return Collections.unmodifiableList(teachers);}
+    public ObservableList<Teacher> getTeacherList() {
+        return FXCollections.unmodifiableObservableList(teachers);
+    }
+
     public void addTeacher(Teacher teacher) {
         teachers.add(teacher);
     }
-    public void removeTeacher(Teacher teacher) {
+    public void removeTeacher(Teacher teacher) { // check validation
+        if (!teachers.contains(teacher)) return;
         teachers.remove(teacher);
     }
 
-    public List<Subject> getSubjectList(int semester) {
-        return Collections.unmodifiableList(subjects.get(semester));
+    public ObservableList<Subject> getSubjectList(int semester) {
+        if (!subjects.containsKey(semester)) return null;
+        return FXCollections.unmodifiableObservableList(subjects.get(semester));
     }
+
     public void addSubject(Subject subject) {
-        int semester = subject.getSemester();
-        this.subjects.computeIfAbsent(semester, sem -> new ArrayList<>()).add(subject);
+        this.subjects.computeIfAbsent(subject.getSemester(), semester -> FXCollections.observableArrayList()).add(subject);
     }
     public void removeSubject(Subject subject) {
-        int oldSemester = subject.getSemester();
-        List<Subject> oldSubjects = subjects.get(oldSemester);
-        if (oldSubjects != null) {
-            oldSubjects.remove(subject);
-            if (oldSubjects.isEmpty()) {
-                subjects.remove(oldSemester);
-            }
-        }
+        if (!subjects.containsKey(subject.getSemester())) return;
+        subjects.get(subject.getSemester()).remove(subject);
+        if (subjects.get(subject.getSemester()).isEmpty()) subjects.remove(subject.getSemester());
     }
 
     @Override
