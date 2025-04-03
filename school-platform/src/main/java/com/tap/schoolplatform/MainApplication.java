@@ -17,6 +17,7 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
 
     public static void main(String[] args) {

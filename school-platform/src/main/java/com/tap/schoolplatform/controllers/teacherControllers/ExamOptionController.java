@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 
-public class examnOptionController extends ViewController {
+public class ExamOptionController extends ViewController {
 
     public Button createNewExamButton;
 

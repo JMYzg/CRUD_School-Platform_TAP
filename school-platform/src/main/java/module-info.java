@@ -9,6 +9,7 @@ module com.tap.schoolplatform {
     requires java.logging;
     requires java.management;
     requires org.jetbrains.annotations;
+    requires java.desktop;
 
     opens com.tap.schoolplatform to javafx.fxml;
     exports com.tap.schoolplatform;

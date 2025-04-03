@@ -77,12 +77,12 @@ public class AdminViewController extends ViewController {
     public Button studentEditButton;
     public Button studentAcceptButton;
     public Button studentCancelButton;
-    public TableView<User> studentList;
-    public TableColumn<User, UUID> studentIdTableColumn;
-    public TableColumn<User, String> studentLNTableColumn;
-    public TableColumn<User, String> studentNameTableColumn;
-    public TableColumn<User, String> studentDegreeTableColumn;
-    public TableColumn<User, String> studentGroupTableColumn;
+    public TableView<Student> studentList;
+    public TableColumn<Student, UUID> studentIdTableColumn;
+    public TableColumn<Student, String> studentLNTableColumn;
+    public TableColumn<Student, String> studentNameTableColumn;
+    public TableColumn<Student, String> studentDegreeTableColumn;
+    public TableColumn<Student, String> studentGroupTableColumn;
     AdministratorService adminService;
 
     private final SharedData sharedDataObject = SharedData.getInstance();
@@ -96,12 +96,13 @@ public class AdminViewController extends ViewController {
         studentGroupComboBox.setEditable(false);
         studentStatusComboBox.getItems().setAll(Status.values());
         studentStatusComboBox.setEditable(false);
-        studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<User, UUID>("id"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<User, String>("degree"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<User, String>("group"));
-        studentList.setItems(sharedDataObject.getUsers(UserRole.STUDENT));
+        studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<Student, UUID>("id"));
+        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("lastName"));
+        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
+        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("degree"));
+        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("group"));
+        studentList.setItems(sharedDataObject.getStudents());
+        studentDatePicker.setEditable(false);
         teacherIDTF.setEditable(false);
         teacherGenderComboBox.getItems().setAll(Gender.values());
         teacherGenderComboBox.setEditable(false);
@@ -109,6 +110,7 @@ public class AdminViewController extends ViewController {
         teacherLadaComboBox.setEditable(false);
         refreshCBDegree(teacherDegreeComboBox);
         teacherDegreeComboBox.setEditable(false);
+        teacherDatePicker.setEditable(false);
     }
 
     public void addNewDegreeAdmin(ActionEvent event) throws IOException {
@@ -119,7 +121,7 @@ public class AdminViewController extends ViewController {
     }
 
     public void addStudent(ActionEvent event) {
-        if (studentIdTF.getText() == null || studentNameTF.getText() == null || studentLastNameTF.getText() == null /*|| studentLadaComboBox.getValue() == null */ || studentPhoneTF.getText() == null || studentEmailTF.getText() == null || studentStreetTF.getText() == null || studentPCTF.getText() == null || studentColonyTF.getText() == null || studentCityTF.getText() == null || studentStateTF.getText() == null || studentCountryTF.getText() == null || studentCountryTF.getText() == null || studentGenderComboBox.getValue() == null || studentDatePicker.getValue() == null|| studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null || studentStatusComboBox.getValue() == null) {
+        if (studentIdTF.getText() == null || studentNameTF.getText() == null || studentLastNameTF.getText() == null || studentPhoneTF.getText() == null || studentEmailTF.getText() == null || studentStreetTF.getText() == null || studentPCTF.getText() == null || studentColonyTF.getText() == null || studentCityTF.getText() == null || studentStateTF.getText() == null || studentCountryTF.getText() == null || studentCountryTF.getText() == null || studentGenderComboBox.getValue() == null || studentDatePicker.getValue() == null|| studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null || studentStatusComboBox.getValue() == null) {
             alert("Error", "Please make sure to full fill all the text boxes", Alert.AlertType.ERROR);
         }
             adminService = new AdministratorService(studentDegreeComboBox.getValue());

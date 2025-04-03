@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -18,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Optional;
 
 public abstract class ViewController {
 
@@ -28,11 +26,21 @@ public abstract class ViewController {
         alertWindow.showAndWait();
     }
 
+    public void confirmationAlert (String contentText, String headerText, Button button) {
+        Alert alertWindow = new Alert(Alert.AlertType.CONFIRMATION);
+        alertWindow.initModality(Modality.APPLICATION_MODAL);
+        alertWindow.setContentText(contentText);
+        alertWindow.setTitle("");
+        alertWindow.setHeaderText(headerText);
+        Optional<ButtonType> result = alertWindow.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Stage stage = (Stage) button.getScene().getWindow();
+            stage.close();
+        }
+    }
+
     public BirthDate createBrithDate (DatePicker datePicker) {
         LocalDate date = datePicker.getValue();
-        System.out.println(date.getDayOfMonth());
-        System.out.println(date.getMonth().getValue());
-        System.out.println(date.getYear());
         return new BirthDate(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
     }
 
