@@ -1,5 +1,6 @@
-package com.tap.schoolplatform.controllers;
+package com.tap.schoolplatform.controllers.adminControllers;
 
+import com.tap.schoolplatform.controllers.ViewController;
 import com.tap.schoolplatform.models.academic.Degree;
 import com.tap.schoolplatform.models.academic.enums.Shift;
 import com.tap.schoolplatform.services.users.AdministratorService;
@@ -46,7 +47,7 @@ public class GroupViewController extends ViewController {
             adminUser = new AdministratorService(selectedDegree);
             adminUser.createGroup(1, selectedShift);
             alert("", "Group added correctly", Alert.AlertType.INFORMATION);
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            Stage stage = (Stage) addButton.getScene().getWindow();
             stage.close();
         }
     }

@@ -1,6 +1,6 @@
-package com.tap.schoolplatform.controllers;
+package com.tap.schoolplatform.controllers.adminControllers;
 
-import com.tap.schoolplatform.auth.LoginService;
+import com.tap.schoolplatform.controllers.ViewController;
 import com.tap.schoolplatform.models.academic.Degree;
 import com.tap.schoolplatform.models.academic.Group;
 import com.tap.schoolplatform.models.enums.Gender;
@@ -18,25 +18,25 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-import javax.management.relation.Role;
 import java.io.IOException;
 import java.util.*;
 
 public class AdminViewController extends ViewController {
 
+    Student student;
     public AnchorPane AnchorPaneImage1;
     public ComboBox<Gender> studentGenderComboBox;
     public ComboBox<Degree> studentDegreeComboBox;
     public Button studentAddDegreeButton;
     public ComboBox<Group> studentGroupComboBox;
     public Button studentAddGroupButton;
-    public ComboBox studentClassroomComboBox;
     public AnchorPane AnchorPaneImage;
     public ComboBox<Status> studentStatusComboBox;
     public ComboBox<Gender> teacherGenderComboBox;
@@ -55,9 +55,6 @@ public class AdminViewController extends ViewController {
     public TextField studentCountryTF;
     public Button studentNextAvailableButton;
     public Button studentNewButton;
-    public TextField studentDayTF;
-    public TextField studentYearTF;
-    public TextField studentMonthTF;
     public Button teacherNewButton;
     public TextField teacherIDTF;
     public Button teacherNextAvailableButton;
@@ -71,114 +68,68 @@ public class AdminViewController extends ViewController {
     public TextField teacherCityTF;
     public TextField teacherStateTF;
     public TextField teacherCountryTF;
-    public TextField teacherDayTF;
-    public TextField teacherMonthTF;
-    public TextField teacherYearTF;
     public TextField teacherAddDegreeTF;
     public Button teacherCreateDegreeButton;
     public ComboBox<Degree> teacherDegreeComboBox;
+    public Button logOutButton;
+    public DatePicker studentDatePicker;
+    public DatePicker teacherDatePicker;
+    public Button studentEditButton;
+    public Button studentAcceptButton;
+    public Button studentCancelButton;
+    public TableView<User> studentList;
+    public TableColumn<User, UUID> studentIdTableColumn;
+    public TableColumn<User, String> studentLNTableColumn;
+    public TableColumn<User, String> studentNameTableColumn;
+    public TableColumn<User, String> studentDegreeTableColumn;
+    public TableColumn<User, String> studentGroupTableColumn;
     AdministratorService adminService;
-    //Student studentUser;
-    Teacher teacherUser;
-    Degree degree;
-    //UserDTO userDTO;
+
     private final SharedData sharedDataObject = SharedData.getInstance();
 
     public void initialize() {
-        User currentUser = LoginService.getCurrentUser();
-        //teacherUser = new Teacher();
+        studentIdTF.setEditable(false);
         studentGenderComboBox.getItems().setAll(Gender.values());
         studentGenderComboBox.setEditable(false);
-        //studentModalityComboBox.getItems().setAll(something);
         refreshCBDegree(studentDegreeComboBox);
         studentDegreeComboBox.setEditable(false);
-        //studentGroupComboBox.getItems().setAll(something);
         studentGroupComboBox.setEditable(false);
-        //studentClassroomComboBox.getItems().setAll(something);
         studentStatusComboBox.getItems().setAll(Status.values());
         studentStatusComboBox.setEditable(false);
+        studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<User, UUID>("id"));
+        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
+        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<User, String>("degree"));
+        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<User, String>("group"));
+        studentList.setItems(sharedDataObject.getUsers(UserRole.STUDENT));
+        teacherIDTF.setEditable(false);
         teacherGenderComboBox.getItems().setAll(Gender.values());
         teacherGenderComboBox.setEditable(false);
-        //studentLadaComboBox.getItems().setAll(something);
         studentLadaComboBox.setEditable(false);
-        //teacherLadaComboBox.getItems().setAll(something);
         teacherLadaComboBox.setEditable(false);
         refreshCBDegree(teacherDegreeComboBox);
         teacherDegreeComboBox.setEditable(false);
     }
 
-
-
     public void addNewDegreeAdmin(ActionEvent event) throws IOException {
-        Stage ownerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Stage primaryStage = new Stage();
-        primaryStage.initModality(Modality.WINDOW_MODAL);
-        primaryStage.initOwner(ownerStage);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/degree-view.fxml")));
-        primaryStage.setTitle("Add new degree");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-        primaryStage.setResizable(false);
+        loadNewPageView(event, "degree-view", "Add new degree");
     }
     public void addNewGroupAdmin(ActionEvent event) throws IOException {
-        Stage ownerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Stage primaryStage = new Stage();
-        primaryStage.initModality(Modality.WINDOW_MODAL);
-        primaryStage.initOwner(ownerStage);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/group-view.fxml")));
-        primaryStage.setTitle("Add new group");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-        primaryStage.setResizable(false);
-
+        loadNewPageView(event, "group-view", "Add new group");
     }
 
     public void addStudent(ActionEvent event) {
-        //userDTO = createDTO(studentUser.getRole(), studentNameTF, studentLastNameTF, createBrithDate(studentDayTF, studentMonthTF, studentYearTF), studentPhoneTF, studentEmailTF, studentGenderComboBox.getSelectionModel().getSelectedItem());
-        if (studentIdTF.getText() == null || studentNameTF.getText() == null || studentLastNameTF.getText() == null /*|| studentLadaComboBox.getValue() == null */ || studentPhoneTF.getText() == null || studentEmailTF.getText() == null || studentStreetTF.getText() == null || studentPCTF.getText() == null || studentColonyTF.getText() == null || studentCityTF.getText() == null || studentStateTF.getText() == null || studentCountryTF.getText() == null || studentCountryTF.getText() == null || studentGenderComboBox.getValue() == null || studentDayTF.getText() == null || studentMonthTF.getText() == null || studentYearTF.getText() == null || studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null || studentStatusComboBox.getValue() == null) {
+        if (studentIdTF.getText() == null || studentNameTF.getText() == null || studentLastNameTF.getText() == null /*|| studentLadaComboBox.getValue() == null */ || studentPhoneTF.getText() == null || studentEmailTF.getText() == null || studentStreetTF.getText() == null || studentPCTF.getText() == null || studentColonyTF.getText() == null || studentCityTF.getText() == null || studentStateTF.getText() == null || studentCountryTF.getText() == null || studentCountryTF.getText() == null || studentGenderComboBox.getValue() == null || studentDatePicker.getValue() == null|| studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null || studentStatusComboBox.getValue() == null) {
             alert("Error", "Please make sure to full fill all the text boxes", Alert.AlertType.ERROR);
-        } //else {
+        }
             adminService = new AdministratorService(studentDegreeComboBox.getValue());
-            Student studentUser = new Student(studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDayTF, studentMonthTF, studentYearTF), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
+            Student studentUser = new Student(studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDatePicker), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
             UserDTO userDTO = new UserDTO();
             userDTO.setGroup(studentGroupComboBox.getValue());
-            createUserDTO(studentUser, UserRole.STUDENT);
             adminService.createUser(studentUser, userDTO);
-            //adminUser.createUser(createStudent(studentUser), userDTO);
+            alert("", "Student added correctly", Alert.AlertType.INFORMATION);
+    }
 
-        //}
-
-    }
-    /*
-    * 1. Create Student
-    * 2. Add student to Group
-    *   2.1 Select degree to add it (adminUser.setDegree(newDegree);
-    *   2.2 Select
-    * */
-    public void createStudent(Student student) {
-        /*int id = Integer.parseInt(studentIdTF.getSelectedText());
-        //Group group = studentGroupComboBox.getSelectionModel();
-        GroupKey key = new GroupKey(Shift.MORNINGS, 1);
-        //Group group = findGroup(adminUser.getDegree().getGroupList(key), "1ISC-1M");
-        //group.getStudentSet();
-        Set<Integer> setExample = new TreeSet<>();
-        /*for (Student student1 : group.getStudentList()) {
-            if (student1.getStudentId().equals(student.getStudentId())) {
-                id = group.getStudentList().indexOf(student1);
-            }
-        }
-        // group.addStudent();
-*/
-        //return new Student(studentGroupComboBox.getSelectionModel().getSelectedItem(), id, studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDayTF, studentMonthTF, studentYearTF), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getSelectionModel().getSelectedItem());
-    }
-/*
-    private Group findGroup(List<Group> groups, String id) {
-        for (Group group : groups) {
-            if (group.getId().equals(id)) return group;
-        }
-        return null;
-    }
-*/
     public void refreshCBDegree (ComboBox CBD) {
         CBD.getItems().setAll(sharedDataObject.getDegrees());
         CBD.setConverter(new StringConverter<Degree>() {
@@ -198,12 +149,11 @@ public class AdminViewController extends ViewController {
     }
 
     public void createTeacher () {
-        if (teacherIDTF.getText() == null || teacherNameTF.getText() == null || teacherLastNameTF.getText() == null || teacherPhoneTF.getText() == null || teacherEmailTF.getText() == null || teacherStreetTF.getText() == null || teacherPCTF.getText() == null || teacherColonyTF.getText() == null || teacherCityTF.getText() == null || teacherStreetTF.getText() == null || teacherCountryTF.getText() == null || teacherCountryTF.getText() == null || teacherGenderComboBox.getValue() == null || teacherDayTF.getText() == null || teacherMonthTF.getText() == null || teacherYearTF.getText() == null || teacherDegreeComboBox.getValue() == null) {
+        if (teacherIDTF.getText() == null || teacherNameTF.getText() == null || teacherLastNameTF.getText() == null || teacherPhoneTF.getText() == null || teacherEmailTF.getText() == null || teacherStreetTF.getText() == null || teacherPCTF.getText() == null || teacherColonyTF.getText() == null || teacherCityTF.getText() == null || teacherStreetTF.getText() == null || teacherCountryTF.getText() == null || teacherCountryTF.getText() == null || teacherGenderComboBox.getValue() == null || teacherDatePicker.getValue() == null || teacherDegreeComboBox.getValue() == null) {
             alert("Error", "Please make sure to full fill all the text boxes", Alert.AlertType.ERROR);
         } else {
             adminService = new AdministratorService(null);
-            Teacher teacher = new Teacher(teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDayTF, teacherMonthTF, teacherYearTF), teacherEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getValue());
-            /*teacher.setGroup(studentGroupComboBox.getValue());*/
+            Teacher teacher = new Teacher(teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDatePicker), teacherEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getValue());
             UserDTO userDTO = new UserDTO();
             createUserDTO(teacher, UserRole.TEACHER);
             adminService.createUser(teacher, userDTO);
@@ -260,4 +210,16 @@ public class AdminViewController extends ViewController {
     }
 
 
+    public void logOut(ActionEvent event) throws IOException {
+        logOutFunction(logOutButton);
+    }
+
+    public void editStudent(ActionEvent event) {
+    }
+
+    public void acceptChangesStudent(ActionEvent event) {
+    }
+
+    public void cancelChangesStudent(ActionEvent event) {
+    }
 }
