@@ -10,7 +10,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<<<<<<< HEAD
 <AnchorPane prefHeight="604.0" prefWidth="642.0" style="-fx-background-color: dedede;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.ExamOptionController">
+=======
+<AnchorPane prefHeight="604.0" prefWidth="642.0" style="-fx-background-color: dedede;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.examnOptionController">
+>>>>>>> jeremy-logic
    <children>
       <VBox prefHeight="604.0" prefWidth="642.0" spacing="10.0">
          <children>
