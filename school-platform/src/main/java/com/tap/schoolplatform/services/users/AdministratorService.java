@@ -2,8 +2,11 @@ package com.tap.schoolplatform.services.users;
 
 import com.tap.schoolplatform.models.academic.*;
 import com.tap.schoolplatform.models.academic.enums.Shift;
+import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.Status;
 import com.tap.schoolplatform.models.enums.UserRole;
+import com.tap.schoolplatform.models.shared.Address;
+import com.tap.schoolplatform.models.shared.BirthDate;
 import com.tap.schoolplatform.models.users.*;
 import com.tap.schoolplatform.services.Service;
 import com.tap.schoolplatform.services.academic.*;
@@ -21,6 +24,8 @@ public class AdministratorService extends Service {
         this.degree = degree;
     }
 
+    public AdministratorService() {}
+
     public Degree getDegree() {
         return degree;
     }
@@ -30,7 +35,7 @@ public class AdministratorService extends Service {
     }
 
     // User management
-    public void createUser(User user, UserDTO userDTO) {
+    public void createUser(User user, UserDTO userDTO) { // pending
         if (user instanceof Teacher teacher) {
             if (teacher.getRole() == null) teacher.setRole(UserRole.TEACHER);
             DegreeService degreeService = new DegreeService(degree);
@@ -50,6 +55,18 @@ public class AdministratorService extends Service {
         sharedData.getUsers(role).add(user);
     }
 
+    public void createStudent(Group group, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
+        Student student = new Student(name, lastName, birthDate, email, phone, address, gender);
+        GroupService groupService = new GroupService(group);
+        groupService.createStudent(student);
+    }
+
+    public void createTeacher (Degree degree, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender, String license, String specialization) {
+        Teacher teacher = new Teacher(name, lastName, birthDate, email, phone, address, gender);
+        DegreeService degreeService = new DegreeService(degree);
+        degreeService.createTeacher(teacher, license, specialization);
+    }
+
     public User readUser(UserRole role, UUID ID) {
         for (User user : sharedData.getUsers(role)) {
             if (user.getUUID().equals(ID)) {
@@ -59,21 +76,34 @@ public class AdministratorService extends Service {
         return null;
     }
 
-    public User readUser(UserRole role, String ID) {
-        for (User user : sharedData.getUsers(role)) {
-            if (role.equals(UserRole.STUDENT) && user instanceof Student student) {
-                if (student.getID().equals(ID)) {
-                    return user;
-                }
-            } else if (role.equals(UserRole.TEACHER) && user instanceof Teacher teacher) {
+    public User readUser(UserRole role, String ID) { // Wait, GroupService does this already
+//        for (User user : sharedData.getUsers(role)) {
+//            if (role.equals(UserRole.STUDENT) && user instanceof Student student) {
+//                if (student.getID().equals(ID)) {
+//                    return user;
+//                }
+//            } else if (role.equals(UserRole.TEACHER) && user instanceof Teacher teacher) {
+//                if (teacher.getLicense().equals(ID)) {
+//                    return user;
+//                }
+//            }
+//        }
+//        return null;
+        if (role == UserRole.TEACHER) {
+            for (Teacher teacher : sharedData.getTeachers()) {
                 if (teacher.getLicense().equals(ID)) {
-                    return user;
+                    return teacher;
+                }
+            }
+        } else {
+            for (Student student : sharedData.getStudents()) {
+                if (student.getID().equals(ID)) {
+                    return student;
                 }
             }
         }
         return null;
     }
-
 
     public void updateUser(User user, UserDTO userDTO) { // can I do it better?
         if (userDTO.getPassword() != null) user.setPassword(userDTO.getPassword().trim());
@@ -97,10 +127,10 @@ public class AdministratorService extends Service {
         }
 
         UserRole role = user.getRole();
-        if (sharedData.getUsers(role).contains(user)) {
-            sharedData.getUsers(role).removeIf(u -> u.getUUID().equals(user.getUUID()));
-        }
-        sharedData.getUsers(role).add(user);
+//        if (sharedData.getUsers(role).contains(user)) {
+//            sharedData.getUsers(role).removeIf(u -> u.getUUID().equals(user.getUUID()));
+//        }
+//        sharedData.getUsers(role).add(user);
     }
 
     public void deleteUser(User user) {

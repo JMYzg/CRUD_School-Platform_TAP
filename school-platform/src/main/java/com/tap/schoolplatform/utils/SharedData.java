@@ -24,19 +24,21 @@ public class SharedData {
     private static SharedData instance;
 
     private final ObservableMap<UserRole, ObservableList<User>> users;
+    private final ObservableList<Student> students;
+    private final ObservableList<Teacher> teachers;
     private final ObservableList<Administrator> administrators;
     private final ObservableList<Degree> degrees;
 
     private SharedData() {
         users = FXCollections.observableHashMap();
+        students = FXCollections.observableArrayList();
+        teachers = FXCollections.observableArrayList();
         administrators = FXCollections.observableArrayList();
         degrees = FXCollections.observableArrayList();
     }
 
     public static SharedData getInstance() {
-        if (instance == null) {
-            instance = new SharedData();
-        }
+        if (instance == null) instance = new SharedData();
         return instance;
     }
 
@@ -52,8 +54,8 @@ public class SharedData {
                         Gender.MALE
                 );
         users.computeIfAbsent(UserRole.ADMIN, k -> FXCollections.observableArrayList()).add(admin);
+        administrators.add(admin);
         Degree SE = new Degree("Software Engineering");
-        degrees.add(SE);
         Subject subject =
                 new Subject(
                         SE,
@@ -64,9 +66,12 @@ public class SharedData {
         Group M1 = new Group(SE, 1, Shift.MORNINGS);
         Student student = getStudent(M1);
         users.computeIfAbsent(UserRole.STUDENT, k -> FXCollections.observableArrayList()).add(student);
+        students.add(student);
         Teacher teacher = getTeacher(SE);
         teacher.assignSubject(subject);
         users.computeIfAbsent(UserRole.TEACHER, k -> FXCollections.observableArrayList()).add(teacher);
+        teachers.add(teacher);
+        degrees.add(SE);
     }
 
     private static @NotNull Student getStudent(Group M1) {
@@ -103,6 +108,14 @@ public class SharedData {
 
     public ObservableList<User> getUsers(UserRole role) {
         return users.get(role);
+    }
+
+    public ObservableList<Student> getStudents() {
+        return students;
+    }
+
+    public ObservableList<Teacher> getTeachers() {
+        return teachers;
     }
 
     public ObservableList<Administrator> getAdministrators() {

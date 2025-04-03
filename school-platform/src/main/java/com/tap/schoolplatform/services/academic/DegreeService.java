@@ -53,6 +53,14 @@ public class DegreeService extends Service {
         teacher.setSpecialization(userDTO.getSpecialization().trim());
     }
 
+    public void createTeacher(Teacher teacher, String license, String specialization) {
+        teacher.setLicense(license.trim());
+        teacher.setSpecialization(specialization.trim());
+        this.degree.addTeacher(teacher);
+        sharedData.getTeachers().remove(teacher);
+        sharedData.getTeachers().add(teacher);
+    }
+
     public Teacher readTeacher(String license) { // discuss this bullshit with Gary and Brisa
         if (license == null) throw new IllegalArgumentException("License is required");
         for (Teacher teacher : degree.getTeacherList()) {
@@ -67,6 +75,8 @@ public class DegreeService extends Service {
         if (userDTO.getLicense() != null) teacher.setLicense(userDTO.getLicense().trim());
         if (userDTO.getDegree() != null) teacher.setDegree(userDTO.getDegree());
         if (userDTO.getSpecialization() != null) teacher.setSpecialization(userDTO.getSpecialization().trim());
+        sharedData.getTeachers().remove(teacher);
+        sharedData.getTeachers().add(teacher);
     }
 
     public void deleteTeacher(Teacher teacher) {
