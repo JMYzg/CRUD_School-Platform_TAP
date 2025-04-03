@@ -34,7 +34,7 @@ public class Subject {
         return degree;
     }
     public void setDegree(Degree degree) {
-        this.degree.removeSubject(this);
+        if (this.degree != null) this.degree.removeSubject(this);
         this.degree = degree;
         this.degree.addSubject(this);
     }

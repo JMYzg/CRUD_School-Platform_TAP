@@ -20,7 +20,7 @@ public class Student extends User {
 
     public Student(/*Group group, int index,*/ String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         super(name, lastName, birthDate, email, phone, address, gender);
-       super.setRole(UserRole.STUDENT);
+        super.setRole(UserRole.STUDENT);
 //        this.group = group;
 //        group.addStudent(this); // Check this shit
 //        generateID();

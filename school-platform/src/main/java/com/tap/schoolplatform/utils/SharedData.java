@@ -13,13 +13,12 @@ import com.tap.schoolplatform.models.users.User;
 import com.tap.schoolplatform.models.users.Administrator;
 import com.tap.schoolplatform.models.academic.Degree;
 
-import com.tap.schoolplatform.services.users.AdministratorService;
-import com.tap.schoolplatform.utils.dtos.UserDTO;
-import com.tap.schoolplatform.utils.dtos.academic.SubjectDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 public class SharedData {
     private static SharedData instance;
@@ -27,6 +26,19 @@ public class SharedData {
     private final ObservableMap<UserRole, ObservableList<User>> users;
     private final ObservableList<Administrator> administrators;
     private final ObservableList<Degree> degrees;
+
+    private SharedData() {
+        users = FXCollections.observableHashMap();
+        administrators = FXCollections.observableArrayList();
+        degrees = FXCollections.observableArrayList();
+    }
+
+    public static SharedData getInstance() {
+        if (instance == null) {
+            instance = new SharedData();
+        }
+        return instance;
+    }
 
     public void initialize() {
         Administrator admin =
@@ -87,19 +99,6 @@ public class SharedData {
         teacher.setDegree(SE);
         teacher.setSpecialization("Math");
         return teacher;
-    }
-
-    private SharedData() {
-        users = FXCollections.observableHashMap();
-        administrators = FXCollections.observableArrayList();
-        degrees = FXCollections.observableArrayList();
-    }
-
-    public static SharedData getInstance() {
-        if (instance == null) {
-            instance = new SharedData();
-        }
-        return instance;
     }
 
     public ObservableList<User> getUsers(UserRole role) {
