@@ -16,7 +16,7 @@ public class Teacher extends User {
 
     public Teacher(/*Degree degree, String license, String specialization,*/ String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         super(name, lastName, birthDate, email, phone, address, gender);
-//        super.setRole(UserRole.TEACHER);
+        super.setRole(UserRole.TEACHER);
 //        this.license = license;
 //        this.degree = degree;
 //        this.specialization = specialization;
