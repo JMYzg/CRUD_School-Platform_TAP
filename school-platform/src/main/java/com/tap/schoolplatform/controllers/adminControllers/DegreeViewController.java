@@ -1,5 +1,6 @@
-package com.tap.schoolplatform.controllers;
+package com.tap.schoolplatform.controllers.adminControllers;
 
+import com.tap.schoolplatform.controllers.ViewController;
 import com.tap.schoolplatform.models.academic.Degree;
 import com.tap.schoolplatform.services.users.AdministratorService;
 import com.tap.schoolplatform.utils.SharedData;

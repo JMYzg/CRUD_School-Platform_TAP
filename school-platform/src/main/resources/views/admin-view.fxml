@@ -18,11 +18,11 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="654.0" prefWidth="877.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.AdminViewController">
+<VBox prefHeight="654.0" prefWidth="877.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.adminControllers.AdminViewController">
     <AnchorPane prefHeight="30.0" prefWidth="655.0" style="-fx-background-color: #003b46;">
         <Label layoutX="584.0" layoutY="8.0" text="Admin's name:" />
         <Label layoutX="676.0" layoutY="8.0" text="Jeremy de Jesús Zarate Garcia" />
-      <Button id="btnLogout" fx:id="logOutButton" layoutX="10.0" layoutY="1.0" mnemonicParsing="false" style="-fx-background-color: #003b46;" text="Log out">
+      <Button id="btnLogout" fx:id="logOutButton" layoutX="10.0" layoutY="1.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #003b46;" text="Log out">
          <graphic>
             <ImageView fitHeight="15" fitWidth="15">
                <image>
@@ -61,7 +61,7 @@
                             <TextField fx:id="studentCountryTF" layoutX="225.0" layoutY="299.0" prefHeight="40.0" prefWidth="136.0" promptText="Country" />
                             <ComboBox fx:id="studentGenderComboBox" editable="true" layoutX="82.0" layoutY="339.0" prefHeight="82.0" prefWidth="66.0" promptText="M/F" />
                             <Label layoutX="157.0" layoutY="346.0" prefHeight="17.0" prefWidth="58.0" text="Birthday:" />
-                     <DatePicker layoutX="215.0" layoutY="339.0" prefHeight="30.0" prefWidth="146.0" />
+                     <DatePicker fx:id="studentDatePicker" layoutX="215.0" layoutY="339.0" prefHeight="30.0" prefWidth="146.0" />
                         </AnchorPane>
                         <Region prefHeight="10.0" prefWidth="269.0" />
                         <AnchorPane prefHeight="188.0" prefWidth="363.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
@@ -80,9 +80,9 @@
                         <VBox prefHeight="555.0" prefWidth="472.0">
                             <HBox prefHeight="118.0" prefWidth="471.0">
                                 <AnchorPane prefHeight="116.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
-                                    <Button id="btnH" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Edit" />
-                                    <Button id="btnM" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Accept" />
-                                    <Button id="btnN" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
+                                    <Button id="btnH" fx:id="studentEditButton" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#editStudent" prefHeight="29.0" prefWidth="109.0" text="Edit" />
+                                    <Button id="btnM" fx:id="studentAcceptButton" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#acceptChangesStudent" prefHeight="29.0" prefWidth="109.0" text="Accept" />
+                                    <Button id="btnN" fx:id="studentCancelButton" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#cancelChangesStudent" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
                                 </AnchorPane>
                                 <Region prefHeight="106.0" prefWidth="10.0" />
                                 <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
@@ -100,13 +100,13 @@
                             </HBox>
                             <Region prefHeight="10.0" prefWidth="471.0" />
                             <ScrollPane prefHeight="457.0" prefWidth="471.0">
-                                <TableView prefHeight="460.0" prefWidth="453.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                                <TableView fx:id="studentList" prefHeight="460.0" prefWidth="453.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                                     <columns>
-                                        <TableColumn prefWidth="66.0" text="ID" />
-                                        <TableColumn prefWidth="107.0" text="Last Name" />
-                                        <TableColumn prefWidth="105.0" text="Name" />
-                                        <TableColumn prefWidth="94.0" text="Degree" />
-                                        <TableColumn prefWidth="98.0" text="Group" />
+                                        <TableColumn fx:id="studentIdTableColumn" prefWidth="66.0" text="ID" />
+                                        <TableColumn fx:id="studentLNTableColumn" prefWidth="107.0" text="Last Name" />
+                                        <TableColumn fx:id="studentNameTableColumn" prefWidth="105.0" text="Name" />
+                                        <TableColumn fx:id="studentDegreeTableColumn" prefWidth="94.0" text="Degree" />
+                                        <TableColumn fx:id="studentGroupTableColumn" prefWidth="98.0" text="Group" />
                                     </columns>
                                 </TableView>
                             </ScrollPane>
@@ -143,7 +143,7 @@
                             <TextField fx:id="teacherCountryTF" layoutX="225.0" layoutY="299.0" prefHeight="40.0" prefWidth="136.0" promptText="Country" />
                             <ComboBox fx:id="teacherGenderComboBox" editable="true" layoutX="82.0" layoutY="339.0" prefHeight="82.0" prefWidth="66.0" promptText="M/F" />
                             <Label layoutX="157.0" layoutY="346.0" prefHeight="17.0" prefWidth="58.0" text="Birthday:" />
-                     <DatePicker layoutX="215.0" layoutY="339.0" prefHeight="30.0" prefWidth="146.0" />
+                     <DatePicker fx:id="teacherDatePicker" layoutX="215.0" layoutY="339.0" prefHeight="30.0" prefWidth="146.0" />
                         </AnchorPane>
                         <Region prefHeight="10.0" prefWidth="269.0" />
                         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="379.0" style="-fx-background-color: White; -fx-background-radius: 5;">

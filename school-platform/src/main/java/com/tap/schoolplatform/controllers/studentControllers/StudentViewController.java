@@ -1,16 +1,11 @@
-package com.tap.schoolplatform.controllers;
+package com.tap.schoolplatform.controllers.studentControllers;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import com.tap.schoolplatform.controllers.ViewController;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class StudentViewController extends ViewController {
     public Button studentDataButton;
@@ -21,28 +16,22 @@ public class StudentViewController extends ViewController {
     public Button logOutButton;
 
     public void openStudentDataTab(MouseEvent mouseEvent) {
-        loadPageView("/views/student-data-view.fxml", borderPane);
+        loadPageView("student-data-view", borderPane);
     }
 
     public void openClassTab(MouseEvent mouseEvent) {
-        loadPageView("/views/student-classes-view.fxml", borderPane);
+        loadPageView("student-classes-view", borderPane);
     }
 
     public void openHomeworkTab(MouseEvent mouseEvent) {
+        loadPageView("student-homework-view", borderPane);
     }
 
     public void openGradesTab(MouseEvent mouseEvent) {
+        //loadPageView("/views/student-", borderPane);
     }
 
-
-
     public void exitStudentView(MouseEvent mouseEvent) throws IOException {
-        Stage stage = (Stage) logOutButton.getScene().getWindow();
-        stage.close();
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/login-view.fxml")));
-        primaryStage.setTitle("Log in");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        logOutFunction(logOutButton);
     }
 }
