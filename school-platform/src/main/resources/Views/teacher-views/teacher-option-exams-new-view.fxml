@@ -29,7 +29,7 @@
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/Plus.png" />
+                              <Image url="@../../images/Plus.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -43,7 +43,7 @@
                         <VBox prefHeight="650.0" prefWidth="437.0" spacing="10.0">
                            <children>
                               <AnchorPane prefHeight="7.0" prefWidth="437.0" />
-                              <Button id="btnQuestion" mnemonicParsing="false" prefHeight="43.0" prefWidth="415.0" stylesheets="@../styles/main.css">
+                              <Button id="btnQuestion" mnemonicParsing="false" prefHeight="43.0" prefWidth="415.0" stylesheets="@../../styles/main.css">
                                  <graphic>
                                     <Label id="txtregular" prefHeight="20.0" prefWidth="399.0" text="1. ¿Question example?" />
                                  </graphic>
@@ -72,7 +72,7 @@
       </VBox>
    </children>
    <stylesheets>
-      <URL value="@../styles/main.css" />
-      <URL value="@../styles/main.css" />
+      <URL value="@../../styles/main.css" />
+      <URL value="@../../styles/main.css" />
    </stylesheets>
 </AnchorPane>

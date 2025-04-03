@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="654.0" prefWidth="877.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.AdminViewController">
+    <AnchorPane prefHeight="30.0" prefWidth="655.0" style="-fx-background-color: #003b46;">
+        <Label layoutX="584.0" layoutY="8.0" text="Admin's name:" />
+        <Label layoutX="676.0" layoutY="8.0" text="Jeremy de Jesús Zarate Garcia" />
+      <Button id="btnLogout" fx:id="logOutButton" layoutX="10.0" layoutY="1.0" mnemonicParsing="false" style="-fx-background-color: #003b46;" text="Log out">
+         <graphic>
+            <ImageView fitHeight="15" fitWidth="15">
+               <image>
+                  <Image url="https://static-00.iconduck.com/assets.00/logout-icon-2048x2046-yqonjwjv.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+    </AnchorPane>
+    <TabPane prefHeight="625.0" prefWidth="877.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="Student">
+            <AnchorPane prefHeight="595.0" prefWidth="860.0" style="-fx-background-color: #e6e9e9;">
+                <HBox layoutX="7.0" layoutY="6.0" prefHeight="583.0" prefWidth="861.0" spacing="10.0">
+                    <VBox prefHeight="583.0" prefWidth="378.0" spacing="10.0">
+                  <FlowPane prefHeight="440.0" prefWidth="372.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                     <children>
+                        <Label id="TitleRegister" prefHeight="32.0" prefWidth="214.0" text="Alumn Register" />
+                        <Button id="btnH" fx:id="studentNewButton" mnemonicParsing="false" onAction="#addStudent" prefHeight="29.0" prefWidth="136.0" text="Create" />
+                        <Label prefHeight="17.0" prefWidth="59.0" text="Name: ">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="studentNameTF" prefHeight="40.0" prefWidth="289.0" promptText="Name">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </TextField>
+                        <Label prefHeight="17.0" prefWidth="59.0" text="          " />
+                        <TextField fx:id="studentLastNameTF" prefHeight="40.0" prefWidth="289.0" promptText="Last Name">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </TextField>
+                        <Label prefHeight="17.0" prefWidth="59.0" text="Phone:">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="studentPhoneTF" prefHeight="40.0" prefWidth="289.0" promptText="123 4567">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </TextField>
+                        <Label prefHeight="17.0" prefWidth="59.0" text="E-mail:">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="studentEmailTF" prefHeight="40.0" prefWidth="289.0" promptText="Example@anything.com">
+                           <FlowPane.margin>
+                              <Insets bottom="5.0" top="10.0" />
+                           </FlowPane.margin>
+                        </TextField>
+                        <GridPane prefHeight="117.0" prefWidth="347.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="58.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="146.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="137.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="62.0" text="Address:" />
+                              <TextField fx:id="studentStreetTF" prefHeight="40.0" prefWidth="146.0" promptText="Street or Avenue" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="studentPCTF" prefHeight="40.0" prefWidth="135.0" promptText="P. C." GridPane.columnIndex="2" />
+                              <TextField fx:id="studentColonyTF" prefHeight="40.0" prefWidth="136.0" promptText="Colony" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="studentCityTF" prefHeight="40.0" prefWidth="135.0" promptText="City" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField fx:id="studentStateTF" prefHeight="40.0" prefWidth="136.0" promptText="State" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="studentCountryTF" prefHeight="40.0" prefWidth="136.0" promptText="Country" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                        <Label prefHeight="17.0" prefWidth="59.0" text="Gender:">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <ComboBox fx:id="studentGenderComboBox" editable="true" prefHeight="82.0" prefWidth="286.0" promptText="Male / Female">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </ComboBox>
+                        <Label prefHeight="17.0" prefWidth="60.0" text="Birthday:">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <DatePicker prefHeight="30.0" prefWidth="285.0">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </DatePicker>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </FlowPane>
+                        <AnchorPane prefHeight="136.0" prefWidth="377.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
+                            <ComboBox fx:id="studentDegreeComboBox" editable="true" layoutX="86.0" layoutY="28.0" onMouseClicked="#refreshCBStudentDegree" prefHeight="17.0" prefWidth="143.0" />
+                            <Button fx:id="studentAddDegreeButton" layoutX="245.0" layoutY="31.0" mnemonicParsing="false" onAction="#addNewDegreeAdmin" prefHeight="29.0" prefWidth="109.0" text="Add" />
+                            <ComboBox fx:id="studentGroupComboBox" editable="true" layoutX="86.0" layoutY="77.0" onMouseClicked="#refreshCBStudentGroup" prefHeight="17.0" prefWidth="143.0" />
+                            <Button fx:id="studentAddGroupButton" layoutX="245.0" layoutY="79.0" mnemonicParsing="false" onAction="#addNewGroupAdmin" prefHeight="29.0" prefWidth="109.0" text="Add" />
+                            <Label layoutX="11.0" layoutY="35.0" prefHeight="17.0" prefWidth="58.0" text="Degree:" />
+                            <Label layoutX="11.0" layoutY="85.0" prefHeight="17.0" prefWidth="58.0" text="Group:" />
+                        </AnchorPane>
+                    </VBox>
+                    <HBox prefHeight="555.0" prefWidth="485.0">
+                        <VBox prefHeight="555.0" prefWidth="472.0">
+                            <HBox prefHeight="118.0" prefWidth="471.0">
+                                <AnchorPane prefHeight="116.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
+                                    <Button id="btnH" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Edit" />
+                                    <Button id="btnM" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Accept" />
+                                    <Button id="btnN" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
+                                </AnchorPane>
+                                <Region prefHeight="106.0" prefWidth="10.0" />
+                                <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
+                                    <TextField layoutX="14.0" layoutY="7.0" prefHeight="40.0" prefWidth="220.0" />
+                                    <Button id="btnM" layoutX="245.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="66.0" text="Search" />
+                                    <ComboBox editable="true" layoutX="14.0" layoutY="44.0" prefHeight="17.0" prefWidth="220.0" />
+                                    <Button id="btnH" layoutX="245.0" layoutY="45.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="66.0" text="Filter" />
+                                </AnchorPane>
+                            </HBox>
+                            <Region prefHeight="10.0" prefWidth="471.0" />
+                            <ScrollPane prefHeight="457.0" prefWidth="471.0">
+                                <TableView prefHeight="460.0" prefWidth="453.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                                    <columns>
+                                        <TableColumn prefWidth="66.0" text="ID" />
+                                        <TableColumn prefWidth="107.0" text="Last Name" />
+                                        <TableColumn prefWidth="105.0" text="Name" />
+                                        <TableColumn prefWidth="94.0" text="Degree" />
+                                        <TableColumn prefWidth="98.0" text="Group" />
+                                    </columns>
+                                </TableView>
+                            </ScrollPane>
+                        </VBox>
+                    </HBox>
+                </HBox>
+            </AnchorPane>
+        </Tab>
+        <Tab text="Teacher">
+            <AnchorPane prefHeight="616.0" prefWidth="877.0" style="-fx-background-color: #e6e9e9;">
+                <HBox layoutX="7.0" layoutY="6.0" prefHeight="583.0" prefWidth="861.0">
+                    <VBox prefHeight="583.0" prefWidth="378.0" spacing="10.0">
+                  <FlowPane prefHeight="440.0" prefWidth="372.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                     <children>
+                        <Label id="TitleRegister" prefHeight="32.0" prefWidth="214.0" text="Teacher Register" />
+                        <Button id="btnH" fx:id="studentNewButton1" mnemonicParsing="false" onAction="#addStudent" prefHeight="29.0" prefWidth="136.0" text="Create" />
+                        <Label prefHeight="17.0" prefWidth="59.0" text="Name: ">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="studentNameTF1" prefHeight="40.0" prefWidth="289.0" promptText="Name">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </TextField>
+                        <Label prefHeight="17.0" prefWidth="59.0" text="          " />
+                        <TextField fx:id="studentLastNameTF1" prefHeight="40.0" prefWidth="289.0" promptText="Last Name">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </TextField>
+                        <Label prefHeight="17.0" prefWidth="59.0" text="Phone:">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="studentPhoneTF1" prefHeight="40.0" prefWidth="289.0" promptText="123 4567">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </TextField>
+                        <Label prefHeight="17.0" prefWidth="59.0" text="E-mail:">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="studentEmailTF1" prefHeight="40.0" prefWidth="289.0" promptText="Example@anything.com">
+                           <FlowPane.margin>
+                              <Insets bottom="5.0" top="10.0" />
+                           </FlowPane.margin>
+                        </TextField>
+                        <GridPane prefHeight="117.0" prefWidth="347.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="58.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="146.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="137.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="62.0" text="Address:" />
+                              <TextField fx:id="studentStreetTF1" prefHeight="40.0" prefWidth="146.0" promptText="Street or Avenue" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="studentPCTF1" prefHeight="40.0" prefWidth="135.0" promptText="P. C." GridPane.columnIndex="2" />
+                              <TextField fx:id="studentColonyTF1" prefHeight="40.0" prefWidth="136.0" promptText="Colony" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="studentCityTF1" prefHeight="40.0" prefWidth="135.0" promptText="City" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField fx:id="studentStateTF1" prefHeight="40.0" prefWidth="136.0" promptText="State" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="studentCountryTF1" prefHeight="40.0" prefWidth="136.0" promptText="Country" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                        <Label prefHeight="17.0" prefWidth="59.0" text="Gender:">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <ComboBox fx:id="studentGenderComboBox1" editable="true" prefHeight="82.0" prefWidth="286.0" promptText="Male / Female">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </ComboBox>
+                        <Label prefHeight="17.0" prefWidth="60.0" text="Birthday:">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <DatePicker prefHeight="30.0" prefWidth="285.0">
+                           <FlowPane.margin>
+                              <Insets top="10.0" />
+                           </FlowPane.margin>
+                        </DatePicker>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </FlowPane>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="171.0" prefWidth="379.0" style="-fx-background-color: White; -fx-background-radius: 5;">
+                            <TextField fx:id="teacherAddDegreeTF" layoutX="14.0" layoutY="34.0" prefHeight="40.0" prefWidth="220.0" />
+                            <Button id="btnN" fx:id="teacherCreateDegreeButton" layoutX="250.0" layoutY="34.0" mnemonicParsing="false" onAction="#createDegree" prefHeight="29.0" prefWidth="116.0" text="Create" />
+                            <ComboBox fx:id="teacherDegreeComboBox" editable="true" layoutX="14.0" layoutY="88.0" prefHeight="17.0" prefWidth="220.0" />
+                            <Button id="btnM" layoutX="250.0" layoutY="88.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="116.0" text="Select" />
+                            <Button id="btnH" layoutX="13.0" layoutY="64.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="353.0" text="Add assignment" />
+                        </AnchorPane>
+                    </VBox>
+                    <HBox prefHeight="555.0" prefWidth="485.0">
+                        <Region prefHeight="359.0" prefWidth="15.0" />
+                        <VBox prefHeight="555.0" prefWidth="472.0">
+                            <HBox prefHeight="118.0" prefWidth="471.0">
+                                <AnchorPane prefHeight="116.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
+                                    <Button id="btnH" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Edit" />
+                                    <Button id="btnM" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Accept" />
+                                    <Button id="btnN" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
+                                </AnchorPane>
+                                <Region prefHeight="106.0" prefWidth="10.0" />
+                                <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
+                                    <TextField layoutX="14.0" layoutY="7.0" prefHeight="40.0" prefWidth="220.0" />
+                                    <Button id="btnM" layoutX="245.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="66.0" text="Search" />
+                                    <ComboBox editable="true" layoutX="14.0" layoutY="44.0" prefHeight="17.0" prefWidth="220.0" />
+                                </AnchorPane>
+                            </HBox>
+                            <Region prefHeight="10.0" prefWidth="471.0" />
+                            <ScrollPane prefHeight="457.0" prefWidth="470.0">
+                                <TableView prefHeight="457.0" prefWidth="453.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                                    <columns>
+                                        <TableColumn prefWidth="105.0" text="ID" />
+                                        <TableColumn prefWidth="85.0" text="Last name" />
+                                        <TableColumn prefWidth="143.0" text="Name" />
+                                        <TableColumn minWidth="0.0" prefWidth="135.0" text="Degree" />
+                                    </columns>
+                                </TableView>
+                            </ScrollPane>
+                        </VBox>
+                    </HBox>
+                </HBox>
+            </AnchorPane>
+        </Tab>
+    </TabPane>
+</VBox>

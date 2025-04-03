@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -21,11 +20,11 @@ public class StudentViewController extends ViewController {
     public Button logOutButton;
 
     public void openStudentDataTab(MouseEvent mouseEvent) {
-        loadPageView("/views/student-data-view.fxml", borderPane);
+        loadPageView("/views/student-views/student-data-view.fxml", borderPane);
     }
 
     public void openClassTab(MouseEvent mouseEvent) {
-        loadPageView("/views/student-classes-view.fxml", borderPane);
+        loadPageView("/views/student-views/student-classes-view.fxml", borderPane);
     }
 
     public void openHomeworkTab(MouseEvent mouseEvent) {

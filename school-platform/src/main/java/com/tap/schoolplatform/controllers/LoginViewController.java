@@ -74,7 +74,7 @@ public class LoginViewController extends ViewController {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-views/admin-view.fxml")));
         primaryStage.setTitle("Administrator");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -85,7 +85,7 @@ public class LoginViewController extends ViewController {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/teacher-option-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/teacher-views/teacher-option-view.fxml")));
         primaryStage.setTitle("Student");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -96,7 +96,7 @@ public class LoginViewController extends ViewController {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/student-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/student-views/student-view.fxml")));
         primaryStage.setTitle("Student");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

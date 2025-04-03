@@ -76,7 +76,18 @@
     -fx-scale-y: 0.98;
 
 }
-
+#btninfo{
+    -fx-pref-height: 80px; /* Ancho preferido */
+    -fx-background-color: #f6f6f6;
+    -fx-background-insets: 0; /* Sin márgenes internos */
+    -fx-border-width: 0; /* Sin bordes */
+    -fx-padding: 0px 0px; /* Elimina el espacio interno */
+}
+#btninfo:hover {
+    -fx-effect: dropshadow(gaussian, rgba(128, 128, 128, 0.5), 10, 0, 0, 0);
+    -fx-background-color: #ffffff; /* Fondo del HBox (opcional) */
+    -fx-background-radius: 5px;    /* Esquinas redondeadas (opcional) */
+}
 #btnOptions {
     -fx-font-family: "Inter";
     -fx-font-weight: bold;
@@ -84,6 +95,10 @@
     -fx-text-fill: black;
     -fx-background-color: transparent;
     -fx-border-width: 0;
+}
+#btnOptions:hover {
+    -fx-background-color: rgba(211, 211, 211, 0.5); /* Gris claro con transparencia */
+    -fx-background-radius: 5px;
 }
 #btnQuestion{
     -fx-font-family: "Inter";
@@ -103,10 +118,7 @@
     -fx-background-color:  #9d9f9f;
 }
 
-#btnOptions:hover {
-    -fx-background-color: rgba(211, 211, 211, 0.5); /* Gris claro con transparencia */
-    -fx-background-radius: 5px;
-}
+
 
 #btnLogout{
     -fx-background-color: #b9b9b9;
@@ -290,6 +302,10 @@
 #BtnclassColor{
     -fx-background-radius: 5 0 0 5; /* Esquinas: top-left, top-right, bottom-right, bottom-left */
     -fx-border-radius: 5 0 0 5;
+}
+#btnhomeworkcolor{
+    -fx-background-radius: 0 5 5 0; /* Esquinas: top-left, top-right, bottom-right, bottom-left */
+
 }
 /* Estilo para el HBox con borde difuminado */
 #Difuminado {

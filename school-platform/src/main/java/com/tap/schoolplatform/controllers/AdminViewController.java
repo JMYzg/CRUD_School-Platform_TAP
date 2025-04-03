@@ -24,7 +24,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-import javax.management.relation.Role;
 import java.io.IOException;
 import java.util.*;
 
@@ -117,7 +116,7 @@ public class AdminViewController extends ViewController {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
         primaryStage.initOwner(ownerStage);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/degree-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-views/degree-view.fxml")));
         primaryStage.setTitle("Add new degree");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -128,7 +127,7 @@ public class AdminViewController extends ViewController {
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
         primaryStage.initOwner(ownerStage);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/group-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-views/group-view.fxml")));
         primaryStage.setTitle("Add new group");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
