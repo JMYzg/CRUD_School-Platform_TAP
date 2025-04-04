@@ -182,7 +182,7 @@ public class AdminViewController extends ViewController {
         userDTO.setPhone(user.getPhone());
         userDTO.setAddress(user.getAddress());
         userDTO.setGender(user.getGender());
-        userDTO.setStatus(userDTO.getStatus()); // I removed this shit nigga ass
+        //userDTO.setStatus(userDTO.getStatus()); // I removed this shit nigga ass
         userDTO.setGroup(userDTO.getGroup());
         //if (role == UserRole.TEACHER) {
            // userDTO.setLicense(null);
