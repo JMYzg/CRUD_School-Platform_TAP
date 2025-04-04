@@ -13,4 +13,9 @@ public class Grade {
     public void setGrade(double score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return Double.toString(score);
+    }
 }

@@ -42,8 +42,12 @@ public class BirthDate {
         return Period.between(birthDate, now).getYears();
     }
 
+    public String printBirthDate() {
+        return day + "/" + month + "/" + year;
+    }
+
     @Override
     public String toString() {
-        return day + "/" + month + "/" + year;
+        return Integer.toString(calculateAge());
     }
 }

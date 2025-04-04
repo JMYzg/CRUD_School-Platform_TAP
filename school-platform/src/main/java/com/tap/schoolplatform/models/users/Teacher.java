@@ -16,7 +16,7 @@ public class Teacher extends User {
 
     public Teacher(/*Degree degree, String license, String specialization,*/ String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         super(name, lastName, birthDate, email, phone, address, gender);
-//        super.setRole(UserRole.TEACHER);
+        super.setRole(UserRole.TEACHER);
 //        this.license = license;
 //        this.degree = degree;
 //        this.specialization = specialization;
@@ -33,7 +33,7 @@ public class Teacher extends User {
         return degree;
     }
     public void setDegree(Degree degree) {
-        this.degree.removeTeacher(this);
+        if (this.degree != null) this.degree.removeTeacher(this);
         this.degree = degree;
         this.degree.addTeacher(this);
     }

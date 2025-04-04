@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderPane" prefHeight="604.0" prefWidth="861.0" style="-fx-background-radius: 5; -fx-background-color: dedede;" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.TeacherViewController">
+<BorderPane fx:id="borderPane" prefHeight="604.0" prefWidth="861.0" style="-fx-background-radius: 5; -fx-background-color: dedede;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.TeacherViewController">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="599.0" prefWidth="217.0" spacing="10.0" style="-fx-background-color: f6f6f6; -fx-background-radius: 5;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="123.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/ImageAthenas.jpg" />
+                  <Image url="@../images/ImageAthenas.jpg" />
                </image>
                <VBox.margin>
                   <Insets top="20.0" />

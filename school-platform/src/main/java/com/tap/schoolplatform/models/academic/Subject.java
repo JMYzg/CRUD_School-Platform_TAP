@@ -34,7 +34,7 @@ public class Subject {
         return degree;
     }
     public void setDegree(Degree degree) {
-        this.degree.removeSubject(this);
+        if (this.degree != null) this.degree.removeSubject(this);
         this.degree = degree;
         this.degree.addSubject(this);
     }
@@ -57,7 +57,7 @@ public class Subject {
             this.teacher = null;
             return;
         }
-        this.teacher.unassignSubject(this);
+        if (this.teacher != null) this.teacher.unassignSubject(this);
         this.teacher = teacher;
         this.teacher.assignSubject(this);
     }
@@ -95,5 +95,10 @@ public class Subject {
 
     public ObservableList<Group> getGroupList() { // I think we could delete shift from GroupKey
         return degree.getGroupList(semester);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

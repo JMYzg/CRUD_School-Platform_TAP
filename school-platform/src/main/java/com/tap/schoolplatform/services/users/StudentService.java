@@ -29,6 +29,4 @@ public class StudentService {
         FileKey key = new FileKey(student.getGroup(), student);
         assignment.submitFile(key, file);
     }
-
-
 }

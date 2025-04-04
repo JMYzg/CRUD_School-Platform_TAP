@@ -11,30 +11,29 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="477.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="477.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.NewHomeworkController">
    <children>
       <VBox prefHeight="300.0" prefWidth="477.0" spacing="10.0">
          <children>
             <Label id="titleOptions" text="New/Edit Homework" />
             <Separator prefHeight="23.0" prefWidth="477.0" />
-            <TextField promptText="Title" />
-            <TextArea prefHeight="128.0" prefWidth="477.0" promptText="Description" style="-fx-background-color: #d5dbdb;" />
+            <TextField fx:id="titleTF" promptText="Title" />
+            <TextArea fx:id="descriptionTF" prefHeight="128.0" prefWidth="477.0" promptText="Description" style="-fx-background-color: #d5dbdb;" />
             <HBox prefHeight="41.0" prefWidth="477.0" spacing="10.0">
                <children>
-                  <DatePicker prefHeight="29.0" prefWidth="143.0" promptText="DD/MM/YYYY" />
-                  <TextField prefHeight="33.0" prefWidth="149.0" promptText="Points" />
+                  <DatePicker fx:id="datePicker" prefHeight="29.0" prefWidth="143.0" promptText="DD/MM/YYYY" />
+                  <TextField fx:id="pointsTF" prefHeight="33.0" prefWidth="149.0" promptText="Points" />
                </children>
             </HBox>
             <HBox prefHeight="45.0" prefWidth="477.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Clean">
+                  <Button fx:id="cleanButton" mnemonicParsing="false" onAction="#clearAll" prefHeight="25.0" prefWidth="69.0" text="Clean">
                      <HBox.margin>
                         <Insets right="220.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="btnN" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" text="Cancel" />
-                  <Button id="btnM" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Accept" />
+                  <Button id="btnN" fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelHomework" prefHeight="25.0" prefWidth="66.0" text="Cancel" />
+                  <Button id="btnM" fx:id="acceptButton" mnemonicParsing="false" onAction="#createHomework" prefHeight="25.0" prefWidth="75.0" text="Accept" />
                </children>
             </HBox>
          </children>

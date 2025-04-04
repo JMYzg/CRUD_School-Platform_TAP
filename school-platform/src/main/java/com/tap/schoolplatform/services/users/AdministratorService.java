@@ -2,14 +2,18 @@ package com.tap.schoolplatform.services.users;
 
 import com.tap.schoolplatform.models.academic.*;
 import com.tap.schoolplatform.models.academic.enums.Shift;
+import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.Status;
 import com.tap.schoolplatform.models.enums.UserRole;
+import com.tap.schoolplatform.models.shared.Address;
+import com.tap.schoolplatform.models.shared.BirthDate;
 import com.tap.schoolplatform.models.users.*;
 import com.tap.schoolplatform.services.Service;
 import com.tap.schoolplatform.services.academic.*;
 import com.tap.schoolplatform.utils.dtos.UserDTO;
 import com.tap.schoolplatform.utils.dtos.academic.GroupDTO;
 import com.tap.schoolplatform.utils.dtos.academic.SubjectDTO;
+import javafx.scene.image.Image;
 
 import java.util.UUID;
 
@@ -21,23 +25,25 @@ public class AdministratorService extends Service {
         this.degree = degree;
     }
 
+    public AdministratorService() {}
+
     public Degree getDegree() {
         return degree;
     }
+
     public void setDegree(Degree degree) {
         this.degree = degree;
     }
 
     // User management
-    public void createUser(User user, UserDTO userDTO) {
+    public void createUser(User user, UserDTO userDTO) { // pending
         if (user instanceof Teacher teacher) {
-            teacher.setRole(UserRole.TEACHER);
+            if (teacher.getRole() == null) teacher.setRole(UserRole.TEACHER);
             DegreeService degreeService = new DegreeService(degree);
             degreeService.createTeacher(teacher, userDTO);
         }
         if (user instanceof Student student) {
-            student.setRole(UserRole.STUDENT);
-            student.setStatus(Status.ACTIVE);
+            if (student.getRole() == null) student.setRole(UserRole.STUDENT);
             GroupService groupService = new GroupService(userDTO.getGroup());
             groupService.createStudent(student);
         }
@@ -49,10 +55,51 @@ public class AdministratorService extends Service {
         sharedData.getUsers(role).add(user);
     }
 
+    public void createStudent(Group group, Image profilePicture, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
+        Student student = new Student(name, lastName, birthDate, email, phone, address, gender);
+        GroupService groupService = new GroupService(group);
+        groupService.createStudent(student, profilePicture);
+    }
+
+    public void createTeacher (Degree degree, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender, String license, String specialization) {
+        Teacher teacher = new Teacher(name, lastName, birthDate, email, phone, address, gender);
+        DegreeService degreeService = new DegreeService(degree);
+        degreeService.createTeacher(teacher, license, specialization);
+    }
+
     public User readUser(UserRole role, UUID ID) {
         for (User user : sharedData.getUsers(role)) {
             if (user.getUUID().equals(ID)) {
                 return user;
+            }
+        }
+        return null;
+    }
+
+    public User readUser(UserRole role, String ID) { // Wait, GroupService does this already
+//        for (User user : sharedData.getUsers(role)) {
+//            if (role.equals(UserRole.STUDENT) && user instanceof Student student) {
+//                if (student.getID().equals(ID)) {
+//                    return user;
+//                }
+//            } else if (role.equals(UserRole.TEACHER) && user instanceof Teacher teacher) {
+//                if (teacher.getLicense().equals(ID)) {
+//                    return user;
+//                }
+//            }
+//        }
+//        return null;
+        if (role == UserRole.TEACHER) {
+            for (Teacher teacher : sharedData.getTeachers()) {
+                if (teacher.getLicense().equals(ID)) {
+                    return teacher;
+                }
+            }
+        } else {
+            for (Student student : sharedData.getStudents()) {
+                if (student.getID().equals(ID)) {
+                    return student;
+                }
             }
         }
         return null;
@@ -80,10 +127,10 @@ public class AdministratorService extends Service {
         }
 
         UserRole role = user.getRole();
-        if (sharedData.getUsers(role).contains(user)) {
-            sharedData.getUsers(role).removeIf(u -> u.getUUID().equals(user.getUUID()));
-        }
-        sharedData.getUsers(role).add(user);
+//        if (sharedData.getUsers(role).contains(user)) {
+//            sharedData.getUsers(role).removeIf(u -> u.getUUID().equals(user.getUUID()));
+//        }
+//        sharedData.getUsers(role).add(user);
     }
 
     public void deleteUser(User user) {
