@@ -4,6 +4,7 @@ import com.tap.schoolplatform.models.academic.Degree;
 import com.tap.schoolplatform.models.academic.Group;
 import com.tap.schoolplatform.models.enums.*;
 import com.tap.schoolplatform.models.shared.*;
+import javafx.scene.image.Image;
 
 public class UserDTO {
 
@@ -24,7 +25,7 @@ public class UserDTO {
     private String specialization;
 
     // Student attributes
-    private Status status;
+    private Image profilePicture;
     private Group group;
 
     // Getters and setters for common user attributes
@@ -114,11 +115,11 @@ public class UserDTO {
     }
 
     // Getters and setters for student attributes
-    public Status getStatus() {
-        return status;
+    public Image getProfilePicture() {
+        return profilePicture;
     }
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setProfilePicture(Image profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public Group getGroup() {

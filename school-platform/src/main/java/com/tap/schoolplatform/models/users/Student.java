@@ -7,31 +7,28 @@ import com.tap.schoolplatform.models.shared.*;
 import com.tap.schoolplatform.models.enums.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import javafx.scene.image.Image;
 
 import java.time.LocalDate;
 
 public class Student extends User {
 
     private String ID;
-    private Status status = Status.ACTIVE;
+    private Image profilePicture;
     private Group group;
     private int index;
     private final ObservableMap<GradeKey, Grade> grades = FXCollections.observableHashMap();
 
-    public Student(/*Group group, int index,*/ String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
+    public Student(String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         super(name, lastName, birthDate, email, phone, address, gender);
         super.setRole(UserRole.STUDENT);
-//        this.group = group;
-//        group.addStudent(this); // Check this shit
-//        generateID();
-//        this.ID = LocalDate.now().getYear() % 100 + LocalDate.now().getMonth().toString() + index; // make student list into TreeSet
     }
 
     private void generateID() {
         for (Student student : group.getStudentList()) {
             if (student == this) { // May suppose this is right, but check if things go bad
                 index = group.getStudentList().indexOf(student) + 1;
-                this.ID = LocalDate.now().getYear() % 100 + LocalDate.now().getMonth().toString() + index;
+                this.ID = LocalDate.now().getYear() % 100 + Integer.toString(LocalDate.now().getMonthValue()) + index;
             }
         }
     }
@@ -40,11 +37,11 @@ public class Student extends User {
         return ID;
     }
 
-    public Status getStatus() {
-        return status;
+    public void setProfilePicture(Image profilePicture) {
+        this.profilePicture = profilePicture;
     }
-    public void setStatus(Status status) {
-        this.status = status;
+    public Image getProfilePicture() {
+        return profilePicture;
     }
 
     public Group getGroup() {

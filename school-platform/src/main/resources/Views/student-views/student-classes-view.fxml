@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="619.0" prefWidth="618.0" style="-fx-background-color: dedede;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="619.0" prefWidth="618.0" style="-fx-background-color: dedede;" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button id="BtnTest" alignment="CENTER" graphicTextGap="3.0" layoutX="46.0" layoutY="87.0" mnemonicParsing="false" prefHeight="119.0" prefWidth="263.0" style="-fx-background-radius: 5; -fx-background-color: transparent;" stylesheets="@../styles/main.css" />
+      <Button id="BtnTest" alignment="CENTER" graphicTextGap="3.0" layoutX="46.0" layoutY="87.0" mnemonicParsing="false" prefHeight="119.0" prefWidth="263.0" style="-fx-background-radius: 5; -fx-background-color: transparent;" stylesheets="@../../styles/main.css" />
       <GridPane layoutX="41.0" layoutY="50.0" prefHeight="378.0" prefWidth="537.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -18,7 +18,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button id="BtnTest" alignment="CENTER" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="119.0" prefWidth="263.0" style="-fx-background-radius: 5; -fx-background-color: transparent;" stylesheets="@../styles/main.css">
+            <Button id="BtnTest" alignment="CENTER" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="119.0" prefWidth="263.0" style="-fx-background-radius: 5; -fx-background-color: transparent;" stylesheets="@../../styles/main.css">
                <graphic>
                   <HBox id="Difuminado" prefHeight="114.0" prefWidth="253.0" spacing="5.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                      <children>
