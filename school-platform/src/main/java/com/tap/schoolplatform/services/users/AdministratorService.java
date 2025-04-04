@@ -13,6 +13,7 @@ import com.tap.schoolplatform.services.academic.*;
 import com.tap.schoolplatform.utils.dtos.UserDTO;
 import com.tap.schoolplatform.utils.dtos.academic.GroupDTO;
 import com.tap.schoolplatform.utils.dtos.academic.SubjectDTO;
+import javafx.scene.image.Image;
 
 import java.util.UUID;
 
@@ -43,7 +44,6 @@ public class AdministratorService extends Service {
         }
         if (user instanceof Student student) {
             if (student.getRole() == null) student.setRole(UserRole.STUDENT);
-            student.setStatus(Status.ACTIVE);
             GroupService groupService = new GroupService(userDTO.getGroup());
             groupService.createStudent(student);
         }
@@ -55,10 +55,10 @@ public class AdministratorService extends Service {
         sharedData.getUsers(role).add(user);
     }
 
-    public void createStudent(Group group, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
+    public void createStudent(Group group, Image profilePicture, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         Student student = new Student(name, lastName, birthDate, email, phone, address, gender);
         GroupService groupService = new GroupService(group);
-        groupService.createStudent(student);
+        groupService.createStudent(student, profilePicture);
     }
 
     public void createTeacher (Degree degree, String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender, String license, String specialization) {

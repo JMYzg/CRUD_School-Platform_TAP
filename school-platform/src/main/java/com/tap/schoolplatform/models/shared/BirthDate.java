@@ -42,7 +42,7 @@ public class BirthDate {
         return Period.between(birthDate, now).getYears();
     }
 
-    public String print() {
+    public String printBirthDate() {
         return day + "/" + month + "/" + year;
     }
 
