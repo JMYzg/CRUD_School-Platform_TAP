@@ -19,6 +19,6 @@ module com.tap.schoolplatform {
     opens com.tap.schoolplatform.controllers.adminControllers to javafx.fxml;
     exports com.tap.schoolplatform.controllers.teacherControllers;
     opens com.tap.schoolplatform.controllers.teacherControllers to javafx.fxml;
-    exports com.tap.schoolplatform.controllers.studentControllers;
+   // exports com.tap.schoolplatform.controllers.studentControllers;
     opens com.tap.schoolplatform.controllers.studentControllers to javafx.fxml;
 }
