@@ -66,4 +66,9 @@ public class Student extends User {
     public Grade getGrade(GradeKey key) {
         return grades.get(key);
     }
+
+    @Override
+    public String toString() {
+        return super.getName();
+    }
 }

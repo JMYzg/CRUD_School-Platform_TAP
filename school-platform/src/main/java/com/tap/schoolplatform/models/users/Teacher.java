@@ -57,4 +57,9 @@ public class Teacher extends User {
         subject.setTeacher(null);
         assignedSubjects.remove(subject);
     }
+
+    @Override
+    public String toString() {
+        return super.getName();
+    }
 }

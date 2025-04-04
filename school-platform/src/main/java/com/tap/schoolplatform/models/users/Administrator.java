@@ -11,4 +11,9 @@ public class Administrator extends User {
         super(name, lastName, birthDate, email, phone, address, gender);
         super.setRole(UserRole.ADMIN);
     }
+
+    @Override
+    public String toString() {
+        return super.getName();
+    }
 }

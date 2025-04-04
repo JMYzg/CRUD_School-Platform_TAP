@@ -96,4 +96,9 @@ public class Subject {
     public ObservableList<Group> getGroupList() { // I think we could delete shift from GroupKey
         return degree.getGroupList(semester);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
