@@ -178,12 +178,12 @@
                             </HBox>
                             <Region prefHeight="10.0" prefWidth="471.0" />
                             <ScrollPane prefHeight="457.0" prefWidth="470.0">
-                                <TableView prefHeight="457.0" prefWidth="453.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                                <TableView fx:id="teacherList" prefHeight="457.0" prefWidth="453.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                                     <columns>
-                                        <TableColumn prefWidth="105.0" text="ID" />
-                                        <TableColumn prefWidth="85.0" text="Last name" />
-                                        <TableColumn prefWidth="143.0" text="Name" />
-                                        <TableColumn minWidth="0.0" prefWidth="135.0" text="Degree" />
+                                        <TableColumn fx:id="teacherIdTableColumn" prefWidth="105.0" text="ID" />
+                                        <TableColumn fx:id="teacherLNTableColumn" prefWidth="85.0" text="Last name" />
+                                        <TableColumn fx:id="teacherNameTableColumn" prefWidth="143.0" text="Name" />
+                                        <TableColumn fx:id="teacherDegreeTableColumn" minWidth="0.0" prefWidth="135.0" text="Degree" />
                                     </columns>
                                 </TableView>
                             </ScrollPane>

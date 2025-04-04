@@ -62,6 +62,10 @@ public class Degree {
         if (subjects.get(subject.getSemester()).isEmpty()) subjects.remove(subject.getSemester());
     }
 
+    public String toString() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;

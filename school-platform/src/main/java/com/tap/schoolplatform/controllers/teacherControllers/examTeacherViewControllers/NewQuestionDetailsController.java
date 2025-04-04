@@ -1,4 +1,4 @@
-package com.tap.schoolplatform.controllers.teacherControllers;
+package com.tap.schoolplatform.controllers.teacherControllers.examTeacherViewControllers;
 
 import com.tap.schoolplatform.controllers.ViewController;
 import javafx.event.ActionEvent;
@@ -14,7 +14,7 @@ public class NewQuestionDetailsController extends ViewController {
     }
 
     public void cancelCreateQuestion(ActionEvent event) {
-        confirmationAlert("Are you sure you want to cancel the new question?", "All the question details will be deleted", cancelButton);
+        confirmationAlertCloseWindow("Are you sure you want to cancel the new question?", "All the question details will be deleted", cancelButton);
     }
 
     public void createQuestion(ActionEvent event) {

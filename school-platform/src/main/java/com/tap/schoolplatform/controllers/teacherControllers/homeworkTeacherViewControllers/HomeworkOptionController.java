@@ -1,4 +1,4 @@
-package com.tap.schoolplatform.controllers.teacherControllers;
+package com.tap.schoolplatform.controllers.teacherControllers.homeworkTeacherViewControllers;
 
 import com.tap.schoolplatform.controllers.ViewController;
 import javafx.event.ActionEvent;

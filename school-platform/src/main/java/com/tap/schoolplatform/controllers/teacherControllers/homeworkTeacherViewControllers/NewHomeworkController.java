@@ -1,4 +1,4 @@
-package com.tap.schoolplatform.controllers.teacherControllers;
+package com.tap.schoolplatform.controllers.teacherControllers.homeworkTeacherViewControllers;
 
 import com.tap.schoolplatform.controllers.ViewController;
 import javafx.event.ActionEvent;
@@ -21,10 +21,10 @@ public class NewHomeworkController extends ViewController {
     }
 
     public void cancelHomework(ActionEvent event) {
-        confirmationAlert("Are you sure you want to cancel the new homework?", "All details about the homework will be lost", cancelButton);
+        confirmationAlertCloseWindow("Are you sure you want to cancel the new homework?", "All details about the homework will be lost", cancelButton);
     }
 
     public void createHomework(ActionEvent event) {
-        confirmationAlert("Are you sure you want to create the new homework?", "You'll be able to edit details from this homework later", acceptButton);
+        confirmationAlertCloseWindow("Are you sure you want to create the new homework?", "You'll be able to edit details from this homework later", acceptButton);
     }
 }
