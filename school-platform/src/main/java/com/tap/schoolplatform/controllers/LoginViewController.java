@@ -74,7 +74,7 @@ public class LoginViewController extends ViewController {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-views/admin-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-views/login-view.fxml")));
         primaryStage.setTitle("Administrator");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

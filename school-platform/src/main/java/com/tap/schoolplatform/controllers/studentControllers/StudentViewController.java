@@ -1,5 +1,6 @@
-package com.tap.schoolplatform.controllers;
+package com.tap.schoolplatform.controllers.studentControllers;
 
+import com.tap.schoolplatform.controllers.ViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
