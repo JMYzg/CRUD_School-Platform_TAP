@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="619.0" prefWidth="618.0" style="-fx-background-color: dedede;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="619.0" prefWidth="618.0" style="-fx-background-color: dedede;" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="619.0" prefWidth="618.0">
          <children>
@@ -42,19 +42,17 @@
                            </padding>
                            <children>
                               <Label id="titleOptions" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="154.0" text="Academic's data" />
-                              <Label id="txtbold" layoutX="14.0" layoutY="57.0" text="Status:" />
                               <Separator layoutX="14.0" layoutY="36.0" prefHeight="17.0" prefWidth="233.0" />
                               <Label id="txtbold" layoutX="14.0" layoutY="91.0" text="Degree:" />
                               <Label id="txtbold" layoutX="14.0" layoutY="124.0" text="Semester:" />
                               <Label id="txtbold" layoutX="14.0" layoutY="157.0" prefHeight="17.0" prefWidth="73.0" />
-                              <Label id="txtbold" layoutX="129.0" layoutY="57.0" text="Shift:" />
+                              <Label id="txtbold" layoutX="14.0" layoutY="57.0" text="Shift:" />
                               <Label id="txtbold" layoutX="14.0" layoutY="157.0" prefHeight="17.0" prefWidth="56.0" text="Group:" />
-                              <Label id="txtregular" layoutX="58.0" layoutY="58.0" text="Active" />
                               <Label id="txtregular" layoutX="69.0" layoutY="92.0" text="Engineering  Pharmacologist" />
                               <Label id="txtregular" layoutX="76.0" layoutY="125.0" text="4" />
                               <Label id="txtregular" layoutX="83.0" layoutY="158.0" />
                               <Label id="txtregular" layoutX="59.0" layoutY="158.0" text="3IS-01M" />
-                              <Label id="txtregular" layoutX="166.0" layoutY="58.0" prefHeight="15.0" prefWidth="48.0" text="Morning" />
+                              <Label id="txtregular" layoutX="52.0" layoutY="58.0" prefHeight="15.0" prefWidth="48.0" text="Morning" />
                            </children>
                         </AnchorPane>
                      </children>
