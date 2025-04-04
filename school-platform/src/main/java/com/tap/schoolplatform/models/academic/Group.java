@@ -112,9 +112,4 @@ public class Group {
     public ObservableList<Subject> getSubjectList() { // Should I make it unmodifiable? : I think it works
         return degree.getSubjectList(semester);
     }
-
-    @Override
-    public String toString() {
-        return ID;
-    }
 }

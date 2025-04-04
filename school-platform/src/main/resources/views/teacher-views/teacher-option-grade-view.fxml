@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="604.0" prefWidth="642.0" style="-fx-background-color: dedede;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.gradesTeacherViewControllers.GradesOptionTeacherViewController">
+<AnchorPane prefHeight="604.0" prefWidth="642.0" style="-fx-background-color: dedede;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="604.0" prefWidth="642.0" spacing="10.0">
          <children>
@@ -45,17 +45,17 @@
                      <children>
                         <VBox layoutY="-2.0" prefHeight="498.0" prefWidth="599.0">
                            <children>
-                              <TableView fx:id="tableView" prefHeight="522.0" prefWidth="599.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                              <TableView prefHeight="522.0" prefWidth="599.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                                 <columns>
-                                  <TableColumn fx:id="idTableColumn" prefWidth="110.0" text="ID" />
-                                  <TableColumn fx:id="lastNameTableColumn" prefWidth="130.0" text="Last name" />
-                                    <TableColumn fx:id="unit1TableColumn" prefWidth="56.0" text="Unit 1" />
-                                    <TableColumn fx:id="unit2TableColumn" prefWidth="55.0" text="Unit 2" />
-                                    <TableColumn fx:id="unit3TableColumn" prefWidth="50.0" text="Unit 3" />
-                                    <TableColumn fx:id="unit4TableColumn" prefWidth="47.0" text="Unit 4" />
-                                    <TableColumn fx:id="unit5TableColumn" prefWidth="52.0" text="Unit 5" />
-                                    <TableColumn fx:id="unit6TableColumn" prefWidth="46.0" text="Unit 6" />
-                                    <TableColumn fx:id="unit7TableColumn" minWidth="0.0" prefWidth="49.0" text="Unit 7" />
+                                  <TableColumn prefWidth="110.0" text="ID" />
+                                  <TableColumn prefWidth="130.0" text="Last name" />
+                                    <TableColumn prefWidth="56.0" text="Unit 1" />
+                                    <TableColumn prefWidth="55.0" text="Unit 2" />
+                                    <TableColumn prefWidth="50.0" text="Unit 3" />
+                                    <TableColumn prefWidth="47.0" text="Unit 4" />
+                                    <TableColumn prefWidth="52.0" text="Unit 5" />
+                                    <TableColumn prefWidth="46.0" text="Unit 6" />
+                                    <TableColumn minWidth="0.0" prefWidth="49.0" text="Unit 7" />
                                     <TableColumn minWidth="0.0" prefWidth="155.0" text="Column X" />
                                 </columns>
                               </TableView>

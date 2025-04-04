@@ -26,7 +26,7 @@ public abstract class ViewController {
         alertWindow.showAndWait();
     }
 
-    public void confirmationAlertCloseWindow(String contentText, String headerText, Button button) {
+    public void confirmationAlert (String contentText, String headerText, Button button) {
         Alert alertWindow = new Alert(Alert.AlertType.CONFIRMATION);
         alertWindow.initModality(Modality.APPLICATION_MODAL);
         alertWindow.setContentText(contentText);

@@ -20,7 +20,7 @@ public abstract class User {
 
     protected User(String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         this.ID = UUID.randomUUID();
-        this.password = "1";
+        this.password = "systems123";
         this.name = name;
         this.lastName = lastName;
         this.birthDate = birthDate;

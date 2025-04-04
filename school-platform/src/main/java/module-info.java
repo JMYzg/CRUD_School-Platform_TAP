@@ -21,14 +21,4 @@ module com.tap.schoolplatform {
     opens com.tap.schoolplatform.controllers.teacherControllers to javafx.fxml;
     exports com.tap.schoolplatform.controllers.studentControllers;
     opens com.tap.schoolplatform.controllers.studentControllers to javafx.fxml;
-    opens com.tap.schoolplatform.models.users to javafx.fxml;
-    exports com.tap.schoolplatform.models.users;
-    exports com.tap.schoolplatform.controllers.teacherControllers.examTeacherViewControllers;
-    opens com.tap.schoolplatform.controllers.teacherControllers.examTeacherViewControllers to javafx.fxml;
-    exports com.tap.schoolplatform.controllers.teacherControllers.homeworkTeacherViewControllers;
-    opens com.tap.schoolplatform.controllers.teacherControllers.homeworkTeacherViewControllers to javafx.fxml;
-    exports com.tap.schoolplatform.controllers.teacherControllers.studentTeacherViewControllers;
-    opens com.tap.schoolplatform.controllers.teacherControllers.studentTeacherViewControllers to javafx.fxml;
-    exports com.tap.schoolplatform.controllers.teacherControllers.gradesTeacherViewControllers;
-    opens com.tap.schoolplatform.controllers.teacherControllers.gradesTeacherViewControllers to javafx.fxml;
 }

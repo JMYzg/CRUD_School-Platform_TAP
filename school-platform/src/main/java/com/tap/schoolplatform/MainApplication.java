@@ -15,7 +15,6 @@ public class MainApplication extends Application {
         SharedData.getInstance().initialize();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/views/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Log in");
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);

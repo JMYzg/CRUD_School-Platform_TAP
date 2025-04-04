@@ -48,7 +48,7 @@ public class SharedData {
                         "Jeremy",
                         "Zarate",
                         new BirthDate(23, 2, 2004),
-                        "1",
+                        "jmy_zg@icloud.com",
                         "624-227-5260",
                         new Address("Sago Palm", 23477, "The Palms", "C.S.L.", "B.C.S.", "Mexico"),
                         Gender.MALE
@@ -80,7 +80,7 @@ public class SharedData {
                         "Gary",
                         "Juarez",
                         new BirthDate(5, 9, 2005),
-                        "3",
+                        "gry_jp@gmail.com",
                         "624-243-8538",
                         new Address("Dolomite", 23456, "Saint Bernard", "S.J.D.C.", "B.C.S.", "Mexico"),
                         Gender.MALE
@@ -95,7 +95,7 @@ public class SharedData {
                         "Brisa",
                         "Bautista",
                         new BirthDate(14, 2, 2004),
-                        "2",
+                        "brs.bc@hotmail.com",
                         "624-160-8038",
                         new Address("Pango", 23477, "Cabo Valley", "C.S.L.", "B.C.S.", "Mexico"),
                         Gender.FEMALE
