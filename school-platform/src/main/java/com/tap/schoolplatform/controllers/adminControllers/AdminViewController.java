@@ -83,11 +83,17 @@ public class AdminViewController extends ViewController {
     public TableColumn<Student, String> studentNameTableColumn;
     public TableColumn<Student, String> studentDegreeTableColumn;
     public TableColumn<Student, String> studentGroupTableColumn;
+    public TableView<Teacher> teacherList;
+    public TableColumn<Teacher, UUID> teacherIdTableColumn;
+    public TableColumn<Teacher, String> teacherLNTableColumn;
+    public TableColumn<Teacher, String> teacherNameTableColumn;
+    public TableColumn<Teacher, String> teacherDegreeTableColumn;
     AdministratorService adminService;
 
     private final SharedData sharedDataObject = SharedData.getInstance();
 
     public void initialize() {
+        // Student attributes
         studentIdTF.setEditable(false);
         studentGenderComboBox.getItems().setAll(Gender.values());
         studentGenderComboBox.setEditable(false);
@@ -96,13 +102,14 @@ public class AdminViewController extends ViewController {
         studentGroupComboBox.setEditable(false);
         studentStatusComboBox.getItems().setAll(Status.values());
         studentStatusComboBox.setEditable(false);
-        studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<Student, UUID>("id"));
+        studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<Student, UUID>("ID"));
         studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("lastName"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("degree"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("group"));
+        studentNameTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
+        studentDegreeTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("degree"));
+        studentGroupTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("group"));
         studentList.setItems(sharedDataObject.getStudents());
         studentDatePicker.setEditable(false);
+        // Teacher attributes
         teacherIDTF.setEditable(false);
         teacherGenderComboBox.getItems().setAll(Gender.values());
         teacherGenderComboBox.setEditable(false);
@@ -111,6 +118,11 @@ public class AdminViewController extends ViewController {
         refreshCBDegree(teacherDegreeComboBox);
         teacherDegreeComboBox.setEditable(false);
         teacherDatePicker.setEditable(false);
+        teacherIdTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, UUID>("ID"));
+        teacherLNTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("lastName"));
+        teacherNameTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("name"));
+        teacherDegreeTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("degree"));
+        teacherList.setItems(sharedDataObject.getTeachers());
     }
 
     public void addNewDegreeAdmin(ActionEvent event) throws IOException {
