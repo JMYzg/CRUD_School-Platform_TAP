@@ -13,9 +13,17 @@ import com.tap.schoolplatform.services.academic.*;
 import com.tap.schoolplatform.utils.dtos.UserDTO;
 import com.tap.schoolplatform.utils.dtos.academic.GroupDTO;
 import com.tap.schoolplatform.utils.dtos.academic.SubjectDTO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class AdministratorService extends Service {
 
@@ -236,5 +244,63 @@ public class AdministratorService extends Service {
 
     public void assignSubject(Teacher teacher, Subject subject) {
         teacher.assignSubject(subject);
+    }
+
+    // Utils
+    public <T> ObservableList<T> findPersons(String attribute, List<T> persons, Function<T, List<String>> fieldExtractor) {
+        String searchLower = attribute.toLowerCase();
+        return persons.stream()
+                .filter(person -> extractFields(person, fieldExtractor).stream()
+                        .anyMatch(field -> field.toLowerCase().contains(searchLower)))
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+    }
+
+    private <T> List<String> extractFields(T person, Function<T, List<String>> fieldExtractor) {
+        return fieldExtractor.apply(person).stream()
+                .map(field -> field != null ? field : "")
+                .collect(Collectors.toList());
+    }
+
+    public ObservableList<Student> findStudent(String attribute) {
+        return findPersons(attribute, sharedData.getStudents(), student -> Arrays.asList(
+                student.getID(),
+                student.getGroup().toString(),
+                student.getName(),
+                student.getLastName(),
+                student.getEmail(),
+                student.getPhone(),
+                student.getGender().toString(),
+                safeGet(() -> student.getAddress().getStreet()),
+                safeGet(() -> Integer.toString(student.getAddress().getPostalCode())),
+                safeGet(() -> student.getAddress().getCity()),
+                safeGet(() -> student.getAddress().getState()),
+                safeGet(() -> student.getAddress().getCountry())
+        ));
+    }
+
+    public ObservableList<Teacher> findTeacher(String attribute) {
+        return findPersons(attribute, sharedData.getTeachers(), teacher -> Arrays.asList(
+                teacher.getLicense(),
+                teacher.getSpecialization(),
+                teacher.getDegree().toString(),
+                teacher.getName(),
+                teacher.getLastName(),
+                teacher.getEmail(),
+                teacher.getPhone(),
+                teacher.getGender().toString(),
+                safeGet(() -> teacher.getAddress().getStreet()),
+                safeGet(() -> Integer.toString(teacher.getAddress().getPostalCode())),
+                safeGet(() -> teacher.getAddress().getCity()),
+                safeGet(() -> teacher.getAddress().getState()),
+                safeGet(() -> teacher.getAddress().getCountry())
+        ));
+    }
+
+    private static String safeGet(Supplier<String> supplier) {
+        try {
+            return supplier.get();
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 }
