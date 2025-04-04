@@ -39,7 +39,7 @@ public class StudentViewController extends ViewController {
         Stage stage = (Stage) logOutButton.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/login-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-views/login-view.fxml")));
         primaryStage.setTitle("Log in");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
