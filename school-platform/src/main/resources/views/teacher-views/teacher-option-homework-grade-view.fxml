@@ -30,7 +30,7 @@
                               <TableColumn prefWidth="105.0" text="Archives" />
                               <TableColumn text="Points">
                                  <graphic>
-                                    <Label text="/20" />
+                                    <Label text="/10" />
                                  </graphic>
                               </TableColumn>
                           </columns>

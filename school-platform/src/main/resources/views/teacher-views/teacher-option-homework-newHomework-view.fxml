@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="477.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.homeworkTeacherViewControllers.NewHomeworkController">
    <children>
       <VBox prefHeight="300.0" prefWidth="477.0" spacing="10.0">
@@ -23,7 +22,6 @@
             <HBox prefHeight="41.0" prefWidth="477.0" spacing="10.0">
                <children>
                   <DatePicker fx:id="datePicker" prefHeight="29.0" prefWidth="143.0" promptText="DD/MM/YYYY" />
-                  <TextField fx:id="pointsTF" prefHeight="33.0" prefWidth="149.0" promptText="Points" />
                </children>
             </HBox>
             <HBox prefHeight="45.0" prefWidth="477.0" spacing="10.0">

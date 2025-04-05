@@ -17,13 +17,12 @@
             </ImageView>
             <Label id="txtbold" layoutX="81.0" layoutY="14.0" text="Title" />
             <Label id="txtbold" layoutX="283.0" layoutY="14.0" prefHeight="17.0" prefWidth="59.0" text="Deadline" />
-            <Label id="txtbold" layoutX="356.0" layoutY="14.0" prefHeight="17.0" prefWidth="53.0" text="Subject" />
+            <Label id="txtbold" layoutX="400.0" layoutY="14.0" prefHeight="17.0" prefWidth="53.0" text="Subject" />
             <Label id="txtregular" layoutX="81.0" layoutY="40.0" prefHeight="15.0" prefWidth="194.0" text="Homework tittle Example" />
             <Label id="txtregular" layoutX="283.0" layoutY="40.0" text="31/03/2025" />
             <AnchorPane id="btnhomeworkcolor" layoutX="546.0" prefHeight="80.0" prefWidth="13.0" style="-fx-background-color: #ffb6c1;" />
-            <Label id="txtregular" layoutX="356.0" layoutY="40.0" prefHeight="15.0" prefWidth="88.0" text="Civic and etic" />
-            <Label id="txtregular" layoutX="472.0" layoutY="40.0" prefHeight="15.0" prefWidth="19.0" text="20" />
-            <Label id="txtregular" layoutX="491.0" layoutY="40.0" prefHeight="15.0" prefWidth="41.0" text="Points" />
+            <Label id="txtregular" layoutX="400.0" layoutY="40.0" prefHeight="15.0" prefWidth="88.0" text="Civic and etic" />
+            <Label id="txtregular" layoutX="491.0" layoutY="40.0" prefHeight="15.0" prefWidth="41.0" />
          </children>
       </AnchorPane>
    </graphic>
