@@ -17,8 +17,8 @@ public class StudentViewController extends ViewController {
     public Button classesTab;
     public Button homeworkTab;
     public Button gradesButton;
-    public BorderPane borderPane;
     public Button logOutButton;
+    public BorderPane borderPane;
 
     public void openStudentDataTab(MouseEvent mouseEvent) {
         loadPageView("/views/student-views/student-data-view.fxml", borderPane);
@@ -29,6 +29,7 @@ public class StudentViewController extends ViewController {
     }
 
     public void openHomeworkTab(MouseEvent mouseEvent) {
+        loadPageView("/views/student-views/student-homework-view.fxml", borderPane);
     }
 
     public void openGradesTab(MouseEvent mouseEvent) {
@@ -37,12 +38,6 @@ public class StudentViewController extends ViewController {
 
 
     public void exitStudentView(MouseEvent mouseEvent) throws IOException {
-        Stage stage = (Stage) logOutButton.getScene().getWindow();
-        stage.close();
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-views/login-view.fxml")));
-        primaryStage.setTitle("Log in");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        logOutFunction(logOutButton);
     }
 }

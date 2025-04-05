@@ -20,7 +20,7 @@ public class LoginViewController extends ViewController {
 
     //public SharedData getUser;
 
-    public void handeLogin(ActionEvent actionEvent) throws IOException {
+    public void handeLogin() throws IOException {
         AuthenticationService authenticationService = new AuthenticationService();
         User user = authenticationService.login(email.getText(), password.getText());
 
@@ -41,11 +41,12 @@ public class LoginViewController extends ViewController {
         }
     }
 
-    public void validateCredentials() /*throws IOException*/ { //Temporal log in system so we can access to the different view windows
-        if (email == null || password == null) {
+    public void validateCredentials() throws IOException /*throws IOException*/ { //Temporal log in system so we can access to the different view windows
+        if (email.getText().isEmpty() || email == null || password.getText().isEmpty() || password == null) {
             alert("", "Please make sure to full fill all the text boxes", Alert.AlertType.INFORMATION);
         }
-//        else {
+        else {
+            handeLogin();
 //            if (email.getText().equals("1")) {
 //                toAdminView();
 //            } else {
@@ -56,7 +57,7 @@ public class LoginViewController extends ViewController {
 //                }
 //            }
 //            System.out.println("The user logged in");
-//        }
+        }
     }
 
     /*public boolean confirmCredentials(int id)
@@ -74,7 +75,7 @@ public class LoginViewController extends ViewController {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-views/login-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-views/admin-view.fxml")));
         primaryStage.setTitle("Administrator");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -86,7 +87,7 @@ public class LoginViewController extends ViewController {
         stage.close();
         Stage primaryStage = new Stage();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/teacher-views/teacher-option-view.fxml")));
-        primaryStage.setTitle("Student");
+        primaryStage.setTitle("Teacher");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         primaryStage.setResizable(false);

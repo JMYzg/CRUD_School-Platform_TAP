@@ -52,19 +52,19 @@ public abstract class ViewController {
     public void loadPageView(String pageName, BorderPane borderPane) {
         Parent root;
         try {
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/" + pageName + ".fxml")));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(pageName)));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         borderPane.setCenter(root);
     }
 
-    public void loadNewPageView (ActionEvent event, String viewName, String viewTitle) throws IOException {
+    public void loadNewPageView (ActionEvent event, String viewPath, String viewTitle) throws IOException {
         Stage ownerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
         primaryStage.initOwner(ownerStage);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/" + viewName + ".fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(viewPath)));
         primaryStage.setTitle(viewTitle);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -75,7 +75,7 @@ public abstract class ViewController {
         Stage stage = (Stage) logOutButton.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/login-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/admin-views/login-view.fxml")));
         primaryStage.setTitle("Log in");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));

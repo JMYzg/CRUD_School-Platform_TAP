@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="477.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.NewHomeworkController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="477.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.homeworkTeacherViewControllers.NewHomeworkController">
    <children>
       <VBox prefHeight="300.0" prefWidth="477.0" spacing="10.0">
          <children>

@@ -1,4 +1,4 @@
-package com.tap.schoolplatform.controllers.teacherControllers;
+package com.tap.schoolplatform.controllers.teacherControllers.examTeacherViewControllers;
 
 import com.tap.schoolplatform.controllers.ViewController;
 import javafx.event.ActionEvent;
@@ -27,6 +27,6 @@ public class NewExamController extends ViewController {
     }
 
     public void addQuestion(ActionEvent event) throws IOException {
-        loadNewPageView(event, "teacher-option-exam-new-question-details-view", "Add new question");
+        loadNewPageView(event, "/views/teacher-views/teacher-option-exam-new-question-details-view.fxml", "Add new question");
     }
 }
