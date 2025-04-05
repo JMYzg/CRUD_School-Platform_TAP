@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="604.0" prefWidth="642.0" style="-fx-background-color: dedede;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.ExamOptionController">
+<AnchorPane prefHeight="604.0" prefWidth="642.0" style="-fx-background-color: dedede;" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.ExamOptionController">
    <children>
       <VBox prefHeight="604.0" prefWidth="642.0" spacing="10.0">
          <children>
@@ -40,11 +39,11 @@
                      </children>
                   </HBox>
                </children></AnchorPane>
-            <Button id="btnM" fx:id="createNewExamButton" mnemonicParsing="false" onAction="#createNewExamn" prefHeight="29.0" prefWidth="629.0" stylesheets="@../styles/main.css" text="Create New Exam">
+            <Button id="btnM" fx:id="createNewExamButton" mnemonicParsing="false" onAction="#createNewExamn" prefHeight="29.0" prefWidth="629.0" text="Create New Exam">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Plus.png" />
+                        <Image url="@../../images/Plus.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -56,11 +55,11 @@
                         <VBox layoutY="-2.0" prefHeight="498.0" prefWidth="599.0" spacing="10.0">
                            <children>
                               <AnchorPane prefHeight="5.0" prefWidth="597.0" />
-                              <AnchorPane id="HomeworkContainer" prefHeight="80.0" prefWidth="599.0" stylesheets="@../styles/main.css">
+                              <AnchorPane id="HomeworkContainer" prefHeight="80.0" prefWidth="599.0" stylesheets="@../../styles/main.css">
                                  <children>
                                     <ImageView fitHeight="49.0" fitWidth="49.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/image.png" />
+                                          <Image url="@../../images/image.png" />
                                        </image>
                                     </ImageView>
                                     <Label id="txtbold" layoutX="74.0" layoutY="14.0" text="Title" />

@@ -202,7 +202,7 @@
 /* Líneas inferiores en las filas */
 .table-row-cell {
     -fx-border-width: 0 0 1px 0; /* Línea inferior */
-    -fx-border-color: #e0e0e0; /* Color gris más claro */
+    -fx-border-color:#fca621; /* Color gris más claro */
     -fx-background-color: white; /* Fondo de las filas */
 }
 
