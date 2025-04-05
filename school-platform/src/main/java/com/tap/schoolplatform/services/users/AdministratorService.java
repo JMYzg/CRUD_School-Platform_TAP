@@ -265,6 +265,7 @@ public class AdministratorService extends Service {
         return findPersons(attribute, sharedData.getStudents(), student -> Arrays.asList(
                 student.getID(),
                 student.getGroup().toString(),
+                student.getDegree().toString(),
                 student.getName(),
                 student.getLastName(),
                 student.getEmail(),
