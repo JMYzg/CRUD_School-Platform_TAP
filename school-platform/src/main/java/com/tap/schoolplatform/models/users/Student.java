@@ -1,5 +1,6 @@
 package com.tap.schoolplatform.models.users;
 
+import com.tap.schoolplatform.models.academic.Degree;
 import com.tap.schoolplatform.models.academic.Grade;
 import com.tap.schoolplatform.models.academic.Group;
 import com.tap.schoolplatform.models.academic.keys.GradeKey;
@@ -51,6 +52,9 @@ public class Student extends User {
         this.group = group;
         group.addStudent(this); // Check this shit
         generateID();
+    }
+    public Degree getDegree() {
+        return group.getDegree();
     }
 
     public int getIndex() {

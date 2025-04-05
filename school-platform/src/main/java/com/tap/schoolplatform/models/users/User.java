@@ -68,6 +68,7 @@ public abstract class User {
     public void setBirthDate(BirthDate birthDate) {
         this.birthDate = birthDate;
     }
+    public Integer getAge() {return birthDate.calculateAge();}
 
     public String getEmail() {
         return email;
@@ -88,6 +89,30 @@ public abstract class User {
     }
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getStreet() {
+        return address.getStreet();
+    }
+
+    public int getPostalCode() {
+        return address.getPostalCode();
+    }
+
+    public String getColony() {
+        return address.getColony();
+    }
+
+    public String getCity() {
+        return address.getCity();
+    }
+
+    public String getState() {
+        return address.getState();
+    }
+
+    public String getCountry() {
+        return address.getCountry();
     }
 
     public Gender getGender() {

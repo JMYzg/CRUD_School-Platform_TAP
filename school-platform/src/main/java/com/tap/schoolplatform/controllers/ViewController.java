@@ -46,7 +46,7 @@ public abstract class ViewController {
 
     public Address createAddress(TextField street, TextField PC, TextField colony, TextField city, TextField state, TextField country){
         int pc = Integer.parseInt(PC.getText());
-        return new Address(street.getSelectedText(), pc, colony.getSelectedText(), city.getSelectedText(), state.getSelectedText(), country.getSelectedText());
+        return new Address(street.getText(), pc, colony.getText(), city.getText(), state.getText(), country.getText());
     }
 
     public void loadPageView(String pageName, BorderPane borderPane) {

@@ -44,7 +44,7 @@
                   <FlowPane prefHeight="378.0" prefWidth="372.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                      <children>
                         <Label id="TitleRegister" prefHeight="32.0" prefWidth="214.0" text="Alumn Register" />
-                        <Button id="btnH" fx:id="studentNewButton" mnemonicParsing="false" onAction="#addStudent" prefHeight="29.0" prefWidth="136.0" text="New" />
+                        <Button id="btnH" fx:id="studentNewButton" mnemonicParsing="false" onAction="#studentCreateNewStudent" prefHeight="29.0" prefWidth="136.0" text="New" />
                         <Label prefHeight="17.0" prefWidth="59.0" text="Name: ">
                            <FlowPane.margin>
                               <Insets top="10.0" />
@@ -156,10 +156,7 @@
                      </VBox>
                      <StackPane layoutX="253.0" layoutY="31.0" prefHeight="107.0" prefWidth="107.0" style="-fx-background-color: dedede; -fx-background-radius: 5;">
                         <children>
-                           <ImageView fx:id="studentImageView" fitHeight="107.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                 <Image url="@../../../../../Imágenes/Capturas%20de%20pantalla/Captura%20de%20pantalla%202023-07-16%20133316.png" />
-                              </image></ImageView>
+                           <ImageView fx:id="studentImageView" fitHeight="107.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true" />
                         </children>
                      </StackPane>
                         </AnchorPane>
@@ -174,8 +171,8 @@
                                 </AnchorPane>
                         <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
                            <children>
-                              <TextField layoutX="14.0" layoutY="37.0" prefHeight="25.0" prefWidth="220.0" />
-                              <Button id="btnM" layoutX="249.0" layoutY="38.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="64.0" style="-fx-pref-height: 64;" text="Filter" />
+                              <TextField fx:id="studentSearchTF" layoutX="14.0" layoutY="37.0" prefHeight="25.0" prefWidth="220.0" />
+                              <Button id="btnM" fx:id="studentFilterButton" layoutX="249.0" layoutY="38.0" mnemonicParsing="false" onAction="#searchStudent" prefHeight="61.0" prefWidth="64.0" style="-fx-pref-height: 64;" text="Filter" />
                               <ComboBox editable="true" layoutX="14.0" layoutY="73.0" prefHeight="35.0" prefWidth="221.0" />
                               <Label id="TitleRegister" layoutX="14.0" layoutY="5.0" text="Search" />
                               <ImageView fitHeight="29.0" fitWidth="32.0" layoutX="80.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
@@ -196,16 +193,16 @@
                                  <TableColumn fx:id="studentDegreeTableColumn" prefWidth="102.0" text="Degree" />
                                  <TableColumn fx:id="studentGroupTableColumn" prefWidth="79.0" text="Group" />
                                  <TableColumn fx:id="studentLNTableColumn" prefWidth="96.0" text="Last Name" />
-                                 <TableColumn prefWidth="117.0" text="E-mail" />
-                                 <TableColumn minWidth="3.0" prefWidth="104.0" text="Phone" />
-                                 <TableColumn prefWidth="102.0" text="Street" />
-                                 <TableColumn minWidth="0.0" prefWidth="82.0" text="P.C" />
-                                 <TableColumn prefWidth="99.0" text="Colony" />
-                                 <TableColumn prefWidth="100.0" text="City" />
-                                 <TableColumn prefWidth="90.0" text="State" />
-                                 <TableColumn prefWidth="98.0" text="Country" />
-                                 <TableColumn prefWidth="86.0" text="Gender" />
-                                 <TableColumn prefWidth="40.0" text="Age" />
+                                 <TableColumn fx:id="studentEmailTableColumn" prefWidth="117.0" text="E-mail" />
+                                 <TableColumn fx:id="studentPhoneTableColumn" minWidth="3.0" prefWidth="104.0" text="Phone" />
+                                 <TableColumn fx:id="studentStreetTableColumn" prefWidth="102.0" text="Street" />
+                                 <TableColumn fx:id="studentPCTableColumn" minWidth="0.0" prefWidth="82.0" text="P.C" />
+                                 <TableColumn fx:id="studentColonyTableColumn" prefWidth="99.0" text="Colony" />
+                                 <TableColumn fx:id="studentCityTableColumn" prefWidth="100.0" text="City" />
+                                 <TableColumn fx:id="studentStateTableColumn" prefWidth="90.0" text="State" />
+                                 <TableColumn fx:id="studentCountryTableColumn" prefWidth="98.0" text="Country" />
+                                 <TableColumn fx:id="studentGenderTableColumn" prefWidth="86.0" text="Gender" />
+                                 <TableColumn fx:id="studentAgeTableColumn" prefWidth="40.0" text="Age" />
                               </columns>
                            </TableView>
                         </content>
@@ -344,8 +341,8 @@
                                 </AnchorPane>
                         <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
                            <children>
-                              <TextField layoutX="14.0" layoutY="37.0" prefHeight="25.0" prefWidth="220.0" />
-                              <Button id="btnM" layoutX="249.0" layoutY="38.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="64.0" style="-fx-pref-height: 64;" text="Filter" />
+                              <TextField fx:id="teacherSearchTF" layoutX="14.0" layoutY="37.0" onAction="#searchTeacher" prefHeight="25.0" prefWidth="220.0" />
+                              <Button id="btnM" fx:id="teacherFilterButton" layoutX="249.0" layoutY="38.0" mnemonicParsing="false" onAction="#searchTeacher" prefHeight="61.0" prefWidth="64.0" style="-fx-pref-height: 64;" text="Filter" />
                               <ComboBox editable="true" layoutX="14.0" layoutY="73.0" prefHeight="35.0" prefWidth="221.0" />
                               <Label id="TitleRegister" layoutX="14.0" layoutY="5.0" text="Search" />
                               <ImageView fitHeight="29.0" fitWidth="32.0" layoutX="80.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
@@ -359,23 +356,23 @@
                             <Region prefHeight="10.0" prefWidth="471.0" />
                             <ScrollPane prefHeight="457.0" prefWidth="470.0">
                         <content>
-                           <TableView prefHeight="460.0" prefWidth="1376.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                           <TableView fx:id="teacherList" prefHeight="460.0" prefWidth="1376.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                               <columns>
-                                 <TableColumn text="License" />
-                                 <TableColumn prefWidth="100.0" text="Name" />
-                                 <TableColumn prefWidth="102.0" text="Especialitation" />
-                                 <TableColumn prefWidth="79.0" text="Degree" />
-                                 <TableColumn prefWidth="96.0" text="Last Name" />
-                                 <TableColumn prefWidth="117.0" text="E-mail" />
-                                 <TableColumn minWidth="3.0" prefWidth="104.0" text="Phone" />
-                                 <TableColumn prefWidth="102.0" text="Street" />
-                                 <TableColumn minWidth="0.0" prefWidth="82.0" text="P.C" />
-                                 <TableColumn prefWidth="99.0" text="Colony" />
-                                 <TableColumn prefWidth="100.0" text="City" />
-                                 <TableColumn prefWidth="90.0" text="State" />
-                                 <TableColumn prefWidth="98.0" text="Country" />
-                                 <TableColumn prefWidth="86.0" text="Gender" />
-                                 <TableColumn prefWidth="40.0" text="Age" />
+                                 <TableColumn fx:id="teacherLicenseTableColumn" text="License" />
+                                 <TableColumn fx:id="teacherNameTableColumn" prefWidth="100.0" text="Name" />
+                                 <TableColumn fx:id="teacherEspecialitationTableColumn" prefWidth="102.0" text="Especialitation" />
+                                 <TableColumn fx:id="teacherDegreeTableColumn" prefWidth="79.0" text="Degree" />
+                                 <TableColumn fx:id="teacherLNTableColumn" prefWidth="96.0" text="Last Name" />
+                                 <TableColumn fx:id="teacherEmailTableColumn" prefWidth="117.0" text="E-mail" />
+                                 <TableColumn fx:id="teacherPhoneTableColumn" minWidth="3.0" prefWidth="104.0" text="Phone" />
+                                 <TableColumn fx:id="teacherStreetTableColumn" prefWidth="102.0" text="Street" />
+                                 <TableColumn fx:id="teacherPCTableColumn" minWidth="0.0" prefWidth="82.0" text="P.C" />
+                                 <TableColumn fx:id="teacherColonyTableColumn" prefWidth="99.0" text="Colony" />
+                                 <TableColumn fx:id="teacherCityTableColumn" prefWidth="100.0" text="City" />
+                                 <TableColumn fx:id="teacherStateTableColumn" prefWidth="90.0" text="State" />
+                                 <TableColumn fx:id="teacherCountryTableColumn" prefWidth="98.0" text="Country" />
+                                 <TableColumn fx:id="teacherGenderTableColumn" prefWidth="86.0" text="Gender" />
+                                 <TableColumn fx:id="teacherAgeTableColumn" prefWidth="40.0" text="Age" />
                               </columns>
                            </TableView>
                         </content>
