@@ -16,23 +16,22 @@ public class TeacherViewController extends ViewController {
     public BorderPane borderPane;
 
     public void openStudentTab(ActionEvent event) {
-        loadPageView("teacher-option-student-view", borderPane);
+        loadPageView("/views/teacher-views/teacher-option-student-view.fxml", borderPane);
     }
 
     public void openExamsTab(ActionEvent event) {
-        loadPageView("teacher-option-exams-view", borderPane);
+        loadPageView("/views/teacher-views/teacher-option-exams-view.fxml", borderPane);
     }
 
     public void openHomeworkTab(ActionEvent event) {
-        loadPageView("teacher-option-homework-view", borderPane);
+        loadPageView("/views/teacher-views/teacher-option-homework-view.fxml", borderPane);
     }
 
     public void openGradesTap(ActionEvent event) {
-        loadPageView("teacher-option-grade-view", borderPane);
+        loadPageView("/views/teacher-views/teacher-option-grade-view.fxml", borderPane);
     }
 
     public void logOut(ActionEvent event) throws IOException {
         logOutFunction(logOutButton);
     }
-
 }

@@ -13,11 +13,12 @@ public class MainApplication extends Application {
 
     public void start(Stage stage) throws IOException {
         SharedData.getInstance().initialize();
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/views/login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/views/admin-views/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
+        stage.setTitle("Log in");
     }
 
     public static void main(String[] args) {

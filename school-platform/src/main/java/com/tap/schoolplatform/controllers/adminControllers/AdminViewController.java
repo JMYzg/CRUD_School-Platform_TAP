@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -29,37 +30,35 @@ import java.io.IOException;
 import java.util.*;
 
 public class AdminViewController extends ViewController {
-
-    Student student;
-    public AnchorPane AnchorPaneImage1;
-    public ComboBox<Gender> studentGenderComboBox;
-    public ComboBox<Degree> studentDegreeComboBox;
-    public Button studentAddDegreeButton;
-    public ComboBox<Group> studentGroupComboBox;
-    public Button studentAddGroupButton;
-    public AnchorPane AnchorPaneImage;
-    public ComboBox<Status> studentStatusComboBox;
-    public ComboBox<Gender> teacherGenderComboBox;
-    public ComboBox studentLadaComboBox;
-    public ComboBox teacherLadaComboBox;
-    public TextField studentIdTF;
+    // student attributes
+    public Button studentNewButton;
     public TextField studentNameTF;
-    public TextField studentPCTF;
-    public TextField studentEmailTF;
-    public TextField studentPhoneTF;
     public TextField studentLastNameTF;
+    public TextField studentPhoneTF;
+    public TextField studentEmailTF;
     public TextField studentStreetTF;
+    public TextField studentPCTF;
     public TextField studentColonyTF;
     public TextField studentCityTF;
     public TextField studentStateTF;
     public TextField studentCountryTF;
-    public Button studentNextAvailableButton;
-    public Button studentNewButton;
+    public ComboBox<Gender> studentGenderComboBox;
+    public DatePicker studentDatePicker;
+    public ComboBox<Degree> studentDegreeComboBox;
+    public Button studentManageDegreeButton;
+    public ComboBox<Group> studentGroupComboBox;
+    public Button studentManageGroupsButton;
+    public ImageView studentImageView;
+    public TableView<Student> studentList;
+    public TableColumn<Student, String> studentIdTableColumn;
+    public TableColumn<Student, String> studentNameTableColumn;
+    public TableColumn<Student, String> studentDegreeTableColumn;
+    public TableColumn<Student, String> studentGroupTableColumn;
+    public TableColumn<Student, String> studentLNTableColumn;
+    // teacher attributes
     public Button teacherNewButton;
-    public TextField teacherIDTF;
-    public Button teacherNextAvailableButton;
-    public TextField teacherLastNameTF;
     public TextField teacherNameTF;
+    public TextField teacherLastNameTF;
     public TextField teacherPhoneTF;
     public TextField teacherEmailTF;
     public TextField teacherStreetTF;
@@ -68,68 +67,65 @@ public class AdminViewController extends ViewController {
     public TextField teacherCityTF;
     public TextField teacherStateTF;
     public TextField teacherCountryTF;
+    public ComboBox<Gender> teacherGenderComboBox;
+    public DatePicker teacherDatePicker;
+    public ComboBox<Degree> teacherDegreeComboBox;
+    public Button teacherManageDegreeButton;
+    public AnchorPane AnchorPaneImage;
+    public Button teacherNextAvailableButton;
     public TextField teacherAddDegreeTF;
     public Button teacherCreateDegreeButton;
-    public ComboBox<Degree> teacherDegreeComboBox;
     public Button logOutButton;
-    public DatePicker studentDatePicker;
-    public DatePicker teacherDatePicker;
     public Button studentEditButton;
     public Button studentAcceptButton;
     public Button studentCancelButton;
-    public TableView<Student> studentList;
-    public TableColumn<Student, UUID> studentIdTableColumn;
-    public TableColumn<Student, String> studentLNTableColumn;
-    public TableColumn<Student, String> studentNameTableColumn;
-    public TableColumn<Student, String> studentDegreeTableColumn;
-    public TableColumn<Student, String> studentGroupTableColumn;
+    public Button studentUploadImageButton;
     AdministratorService adminService;
 
     private final SharedData sharedDataObject = SharedData.getInstance();
 
     public void initialize() {
-        studentIdTF.setEditable(false);
-        studentGenderComboBox.getItems().setAll(Gender.values());
         studentGenderComboBox.setEditable(false);
-        refreshCBDegree(studentDegreeComboBox);
-        studentDegreeComboBox.setEditable(false);
-        studentGroupComboBox.setEditable(false);
-        studentStatusComboBox.getItems().setAll(Status.values());
-        studentStatusComboBox.setEditable(false);
-        studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<Student, UUID>("id"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("lastName"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("degree"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("group"));
-        studentList.setItems(sharedDataObject.getStudents());
+        studentGenderComboBox.getItems().setAll(Gender.values());
         studentDatePicker.setEditable(false);
-        teacherIDTF.setEditable(false);
+        studentDegreeComboBox.setEditable(false);
+        refreshCBDegree(studentDegreeComboBox);
+        studentGroupComboBox.setEditable(false);
+        studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("ID"));
+        studentNameTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
+        studentDegreeTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("degree"));
+        studentGroupTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("group"));
+        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("lastName"));
+        studentList.setItems(sharedDataObject.getStudents());
+//        studentDatePicker.setEditable(fa1 lse);
+//        teacherIDTF.setEditable(false);
         teacherGenderComboBox.getItems().setAll(Gender.values());
         teacherGenderComboBox.setEditable(false);
-        studentLadaComboBox.setEditable(false);
-        teacherLadaComboBox.setEditable(false);
         refreshCBDegree(teacherDegreeComboBox);
         teacherDegreeComboBox.setEditable(false);
-        teacherDatePicker.setEditable(false);
-    }
-
-    public void addNewDegreeAdmin(ActionEvent event) throws IOException {
-        loadNewPageView(event, "degree-view", "Add new degree");
-    }
-    public void addNewGroupAdmin(ActionEvent event) throws IOException {
-        loadNewPageView(event, "group-view", "Add new group");
+//        teacherDatePicker.setEditable(false);
     }
 
     public void addStudent(ActionEvent event) {
-        if (studentIdTF.getText() == null || studentNameTF.getText() == null || studentLastNameTF.getText() == null || studentPhoneTF.getText() == null || studentEmailTF.getText() == null || studentStreetTF.getText() == null || studentPCTF.getText() == null || studentColonyTF.getText() == null || studentCityTF.getText() == null || studentStateTF.getText() == null || studentCountryTF.getText() == null || studentCountryTF.getText() == null || studentGenderComboBox.getValue() == null || studentDatePicker.getValue() == null|| studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null || studentStatusComboBox.getValue() == null) {
+        if (studentNameTF.getText().isEmpty() || studentLastNameTF.getText().isEmpty() || studentPhoneTF.getText().isEmpty() || studentEmailTF.getText().isEmpty() || studentStreetTF.getText().isEmpty() || studentPCTF.getText().isEmpty() || studentColonyTF.getText().isEmpty() || studentCityTF.getText().isEmpty() || studentStateTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentGenderComboBox.getValue() == null || studentDatePicker.getValue() == null|| studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null) {
             alert("Error", "Please make sure to full fill all the text boxes", Alert.AlertType.ERROR);
         }
-            adminService = new AdministratorService(studentDegreeComboBox.getValue());
-            Student studentUser = new Student(studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDatePicker), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
-            UserDTO userDTO = new UserDTO();
-            userDTO.setGroup(studentGroupComboBox.getValue());
-            adminService.createUser(studentUser, userDTO);
-            alert("", "Student added correctly", Alert.AlertType.INFORMATION);
+        adminService = new AdministratorService(studentDegreeComboBox.getValue());
+        Student studentUser = new Student(studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDatePicker), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
+        UserDTO userDTO = new UserDTO();
+        userDTO.setGroup(studentGroupComboBox.getValue());
+        adminService.createUser(studentUser, userDTO);
+        alert("", "Student added correctly", Alert.AlertType.INFORMATION);
+    }
+    public void manageDegreesAdmin(ActionEvent event) throws IOException {
+        loadNewPageView(event, "/views/admin-views/degree-view.fxml", "Add new degree");
+    }
+
+    public void manageGroupAdmin(ActionEvent event) throws IOException {
+        loadNewPageView(event, "/views/admin-views/group-view.fxml", "Add new group");
+    }
+
+    public void studentUploadImage(ActionEvent event) {
     }
 
     public void refreshCBDegree (ComboBox CBD) {
@@ -151,7 +147,7 @@ public class AdminViewController extends ViewController {
     }
 
     public void createTeacher () {
-        if (teacherIDTF.getText() == null || teacherNameTF.getText() == null || teacherLastNameTF.getText() == null || teacherPhoneTF.getText() == null || teacherEmailTF.getText() == null || teacherStreetTF.getText() == null || teacherPCTF.getText() == null || teacherColonyTF.getText() == null || teacherCityTF.getText() == null || teacherStreetTF.getText() == null || teacherCountryTF.getText() == null || teacherCountryTF.getText() == null || teacherGenderComboBox.getValue() == null || teacherDatePicker.getValue() == null || teacherDegreeComboBox.getValue() == null) {
+        if (teacherNameTF.getText() == null || teacherLastNameTF.getText() == null || teacherPhoneTF.getText() == null || teacherEmailTF.getText() == null || teacherStreetTF.getText() == null || teacherPCTF.getText() == null || teacherColonyTF.getText() == null || teacherCityTF.getText() == null || teacherStreetTF.getText() == null || teacherCountryTF.getText() == null || teacherCountryTF.getText() == null || teacherGenderComboBox.getValue() == null || teacherDatePicker.getValue() == null || teacherDegreeComboBox.getValue() == null) {
             alert("Error", "Please make sure to full fill all the text boxes", Alert.AlertType.ERROR);
         } else {
             adminService = new AdministratorService(null);
