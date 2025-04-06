@@ -43,17 +43,17 @@ public class LoginViewController extends ViewController {
             }
         } else {
 
-            //alert("Error", "Make sure your credentials are right", Alert.AlertType.ERROR);
+            alert("Error", "Make sure your credentials are right", Alert.AlertType.ERROR);
             //brisa estuvo aquí
-            alertError("Make sure your credentials are right");
+            //alertError("Make sure your credentials are right");
         }
     }
 
     public void validateCredentials() throws IOException /*throws IOException*/ { //Temporal log in system so we can access to the different view windows
         if (email.getText().isEmpty() || email == null || password.getText().isEmpty() || password == null) {
-           //alert("", "Please make sure to full fill all the text boxes", Alert.AlertType.INFORMATION);
+           alert("", "Please make sure to full fill all the text boxes", Alert.AlertType.INFORMATION);
             //brisa estuvo aquí
-            alertInfo("Please make sure to fill all the text boxes");
+           // alertInfo("Please make sure to fill all the text boxes");
         }
         else {
             handeLogin();
