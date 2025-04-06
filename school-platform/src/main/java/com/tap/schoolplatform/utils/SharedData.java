@@ -88,7 +88,7 @@ public class SharedData {
                         Gender.MALE
                 );
         student.setGroup(M1);
-        student.setProfilePicture(new Image("src/main/resources/images/Plus.png"));
+//        student.setProfilePicture(new Image(""));
         return student;
     }
 

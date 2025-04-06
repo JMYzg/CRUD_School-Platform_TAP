@@ -407,4 +407,11 @@ public class AdminViewController extends ViewController {
             studentImageView.setImage(null);
         }
     }
+
+    public void studentSelectUser(MouseEvent mouseEvent) {
+        System.out.printf(studentNameTF.getText());
+    }
+
+    public void studentEditUser(ActionEvent event) {
+    }
 }
