@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -91,5 +92,37 @@ public abstract class ViewController {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+    //brisa estuvo aquí
+    public void alertInfo(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alert");
+        alert.setHeaderText("");
+        alert.setContentText(message);
 
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alertas.css").toExternalForm());
+        alert.setGraphic(new ImageView(this.getClass().getResource("/images/info.png").toExternalForm()));
+
+        alert.showAndWait();
+    }
+
+    public void alertWarning(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Alert");
+        alert.setHeaderText("");
+        alert.setContentText(message);
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alertas.css").toExternalForm());
+        alert.setGraphic(new ImageView(this.getClass().getResource("/images/warning.png").toExternalForm()));
+        alert.showAndWait();
+    }
+
+    public void alertError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Alert");
+        alert.setHeaderText("");
+        alert.setContentText(message);
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alertas.css").toExternalForm());
+        alert.setGraphic(new ImageView(this.getClass().getResource("/images/error.png").toExternalForm()));
+        alert.showAndWait();
+
+    }
 }

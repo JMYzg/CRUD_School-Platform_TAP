@@ -168,8 +168,8 @@
                         <VBox prefHeight="555.0" prefWidth="472.0">
                             <HBox prefHeight="118.0" prefWidth="471.0" spacing="10.0">
                                 <AnchorPane prefHeight="116.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
-                                    <Button id="btnH" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Edit" />
-                                    <Button id="btnM" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Accept" />
+                                    <Button id="btnH" fx:id="studentEditButton" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#studentEditUser" prefHeight="29.0" prefWidth="109.0" text="Edit" />
+                                    <Button id="btnM" fx:id="studentAcceptButton" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="29.0" prefWidth="109.0" text="Accept" />
                                     <Button id="btnN" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
                                 </AnchorPane>
                         <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
@@ -189,23 +189,23 @@
                             <Region prefHeight="10.0" prefWidth="471.0" />
                             <ScrollPane prefHeight="457.0" prefWidth="471.0">
                         <content>
-                           <TableView fx:id="studentList" prefHeight="460.0" prefWidth="1376.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                           <TableView fx:id="studentList" onMouseClicked="#studentSelectUser" prefHeight="460.0" prefWidth="1376.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                               <columns>
                                  <TableColumn fx:id="studentIdTableColumn" text="ID" />
                                  <TableColumn fx:id="studentNameTableColumn" prefWidth="100.0" text="Name" />
                                  <TableColumn fx:id="studentLNTableColumn" prefWidth="96.0" text="Last Name" />
                                  <TableColumn fx:id="studentDegreeTableColumn" prefWidth="102.0" text="Degree" />
                                  <TableColumn fx:id="studentGroupTableColumn" prefWidth="79.0" text="Group" />
-                                 <TableColumn prefWidth="117.0" text="E-mail" />
-                                 <TableColumn minWidth="3.0" prefWidth="104.0" text="Phone" />
-                                 <TableColumn prefWidth="102.0" text="Street" />
-                                 <TableColumn minWidth="0.0" prefWidth="82.0" text="P.C" />
-                                 <TableColumn prefWidth="99.0" text="Colony" />
-                                 <TableColumn prefWidth="100.0" text="City" />
-                                 <TableColumn prefWidth="90.0" text="State" />
-                                 <TableColumn prefWidth="98.0" text="Country" />
-                                 <TableColumn prefWidth="86.0" text="Gender" />
-                                 <TableColumn prefWidth="40.0" text="Age" />
+                                 <TableColumn fx:id="studentEmailTableColumn" prefWidth="117.0" text="E-mail" />
+                                 <TableColumn fx:id="studentPhoneTableColumn" minWidth="3.0" prefWidth="104.0" text="Phone" />
+                                 <TableColumn fx:id="studentStreetTableColumn" prefWidth="102.0" text="Street" />
+                                 <TableColumn fx:id="studentPCTableColumn" minWidth="0.0" prefWidth="82.0" text="P.C" />
+                                 <TableColumn fx:id="studentColonyTableColumn" prefWidth="99.0" text="Colony" />
+                                 <TableColumn fx:id="studentCityTableColumn" prefWidth="100.0" text="City" />
+                                 <TableColumn fx:id="studentStateTableColumn" prefWidth="90.0" text="State" />
+                                 <TableColumn fx:id="studentCountryTableColumn" prefWidth="98.0" text="Country" />
+                                 <TableColumn fx:id="studentGenderTableColumn" prefWidth="86.0" text="Gender" />
+                                 <TableColumn fx:id="studentAgeTableColumn" prefWidth="40.0" text="Age" />
                               </columns>
                               <padding>
                                  <Insets left="5.0" />
@@ -363,7 +363,7 @@
                             <HBox prefHeight="118.0" prefWidth="471.0" spacing="10.0">
                                 <AnchorPane prefHeight="116.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
                                     <Button id="btnH" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Edit" />
-                                    <Button id="btnM" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Accept" />
+                                    <Button id="btnM" fx:id="teacherAcceptButton" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#createTeacher" prefHeight="29.0" prefWidth="109.0" text="Accept" />
                                     <Button id="btnN" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
                                 </AnchorPane>
                         <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
@@ -385,21 +385,21 @@
                         <content>
                            <TableView fx:id="teacherList" prefHeight="460.0" prefWidth="1376.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                               <columns>
-                                 <TableColumn text="License" />
-                                 <TableColumn prefWidth="92.0" text="Name" />
-                                 <TableColumn prefWidth="96.0" text="Last Name" />
-                                 <TableColumn prefWidth="110.0" text="Especialitation" />
-                                 <TableColumn prefWidth="79.0" text="Degree" />
-                                 <TableColumn prefWidth="117.0" text="E-mail" />
-                                 <TableColumn minWidth="3.0" prefWidth="104.0" text="Phone" />
-                                 <TableColumn prefWidth="102.0" text="Street" />
-                                 <TableColumn minWidth="0.0" prefWidth="82.0" text="P.C" />
-                                 <TableColumn prefWidth="99.0" text="Colony" />
-                                 <TableColumn prefWidth="100.0" text="City" />
-                                 <TableColumn prefWidth="90.0" text="State" />
-                                 <TableColumn prefWidth="98.0" text="Country" />
-                                 <TableColumn prefWidth="86.0" text="Gender" />
-                                 <TableColumn prefWidth="40.0" text="Age" />
+                                 <TableColumn fx:id="teacherLicenseTableColumn" text="License" />
+                                 <TableColumn fx:id="teacherNameTableColumn" prefWidth="100.0" text="Name" />
+                                 <TableColumn fx:id="teacherLNTableColumn" prefWidth="96.0" text="Last Name" />
+                                 <TableColumn fx:id="teacherEspecialitationTableColumn" prefWidth="102.0" text="Especialitation" />
+                                 <TableColumn fx:id="teacherDegreeTableColumn" prefWidth="79.0" text="Degree" />
+                                 <TableColumn fx:id="teacherEmailTableColumn" prefWidth="117.0" text="E-mail" />
+                                 <TableColumn fx:id="teacherPhoneTableColumn" minWidth="3.0" prefWidth="104.0" text="Phone" />
+                                 <TableColumn fx:id="teacherStreetTableColumn" prefWidth="102.0" text="Street" />
+                                 <TableColumn fx:id="teacherPCTableColumn" minWidth="0.0" prefWidth="82.0" text="P.C" />
+                                 <TableColumn fx:id="teacherColonyTableColumn" prefWidth="99.0" text="Colony" />
+                                 <TableColumn fx:id="teacherCityTableColumn" prefWidth="100.0" text="City" />
+                                 <TableColumn fx:id="teacherStateTableColumn" prefWidth="90.0" text="State" />
+                                 <TableColumn fx:id="teacherCountryTableColumn" prefWidth="98.0" text="Country" />
+                                 <TableColumn fx:id="teacherGenderTableColumn" prefWidth="86.0" text="Gender" />
+                                 <TableColumn fx:id="teacherAgeTableColumn" prefWidth="40.0" text="Age" />
                               </columns>
                               <padding>
                                  <Insets left="5.0" />
