@@ -21,10 +21,10 @@ public class NewHomeworkController extends ViewController {
     }
 
     public void cancelHomework(ActionEvent event) {
-        confirmationAlert("Are you sure you want to cancel the new homework?", "All details about the homework will be lost", cancelButton);
+        confirmationAlertCloseWindow("All details about the homework will be lost","Are you sure you want to cancel the new homework?", cancelButton);
     }
 
     public void createHomework(ActionEvent event) {
-        confirmationAlert("Are you sure you want to create the new homework?", "You'll be able to edit details from this homework later", acceptButton);
+        confirmationAlertCloseWindow("You'll be able to edit details from this homework later","Are you sure you want to create the new homework?", acceptButton);
     }
 }
