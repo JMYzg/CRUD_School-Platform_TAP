@@ -3,6 +3,7 @@ package com.tap.schoolplatform.controllers.adminControllers;
 import com.tap.schoolplatform.controllers.ViewController;
 import com.tap.schoolplatform.models.academic.Degree;
 import com.tap.schoolplatform.models.academic.Group;
+import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.UserRole;
 import com.tap.schoolplatform.models.shared.Address;
@@ -124,10 +125,10 @@ public class AdminViewController extends ViewController {
 //        refreshCBDegree(studentDegreeComboBox);
         studentDegreeComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
-                List<Group> groups = newVal.getGroupList(1);
+                List<Group> groups = newVal.getGroupList(Semester.FIRST);
                 studentGroupComboBox.getItems().setAll(groups);
 
-                studentGroupComboBox.setConverter(new StringConverter<Group>() {
+                studentGroupComboBox.setConverter(new StringConverter<>() {
                     @Override
                     public String toString(Group group) {
                         return (group != null) ? group.getID() : "";
@@ -146,21 +147,21 @@ public class AdminViewController extends ViewController {
             }
         });
         studentGroupComboBox.setEditable(false);
-        studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("ID"));
-        studentNameTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
-        studentDegreeTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("degree"));
-        studentGroupTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("group"));
-        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("lastName"));
-        studentEmailTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("email"));
-        studentPhoneTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("phone"));
-        studentStreetTableColumn.setCellValueFactory(new PropertyValueFactory<Address, String>("street"));
-        studentPCTableColumn.setCellValueFactory(new PropertyValueFactory<Address, Integer>("postalCode"));
-        studentColonyTableColumn.setCellValueFactory(new PropertyValueFactory<Address, String>("colony"));
-        studentCityTableColumn.setCellValueFactory(new PropertyValueFactory<Address, String>("city"));
-        studentStateTableColumn.setCellValueFactory(new PropertyValueFactory<Address, String>("state"));
-        studentCountryTableColumn.setCellValueFactory(new PropertyValueFactory<Address, String>("country"));
-        studentGenderTableColumn.setCellValueFactory(new PropertyValueFactory<Student, Gender>("gender"));
-        studentAgeTableColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("age"));
+        studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        studentNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        studentDegreeTableColumn.setCellValueFactory(new PropertyValueFactory<>("degree"));
+        studentGroupTableColumn.setCellValueFactory(new PropertyValueFactory<>("group"));
+        studentLNTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        studentEmailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        studentPhoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        studentStreetTableColumn.setCellValueFactory(new PropertyValueFactory<>("street"));
+        studentPCTableColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        studentColonyTableColumn.setCellValueFactory(new PropertyValueFactory<>("colony"));
+        studentCityTableColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
+        studentStateTableColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
+        studentCountryTableColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
+        studentGenderTableColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        studentAgeTableColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         studentList.setItems(sharedDataObject.getStudents());
         studentDatePicker.setEditable(false);
         teacherGenderComboBox.getItems().setAll(Gender.values());
@@ -169,21 +170,21 @@ public class AdminViewController extends ViewController {
         teacherDegreeComboBox.setEditable(false);
 
 //        teacherDatePicker.setEditable(false);
-        teacherLicenseTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("license"));
-        teacherNameTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("name"));
-        teacherEspecialitationTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("specialization"));
-        teacherDegreeTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("degree"));
-        teacherLNTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("lastName"));
-        teacherEmailTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("email"));
-        teacherPhoneTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, Integer>("phone"));
-        teacherStreetTableColumn.setCellValueFactory(new PropertyValueFactory<Address, String>("phone"));
-        teacherPCTableColumn.setCellValueFactory(new PropertyValueFactory<Address, Integer>("postalCode"));
-        teacherColonyTableColumn.setCellValueFactory(new PropertyValueFactory<Address, String>("colony"));
-        teacherCityTableColumn.setCellValueFactory(new PropertyValueFactory<Address, String>("city"));
-        teacherStateTableColumn.setCellValueFactory(new PropertyValueFactory<Address, String>("state"));
-        teacherCountryTableColumn.setCellValueFactory(new PropertyValueFactory<Address, String>("country"));
-        teacherGenderTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, Gender>("gender"));
-        teacherAgeTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("age"));
+        teacherLicenseTableColumn.setCellValueFactory(new PropertyValueFactory<>("license"));
+        teacherNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        teacherEspecialitationTableColumn.setCellValueFactory(new PropertyValueFactory<>("specialization"));
+        teacherDegreeTableColumn.setCellValueFactory(new PropertyValueFactory<>("degree"));
+        teacherLNTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        teacherEmailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        teacherPhoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        teacherStreetTableColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        teacherPCTableColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        teacherColonyTableColumn.setCellValueFactory(new PropertyValueFactory<>("colony"));
+        teacherCityTableColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
+        teacherStateTableColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
+        teacherCountryTableColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
+        teacherGenderTableColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        teacherAgeTableColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         teacherList.setItems(sharedDataObject.getTeachers());
     }
 
@@ -329,7 +330,7 @@ public class AdminViewController extends ViewController {
     }
 
     public void refreshCBStudentGroup(MouseEvent mouseEvent) {
-        studentGroupComboBox.getItems().setAll(studentDegreeComboBox.getSelectionModel().getSelectedItem().getGroupList(1));
+        studentGroupComboBox.getItems().setAll(studentDegreeComboBox.getSelectionModel().getSelectedItem().getGroupList(Semester.FIRST));
         studentGroupComboBox.setConverter(new StringConverter<Group>() {
             @Override
             public String toString(Group group) {

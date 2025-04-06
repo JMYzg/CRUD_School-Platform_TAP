@@ -1,6 +1,7 @@
 package com.tap.schoolplatform.controllers;
 
 import com.tap.schoolplatform.auth.AuthenticationService;
+import com.tap.schoolplatform.auth.LoginService;
 import com.tap.schoolplatform.models.users.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -28,12 +29,15 @@ public class LoginViewController extends ViewController {
             switch (user.getRole()) {
                 case ADMIN:
                     toAdminView();
+                    LoginService.setCurrentUser(user);
                     break;
                 case TEACHER:
                     toTeacherView();
+                    LoginService.setCurrentUser(user);
                     break;
                 case STUDENT:
                     toStudentView();
+                    LoginService.setCurrentUser(user);
                     break;
             }
         } else {

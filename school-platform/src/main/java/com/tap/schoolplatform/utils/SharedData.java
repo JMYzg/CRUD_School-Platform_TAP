@@ -17,6 +17,7 @@ import com.tap.schoolplatform.models.academic.Degree;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.scene.image.Image;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -87,6 +88,7 @@ public class SharedData {
                         Gender.MALE
                 );
         student.setGroup(M1);
+        student.setProfilePicture(new Image("src/main/resources/images/Plus.png"));
         return student;
     }
 

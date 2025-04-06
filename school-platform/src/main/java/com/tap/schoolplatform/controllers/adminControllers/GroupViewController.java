@@ -2,6 +2,7 @@ package com.tap.schoolplatform.controllers.adminControllers;
 
 import com.tap.schoolplatform.controllers.ViewController;
 import com.tap.schoolplatform.models.academic.Degree;
+import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.academic.enums.Shift;
 import com.tap.schoolplatform.services.users.AdministratorService;
 import com.tap.schoolplatform.utils.SharedData;
@@ -18,7 +19,7 @@ public class GroupViewController extends ViewController {
     public Button cancelButton;
     public ComboBox<Shift> shiftComboBox;
     public ComboBox<Degree> degreeComboBox;
-    public ComboBox semesterComboBox;
+    public ComboBox<Semester> semesterComboBox;
     public Button addButton;
     public Button clearAllButton;
     SharedData sharedDataObject = SharedData.getInstance();
@@ -32,20 +33,20 @@ public class GroupViewController extends ViewController {
         shiftComboBox.setEditable(false);
         //.getItems().setAll(something);
         degreeComboBox.setEditable(false);
-        //semesterComboBox.getItems().setAll(something);
+        semesterComboBox.getItems().setAll(Semester.values());
         semesterComboBox.setEditable(false);
     }
 
     public void addGroup(ActionEvent event) {
         Degree selectedDegree = degreeComboBox.getValue();
         Shift selectedShift = shiftComboBox.getValue();
-        if(/* ||  semesterComboBox.getItems().isEmpty() */shiftComboBox == null || degreeComboBox == null) {
+        if(semesterComboBox == null || shiftComboBox == null || degreeComboBox == null) {
             alert("Error", "Please make sure to full fill all the options boxes", Alert.AlertType.ERROR);
         }
         else {
             //int semester = Integer.parseInt(semesterComboBox.getSelectionModel().getSelectedItem().toString());
             adminUser = new AdministratorService(selectedDegree);
-            adminUser.createGroup(1, selectedShift);
+            adminUser.createGroup(semesterComboBox.getValue(), selectedShift);
             alert("", "Group added correctly", Alert.AlertType.INFORMATION);
             Stage stage = (Stage) addButton.getScene().getWindow();
             stage.close();
