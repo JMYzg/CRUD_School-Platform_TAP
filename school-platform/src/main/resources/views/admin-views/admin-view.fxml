@@ -148,17 +148,17 @@
                         <children>
                                   <Label prefHeight="17.0" prefWidth="58.0" text="Degree:" />
                                   <ComboBox fx:id="studentDegreeComboBox" editable="true" onMouseClicked="#refreshCBStudentDegree" prefHeight="28.0" prefWidth="227.0" />
-                                  <Button fx:id="studentManageDegreeButton" mnemonicParsing="false" onAction="#manageDegreesAdmin" prefHeight="29.0" prefWidth="222.0" text="Manage" />
+                                  <Button id="btnA" fx:id="studentManageDegreeButton" mnemonicParsing="false" onAction="#manageDegreesAdmin" prefHeight="29.0" prefWidth="222.0" text="Manage" />
                                   <Label prefHeight="17.0" prefWidth="45.0" text="Group:" />
                                   <ComboBox fx:id="studentGroupComboBox" editable="true" onMouseClicked="#refreshCBStudentGroup" prefHeight="29.0" prefWidth="226.0" />
-                                  <Button fx:id="studentManageGroupsButton" mnemonicParsing="false" onAction="#manageGroupAdmin" prefHeight="29.0" prefWidth="223.0" text="Manage" />
+                                  <Button id="btnA" fx:id="studentManageGroupsButton" mnemonicParsing="false" onAction="#manageGroupAdmin" prefHeight="29.0" prefWidth="223.0" text="Manage" />
                         </children>
                      </VBox>
                      <StackPane layoutX="253.0" layoutY="31.0" prefHeight="107.0" prefWidth="107.0" style="-fx-background-color: dedede; -fx-background-radius: 5;">
                         <children>
                            <ImageView fx:id="studentImageView" fitHeight="107.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../../../../Imágenes/Capturas%20de%20pantalla/Captura%20de%20pantalla%202023-07-16%20133316.png" />
+                                 <Image url="@../../images/roblox.png" />
                               </image></ImageView>
                         </children>
                      </StackPane>
@@ -207,6 +207,9 @@
                                  <TableColumn prefWidth="86.0" text="Gender" />
                                  <TableColumn prefWidth="40.0" text="Age" />
                               </columns>
+                              <padding>
+                                 <Insets left="5.0" right="5.0" top="5.0" />
+                              </padding>
                            </TableView>
                         </content>
                             </ScrollPane>
@@ -328,7 +331,7 @@
                         <ComboBox editable="true" layoutX="14.0" layoutY="116.0" prefHeight="17.0" prefWidth="261.0" />
                         <ComboBox editable="true" layoutX="14.0" layoutY="156.0" prefHeight="17.0" prefWidth="261.0" />
                         <Button id="btnM" layoutX="287.0" layoutY="159.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="72.0" text="Unassign" />
-                        <Button layoutX="287.0" layoutY="119.0" mnemonicParsing="false" prefWidth="72.0" text="Assign" />
+                        <Button id="btnA" layoutX="287.0" layoutY="119.0" mnemonicParsing="false" prefWidth="72.0" text="Assign" />
                         <Label id="txtbold" layoutX="9.0" layoutY="46.0" prefHeight="17.0" prefWidth="142.0" style="-fx-text-fill: #014B58;" text="Subject management" />
                      </children>
                         </AnchorPane>
@@ -377,6 +380,9 @@
                                  <TableColumn prefWidth="86.0" text="Gender" />
                                  <TableColumn prefWidth="40.0" text="Age" />
                               </columns>
+                              <padding>
+                                 <Insets left="5.0" right="5.0" top="5.0" />
+                              </padding>
                            </TableView>
                         </content>
                             </ScrollPane>
