@@ -26,7 +26,7 @@ public abstract class ViewController {
         alertWindow.showAndWait();
     }
 
-    public void confirmationAlert (String contentText, String headerText, Button button) {
+    public void confirmationAlertCloseWindow (String contentText, String headerText, Button button) {
         Alert alertWindow = new Alert(Alert.AlertType.CONFIRMATION);
         alertWindow.initModality(Modality.APPLICATION_MODAL);
         alertWindow.setContentText(contentText);
@@ -37,6 +37,16 @@ public abstract class ViewController {
             Stage stage = (Stage) button.getScene().getWindow();
             stage.close();
         }
+    }
+
+    public boolean confirmationAlertIf (String contentText, String headerText) {
+        Alert alertWindow = new Alert(Alert.AlertType.CONFIRMATION);
+        alertWindow.initModality(Modality.APPLICATION_MODAL);
+        alertWindow.setContentText(contentText);
+        alertWindow.setTitle("");
+        alertWindow.setHeaderText(headerText);
+        Optional<ButtonType> result = alertWindow.showAndWait();
+        return result.get() == ButtonType.OK;
     }
 
     public BirthDate createBrithDate (DatePicker datePicker) {

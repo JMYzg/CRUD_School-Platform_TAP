@@ -44,7 +44,7 @@
                   <FlowPane prefHeight="378.0" prefWidth="372.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                      <children>
                         <Label id="TitleRegister" prefHeight="32.0" prefWidth="214.0" text="Alumn Register" />
-                        <Button id="btnH" fx:id="studentNewButton" mnemonicParsing="false" onAction="#studentCreateNewStudent" prefHeight="29.0" prefWidth="136.0" text="New" />
+                        <Button id="btnH" fx:id="studentNewButton" mnemonicParsing="false" onAction="#studentClearAllAttributes" prefHeight="29.0" prefWidth="136.0" text="New" />
                         <Label prefHeight="17.0" prefWidth="59.0" text="Name: ">
                            <FlowPane.margin>
                               <Insets top="10.0" />
@@ -166,7 +166,7 @@
                             <HBox prefHeight="118.0" prefWidth="471.0" spacing="10.0">
                                 <AnchorPane prefHeight="116.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
                                     <Button id="btnH" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Edit" />
-                                    <Button id="btnM" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Accept" />
+                                    <Button id="btnM" fx:id="studentAcceptButton" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="29.0" prefWidth="109.0" text="Accept" />
                                     <Button id="btnN" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
                                 </AnchorPane>
                         <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
@@ -219,7 +219,7 @@
                   <FlowPane prefHeight="371.0" prefWidth="379.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                      <children>
                         <Label id="TitleRegister" prefHeight="32.0" prefWidth="214.0" text="Teacher Register" />
-                        <Button id="btnH" fx:id="teacherNewButton" mnemonicParsing="false" onAction="#createTeacher" prefHeight="29.0" prefWidth="136.0" text="New" />
+                        <Button id="btnH" fx:id="teacherNewButton" mnemonicParsing="false" onAction="#teacherClearAllAttributes" prefHeight="29.0" prefWidth="136.0" text="New" />
                         <Label prefHeight="17.0" prefWidth="59.0" text="Name: ">
                            <FlowPane.margin>
                               <Insets top="10.0" />
@@ -336,7 +336,7 @@
                             <HBox prefHeight="118.0" prefWidth="471.0" spacing="10.0">
                                 <AnchorPane prefHeight="116.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
                                     <Button id="btnH" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Edit" />
-                                    <Button id="btnM" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Accept" />
+                                    <Button id="btnM" fx:id="teacherAcceptButton" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#createTeacher" prefHeight="29.0" prefWidth="109.0" text="Accept" />
                                     <Button id="btnN" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
                                 </AnchorPane>
                         <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">

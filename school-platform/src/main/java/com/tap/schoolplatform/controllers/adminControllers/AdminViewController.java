@@ -25,8 +25,11 @@ import javafx.util.StringConverter;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AdminViewController extends ViewController {
+
     // student attributes
     public Button studentNewButton;
     public TextField studentNameTF;
@@ -64,6 +67,7 @@ public class AdminViewController extends ViewController {
     public TableColumn<Address, String> studentCountryTableColumn;
     public TableColumn<Student, Gender> studentGenderTableColumn;
     public TableColumn<Student, String> studentAgeTableColumn;
+
     // teacher attributes
     public Button teacherNewButton;
     public TextField teacherNameTF;
@@ -163,6 +167,7 @@ public class AdminViewController extends ViewController {
         teacherGenderComboBox.setEditable(false);
         refreshCBDegree(teacherDegreeComboBox);
         teacherDegreeComboBox.setEditable(false);
+
 //        teacherDatePicker.setEditable(false);
         teacherLicenseTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("license"));
         teacherNameTableColumn.setCellValueFactory(new PropertyValueFactory<Teacher, String>("name"));
@@ -182,21 +187,40 @@ public class AdminViewController extends ViewController {
         teacherList.setItems(sharedDataObject.getTeachers());
     }
 
-    public void studentCreateNewStudent (ActionEvent event) {
-        // refresque
-        addStudent(event);
-    }
-
     public void addStudent(ActionEvent event) {
-        if (studentNameTF.getText().isEmpty() || studentLastNameTF.getText().isEmpty() || studentPhoneTF.getText().isEmpty() || studentEmailTF.getText().isEmpty() || studentStreetTF.getText().isEmpty() || studentPCTF.getText().isEmpty() || studentColonyTF.getText().isEmpty() || studentCityTF.getText().isEmpty() || studentStateTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentGenderComboBox.getValue() == null || studentDatePicker.getValue() == null|| studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null || studentImageView == null) {
+        if (studentNameTF.getText().isEmpty() || studentLastNameTF.getText().isEmpty() || studentPhoneTF.getText().isEmpty() || studentEmailTF.getText().isEmpty() || studentStreetTF.getText().isEmpty() || studentPCTF.getText().isEmpty() || studentColonyTF.getText().isEmpty() || studentCityTF.getText().isEmpty() || studentStateTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentGenderComboBox.getValue() == null || studentDatePicker.getValue() == null || studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null || studentImageView == null) {
             alert("Error", "Please make sure to full fill all the text boxes", Alert.AlertType.ERROR);
+        } else if (!verifyName(studentNameTF.getText())) {
+            alert("Invalid name", "Please write a valid name", Alert.AlertType.ERROR);
+        } else if (!verifyName(studentLastNameTF.getText())) {
+            alert("Invalid last name", "Please write a valid last name", Alert.AlertType.ERROR);
+        } else if (!verifyPhone(studentPhoneTF.getText())) {
+            alert("Invalid phone number", "Please write a valid phone number", Alert.AlertType.ERROR);
+        } else if (!verifyEmail(studentEmailTF.getText())) {
+            alert("Invalid email", "Please write a valid email", Alert.AlertType.ERROR);
+        } else {
+            adminService = new AdministratorService();
+            if (studentImageView == null) {
+                studentImageView = new ImageView(studentUploadImage());
+            }
+            adminService.createStudent(studentGroupComboBox.getValue(), studentImageView.getImage(), studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDatePicker), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
+            alert("", "Student added correctly", Alert.AlertType.INFORMATION);
+            studentNameTF.clear();
+            studentLastNameTF.clear();
+            studentPhoneTF.clear();
+            studentEmailTF.clear();
+            studentStreetTF.clear();
+            studentPCTF.clear();
+            studentColonyTF.clear();
+            studentCityTF.clear();
+            studentStateTF.clear();
+            studentCountryTF.clear();
+            studentGenderComboBox.setValue(null);
+            studentDatePicker.setValue(null);
+            studentDegreeComboBox.setValue(null);
+            studentGroupComboBox.setValue(null);
+            studentImageView.setImage(null);
         }
-        adminService = new AdministratorService();
-        if (studentImageView == null) {
-        studentImageView = new ImageView(studentUploadImage());
-        }
-        adminService.createStudent(studentGroupComboBox.getValue(), studentImageView.getImage(), studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDatePicker), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
-        alert("", "Student added correctly", Alert.AlertType.INFORMATION);
     }
 
     public Image studentUploadImage() {
@@ -230,12 +254,12 @@ public class AdminViewController extends ViewController {
         loadNewPageView(event, "/views/admin-views/group-view.fxml", "Add new group");
     }
 
-    public void refreshCBDegree (ComboBox CBD) {
+    public void refreshCBDegree(ComboBox CBD) {
         CBD.getItems().setAll(sharedDataObject.getDegrees());
         CBD.setConverter(new StringConverter<Degree>() {
             @Override
             public String toString(Degree degree) {
-                if(degree != null) return degree.getName();
+                if (degree != null) return degree.getName();
                 else return null;
             }
 
@@ -245,14 +269,25 @@ public class AdminViewController extends ViewController {
             }
         });
         studentGroupComboBox.setDisable(true);
-        CBD.getSelectionModel().selectedItemProperty().addListener((observable, oldVal, newVal) -> {studentGroupComboBox.setDisable(newVal == null);});
+        CBD.getSelectionModel().selectedItemProperty().addListener((observable, oldVal, newVal) -> {
+            studentGroupComboBox.setDisable(newVal == null);
+        });
     }
 
-    public void createTeacher () {
+    public void createTeacher() {
         if (teacherNameTF.getText() == null || teacherLastNameTF.getText() == null || teacherPhoneTF.getText() == null || teacherEmailTF.getText() == null || teacherStreetTF.getText() == null || teacherPCTF.getText() == null || teacherColonyTF.getText() == null || teacherCityTF.getText() == null || teacherStreetTF.getText() == null || teacherCountryTF.getText() == null || teacherCountryTF.getText() == null || teacherGenderComboBox.getValue() == null || teacherDatePicker.getValue() == null || teacherDegreeComboBox.getValue() == null) {
             alert("Error", "Please make sure to full fill all the text boxes", Alert.AlertType.ERROR);
+        } else if (!verifyName(studentNameTF.getText())) {
+            alert("Invalid name", "Please write a valid name", Alert.AlertType.ERROR);
+        } else if (!verifyName(studentLastNameTF.getText())) {
+            alert("Invalid last name", "Please write a valid last name", Alert.AlertType.ERROR);
+        } else if (!verifyPhone(studentPhoneTF.getText())) {
+            alert("Invalid phone number", "Please write a valid phone number", Alert.AlertType.ERROR);
+        } else if (!verifyEmail(studentEmailTF.getText())) {
+            alert("Invalid email", "Please write a valid email", Alert.AlertType.ERROR);
         } else {
-            adminService = new AdministratorService(null);
+            adminService = new AdministratorService();
+//            adminService.createTeacher(teacherDegreeComboBox.getValue(), teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDatePicker), teacherEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getValue(), );
             Teacher teacher = new Teacher(teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDatePicker), teacherEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getValue());
             UserDTO userDTO = new UserDTO();
             createUserDTO(teacher, UserRole.TEACHER);
@@ -270,7 +305,7 @@ public class AdminViewController extends ViewController {
     public void addTeacher(ActionEvent event) {
     }
 
-    public UserDTO createUserDTO (User user, UserRole role) {
+    public UserDTO createUserDTO(User user, UserRole role) {
         UserDTO userDTO = new UserDTO();
         userDTO.setRole(role);
         userDTO.setName(user.getName());
@@ -283,9 +318,9 @@ public class AdminViewController extends ViewController {
 //        userDTO.setStatus(userDTO.getStatus()); // I removed this shit nigga ass
         userDTO.setGroup(userDTO.getGroup());
         //if (role == UserRole.TEACHER) {
-           // userDTO.setLicense(null);
-           // userDTO.setDegree(teacherDegreeComboBox.getValue());
-           // userDTO.setSpecialization(null);
+        // userDTO.setLicense(null);
+        // userDTO.setDegree(teacherDegreeComboBox.getValue());
+        // userDTO.setSpecialization(null);
         //}
         //if (role == UserRole.STUDENT) {
 
@@ -298,7 +333,7 @@ public class AdminViewController extends ViewController {
         studentGroupComboBox.setConverter(new StringConverter<Group>() {
             @Override
             public String toString(Group group) {
-                if(group != null) return group.getID();
+                if (group != null) return group.getID();
                 else return null;
             }
 
@@ -329,5 +364,46 @@ public class AdminViewController extends ViewController {
 
     public void searchTeacher() {
         teacherList.setItems(adminService.findTeacher(teacherSearchTF.getText()));
+    }
+
+    public boolean verifyName(String name) {
+        String nameRegex = "^[A-Za-z]+$";
+        return Pattern.matches(nameRegex, name);
+    }
+
+    public boolean verifyEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    public boolean verifyPhone(String phone) {
+        String phoneRegex = "^\\+?\\d{7,15}$";
+        return Pattern.matches(phoneRegex, phone);
+    }
+
+    public void teacherClearAllAttributes(ActionEvent event) {
+//        clearAllAttributes(teacherNameTF, teacherLastNameTF, teacherPhoneTF, teacherEmailTF, teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF, teacherGenderComboBox, teacherDatePicker, teacherDegreeComboBox);
+    }
+
+    public void studentClearAllAttributes(ActionEvent event) {
+        if (confirmationAlertIf("You wont be able to recover the information", "Are you sure you want to clear delete all?")) {
+            studentNameTF.clear();
+            studentLastNameTF.clear();
+            studentPhoneTF.clear();
+            studentEmailTF.clear();
+            studentStreetTF.clear();
+            studentPCTF.clear();
+            studentColonyTF.clear();
+            studentCityTF.clear();
+            studentStateTF.clear();
+            studentCountryTF.clear();
+            studentGenderComboBox.setValue(null);
+            studentDatePicker.setValue(null);
+            studentDegreeComboBox.setValue(null);
+            studentGroupComboBox.setValue(null);
+            studentImageView.setImage(null);
+        }
     }
 }
