@@ -61,7 +61,7 @@
     -fx-font-weight: bold;
     -fx-background-radius: 5px;
     -fx-font-size: 12px;
-    -fx-background-color: #20b1aa;
+    -fx-background-color: transparent;
     -fx-text-fill: #ffffff;
     -fx-pref-height: 25px; /* Ancho preferido */
 
@@ -70,6 +70,8 @@
     /* Transición suave para animaciones */
     -fx-transition: all 0.2s;
 }
+
+
 /* Animación al presionar el botón */
 .button:pressed {
     -fx-scale-x: 0.98;
@@ -123,6 +125,9 @@
 
 #btnLogout{
     -fx-background-color: #b9b9b9;
+}
+#btnA{
+    -fx-background-color: #20b1aa;
 }
 
 #btnH{
@@ -182,6 +187,7 @@
 .table-view {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent; /* Sin bordes entre celdas
     -fx-fit-to-width: true; /* Para que las columnas se ajusten */
     -fx-fit-to-height: true; /* Opcional, si necesitas ajuste vertical */
 }
@@ -189,8 +195,8 @@
 /* Estilo de los encabezados de columna (sin líneas laterales) */
 .table-view .column-header,
 .table-view .column-header-background .filler {
-    -fx-border-width: 0 0 1px 0; /* Solo línea inferior */
-    -fx-border-color: #d0d0d0; /* Color gris claro */
+    -fx-border-width: 0 0 2px 0; /* Solo línea inferior */
+    -fx-border-color: #dedede; /* Color gris claro */
     -fx-background-color: white; /* Fondo del encabezado */
 }
 .table-view .column-header .label {
@@ -202,7 +208,7 @@
 /* Líneas inferiores en las filas */
 .table-row-cell {
     -fx-border-width: 0 0 1px 0; /* Línea inferior */
-    -fx-border-color:#fca621; /* Color gris más claro */
+    -fx-border-color: #f6f6f6; /* Color gris más claro */
     -fx-background-color: white; /* Fondo de las filas */
 }
 
@@ -212,7 +218,15 @@
     -fx-font-family: "Inter 24pt";
     -fx-text-fill: black; /* Color del texto */
 }
+/* Filas pares (even) */
+.table-row-cell:even {
+    -fx-background-color: #f5f5f5;      /* Gris claro */
+}
 
+/* Filas impares (odd) */
+.table-row-cell:odd {
+    -fx-background-color: white;        /* Blanco */
+}
 
 /*ScrollPane*/
 .scroll-pane {

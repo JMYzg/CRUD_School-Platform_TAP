@@ -12,11 +12,11 @@ public class HomeworkOptionController extends ViewController {
     public Button gradeButton;
 
     public void addHomework(ActionEvent event) throws IOException {
-        loadNewPageView(event, "/views/teacher-views/teacher-option-homework-newHomework-view.fxml", "Create new homework");
+        loadNewPageView(event, "/views/teacher-views/teacher-option-homework-new-view.fxml", "Create new homework");
     }
 
     public void editHomework(ActionEvent event) throws IOException {
-        loadNewPageView(event, "/views/teacher-views/teacher-option-homework-newHomework-view.fxml", "Edit homework");
+        loadNewPageView(event, "/views/teacher-views/teacher-option-homework-new-view.fxml", "Edit homework");
     }
 
     public void homeworkGradeView(ActionEvent event) throws IOException {

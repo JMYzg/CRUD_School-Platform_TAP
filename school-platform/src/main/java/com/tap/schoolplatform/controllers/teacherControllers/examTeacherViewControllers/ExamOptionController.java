@@ -11,6 +11,6 @@ public class ExamOptionController extends ViewController {
     public Button createNewExamButton;
 
     public void createNewExamn(ActionEvent event) throws IOException {
-        loadNewPageView(event, "/views/teacher-views/teacher-option-exams-new-view.fxml", "Create new exam");
+        loadNewPageView(event, "/views/teacher-views/teacher-option-exam-new-view.fxml", "Create new exam");
     }
 }

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,14 +20,19 @@
             <Separator prefHeight="23.0" prefWidth="477.0" />
             <TextField fx:id="titleTF" promptText="Title" />
             <TextArea fx:id="descriptionTF" prefHeight="128.0" prefWidth="477.0" promptText="Description" style="-fx-background-color: #d5dbdb;" />
-            <HBox prefHeight="41.0" prefWidth="477.0" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="457.0" spacing="10.0">
                <children>
+                  <Label text="Date:" />
                   <DatePicker fx:id="datePicker" prefHeight="29.0" prefWidth="143.0" promptText="DD/MM/YYYY" />
+                  <Label alignment="BOTTOM_RIGHT" text="Hour:" />
+                  <Spinner prefHeight="30.0" prefWidth="52.0" />
+                  <Label text=":" />
+                  <Spinner prefHeight="30.0" prefWidth="52.0" />
                </children>
             </HBox>
-            <HBox prefHeight="45.0" prefWidth="477.0" spacing="10.0">
+            <HBox prefHeight="45.0" prefWidth="457.0" spacing="10.0">
                <children>
-                  <Button fx:id="cleanButton" mnemonicParsing="false" onAction="#clearAll" prefHeight="25.0" prefWidth="69.0" text="Clean">
+                  <Button id="btnA" fx:id="cleanButton" mnemonicParsing="false" onAction="#clearAll" prefHeight="25.0" prefWidth="69.0" text="Clean">
                      <HBox.margin>
                         <Insets right="220.0" />
                      </HBox.margin>

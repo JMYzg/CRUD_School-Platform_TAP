@@ -16,11 +16,11 @@ public class TeacherViewController extends ViewController {
     public BorderPane borderPane;
 
     public void openStudentTab(ActionEvent event) {
-        loadPageView("/views/teacher-views/teacher-option-student-view.fxml", borderPane);
+        loadPageView("/views/teacher-views/teacher-option-student-list-view.fxml", borderPane);
     }
 
     public void openExamsTab(ActionEvent event) {
-        loadPageView("/views/teacher-views/teacher-option-exams-view.fxml", borderPane);
+        loadPageView("/views/teacher-views/teacher-option-exam-view.fxml", borderPane);
     }
 
     public void openHomeworkTab(ActionEvent event) {

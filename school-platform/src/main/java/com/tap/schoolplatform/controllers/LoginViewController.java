@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.stage.*;
 
 import java.io.IOException;
@@ -41,13 +42,18 @@ public class LoginViewController extends ViewController {
                     break;
             }
         } else {
-            alert("Error", "Make sure your credentials are right", Alert.AlertType.ERROR);
+
+            //alert("Error", "Make sure your credentials are right", Alert.AlertType.ERROR);
+            //brisa estuvo aquí
+            alertError("Make sure your credentials are right");
         }
     }
 
     public void validateCredentials() throws IOException /*throws IOException*/ { //Temporal log in system so we can access to the different view windows
         if (email.getText().isEmpty() || email == null || password.getText().isEmpty() || password == null) {
-            alert("", "Please make sure to full fill all the text boxes", Alert.AlertType.INFORMATION);
+           //alert("", "Please make sure to full fill all the text boxes", Alert.AlertType.INFORMATION);
+            //brisa estuvo aquí
+            alertInfo("Please make sure to fill all the text boxes");
         }
         else {
             handeLogin();
@@ -106,5 +112,42 @@ public class LoginViewController extends ViewController {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         primaryStage.setResizable(false);
+    }
+    //brisa estuvo aquí
+    public void alertInfo(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alert");
+        alert.setHeaderText("");
+        alert.setContentText(message);
+
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alertas.css").toExternalForm());
+        alert.setGraphic(new ImageView(this.getClass().getResource("/images/info.png").toExternalForm()));
+
+        alert.showAndWait();
+    }
+
+    public void alertWarning(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Alert");
+        alert.setHeaderText("");
+        alert.setContentText(message);
+
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alertas.css").toExternalForm());
+        alert.setGraphic(new ImageView(this.getClass().getResource("/images/warning.png").toExternalForm()));
+
+        alert.showAndWait();
+    }
+
+    public void alertError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Alert");
+        alert.setHeaderText("");
+        alert.setContentText(message);
+
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alertas.css").toExternalForm());
+        alert.setGraphic(new ImageView(this.getClass().getResource("/images/error.png").toExternalForm()));
+
+        alert.showAndWait();
+
     }
 }
