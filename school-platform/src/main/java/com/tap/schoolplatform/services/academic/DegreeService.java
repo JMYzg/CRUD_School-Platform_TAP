@@ -1,6 +1,7 @@
 package com.tap.schoolplatform.services.academic;
 
 import com.tap.schoolplatform.models.academic.*;
+import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.academic.enums.Shift;
 import com.tap.schoolplatform.models.users.Teacher;
 import com.tap.schoolplatform.services.Service;
@@ -23,11 +24,11 @@ public class DegreeService extends Service {
         this.degree = degree;
     }
 
-    public void createGroup(int semester, Shift shift) {
+    public void createGroup(Semester semester, Shift shift) {
         new Group(degree, semester, shift);
     }
 
-    public Group readGroup(int semester, String ID) { // discuss this bullshit with Gary and Brisa
+    public Group readGroup(Semester semester, String ID) { // discuss this bullshit with Gary and Brisa
         for (Group group : degree.getGroupList(semester)) {
             if (group.getID().equals(ID)) {
                 return group;
@@ -84,11 +85,11 @@ public class DegreeService extends Service {
     }
 
     // Subject management
-    public void createSubject(int semester, String name, String description) {
+    public void createSubject(Semester semester, String name, String description) {
         new Subject(degree, semester, name.trim(), description.trim());
     }
 
-    public  Subject readSubject(int semester, String name) {
+    public  Subject readSubject(Semester semester, String name) {
         for (Subject subject : degree.getSubjectList(semester)) {
             if (subject.getName().equals(name.trim())) {
                 return subject;

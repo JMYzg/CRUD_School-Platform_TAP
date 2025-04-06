@@ -1,5 +1,6 @@
 package com.tap.schoolplatform.models.academic;
 
+import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.users.Teacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,61 +11,78 @@ import java.util.Objects;
 
 public class Degree {
     private String name;
-    private final Map<Integer, ObservableList<Group>> groups = new HashMap<>();
-    private final ObservableList<Teacher> teachers = FXCollections.observableArrayList();
-    private final Map<Integer, ObservableList<Subject>> subjects = new HashMap<>();
+    private final Map<Semester, ObservableList<Group>> groupLists = new HashMap<>();
+    private final ObservableList<Teacher> teacherList = FXCollections.observableArrayList();
+    private final Map<Semester, ObservableList<Subject>> subjectLists = new HashMap<>();
 
     public Degree(String name) {
         this.name = name;
     }
 
-    public String getName() {return name;}
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public ObservableList<Group> getGroupList(int semester) {
-        return FXCollections.unmodifiableObservableList(groups.get(semester));
+    public ObservableList<Group> getGroupList(Semester semester) {
+        if (!groupLists.containsKey(semester)) throw new IllegalArgumentException("Semester " + semester + " not found");
+        return FXCollections.unmodifiableObservableList(groupLists.get(semester));
     }
 
     public void addGroup(Group group) {
-        groups.computeIfAbsent(group.getSemester(), semester -> FXCollections.observableArrayList()).add(group);
+        ObservableList<Group> groupList =
+                groupLists.computeIfAbsent(group.getSemester(), semester ->
+                FXCollections.observableArrayList());
+        if (!groupList.contains(group)) groupList.add(group);
+        else throw new IllegalArgumentException("Group already exists");
     }
     public void removeGroup(Group group) {
-        int semester = group.getSemester();
-        groups.get(semester).remove(group);
-        if (groups.get(semester).isEmpty()) groups.remove(semester);
+        Semester semester = group.getSemester();
+        if (!groupLists.containsKey(semester)) return;
+        if (groupLists.get(semester).contains(group)) {
+            groupLists.get(semester).remove(group);
+            if (groupLists.get(semester).isEmpty()) groupLists.remove(semester);
+        }
     }
 
     public ObservableList<Teacher> getTeacherList() {
-        return FXCollections.unmodifiableObservableList(teachers);
+        return FXCollections.unmodifiableObservableList(teacherList);
     }
 
     public void addTeacher(Teacher teacher) {
-        teachers.add(teacher);
-    }
-    public void removeTeacher(Teacher teacher) { // check validation
-        if (!teachers.contains(teacher)) return;
-        teachers.remove(teacher);
+        if (!teacherList.contains(teacher)) teacherList.add(teacher);
+        else throw new IllegalArgumentException("Teacher already exists");
     }
 
-    public ObservableList<Subject> getSubjectList(int semester) {
-        if (!subjects.containsKey(semester)) return null;
-        return FXCollections.unmodifiableObservableList(subjects.get(semester));
+    public void removeTeacher(Teacher teacher) { // check validation
+        if (!teacherList.contains(teacher)) return;
+        teacherList.remove(teacher);
+    }
+
+    public ObservableList<Subject> getSubjectList(Semester semester) {
+        if (!subjectLists.containsKey(semester)) throw new IllegalArgumentException("Semester" + semester + " not found");
+        return FXCollections.unmodifiableObservableList(subjectLists.get(semester));
     }
 
     public void addSubject(Subject subject) {
-        this.subjects.computeIfAbsent(subject.getSemester(), semester -> FXCollections.observableArrayList()).add(subject);
-    }
-    public void removeSubject(Subject subject) {
-        if (!subjects.containsKey(subject.getSemester())) return;
-        subjects.get(subject.getSemester()).remove(subject);
-        if (subjects.get(subject.getSemester()).isEmpty()) subjects.remove(subject.getSemester());
+        ObservableList<Subject> subjectList =
+                subjectLists.computeIfAbsent(subject.getSemester(), semester ->
+                FXCollections.observableArrayList());
+        if (!subjectList.contains(subject)) subjectList.add(subject);
+        else throw new IllegalArgumentException("Subject already exists");
     }
 
-//    public String toString() {
-//        return name;
-//    }
+    public void removeSubject(Subject subject) {
+        Semester semester = subject.getSemester();
+        if (!subjectLists.containsKey(semester)) return;
+        if (subjectLists.get(semester).contains(subject)) {
+            subjectLists.get(semester).remove(subject);
+            if (subjectLists.get(semester).isEmpty()) subjectLists.remove(subject.getSemester());
+        }
+    }
 
     @Override
     public String toString() {

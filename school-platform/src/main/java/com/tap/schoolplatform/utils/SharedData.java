@@ -2,6 +2,7 @@ package com.tap.schoolplatform.utils;
 
 import com.tap.schoolplatform.models.academic.Group;
 import com.tap.schoolplatform.models.academic.Subject;
+import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.academic.enums.Shift;
 import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.UserRole;
@@ -59,11 +60,11 @@ public class SharedData {
         Subject subject =
                 new Subject(
                         SE,
-                        1,
+                        Semester.FIRST,
                         "Integral Calculus",
                         "Integral calculus involves finding the total size or value by summing infinitesimal parts, such as areas and volumes."
                 );
-        Group M1 = new Group(SE, 1, Shift.MORNINGS);
+        Group M1 = new Group(SE, Semester.FIRST, Shift.MORNINGS);
         Student student = getStudent(M1);
         users.computeIfAbsent(UserRole.STUDENT, k -> FXCollections.observableArrayList()).add(student);
         students.add(student);

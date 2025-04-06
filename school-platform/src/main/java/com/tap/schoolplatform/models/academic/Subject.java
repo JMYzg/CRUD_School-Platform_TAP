@@ -1,5 +1,6 @@
 package com.tap.schoolplatform.models.academic;
 
+import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.academic.tasks.Task;
 import com.tap.schoolplatform.models.users.Teacher;
 import javafx.collections.FXCollections;
@@ -13,13 +14,13 @@ public class Subject {
 
     private String name;
     private Degree degree;
-    private Integer semester;
+    private Semester semester;
     private Teacher teacher;
     private String description;
     private final Map<Integer, ObservableSet<Task>> taskSets = new HashMap<>();
     private final Map<Integer, ObservableList<Task>> taskLists = new HashMap<>();
 
-    public Subject(Degree degree, Integer semester, String name, String description) {
+    public Subject(Degree degree, Semester semester, String name, String description) {
         this.degree = degree;
         this.name = name;
         this.semester = semester;
@@ -39,13 +40,13 @@ public class Subject {
         this.degree.addSubject(this);
     }
 
-    public Integer getSemester() {
+    public Semester getSemester() {
         return semester;
     }
-    public void setSemester(int semester) {
-        this.degree.removeSubject(this);
+    public void setSemester(Semester semester) {
+        if (this.degree != null) this.degree.removeSubject(this);
         this.semester = semester;
-        this.degree.addSubject(this);
+        if (this.degree != null) this.degree.addSubject(this);
     }
 
     public Teacher getTeacher() {
@@ -65,7 +66,8 @@ public class Subject {
     public String getDescription() {return description;}
     public void setDescription(String description) {this.description = description;}
     
-    public ObservableList<Task> getTaskList(int unit) {
+    public ObservableList<Task> getTaskList(Integer unit) {
+        if (!taskLists.containsKey(unit)) throw new IllegalArgumentException("Unit " + unit + "not found");
         return FXCollections.unmodifiableObservableList(taskLists.get(unit));
     }
 
@@ -87,8 +89,9 @@ public class Subject {
         taskSet.add(task);
     }
     public void removeTask(int unit, Task task) {
-        taskSets.get(unit).remove(task);
-        if (taskSets.get(unit).isEmpty()) {
+        ObservableSet<Task> taskSet = taskSets.get(unit);
+        taskSet.remove(task);
+        if (taskSet.isEmpty()) {
             taskLists.remove(unit);
         }
     }

@@ -1,13 +1,14 @@
 package com.tap.schoolplatform.utils.dtos.academic;
 
 import com.tap.schoolplatform.models.academic.Degree;
+import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.users.Teacher;
 
 public class SubjectDTO {
 
     private String name;
     private Degree degree;
-    private Integer semester;
+    private Semester semester;
     private Teacher teacher;
     private String description;
 
@@ -21,10 +22,10 @@ public class SubjectDTO {
         this.degree = degree;
     }
 
-    public Integer getSemester() {
+    public Semester getSemester() {
         return semester;
     }
-    public void setSemester(int semester) {
+    public void setSemester(Semester semester) {
         this.semester = semester;
     }
 

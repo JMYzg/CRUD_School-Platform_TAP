@@ -1,6 +1,7 @@
 package com.tap.schoolplatform.services.users;
 
 import com.tap.schoolplatform.models.academic.*;
+import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.academic.enums.Shift;
 import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.Status;
@@ -192,12 +193,12 @@ public class AdministratorService extends Service {
     }
 
     // Group management
-    public void createGroup(int semester, Shift shift) {
+    public void createGroup(Semester semester, Shift shift) {
         DegreeService degreeService = new DegreeService(degree);
         degreeService.createGroup(semester, shift);
     }
 
-    public Group readGroup(int semester, String ID) {
+    public Group readGroup(Semester semester, String ID) {
         for (Group group : degree.getGroupList(semester)) {
             if (group.getID().equals(ID)) {
                 return group;
@@ -217,12 +218,12 @@ public class AdministratorService extends Service {
     }
 
     // Subject management
-    public void createSubject(int semester, String name, String description) {
+    public void createSubject(Semester semester, String name, String description) {
         DegreeService degreeService = new DegreeService(degree);
         degreeService.createSubject(semester, name, description);
     }
 
-    public Subject readSubject(int semester, String name) {
+    public Subject readSubject(Semester semester, String name) {
         for (Subject subject : degree.getSubjectList(semester)) {
             if (subject.getName().equals(name)) {
                 return subject;
@@ -236,7 +237,7 @@ public class AdministratorService extends Service {
         degreeService.updateSubject(subject, subjectDTO);
     }
 
-    public void deleteSubject(int semester, String name) {
+    public void deleteSubject(Semester semester, String name) {
         Subject subject = readSubject(semester, name);
         DegreeService degreeService = new DegreeService(degree);
         degreeService.deleteSubject(subject);
