@@ -93,11 +93,11 @@ public abstract class ViewController {
         primaryStage.show();
     }
     //brisa estuvo aquí
-    public void alertInfo(String message) {
+    public void alertInfo(String title, String headerMessage, String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Alert");
-        alert.setHeaderText("");
-        alert.setContentText(message);
+        alert.setTitle(title);
+        alert.setHeaderText(headerMessage);
+        alert.setContentText(alertMessage);
 
         alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alertas.css").toExternalForm());
         alert.setGraphic(new ImageView(this.getClass().getResource("/images/info.png").toExternalForm()));

@@ -115,15 +115,15 @@ public class AdministratorService extends Service {
     }
 
     public void updateUser(User user, UserDTO userDTO) { // can I do it better?
-        if (userDTO.getPassword() != null) user.setPassword(userDTO.getPassword().trim());
-        if (userDTO.getRole() != null) user.setRole(userDTO.getRole());
-        if (userDTO.getName() != null) user.setName(userDTO.getName().trim());
-        if (userDTO.getLastName() != null) user.setLastName(userDTO.getLastName().trim());
-        if (userDTO.getBirthDate() != null) user.setBirthDate(userDTO.getBirthDate());
-        if (userDTO.getEmail() != null) user.setEmail(userDTO.getEmail().trim());
-        if (userDTO.getPhone() != null) user.setPhone(userDTO.getPhone().trim());
-        if (userDTO.getAddress() != null) user.setAddress(userDTO.getAddress());
-        if (userDTO.getGender() != null) user.setGender(userDTO.getGender());
+        if (userDTO.getPassword() != null && !user.getPassword().equals(userDTO.getPassword())) user.setPassword(userDTO.getPassword().trim());
+//        if (userDTO.getRole() != null && !user.getRole().equals(userDTO.getRole())) user.setRole(userDTO.getRole());
+        if (userDTO.getName() != null && !user.getName().equals((userDTO.getName()))) user.setName(userDTO.getName().trim());
+        if (userDTO.getLastName() != null && !user.getLastName().equals(userDTO.getLastName())) user.setLastName(userDTO.getLastName().trim());
+        if (userDTO.getBirthDate() != null && !user.getBirthDate().equals(userDTO.getBirthDate())) user.setBirthDate(userDTO.getBirthDate());
+        if (userDTO.getEmail() != null && !user.getEmail().equals(userDTO.getEmail())) user.setEmail(userDTO.getEmail().trim());
+        if (userDTO.getPhone() != null && !user.getPhone().equals(userDTO.getPhone())) user.setPhone(userDTO.getPhone().trim());
+        if (userDTO.getAddress() != null && !user.getAddress().equals(userDTO.getAddress())) user.setAddress(userDTO.getAddress());
+        if (userDTO.getGender() != null && !user.getGender().equals(userDTO.getGender())) user.setGender(userDTO.getGender());
 
         if (user instanceof Teacher teacher) {
             DegreeService degreeService = new DegreeService(degree);
@@ -135,7 +135,7 @@ public class AdministratorService extends Service {
             groupService.updateStudent(student, userDTO);
         }
 
-        UserRole role = user.getRole();
+//        UserRole role = user.getRole();
 //        if (sharedData.getUsers(role).contains(user)) {
 //            sharedData.getUsers(role).removeIf(u -> u.getUUID().equals(user.getUUID()));
 //        }
@@ -199,6 +199,28 @@ public class AdministratorService extends Service {
     }
 
     public Group readGroup(Semester semester, String ID) {
+        for (Group group : degree.getGroupList(semester)) {
+            if (group.getID().equals(ID)) {
+                return group;
+            }
+        }
+        return null;
+    }
+    
+    public Group readGroup(String ID) {
+        Semester semester;
+        switch (ID.charAt(0)) {
+            case '1' -> semester = Semester.FIRST;
+            case '2' -> semester = Semester.SECOND;
+            case '3' -> semester = Semester.THIRD;
+            case '4' -> semester = Semester.FOURTH;
+            case '5' -> semester = Semester.FIFTH;
+            case '6' -> semester = Semester.SIXTH;
+            case '7' -> semester = Semester.SEVENTH;
+            case '8' -> semester = Semester.EIGHTH;
+            case '9' -> semester = Semester.NINTH;
+            default -> throw new IllegalArgumentException("Invalid ID format");
+        }
         for (Group group : degree.getGroupList(semester)) {
             if (group.getID().equals(ID)) {
                 return group;

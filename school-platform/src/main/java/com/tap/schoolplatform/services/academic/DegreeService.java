@@ -73,9 +73,9 @@ public class DegreeService extends Service {
     }
 
     public void updateTeacher(Teacher teacher, UserDTO userDTO) {
-        if (userDTO.getLicense() != null) teacher.setLicense(userDTO.getLicense().trim());
-        if (userDTO.getDegree() != null) teacher.setDegree(userDTO.getDegree());
-        if (userDTO.getSpecialization() != null) teacher.setSpecialization(userDTO.getSpecialization().trim());
+        if (userDTO.getLicense() != null && !teacher.getLicense().equals(userDTO.getLicense())) teacher.setLicense(userDTO.getLicense().trim());
+        if (userDTO.getDegree() != null && !teacher.getDegree().equals(userDTO.getDegree())) teacher.setDegree(userDTO.getDegree());
+        if (userDTO.getSpecialization() != null && !teacher.getSpecialization().equals(userDTO.getSpecialization())) teacher.setSpecialization(userDTO.getSpecialization().trim());
         sharedData.getTeachers().remove(teacher);
         sharedData.getTeachers().add(teacher);
     }

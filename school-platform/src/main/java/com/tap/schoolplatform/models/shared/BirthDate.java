@@ -42,6 +42,10 @@ public class BirthDate {
         return Period.between(birthDate, now).getYears();
     }
 
+    public LocalDate getLocalDate() {
+        return LocalDate.of(year, month, day);
+    }
+
     public String printBirthDate() {
         return day + "/" + month + "/" + year;
     }

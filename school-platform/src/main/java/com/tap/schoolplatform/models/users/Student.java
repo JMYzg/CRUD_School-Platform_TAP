@@ -50,7 +50,7 @@ public class Student extends User {
     }
     public void setGroup(Group group) {
         this.group = group;
-        group.addStudent(this); // Check this shit
+        this.group.addStudent(this); // Check this shit
         generateID();
     }
     public Degree getDegree() {

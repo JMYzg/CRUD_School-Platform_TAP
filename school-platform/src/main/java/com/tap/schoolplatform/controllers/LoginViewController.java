@@ -53,7 +53,7 @@ public class LoginViewController extends ViewController {
         if (email.getText().isEmpty() || email == null || password.getText().isEmpty() || password == null) {
            alert("", "Please make sure to full fill all the text boxes", Alert.AlertType.INFORMATION);
             //brisa estuvo aquí
-           // alertInfo("Please make sure to fill all the text boxes");
+            alertInfo("", "Please make sure to fill all the text boxes", "");
         }
         else {
             handeLogin();
