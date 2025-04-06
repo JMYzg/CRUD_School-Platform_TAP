@@ -133,4 +133,12 @@ public class Group {
     public String toString() {
         return ID;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Group group = (Group) object;
+        return Objects.equals(ID, group.ID);
+    }
 }

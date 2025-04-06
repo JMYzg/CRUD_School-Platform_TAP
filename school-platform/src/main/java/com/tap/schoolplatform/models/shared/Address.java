@@ -63,4 +63,12 @@ public class Address {
     public String toString() {
         return "St." + street + ", P.C.:" + postalCode + ", Col." + colony + ", " + city + ", " + state + ", " + country;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Address address = (Address) object;
+        return postalCode == address.postalCode && street.equals(address.street) && colony.equals(address.colony) && city.equals(address.city) && state.equals(address.state) && country.equals(address.country);
+    }
 }

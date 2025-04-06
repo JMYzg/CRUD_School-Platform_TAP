@@ -7,6 +7,7 @@ import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.UserRole;
 import com.tap.schoolplatform.models.shared.Address;
+import com.tap.schoolplatform.models.shared.BirthDate;
 import com.tap.schoolplatform.models.users.Student;
 import com.tap.schoolplatform.models.users.Teacher;
 import com.tap.schoolplatform.models.users.User;
@@ -25,6 +26,7 @@ import javafx.util.StringConverter;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,8 +57,8 @@ public class AdminViewController extends ViewController {
     public TableView<Student> studentList;
     public TableColumn<Student, String> studentIdTableColumn;
     public TableColumn<Student, String> studentNameTableColumn;
-    public TableColumn<Student, String> studentDegreeTableColumn;
-    public TableColumn<Student, String> studentGroupTableColumn;
+    public TableColumn<Student, Degree> studentDegreeTableColumn;
+    public TableColumn<Student, Group> studentGroupTableColumn;
     public TableColumn<Student, String> studentLNTableColumn;
     public TableColumn<Student, String> studentEmailTableColumn;
     public TableColumn<Student, String> studentPhoneTableColumn;
@@ -67,7 +69,7 @@ public class AdminViewController extends ViewController {
     public TableColumn<Address, String> studentStateTableColumn;
     public TableColumn<Address, String> studentCountryTableColumn;
     public TableColumn<Student, Gender> studentGenderTableColumn;
-    public TableColumn<Student, String> studentAgeTableColumn;
+    public TableColumn<Student, BirthDate> studentAgeTableColumn;
 
     // teacher attributes
     public Button teacherNewButton;
@@ -291,7 +293,7 @@ public class AdminViewController extends ViewController {
 //            adminService.createTeacher(teacherDegreeComboBox.getValue(), teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDatePicker), teacherEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getValue(), );
             Teacher teacher = new Teacher(teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDatePicker), teacherEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getValue());
             UserDTO userDTO = new UserDTO();
-            createUserDTO(teacher, UserRole.TEACHER);
+//            createUserDTO(teacher, UserRole.TEACHER);
             adminService.createUser(teacher, userDTO);
         }
     }
@@ -306,28 +308,39 @@ public class AdminViewController extends ViewController {
     public void addTeacher(ActionEvent event) {
     }
 
-    public UserDTO createUserDTO(User user, UserRole role) {
+    private UserDTO createUserDTO(User user) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setRole(role);
-        userDTO.setName(user.getName());
-        userDTO.setLastName(user.getLastName());
-        userDTO.setBirthDate(user.getBirthDate());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setPhone(user.getPhone());
-        userDTO.setAddress(user.getAddress());
-        userDTO.setGender(user.getGender());
-//        userDTO.setStatus(userDTO.getStatus()); // I removed this shit nigga ass
-        userDTO.setGroup(userDTO.getGroup());
-        //if (role == UserRole.TEACHER) {
-        // userDTO.setLicense(null);
-        // userDTO.setDegree(teacherDegreeComboBox.getValue());
-        // userDTO.setSpecialization(null);
-        //}
-        //if (role == UserRole.STUDENT) {
 
-        //}
+        // Set basic user information
+        userDTO.setName(studentNameTF.getText());
+        userDTO.setLastName(studentLastNameTF.getText());
+        userDTO.setEmail(studentEmailTF.getText());
+        userDTO.setPhone(studentPhoneTF.getText());
+
+        // Set address information
+        Address address = user.getAddress();
+
+        if (address != null) {
+            userDTO.setAddress(createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF));
+        }
+
+        // Set other attributes
+        userDTO.setGender(studentGenderComboBox.getValue());
+        userDTO.setBirthDate(createBrithDate(studentDatePicker));
+
+        // If degree and group information is needed
+        if (user instanceof Student) {
+            userDTO.setDegree(studentDegreeComboBox.getValue());
+            userDTO.setGroup(studentGroupComboBox.getValue());
+        }
+
+        if (user instanceof Teacher teacher) {
+
+        }
+
         return userDTO;
     }
+
 
     public void refreshCBStudentGroup(MouseEvent mouseEvent) {
         studentGroupComboBox.getItems().setAll(studentDegreeComboBox.getSelectionModel().getSelectedItem().getGroupList(Semester.FIRST));
@@ -409,9 +422,32 @@ public class AdminViewController extends ViewController {
     }
 
     public void studentSelectUser(MouseEvent mouseEvent) {
-        System.out.printf(studentNameTF.getText());
+        int index = studentList.getSelectionModel().getSelectedIndex();
+        studentNameTF.setText(studentNameTableColumn.getCellObservableValue(index).getValue());
+        studentLastNameTF.setText(studentLNTableColumn.getCellObservableValue(index).getValue());
+        studentPhoneTF.setText(studentPhoneTableColumn.getCellObservableValue(index).getValue());
+        studentEmailTF.setText(studentEmailTableColumn.getCellObservableValue(index).getValue());
+        studentStreetTF.setText(studentStreetTableColumn.getCellObservableValue(index).getValue());
+        studentPCTF.setText(studentPCTableColumn.getCellObservableValue(index).getValue().toString());
+        studentColonyTF.setText(studentColonyTableColumn.getCellObservableValue(index).getValue());
+        studentCityTF.setText(studentCityTableColumn.getCellObservableValue(index).getValue());
+        studentStateTF.setText(studentStateTableColumn.getCellObservableValue(index).getValue());
+        studentCountryTF.setText(studentCountryTableColumn.getCellObservableValue(index).getValue());
+        studentGenderComboBox.setValue(studentGenderTableColumn.getCellObservableValue(index).getValue());
+        studentDegreeComboBox.setValue(studentDegreeTableColumn.getCellObservableValue(index).getValue());
+        studentGroupComboBox.setValue(studentGroupTableColumn.getCellObservableValue(index).getValue());
+        BirthDate studentBirthDate = null;
+        for (Student student : studentGroupComboBox.getValue().getStudentList()) {
+            if (student.getID().equals(studentIdTableColumn.getCellObservableValue(index).getValue())) {
+                studentBirthDate = student.getBirthDate();
+            }
+        }
+        assert studentBirthDate != null;
+        studentDatePicker.setValue(studentBirthDate.getLocalDate());
     }
 
     public void studentEditUser(ActionEvent event) {
+        adminService.updateUser(studentList.getSelectionModel().getSelectedItem(), createUserDTO(studentList.getSelectionModel().getSelectedItem()));
+        alertInfo("", "Student updated correctly", "");
     }
 }

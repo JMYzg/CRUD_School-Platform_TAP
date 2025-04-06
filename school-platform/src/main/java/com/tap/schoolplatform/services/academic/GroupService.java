@@ -44,7 +44,7 @@ public class GroupService extends Service {
     }
 
     public void updateStudent(Student student, UserDTO userDTO) {
-        if (userDTO.getGroup() != null) student.setGroup(userDTO.getGroup());
+        if (userDTO.getGroup() != null && !student.getGroup().equals(userDTO.getGroup())) student.setGroup(userDTO.getGroup());
         sharedData.getStudents().remove(student);
         sharedData.getStudents().add(student);
     }
