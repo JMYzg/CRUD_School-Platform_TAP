@@ -18,7 +18,7 @@
          <children>
             <TabPane prefHeight="657.0" prefWidth="877.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab fx:id="groupButton" text="3IS-01M">
+                <Tab fx:id="groupButton" text="Subject">
                      <content>
                         <AnchorPane fx:id="anchorPane" prefHeight="594.0" prefWidth="875.0" style="-fx-background-color: dedede; -fx-background-radius: 5;">
                            <children>

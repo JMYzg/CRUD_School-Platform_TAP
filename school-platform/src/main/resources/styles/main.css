@@ -121,8 +121,6 @@
     -fx-background-color:  #9d9f9f;
 }
 
-
-
 #btnLogout{
     -fx-background-color: #b9b9b9;
 }
@@ -187,7 +185,7 @@
 .table-view {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
-    -fx-table-cell-border-color: transparent; /* Sin bordes entre celdas
+    -fx-table-cell-border-color: transparent; /* Sin bordes entre celdas*/
     -fx-fit-to-width: true; /* Para que las columnas se ajusten */
     -fx-fit-to-height: true; /* Opcional, si necesitas ajuste vertical */
 }
@@ -350,7 +348,9 @@
 /* Flecha del ComboBox */
 .combo-box .arrow-button {
     -fx-background-color: transparent; /* Fondo transparente */
-    -fx-padding: 0 5px 0 0;           /* Espaciado a la derecha */
+    -fx-padding: 0 5px 0 5px;           /* Espaciado a la derecha */
+    -fx-border-color:#9d9f9f;         /* Borde sutil */
+    -fx-border-width: 0 0 0 2px;
 }
 
 .combo-box .arrow {
@@ -389,7 +389,7 @@
 /* Estilo base del DatePicker */
 .date-picker {
     -fx-background-color: #d5dbdb;     /* Color de fondo solicitado */
-    -fx-border-color: #cccccc;         /* Borde sutil */
+    -fx-border-color: transparent;         /* Borde sutil */
     -fx-border-radius: 5px;
     -fx-border-width: 1px;
     -fx-font-family: "Inter Semi Bold";
@@ -404,13 +404,9 @@
 
 /* Flecha del DatePicker (similar al ComboBox) */
 .date-picker .arrow-button {
+    -fx-border-color:#9d9f9f;         /* Borde sutil */
+    -fx-border-width: 0 0 0 2px;
     -fx-background-color: transparent;
-}
-
-.date-picker .arrow {
-    -fx-shape: "M 0 3 L 5 8 L 10 3";
-    -fx-background-color: #333333;
-    -fx-stroke-width: 1px;
 }
 
 /* Popup del calendario */
@@ -432,7 +428,7 @@
 }
 
 .date-picker-popup .day-cell:hover {
-    -fx-background-color: #f5f5f5;      /* Hover */
+    -fx-background-color: #709a98;      /* Hover */
 }
 
 .date-picker-popup .day-cell:selected {

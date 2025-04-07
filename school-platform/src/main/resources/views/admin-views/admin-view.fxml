@@ -246,17 +246,12 @@
                               <Insets top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField prefHeight="40.0" prefWidth="92.0" promptText="447444673M">
+                        <TextField prefHeight="40.0" prefWidth="135.0" promptText="License">
                            <FlowPane.margin>
                               <Insets right="5.0" top="10.0" />
                            </FlowPane.margin>
                         </TextField>
-                        <Label prefHeight="17.0" prefWidth="90.0" text="Specialization: ">
-                           <FlowPane.margin>
-                              <Insets top="10.0" />
-                           </FlowPane.margin>
-                        </Label>
-                        <TextField prefHeight="40.0" prefWidth="101.0" promptText="Example@anything.com">
+                        <TextField prefHeight="40.0" prefWidth="148.0" promptText="Specialization">
                            <FlowPane.margin>
                               <Insets top="10.0" />
                            </FlowPane.margin>
