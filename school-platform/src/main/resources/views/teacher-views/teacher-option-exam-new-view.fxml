@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="944.0" spacing="10.0" style="-fx-background-color: dedede;" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="944.0" spacing="10.0" style="-fx-background-color: dedede;" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.examTeacherViewControllers.NewExamController">
    <children>
       <VBox prefHeight="464.0" prefWidth="447.0" spacing="10.0" style="-fx-background-color: f6f6f6; -fx-background-radius: 5;">
          <children>
@@ -33,7 +33,7 @@
             <Separator prefHeight="23.0" prefWidth="477.0" />
             <HBox prefHeight="32.0" prefWidth="435.0" spacing="10.0">
                <children>
-                  <TextField fx:id="examTitle" prefHeight="21.0" prefWidth="367.0" promptText="Title" />
+                  <TextField fx:id="examTitle" prefHeight="21.0" prefWidth="367.0" promptText="Title (Cuando se le da OK se vuelve un Label)" />
                   <Button id="btnplus" mnemonicParsing="false" prefHeight="34.0" prefWidth="53.0" text="OK" />
                </children>
             </HBox>
