@@ -70,7 +70,13 @@
     /* Transición suave para animaciones */
     -fx-transition: all 0.2s;
 }
-
+#btnsubject{
+    -fx-pref-height: 60px; /* Ancho preferido */
+    -fx-background-radius: 0 0 0 0;
+}
+#optionConainerTeacher{
+    -fx-background-radius: 0 5 5 0;
+}
 
 /* Animación al presionar el botón */
 .button:pressed {
@@ -116,7 +122,7 @@
     -fx-background-radius: 5px;    /* Esquinas redondeadas (opcional) */
 }
 #btnplus {
-    -fx-pref-width: 30px;
+
     -fx-pref-height: 30px; /* Ancho preferido */
     -fx-background-color:  #9d9f9f;
 }
