@@ -16,15 +16,13 @@ public class Subject {
     private Degree degree;
     private Semester semester;
     private Teacher teacher;
-    private String description;
     private final Map<Integer, ObservableSet<Task>> taskSets = new HashMap<>();
     private final Map<Integer, ObservableList<Task>> taskLists = new HashMap<>();
 
-    public Subject(Degree degree, Semester semester, String name, String description) {
+    public Subject(Degree degree, Semester semester, String name) {
         this.degree = degree;
         this.name = name;
         this.semester = semester;
-        this.description = description;
         degree.addSubject(this);
     }
 
@@ -62,9 +60,6 @@ public class Subject {
         this.teacher = teacher;
         this.teacher.assignSubject(this);
     }
-
-    public String getDescription() {return description;}
-    public void setDescription(String description) {this.description = description;}
     
     public ObservableList<Task> getTaskList(Integer unit) {
         if (!taskLists.containsKey(unit)) throw new IllegalArgumentException("Unit " + unit + "not found");

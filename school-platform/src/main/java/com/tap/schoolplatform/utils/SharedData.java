@@ -62,8 +62,7 @@ public class SharedData {
                 new Subject(
                         SE,
                         Semester.FIRST,
-                        "Integral Calculus",
-                        "Integral calculus involves finding the total size or value by summing infinitesimal parts, such as areas and volumes."
+                        "Integral Calculus"
                 );
         Group M1 = new Group(SE, Semester.FIRST, Shift.MORNINGS);
         Student student = getStudent(M1);

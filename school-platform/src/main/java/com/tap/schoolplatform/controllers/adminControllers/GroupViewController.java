@@ -41,13 +41,13 @@ public class GroupViewController extends ViewController {
         Degree selectedDegree = degreeComboBox.getValue();
         Shift selectedShift = shiftComboBox.getValue();
         if(semesterComboBox == null || shiftComboBox == null || degreeComboBox == null) {
-            alert("Error", "Please make sure to full fill all the options boxes", Alert.AlertType.ERROR);
+            alertError("Error", "Please make sure to full fill all the options boxes");
         }
         else {
             //int semester = Integer.parseInt(semesterComboBox.getSelectionModel().getSelectedItem().toString());
             adminUser = new AdministratorService(selectedDegree);
             adminUser.createGroup(semesterComboBox.getValue(), selectedShift);
-            alert("", "Group added correctly", Alert.AlertType.INFORMATION);
+            alertInfo("", "Group added correctly", "");
             Stage stage = (Stage) addButton.getScene().getWindow();
             stage.close();
         }

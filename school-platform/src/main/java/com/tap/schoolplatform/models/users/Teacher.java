@@ -1,11 +1,13 @@
 package com.tap.schoolplatform.models.users;
 
 import com.tap.schoolplatform.models.academic.*;
+import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.enums.UserRole;
 import com.tap.schoolplatform.models.shared.*;
 import com.tap.schoolplatform.models.enums.Gender;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 
 public class Teacher extends User {
 
@@ -13,6 +15,7 @@ public class Teacher extends User {
     private Degree degree;
     private String specialization;
     private final ObservableList<Subject> assignedSubjects = FXCollections.observableArrayList(); // Make it a set
+    private final ObservableMap<Semester, ObservableList<Subject>> subjectLists = FXCollections.observableHashMap();
 
     public Teacher(/*Degree degree, String license, String specialization,*/ String name, String lastName, BirthDate birthDate, String email, String phone, Address address, Gender gender) {
         super(name, lastName, birthDate, email, phone, address, gender);
@@ -45,16 +48,19 @@ public class Teacher extends User {
         this.specialization = specialization;
     }
 
-    public ObservableList<Subject> getAssignedSubjectList() {
-        return FXCollections.unmodifiableObservableList(assignedSubjects);
+    public ObservableList<Subject> getAssignedSubjectList(Semester semester) {
+//        return FXCollections.unmodifiableObservableList(assignedSubjects);
+        return FXCollections.unmodifiableObservableList(subjectLists.get(semester));
     }
 
     public void assignSubject(Subject subject) {
         subject.setTeacher(this);
-        assignedSubjects.add(subject);
+//        assignedSubjects.add(subject);
+        subjectLists.computeIfAbsent(subject.getSemester(), k -> FXCollections.observableArrayList()).add(subject);
     }
     public void unassignSubject(Subject subject) {
         subject.setTeacher(null);
-        assignedSubjects.remove(subject);
+//        assignedSubjects.remove(subject);
+        subjectLists.get(subject.getSemester()).remove(subject);
     }
 }

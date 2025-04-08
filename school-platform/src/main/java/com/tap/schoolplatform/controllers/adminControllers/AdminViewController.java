@@ -3,15 +3,18 @@ package com.tap.schoolplatform.controllers.adminControllers;
 import com.tap.schoolplatform.controllers.ViewController;
 import com.tap.schoolplatform.models.academic.Degree;
 import com.tap.schoolplatform.models.academic.Group;
+import com.tap.schoolplatform.models.academic.Subject;
 import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.enums.Gender;
-import com.tap.schoolplatform.models.enums.UserRole;
 import com.tap.schoolplatform.models.shared.Address;
 import com.tap.schoolplatform.models.shared.BirthDate;
 import com.tap.schoolplatform.models.users.Student;
 import com.tap.schoolplatform.models.users.Teacher;
 import com.tap.schoolplatform.models.users.User;
+import com.tap.schoolplatform.services.academic.DegreeService;
+import com.tap.schoolplatform.services.academic.SubjectService;
 import com.tap.schoolplatform.services.users.AdministratorService;
+import com.tap.schoolplatform.services.users.TeacherService;
 import com.tap.schoolplatform.utils.SharedData;
 import com.tap.schoolplatform.utils.dtos.UserDTO;
 import javafx.event.ActionEvent;
@@ -26,7 +29,6 @@ import javafx.util.StringConverter;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -85,7 +87,6 @@ public class AdminViewController extends ViewController {
     public TextField teacherCountryTF;
     public ComboBox<Gender> teacherGenderComboBox;
     public DatePicker teacherDatePicker;
-    public ComboBox<Degree> teacherDegreeComboBox;
     public Button teacherManageDegreeButton;
     public AnchorPane AnchorPaneImage;
     public Button teacherNextAvailableButton;
@@ -101,11 +102,11 @@ public class AdminViewController extends ViewController {
     public TableView<Teacher> teacherList;
     public TableColumn<Teacher, String> teacherLicenseTableColumn;
     public TableColumn<Teacher, String> teacherNameTableColumn;
-    public TableColumn<Teacher, String> teacherEspecialitationTableColumn;
-    public TableColumn<Teacher, String> teacherDegreeTableColumn;
+    public TableColumn<Teacher, String> teacherSpecializationTableColumn;
+    public TableColumn<Teacher, Degree> teacherDegreeTableColumn;
     public TableColumn<Teacher, String> teacherLNTableColumn;
     public TableColumn<Teacher, String> teacherEmailTableColumn;
-    public TableColumn<Teacher, Integer> teacherPhoneTableColumn;
+    public TableColumn<Teacher, String> teacherPhoneTableColumn;
     public TableColumn<Address, String> teacherStreetTableColumn;
     public TableColumn<Address, Integer> teacherPCTableColumn;
     public TableColumn<Address, String> teacherColonyTableColumn;
@@ -114,12 +115,37 @@ public class AdminViewController extends ViewController {
     public TableColumn<Address, String> teacherCountryTableColumn;
     public TableColumn<Teacher, Gender> teacherGenderTableColumn;
     public TableColumn<Teacher, String> teacherAgeTableColumn;
+    public ComboBox<Degree> teacherDegreeComboBox;
+    public Button teacherAcceptButton;
+    public TextField teacherLicenseTF;
+    public TextField teacherSpecializationTF;
+    public TextField teacherSubjectTF;
+    public Button teacherCreateSubjectButton;
+    public ComboBox<Subject> teacherAssignSubjectComboBox;
+    public ComboBox<Subject> teacherUnassignSubjectComboBox;
+    public Button teacherUnassignSubjectButton;
+    public Button teacherAssignSubjectButton;
+    public ComboBox<Semester> teacherAssignSubjectSemesterComboBox;
+    public ComboBox<Semester> teacherUnassignSubjectSemesterComboBox;
+    public ComboBox<Semester> teacherSemesterSubjectComboBox;
+    public Button teacherCancelButton;
+    public Button teacherEditButton;
     AdministratorService adminService;
+    TeacherService teacherService;
+    DegreeService degreeService;
+    SubjectService subjectService;
 
     private final SharedData sharedDataObject = SharedData.getInstance();
 
     public void initialize() {
         adminService = new AdministratorService();
+        teacherService = new TeacherService();
+        degreeService = new DegreeService();
+        subjectService = new SubjectService();
+
+        studentNewButton.setDisable(true);
+        studentAcceptButton.setText("Create");
+        studentCancelButton.setText("Unselect");
         studentGenderComboBox.setEditable(false);
         studentGenderComboBox.getItems().setAll(Gender.values());
         studentDatePicker.setEditable(false);
@@ -149,6 +175,8 @@ public class AdminViewController extends ViewController {
             }
         });
         studentGroupComboBox.setEditable(false);
+        studentEditButton.setDisable(true);
+        studentCancelButton.setDisable(true);
         studentIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
         studentNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         studentDegreeTableColumn.setCellValueFactory(new PropertyValueFactory<>("degree"));
@@ -174,7 +202,7 @@ public class AdminViewController extends ViewController {
 //        teacherDatePicker.setEditable(false);
         teacherLicenseTableColumn.setCellValueFactory(new PropertyValueFactory<>("license"));
         teacherNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        teacherEspecialitationTableColumn.setCellValueFactory(new PropertyValueFactory<>("specialization"));
+        teacherSpecializationTableColumn.setCellValueFactory(new PropertyValueFactory<>("specialization"));
         teacherDegreeTableColumn.setCellValueFactory(new PropertyValueFactory<>("degree"));
         teacherLNTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         teacherEmailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -188,42 +216,150 @@ public class AdminViewController extends ViewController {
         teacherGenderTableColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         teacherAgeTableColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         teacherList.setItems(sharedDataObject.getTeachers());
+        teacherSemesterSubjectComboBox.getItems().setAll(Semester.values());
+        teacherSemesterSubjectComboBox.setEditable(false);
+        teacherAssignSubjectSemesterComboBox.getItems().setAll(Semester.values());
+        teacherAssignSubjectSemesterComboBox.setEditable(false);
+        teacherUnassignSubjectSemesterComboBox.getItems().setAll(Semester.values());
+        teacherUnassignSubjectSemesterComboBox.setEditable(false);
+        teacherDatePicker.setEditable(false);
+        teacherNewButton.setDisable(true);
+
+        teacherAcceptButton.setText("Create");
+        teacherCancelButton.setText("Unselect");
+
+        teacherSubjectTF.setEditable(false);
+        teacherEditButton.setDisable(true);
+        teacherCancelButton.setDisable(true);
+
+        // Inicializar estado de componentes como deshabilitados
+        disableSubjectManagementComponents();
+
+        // Listener para el ComboBox de Degree
+        teacherDegreeComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
+            boolean degreeSelected = newVal != null;
+
+            // Habilitar ComboBoxes de semestre principales
+            teacherSemesterSubjectComboBox.setDisable(!degreeSelected);
+            teacherAssignSubjectSemesterComboBox.setDisable(!degreeSelected);
+            teacherUnassignSubjectSemesterComboBox.setDisable(!degreeSelected);
+
+            // Si se deselecciona el degree, deshabilitar componentes dependientes
+            if (!degreeSelected) {
+                disableDependentComponents();
+            }
+        });
+
+        // Listeners para los ComboBoxes de semestre
+        setupSemesterListeners();
+
+    }
+
+    private void disableSubjectManagementComponents() {
+        // Componentes de creación de materias
+        teacherSemesterSubjectComboBox.setDisable(true);
+        teacherSubjectTF.setDisable(true);
+        teacherCreateSubjectButton.setDisable(true);
+
+        // Componentes de asignación
+        teacherAssignSubjectSemesterComboBox.setDisable(true);
+        teacherAssignSubjectComboBox.setDisable(true);
+        teacherAssignSubjectButton.setDisable(true);
+
+        // Componentes de desasignación
+        teacherUnassignSubjectSemesterComboBox.setDisable(true);
+        teacherUnassignSubjectComboBox.setDisable(true);
+        teacherUnassignSubjectButton.setDisable(true);
+    }
+
+    private void disableDependentComponents() {
+        teacherSubjectTF.setDisable(true);
+        teacherCreateSubjectButton.setDisable(true);
+        teacherAssignSubjectComboBox.setDisable(true);
+        teacherAssignSubjectButton.setDisable(true);
+        teacherUnassignSubjectComboBox.setDisable(true);
+        teacherUnassignSubjectButton.setDisable(true);
+    }
+
+    private void setupSemesterListeners() {
+        // Listener para semestre en creación de materias
+        teacherSemesterSubjectComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
+            boolean enabled = newVal != null;
+            teacherSubjectTF.setDisable(!enabled);
+            teacherCreateSubjectButton.setDisable(!enabled);
+        });
+
+        // Listener para semestre en asignación
+        teacherAssignSubjectSemesterComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
+            boolean enabled = newVal != null;
+            teacherAssignSubjectComboBox.setDisable(!enabled);
+            teacherAssignSubjectButton.setDisable(!enabled);
+        });
+
+        // Listener para semestre en desasignación
+        teacherUnassignSubjectSemesterComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
+            boolean enabled = newVal != null;
+            teacherUnassignSubjectComboBox.setDisable(!enabled);
+            teacherUnassignSubjectButton.setDisable(!enabled);
+        });
     }
 
     public void addStudent(ActionEvent event) {
-        if (studentNameTF.getText().isEmpty() || studentLastNameTF.getText().isEmpty() || studentPhoneTF.getText().isEmpty() || studentEmailTF.getText().isEmpty() || studentStreetTF.getText().isEmpty() || studentPCTF.getText().isEmpty() || studentColonyTF.getText().isEmpty() || studentCityTF.getText().isEmpty() || studentStateTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentGenderComboBox.getValue() == null || studentDatePicker.getValue() == null || studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null || studentImageView == null) {
-            alert("Error", "Please make sure to full fill all the text boxes", Alert.AlertType.ERROR);
-        } else if (!verifyName(studentNameTF.getText())) {
-            alert("Invalid name", "Please write a valid name", Alert.AlertType.ERROR);
-        } else if (!verifyName(studentLastNameTF.getText())) {
-            alert("Invalid last name", "Please write a valid last name", Alert.AlertType.ERROR);
-        } else if (!verifyPhone(studentPhoneTF.getText())) {
-            alert("Invalid phone number", "Please write a valid phone number", Alert.AlertType.ERROR);
-        } else if (!verifyEmail(studentEmailTF.getText())) {
-            alert("Invalid email", "Please write a valid email", Alert.AlertType.ERROR);
-        } else {
-            adminService = new AdministratorService();
-            if (studentImageView == null) {
-                studentImageView = new ImageView(studentUploadImage());
+        if (studentAcceptButton.getText().equals("Create")) {
+            if (studentNameTF.getText().isEmpty() || studentLastNameTF.getText().isEmpty() || studentPhoneTF.getText().isEmpty() || studentEmailTF.getText().isEmpty() || studentStreetTF.getText().isEmpty() || studentPCTF.getText().isEmpty() || studentColonyTF.getText().isEmpty() || studentCityTF.getText().isEmpty() || studentStateTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentGenderComboBox.getValue() == null || studentDatePicker.getValue() == null || studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null || studentImageView == null) {
+                alertError("Error", "Please make sure to full fill all the text boxes");
+            } else if (!verifyName(studentNameTF.getText())) {
+                alertError("Invalid name", "Please write a valid name");
+            } else if (!verifyName(studentLastNameTF.getText())) {
+                alertError("Invalid last name", "Please write a valid last name");
+            } else if (!verifyPhone(studentPhoneTF.getText())) {
+                alertError("Invalid phone number", "Please write a valid phone number");
+            } else if (!verifyEmail(studentEmailTF.getText())) {
+                alertError("Invalid email", "Please write a valid email");
+            } else {
+                adminService = new AdministratorService();
+                if (studentImageView == null) {
+                    studentImageView = new ImageView(studentUploadImage());
+                }
+                adminService.createStudent(studentGroupComboBox.getValue(), studentImageView.getImage(), studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDatePicker), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
+                alertInfo("", "Student added correctly", "");
+                studentNameTF.clear();
+                studentLastNameTF.clear();
+                studentPhoneTF.clear();
+                studentEmailTF.clear();
+                studentStreetTF.clear();
+                studentPCTF.clear();
+                studentColonyTF.clear();
+                studentCityTF.clear();
+                studentStateTF.clear();
+                studentCountryTF.clear();
+                studentGenderComboBox.setValue(null);
+                studentDatePicker.setValue(null);
+                studentDegreeComboBox.setValue(null);
+                studentGroupComboBox.setValue(null);
+                studentImageView.setImage(null);
             }
-            adminService.createStudent(studentGroupComboBox.getValue(), studentImageView.getImage(), studentNameTF.getText(), studentLastNameTF.getText(), createBrithDate(studentDatePicker), studentEmailTF.getText(), studentPhoneTF.getText(), createAddress(studentStreetTF, studentPCTF, studentColonyTF, studentCityTF, studentStateTF, studentCountryTF), studentGenderComboBox.getValue());
-            alert("", "Student added correctly", Alert.AlertType.INFORMATION);
-            studentNameTF.clear();
-            studentLastNameTF.clear();
-            studentPhoneTF.clear();
-            studentEmailTF.clear();
-            studentStreetTF.clear();
-            studentPCTF.clear();
-            studentColonyTF.clear();
-            studentCityTF.clear();
-            studentStateTF.clear();
-            studentCountryTF.clear();
-            studentGenderComboBox.setValue(null);
-            studentDatePicker.setValue(null);
-            studentDegreeComboBox.setValue(null);
-            studentGroupComboBox.setValue(null);
-            studentImageView.setImage(null);
+        } else if (studentAcceptButton.getText().equals("Update")) {
+            if (studentNameTF.getText().isEmpty() || studentLastNameTF.getText().isEmpty() || studentPhoneTF.getText().isEmpty() || studentEmailTF.getText().isEmpty() || studentStreetTF.getText().isEmpty() || studentPCTF.getText().isEmpty() || studentColonyTF.getText().isEmpty() || studentCityTF.getText().isEmpty() || studentStateTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentCountryTF.getText().isEmpty() || studentGenderComboBox.getValue() == null || studentDatePicker.getValue() == null || studentDegreeComboBox.getValue() == null || studentGroupComboBox.getValue() == null || studentImageView == null) {
+                alertError("Error", "Please make sure to full fill all the text boxes");
+            } else if (!verifyName(studentNameTF.getText())) {
+                alertError("Invalid name", "Please write a valid name");
+            } else if (!verifyName(studentLastNameTF.getText())) {
+                alertError("Invalid last name", "Please write a valid last name");
+            } else if (!verifyPhone(studentPhoneTF.getText())) {
+                alertError("Invalid phone number", "Please write a valid phone number");
+            } else if (!verifyEmail(studentEmailTF.getText())) {
+                alertError("Invalid email", "Please write a valid email");
+            } else {
+                adminService.updateUser(studentList.getSelectionModel().getSelectedItem(), createUserDTO(studentList.getSelectionModel().getSelectedItem()));
+                alertInfo("", "Student updated correctly", "");
+                enableDisableStudentAttributes(true);
+                eraseAllStudentAttributes();
+                studentAcceptButton.setDisable(true);
+                studentEditButton.setDisable(false);
+            }
         }
+
     }
 
     public Image studentUploadImage() {
@@ -278,23 +414,63 @@ public class AdminViewController extends ViewController {
     }
 
     public void createTeacher() {
-        if (teacherNameTF.getText() == null || teacherLastNameTF.getText() == null || teacherPhoneTF.getText() == null || teacherEmailTF.getText() == null || teacherStreetTF.getText() == null || teacherPCTF.getText() == null || teacherColonyTF.getText() == null || teacherCityTF.getText() == null || teacherStreetTF.getText() == null || teacherCountryTF.getText() == null || teacherCountryTF.getText() == null || teacherGenderComboBox.getValue() == null || teacherDatePicker.getValue() == null || teacherDegreeComboBox.getValue() == null) {
-            alert("Error", "Please make sure to full fill all the text boxes", Alert.AlertType.ERROR);
-        } else if (!verifyName(studentNameTF.getText())) {
-            alert("Invalid name", "Please write a valid name", Alert.AlertType.ERROR);
-        } else if (!verifyName(studentLastNameTF.getText())) {
-            alert("Invalid last name", "Please write a valid last name", Alert.AlertType.ERROR);
-        } else if (!verifyPhone(studentPhoneTF.getText())) {
-            alert("Invalid phone number", "Please write a valid phone number", Alert.AlertType.ERROR);
-        } else if (!verifyEmail(studentEmailTF.getText())) {
-            alert("Invalid email", "Please write a valid email", Alert.AlertType.ERROR);
+        if (studentAcceptButton.getText().equals("Create")) {
+            if (teacherNameTF.getText() == null || teacherLastNameTF.getText() == null || teacherPhoneTF.getText() == null || teacherEmailTF.getText() == null || teacherStreetTF.getText() == null || teacherPCTF.getText() == null || teacherColonyTF.getText() == null || teacherCityTF.getText() == null || teacherStreetTF.getText() == null || teacherCountryTF.getText() == null || teacherCountryTF.getText() == null || teacherGenderComboBox.getValue() == null || teacherDatePicker.getValue() == null || teacherDegreeComboBox.getValue() == null) {
+                alertError("Error", "Please make sure to full fill all the text boxes");
+            } else if (!verifyName(teacherNameTF.getText())) {
+                alertError("Invalid name", "Please write a valid name");
+            } else if (!verifyName(teacherLastNameTF.getText())) {
+                alertError("Invalid last name", "Please write a valid last name");
+            } else if (!verifyPhone(teacherPhoneTF.getText())) {
+                alertError("Invalid phone number", "Please write a valid phone number");
+            } else if (!verifyEmail(teacherEmailTF.getText())) {
+                alertError("Invalid email", "Please write a valid email");
+            } else {
+                adminService = new AdministratorService();
+                adminService.createTeacher(teacherDegreeComboBox.getValue(), teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDatePicker), teacherEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getValue(), teacherLicenseTF.getText(), teacherSpecializationTF.getText());
+                alertInfo("", "Teacher added correctly", "");
+                teacherNameTF.clear();
+                teacherLastNameTF.clear();
+                teacherLicenseTF.clear();
+                teacherSpecializationTF.clear();
+                teacherPhoneTF.clear();
+                teacherEmailTF.clear();
+                teacherStreetTF.clear();
+                teacherPCTF.clear();
+                teacherColonyTF.clear();
+                teacherCityTF.clear();
+                teacherStateTF.clear();
+                teacherCountryTF.clear();
+                teacherGenderComboBox.setValue(null);
+                teacherDatePicker.setValue(null);
+                teacherDegreeComboBox.setValue(null);
+                teacherSemesterSubjectComboBox.setValue(null);
+                teacherSubjectTF.clear();
+                teacherAssignSubjectSemesterComboBox.setValue(null);
+                teacherAssignSubjectComboBox.setValue(null);
+                teacherUnassignSubjectSemesterComboBox.setValue(null);
+                teacherUnassignSubjectComboBox.setValue(null);
+
+            }
+        } else if (teacherAcceptButton.getText().equals("Update")) {
+            if (teacherNameTF.getText() == null || teacherLastNameTF.getText() == null || teacherPhoneTF.getText() == null || teacherEmailTF.getText() == null || teacherStreetTF.getText() == null || teacherPCTF.getText() == null || teacherColonyTF.getText() == null || teacherCityTF.getText() == null || teacherStreetTF.getText() == null || teacherCountryTF.getText() == null || teacherCountryTF.getText() == null || teacherGenderComboBox.getValue() == null || teacherDatePicker.getValue() == null || teacherDegreeComboBox.getValue() == null) {
+                alertError("Error", "Please make sure to full fill all the text boxes");
+            } else if (!verifyName(teacherNameTF.getText())) {
+                alertError("Invalid name", "Please write a valid name");
+            } else if (!verifyName(teacherLastNameTF.getText())) {
+                alertError("Invalid last name", "Please write a valid last name");
+            }
+        } else if (!verifyPhone(teacherPhoneTF.getText())) {
+            alertError("Invalid phone number", "Please write a valid phone number");
+        } else if (!verifyEmail(teacherEmailTF.getText())) {
+            alertError("Invalid email", "Please write a valid email");
         } else {
-            adminService = new AdministratorService();
-//            adminService.createTeacher(teacherDegreeComboBox.getValue(), teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDatePicker), teacherEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getValue(), );
-            Teacher teacher = new Teacher(teacherNameTF.getText(), teacherLastNameTF.getText(), createBrithDate(teacherDatePicker), teacherEmailTF.getText(), teacherPhoneTF.getText(), createAddress(teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF), teacherGenderComboBox.getValue());
-            UserDTO userDTO = new UserDTO();
-//            createUserDTO(teacher, UserRole.TEACHER);
-            adminService.createUser(teacher, userDTO);
+            adminService.updateUser(teacherList.getSelectionModel().getSelectedItem(), createUserDTO(teacherList.getSelectionModel().getSelectedItem()));
+            alertInfo("", "Teacher updated correctly", "");
+            enableDisableTeacherAttributes(true);
+            eraseAllTeacherAttributes();
+            teacherAcceptButton.setDisable(true);
+            teacherEditButton.setDisable(false);
         }
     }
 
@@ -303,9 +479,6 @@ public class AdminViewController extends ViewController {
 
     public void refreshCBStudentDegree(MouseEvent event) {
         refreshCBDegree(studentDegreeComboBox);
-    }
-
-    public void addTeacher(ActionEvent event) {
     }
 
     private UserDTO createUserDTO(User user) {
@@ -398,26 +571,53 @@ public class AdminViewController extends ViewController {
     }
 
     public void teacherClearAllAttributes(ActionEvent event) {
-//        clearAllAttributes(teacherNameTF, teacherLastNameTF, teacherPhoneTF, teacherEmailTF, teacherStreetTF, teacherPCTF, teacherColonyTF, teacherCityTF, teacherStateTF, teacherCountryTF, teacherGenderComboBox, teacherDatePicker, teacherDegreeComboBox);
+        if (teacherAcceptButton.getText().equals("Create")) {
+            if (confirmationAlertIf("You wont be able to recover the information", "Are you sure you want to clear delete all?")) {
+                eraseAllTeacherAttributes();
+                //Enable student attributes
+                enableDisableTeacherAttributes(false);
+                teacherEditButton.setDisable(true);
+                teacherCancelButton.setText("Cancel");
+                teacherCancelButton.setDisable(true);
+                teacherAcceptButton.setText("Create");
+                teacherAcceptButton.setDisable(false);
+                teacherCancelButton.setText("Unselect");
+            }
+        } else if (teacherAcceptButton.getText().equals("Update")) {
+            eraseAllTeacherAttributes();
+            //Enable student attributes
+            enableDisableTeacherAttributes(false);
+            teacherEditButton.setDisable(true);
+            teacherCancelButton.setText("Unselect");
+            teacherCancelButton.setDisable(true);
+            teacherAcceptButton.setText("Create");
+            teacherAcceptButton.setDisable(false);
+        }
     }
 
     public void studentClearAllAttributes(ActionEvent event) {
-        if (confirmationAlertIf("You wont be able to recover the information", "Are you sure you want to clear delete all?")) {
-            studentNameTF.clear();
-            studentLastNameTF.clear();
-            studentPhoneTF.clear();
-            studentEmailTF.clear();
-            studentStreetTF.clear();
-            studentPCTF.clear();
-            studentColonyTF.clear();
-            studentCityTF.clear();
-            studentStateTF.clear();
-            studentCountryTF.clear();
-            studentGenderComboBox.setValue(null);
-            studentDatePicker.setValue(null);
-            studentDegreeComboBox.setValue(null);
-            studentGroupComboBox.setValue(null);
-            studentImageView.setImage(null);
+        if (studentAcceptButton.getText().equals("Create")) {
+            if (confirmationAlertIf("You wont be able to recover the information", "Are you sure you want to clear delete all?")) {
+                eraseAllStudentAttributes();
+                //Enable student attributes
+                enableDisableStudentAttributes(false);
+                studentEditButton.setDisable(true);
+                studentCancelButton.setText("Cancel");
+                studentCancelButton.setDisable(true);
+                studentAcceptButton.setText("Create");
+                studentAcceptButton.setDisable(false);
+                studentCancelButton.setText("Unselect");
+                studentImageView.setImage(null);
+            }
+        } else if (studentAcceptButton.getText().equals("Update")) {
+            eraseAllStudentAttributes();
+            //Enable student attributes
+            enableDisableStudentAttributes(false);
+            studentEditButton.setDisable(true);
+            studentCancelButton.setText("Unselect");
+            studentCancelButton.setDisable(true);
+            studentAcceptButton.setText("Create");
+            studentAcceptButton.setDisable(false);
         }
     }
 
@@ -444,10 +644,217 @@ public class AdminViewController extends ViewController {
         }
         assert studentBirthDate != null;
         studentDatePicker.setValue(studentBirthDate.getLocalDate());
+        enableDisableStudentAttributes(true);
+        studentEditButton.setDisable(false);
+        studentCancelButton.setText("Unselect");
+        studentCancelButton.setDisable(false);
+        studentAcceptButton.setText("Update");
+        studentAcceptButton.setDisable(true);
+        studentNewButton.setDisable(false);
     }
 
     public void studentEditUser(ActionEvent event) {
-        adminService.updateUser(studentList.getSelectionModel().getSelectedItem(), createUserDTO(studentList.getSelectionModel().getSelectedItem()));
-        alertInfo("", "Student updated correctly", "");
+        enableDisableStudentAttributes(false);
+        studentAcceptButton.setDisable(false);
+        studentEditButton.setDisable(true);
+    }
+
+    public void CreateSubject(ActionEvent actionEvent) {
+        degreeService.setDegree(teacherDegreeComboBox.getValue());
+        degreeService.createSubject(teacherSemesterSubjectComboBox.getValue(), teacherSubjectTF.getText());
+    }
+
+//    public void subjectManagement(MouseEvent mouseEvent) {
+//        int index = teacherList.getSelectionModel().getSelectedIndex();
+//        for (Teacher teacher : teacherDegreeComboBox.getValue().getTeacherList()) {
+//            if (teacher.getLicense().equals(teacherLicenseTableColumn.getCellObservableValue(index).getValue())) {
+//                if (teacherAssignSubjectButton.isPressed()) {
+//                    teacher.assignSubject(teacherAssignSubjectComboBox.getValue());
+//                } else if (teacherUnassignSubjectButton.isPressed()) {
+//                    teacher.unassignSubject(teacherUnassignSubjectComboBox.getValue());
+//                }
+//            }
+//        }
+//    }
+
+    public void unassignSubject(ActionEvent actionEvent) {
+        teacherService.getTeacher().unassignSubject(teacherUnassignSubjectComboBox.getValue());
+    }
+
+    public void assignSubject(ActionEvent actionEvent) {
+        teacherService.getTeacher().assignSubject(teacherAssignSubjectComboBox.getValue());
+    }
+
+    public void cancelCreateEditStudent(ActionEvent actionEvent) {
+        studentAcceptButton.setDisable(true);
+        studentNameTF.clear();
+        studentLastNameTF.clear();
+        studentPhoneTF.clear();
+        studentEmailTF.clear();
+        studentStreetTF.clear();
+        studentPCTF.clear();
+        studentColonyTF.clear();
+        studentCityTF.clear();
+        studentStateTF.clear();
+        studentCountryTF.clear();
+        studentGenderComboBox.setValue(null);
+        studentDatePicker.setValue(null);
+        studentDegreeComboBox.setValue(null);
+        studentGroupComboBox.setValue(null);
+        studentImageView.setImage(null);
+        enableDisableStudentAttributes(true);
+        studentCancelButton.setDisable(true);
+        studentEditButton.setDisable(true);
+    }
+
+    public void cancelCreateEditTeacher(ActionEvent actionEvent) {
+        teacherAcceptButton.setDisable(true);
+        teacherNameTF.clear();
+        teacherLastNameTF.clear();
+        teacherLicenseTF.clear();
+        teacherSpecializationTF.clear();
+        teacherPhoneTF.clear();
+        teacherEmailTF.clear();
+        teacherStreetTF.clear();
+        teacherPCTF.clear();
+        teacherColonyTF.clear();
+        teacherCityTF.clear();
+        teacherStateTF.clear();
+        teacherCountryTF.clear();
+        teacherGenderComboBox.setValue(null);
+        teacherDatePicker.setValue(null);
+        teacherDegreeComboBox.setValue(null);
+        teacherSemesterSubjectComboBox.setValue(null);
+        teacherAssignSubjectComboBox.setValue(null);
+        teacherAssignSubjectSemesterComboBox.setValue(null);
+        teacherUnassignSubjectComboBox.setValue(null);
+        teacherUnassignSubjectSemesterComboBox.setValue(null);
+        teacherSubjectTF.clear();
+        teacherCancelButton.setDisable(true);
+        teacherEditButton.setDisable(true);
+        teacherCancelButton.setDisable(true);
+    }
+
+    public void enableDisableStudentAttributes(boolean bool) {
+        studentNameTF.setDisable(bool);
+        studentLastNameTF.setDisable(bool);
+        studentPhoneTF.setDisable(bool);
+        studentEmailTF.setDisable(bool);
+        studentStreetTF.setDisable(bool);
+        studentPCTF.setDisable(bool);
+        studentColonyTF.setDisable(bool);
+        studentCityTF.setDisable(bool);
+        studentStateTF.setDisable(bool);
+        studentCountryTF.setDisable(bool);
+        studentGenderComboBox.setDisable(bool);
+        studentDegreeComboBox.setDisable(bool);
+        studentGroupComboBox.setDisable(bool);
+        studentDatePicker.setDisable(bool);
+        studentUploadImageButton.setDisable(bool);
+    }
+
+    public void eraseAllStudentAttributes() {
+        studentNameTF.clear();
+        studentLastNameTF.clear();
+        studentPhoneTF.clear();
+        studentEmailTF.clear();
+        studentStreetTF.clear();
+        studentPCTF.clear();
+        studentColonyTF.clear();
+        studentCityTF.clear();
+        studentStateTF.clear();
+        studentCountryTF.clear();
+        studentGenderComboBox.setValue(null);
+        studentDatePicker.setValue(null);
+        studentDegreeComboBox.setValue(null);
+        studentGroupComboBox.setValue(null);
+        studentImageView.setImage(null);
+    }
+
+    public void enableDisableTeacherAttributes(boolean bool) {
+        teacherNameTF.setDisable(bool);
+        teacherLastNameTF.setDisable(bool);
+        teacherLicenseTF.setDisable(bool);
+        teacherSpecializationTF.setDisable(bool);
+        teacherPhoneTF.setDisable(bool);
+        teacherEmailTF.setDisable(bool);
+        teacherStreetTF.setDisable(bool);
+        teacherPCTF.setDisable(bool);
+        teacherColonyTF.setDisable(bool);
+        teacherCityTF.setDisable(bool);
+        teacherStateTF.setDisable(bool);
+        teacherCountryTF.setDisable(bool);
+        teacherGenderComboBox.setDisable(bool);
+        teacherDatePicker.setDisable(bool);
+        teacherDegreeComboBox.setDisable(bool);
+        teacherSemesterSubjectComboBox.setDisable(bool);
+        teacherSubjectTF.setDisable(bool);
+        teacherAssignSubjectSemesterComboBox.setDisable(bool);
+        teacherAssignSubjectComboBox.setDisable(bool);
+        teacherUnassignSubjectSemesterComboBox.setDisable(bool);
+        teacherUnassignSubjectSemesterComboBox.setDisable(bool);
+    }
+
+    public void eraseAllTeacherAttributes() {
+        teacherNameTF.clear();
+        teacherLastNameTF.clear();
+        teacherLicenseTF.clear();
+        teacherSpecializationTF.clear();
+        teacherPhoneTF.clear();
+        teacherEmailTF.clear();
+        teacherStreetTF.clear();
+        teacherPCTF.clear();
+        teacherColonyTF.clear();
+        teacherCityTF.clear();
+        teacherStateTF.clear();
+        teacherCountryTF.clear();
+        teacherGenderComboBox.setValue(null);
+        teacherDatePicker.setValue(null);
+        teacherDegreeComboBox.setValue(null);
+        teacherSemesterSubjectComboBox.setValue(null);
+        teacherSubjectTF.clear();
+        teacherAssignSubjectSemesterComboBox.setValue(null);
+        teacherAssignSubjectComboBox.setValue(null);
+        teacherUnassignSubjectComboBox.setValue(null);
+        teacherUnassignSubjectComboBox.setValue(null);
+    }
+
+    public void teacherSelectUser(MouseEvent mouseEvent) {
+        int index = teacherList.getSelectionModel().getSelectedIndex();
+        teacherNameTF.setText(teacherNameTableColumn.getCellObservableValue(index).getValue());
+        teacherLastNameTF.setText(teacherLNTableColumn.getCellObservableValue(index).getValue());
+        teacherLicenseTF.setText(teacherLicenseTableColumn.getCellObservableValue(index).getValue());
+        teacherSpecializationTF.setText(teacherSpecializationTableColumn.getCellObservableValue(index).getValue());
+        teacherPhoneTF.setText(teacherPhoneTableColumn.getCellObservableValue(index).getValue());
+        teacherEmailTF.setText(teacherEmailTableColumn.getCellObservableValue(index).getValue());
+        teacherStreetTF.setText(teacherStreetTableColumn.getCellObservableValue(index).getValue());
+        teacherPCTF.setText(teacherPCTableColumn.getCellObservableValue(index).getValue().toString());
+        teacherColonyTF.setText(teacherColonyTableColumn.getCellObservableValue(index).getValue());
+        teacherCityTF.setText(teacherCityTableColumn.getCellObservableValue(index).getValue());
+        teacherStateTF.setText(teacherStateTableColumn.getCellObservableValue(index).getValue());
+        teacherCountryTF.setText(teacherCountryTableColumn.getCellObservableValue(index).getValue());
+        teacherGenderComboBox.setValue(teacherGenderTableColumn.getCellObservableValue(index).getValue());
+        teacherDegreeComboBox.setValue(teacherDegreeTableColumn.getCellObservableValue(index).getValue());
+        BirthDate teacherBirthDate = null;
+        for (Teacher teacher : teacherDegreeComboBox.getValue().getTeacherList()) {
+            if (teacher.getLicense().equals(teacherLicenseTableColumn.getCellObservableValue(index).getValue())) {
+                teacherBirthDate = teacher.getBirthDate();
+            }
+        }
+        assert teacherBirthDate != null;
+        teacherDatePicker.setValue(teacherBirthDate.getLocalDate());
+        enableDisableTeacherAttributes(true);
+        teacherEditButton.setDisable(false);
+        teacherCancelButton.setText("Unselect");
+        teacherCancelButton.setDisable(false);
+        teacherAcceptButton.setText("Update");
+        teacherAcceptButton.setDisable(true);
+        teacherNewButton.setDisable(false);
+    }
+
+    public void teacherEditUser(ActionEvent actionEvent) {
+        enableDisableTeacherAttributes(false);
+        teacherAcceptButton.setDisable(false);
+        teacherEditButton.setDisable(true);
     }
 }
