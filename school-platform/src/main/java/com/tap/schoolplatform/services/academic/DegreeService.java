@@ -17,6 +17,8 @@ public class DegreeService extends Service {
         this.degree = degree;
     }
 
+    public DegreeService() {}
+
     public Degree getDegree() {
         return degree;
     }
@@ -57,7 +59,8 @@ public class DegreeService extends Service {
     public void createTeacher(Teacher teacher, String license, String specialization) {
         teacher.setLicense(license.trim());
         teacher.setSpecialization(specialization.trim());
-        this.degree.addTeacher(teacher);
+//        this.degree.addTeacher(teacher);
+        teacher.setDegree(degree);
         sharedData.getTeachers().remove(teacher);
         sharedData.getTeachers().add(teacher);
     }
@@ -85,8 +88,8 @@ public class DegreeService extends Service {
     }
 
     // Subject management
-    public void createSubject(Semester semester, String name, String description) {
-        new Subject(degree, semester, name.trim(), description.trim());
+    public void createSubject(Semester semester, String name) {
+        new Subject(degree, semester, name.trim());
     }
 
     public  Subject readSubject(Semester semester, String name) {
@@ -103,7 +106,6 @@ public class DegreeService extends Service {
         if (subjectDTO.getDegree() != null) subject.setDegree(subjectDTO.getDegree());
         if (subjectDTO.getSemester() != null) subject.setSemester(subjectDTO.getSemester());
         if (subjectDTO.getTeacher() != null) subject.setTeacher(subjectDTO.getTeacher());
-        if (subjectDTO.getDescription() != null) subject.setDescription(subjectDTO.getDescription().trim());
     }
 
     public void deleteSubject(Subject subject) {

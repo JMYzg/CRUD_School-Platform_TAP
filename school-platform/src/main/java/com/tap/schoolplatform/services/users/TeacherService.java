@@ -30,6 +30,7 @@ public class TeacherService {
     public TeacherService(Teacher teacher) {
         this.teacher = teacher;
     }
+    public TeacherService() {}
 
     public Teacher getTeacher() {
         return teacher;

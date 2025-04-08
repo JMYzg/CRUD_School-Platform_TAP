@@ -27,7 +27,7 @@ public abstract class ViewController {
         alertWindow.showAndWait();
     }
 
-    public void confirmationAlertCloseWindow (String contentText, String headerText, Button button) {
+    public void confirmationAlertCloseWindow(String contentText, String headerText, Button button) {
         Alert alertWindow = new Alert(Alert.AlertType.CONFIRMATION);
         alertWindow.initModality(Modality.APPLICATION_MODAL);
         alertWindow.setContentText(contentText);
@@ -40,7 +40,7 @@ public abstract class ViewController {
         }
     }
 
-    public boolean confirmationAlertIf (String contentText, String headerText) {
+    public boolean confirmationAlertIf(String contentText, String headerText) {
         Alert alertWindow = new Alert(Alert.AlertType.CONFIRMATION);
         alertWindow.initModality(Modality.APPLICATION_MODAL);
         alertWindow.setContentText(contentText);
@@ -50,12 +50,12 @@ public abstract class ViewController {
         return result.get() == ButtonType.OK;
     }
 
-    public BirthDate createBrithDate (DatePicker datePicker) {
+    public BirthDate createBrithDate(DatePicker datePicker) {
         LocalDate date = datePicker.getValue();
         return new BirthDate(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
     }
 
-    public Address createAddress(TextField street, TextField PC, TextField colony, TextField city, TextField state, TextField country){
+    public Address createAddress(TextField street, TextField PC, TextField colony, TextField city, TextField state, TextField country) {
         int pc = Integer.parseInt(PC.getText());
         return new Address(street.getText(), pc, colony.getText(), city.getText(), state.getText(), country.getText());
     }
@@ -70,7 +70,7 @@ public abstract class ViewController {
         borderPane.setCenter(root);
     }
 
-    public void loadNewPageView (ActionEvent event, String viewPath, String viewTitle) throws IOException {
+    public void loadNewPageView(ActionEvent event, String viewPath, String viewTitle) throws IOException {
         Stage ownerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Stage primaryStage = new Stage();
         primaryStage.initModality(Modality.WINDOW_MODAL);
@@ -82,7 +82,7 @@ public abstract class ViewController {
         primaryStage.setResizable(false);
     }
 
-    public void logOutFunction (Button logOutButton) throws IOException {
+    public void logOutFunction(Button logOutButton) throws IOException {
         Stage stage = (Stage) logOutButton.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
@@ -92,6 +92,7 @@ public abstract class ViewController {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+
     //brisa estuvo aquí
     public void alertInfo(String title, String headerMessage, String alertMessage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -115,14 +116,13 @@ public abstract class ViewController {
         alert.showAndWait();
     }
 
-    public void alertError(String message) {
+    public void alertError(String alertTitle, String alertMsg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Alert");
         alert.setHeaderText("");
-        alert.setContentText(message);
+        alert.setContentText(alertMsg);
         alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alertas.css").toExternalForm());
         alert.setGraphic(new ImageView(this.getClass().getResource("/images/error.png").toExternalForm()));
         alert.showAndWait();
-
     }
 }

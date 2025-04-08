@@ -240,9 +240,9 @@ public class AdministratorService extends Service {
     }
 
     // Subject management
-    public void createSubject(Semester semester, String name, String description) {
+    public void createSubject(Semester semester, String name) {
         DegreeService degreeService = new DegreeService(degree);
-        degreeService.createSubject(semester, name, description);
+        degreeService.createSubject(semester, name);
     }
 
     public Subject readSubject(Semester semester, String name) {

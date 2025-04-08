@@ -13,6 +13,8 @@ public class SubjectService {
         this.subject = subject;
     }
 
+    public SubjectService() {}
+
     public Subject getSubject() {
         return subject;
     }

@@ -170,7 +170,7 @@
                                 <AnchorPane prefHeight="116.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
                                     <Button id="btnH" fx:id="studentEditButton" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#studentEditUser" prefHeight="29.0" prefWidth="109.0" text="Edit" />
                                     <Button id="btnM" fx:id="studentAcceptButton" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#addStudent" prefHeight="29.0" prefWidth="109.0" text="Accept" />
-                                    <Button id="btnN" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
+                                    <Button id="btnN" fx:id="studentCancelButton" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#cancelCreateEditStudent" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
                                 </AnchorPane>
                         <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
                            <children>
@@ -246,17 +246,12 @@
                               <Insets top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField prefHeight="40.0" prefWidth="92.0" promptText="447444673M">
+                        <TextField fx:id="teacherLicenseTF" prefHeight="40.0" prefWidth="135.0" promptText="License">
                            <FlowPane.margin>
                               <Insets right="5.0" top="10.0" />
                            </FlowPane.margin>
                         </TextField>
-                        <Label prefHeight="17.0" prefWidth="90.0" text="Specialization: ">
-                           <FlowPane.margin>
-                              <Insets top="10.0" />
-                           </FlowPane.margin>
-                        </Label>
-                        <TextField prefHeight="40.0" prefWidth="101.0" promptText="Example@anything.com">
+                        <TextField fx:id="teacherSpecializationTF" prefHeight="40.0" prefWidth="148.0" promptText="Specialization">
                            <FlowPane.margin>
                               <Insets top="10.0" />
                            </FlowPane.margin>
@@ -344,16 +339,16 @@
                         <Label layoutX="8.0" layoutY="15.0" prefHeight="17.0" prefWidth="59.0" text="Degree:" />
                         <ComboBox fx:id="teacherDegreeComboBox" editable="true" layoutX="61.0" layoutY="8.0" prefHeight="17.0" prefWidth="215.0" />
                         <Button id="btnN" fx:id="teacherManageDegreeButton" layoutX="287.0" layoutY="11.0" mnemonicParsing="false" onAction="#manageDegreesAdmin" prefHeight="29.0" prefWidth="72.0" text="Manage" />
-                        <TextField layoutX="90.0" layoutY="73.0" prefHeight="40.0" prefWidth="185.0" />
-                        <Button id="btnH" layoutX="287.0" layoutY="76.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="72.0" text="Create" />
-                        <ComboBox editable="true" layoutX="90.0" layoutY="116.0" prefHeight="17.0" prefWidth="185.0" />
-                        <ComboBox editable="true" layoutX="90.0" layoutY="156.0" prefHeight="17.0" prefWidth="185.0" />
-                        <Button id="btnM" layoutX="287.0" layoutY="159.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="72.0" text="Unassign" />
-                        <Button id="btnA" layoutX="287.0" layoutY="119.0" mnemonicParsing="false" prefWidth="72.0" text="Assign" />
+                        <TextField fx:id="teacherSubjectTF" layoutX="90.0" layoutY="73.0" prefHeight="40.0" prefWidth="185.0" />
+                        <Button id="btnH" fx:id="teacherCreateSubjectButton" layoutX="287.0" layoutY="76.0" mnemonicParsing="false" onAction="#CreateSubject" prefHeight="29.0" prefWidth="72.0" text="Create" />
+                        <ComboBox fx:id="teacherAssignSubjectComboBox" editable="true" layoutX="90.0" layoutY="116.0" prefHeight="17.0" prefWidth="185.0" />
+                        <ComboBox fx:id="teacherUnassignSubjectComboBox" editable="true" layoutX="90.0" layoutY="156.0" prefHeight="17.0" prefWidth="185.0" />
+                        <Button id="btnM" fx:id="teacherUnassignSubjectButton" layoutX="287.0" layoutY="159.0" mnemonicParsing="false" onAction="#unassignSubject" prefHeight="29.0" prefWidth="72.0" text="Unassign" />
+                        <Button id="btnA" fx:id="teacherAssignSubjectButton" layoutX="287.0" layoutY="119.0" mnemonicParsing="false" onAction="#assignSubject" prefWidth="72.0" text="Assign" />
                         <Label id="txtbold" layoutX="9.0" layoutY="46.0" prefHeight="17.0" prefWidth="142.0" style="-fx-text-fill: #014B58;" text="Subject management" />
-                        <ComboBox editable="true" layoutX="14.0" layoutY="116.0" prefHeight="17.0" prefWidth="68.0" />
-                        <ComboBox editable="true" layoutX="14.0" layoutY="156.0" prefHeight="17.0" prefWidth="68.0" />
-                        <ComboBox editable="true" layoutX="14.0" layoutY="74.0" prefHeight="17.0" prefWidth="68.0" />
+                        <ComboBox fx:id="teacherAssignSubjectSemesterComboBox" editable="true" layoutX="14.0" layoutY="116.0" prefHeight="17.0" prefWidth="68.0" />
+                        <ComboBox fx:id="teacherUnassignSubjectSemesterComboBox" editable="true" layoutX="14.0" layoutY="156.0" prefHeight="17.0" prefWidth="68.0" />
+                        <ComboBox fx:id="teacherSemesterSubjectComboBox" editable="true" layoutX="14.0" layoutY="74.0" prefHeight="17.0" prefWidth="68.0" />
                      </children>
                   </AnchorPane>
                     </VBox>
@@ -362,14 +357,14 @@
                         <VBox prefHeight="555.0" prefWidth="472.0">
                             <HBox prefHeight="118.0" prefWidth="471.0" spacing="10.0">
                                 <AnchorPane prefHeight="116.0" prefWidth="136.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
-                                    <Button id="btnH" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Edit" />
+                                    <Button id="btnH" fx:id="teacherEditButton" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#teacherEditUser" prefHeight="29.0" prefWidth="109.0" text="Edit" />
                                     <Button id="btnM" fx:id="teacherAcceptButton" layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#createTeacher" prefHeight="29.0" prefWidth="109.0" text="Accept" />
-                                    <Button id="btnN" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
+                                    <Button id="btnN" fx:id="teacherCancelButton" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#cancelCreateEditTeacher" prefHeight="29.0" prefWidth="109.0" text="Cancel" />
                                 </AnchorPane>
                         <AnchorPane prefHeight="118.0" prefWidth="327.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5;">
                            <children>
-                              <TextField layoutX="14.0" layoutY="37.0" prefHeight="25.0" prefWidth="220.0" />
-                              <Button id="btnM" layoutX="249.0" layoutY="38.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="64.0" style="-fx-pref-height: 64;" text="Filter" />
+                              <TextField fx:id="teacherSearchTF" layoutX="14.0" layoutY="37.0" prefHeight="25.0" prefWidth="220.0" />
+                              <Button id="btnM" fx:id="teacherFilterButton" layoutX="249.0" layoutY="38.0" mnemonicParsing="false" onAction="#searchTeacher" prefHeight="61.0" prefWidth="64.0" style="-fx-pref-height: 64;" text="Filter" />
                               <ComboBox editable="true" layoutX="14.0" layoutY="73.0" prefHeight="35.0" prefWidth="221.0" />
                               <Label id="TitleRegister" layoutX="14.0" layoutY="5.0" text="Search" />
                               <ImageView fitHeight="29.0" fitWidth="32.0" layoutX="80.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
@@ -383,12 +378,12 @@
                             <Region prefHeight="10.0" prefWidth="471.0" />
                             <ScrollPane prefHeight="457.0" prefWidth="470.0">
                         <content>
-                           <TableView fx:id="teacherList" prefHeight="460.0" prefWidth="1376.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+                           <TableView fx:id="teacherList" onMouseClicked="#teacherSelectUser" prefHeight="460.0" prefWidth="1376.0" style="-fx-background-color: white; -fx-background-radius: 5;">
                               <columns>
                                  <TableColumn fx:id="teacherLicenseTableColumn" text="License" />
                                  <TableColumn fx:id="teacherNameTableColumn" prefWidth="100.0" text="Name" />
                                  <TableColumn fx:id="teacherLNTableColumn" prefWidth="96.0" text="Last Name" />
-                                 <TableColumn fx:id="teacherEspecialitationTableColumn" prefWidth="102.0" text="Especialitation" />
+                                 <TableColumn fx:id="teacherSpecializationTableColumn" prefWidth="102.0" text="Especialitation" />
                                  <TableColumn fx:id="teacherDegreeTableColumn" prefWidth="79.0" text="Degree" />
                                  <TableColumn fx:id="teacherEmailTableColumn" prefWidth="117.0" text="E-mail" />
                                  <TableColumn fx:id="teacherPhoneTableColumn" minWidth="3.0" prefWidth="104.0" text="Phone" />
