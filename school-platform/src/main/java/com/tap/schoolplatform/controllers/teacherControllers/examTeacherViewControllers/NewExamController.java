@@ -74,8 +74,7 @@ public class NewExamController extends ViewController {
         confirmationAlertCloseWindow("You'll be able to edit the details from this homework later", "Are you sure you want to create the new exam?", cancelButton);
     }
 
-    //Esto ya no aplica
-    //public void addQuestion(ActionEvent event) throws IOException {
-        //loadNewPageView(event, "/views/teacher-views/teacher-option-exam-new-question-details-view.fxml", "Add new question");
-    //}
+    public void addQuestion(ActionEvent event) throws IOException {
+        loadNewPageView(event, "/views/teacher-views/teacher-option-exam-new-question-details-view.fxml", "Add new question");
+    }
 }

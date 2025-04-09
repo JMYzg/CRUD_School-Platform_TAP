@@ -25,9 +25,9 @@
                   <Label text="Date:" />
                   <DatePicker fx:id="datePicker" prefHeight="29.0" prefWidth="143.0" promptText="DD/MM/YYYY" />
                   <Label alignment="BOTTOM_RIGHT" text="Hour:" />
-                  <Spinner prefHeight="30.0" prefWidth="52.0" />
+                  <Spinner fx:id="spinnerHour" prefHeight="30.0" prefWidth="52.0" />
                   <Label text=":" />
-                  <Spinner prefHeight="30.0" prefWidth="52.0" />
+                  <Spinner fx:id="spinnerMinute" prefHeight="30.0" prefWidth="52.0" />
                </children>
             </HBox>
             <HBox prefHeight="45.0" prefWidth="457.0" spacing="10.0">
