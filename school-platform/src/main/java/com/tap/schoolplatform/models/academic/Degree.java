@@ -54,7 +54,6 @@ public class Degree {
 
     public void addTeacher(Teacher teacher) {
         if (!teacherList.contains(teacher)) teacherList.add(teacher);
-        else throw new IllegalArgumentException("Teacher already exists");
     }
 
     public void removeTeacher(Teacher teacher) { // check validation
@@ -73,6 +72,7 @@ public class Degree {
                 FXCollections.observableArrayList());
         if (!subjectList.contains(subject)) subjectList.add(subject);
         else throw new IllegalArgumentException("Subject already exists");
+        System.out.println(subjectLists);
     }
 
     public void removeSubject(Subject subject) {
