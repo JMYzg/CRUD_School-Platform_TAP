@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.stage.*;
 
 import java.io.IOException;
@@ -44,15 +43,12 @@ public class LoginViewController extends ViewController {
         } else {
 
             alertError("Error", "Make sure your credentials are right");
-            //brisa estuvo aquí
-            //alertError("Make sure your credentials are right");
         }
     }
 
     public void validateCredentials() throws IOException /*throws IOException*/ { //Temporal log in system so we can access to the different view windows
         if (email.getText().isEmpty() || email == null || password.getText().isEmpty() || password == null) {
            alertInfo("", "Please make sure to full fill all the text boxes", "");
-            //brisa estuvo aquí
             alertInfo("", "Please make sure to fill all the text boxes", "");
         }
         else {

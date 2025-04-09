@@ -17,6 +17,7 @@ public class NewHomeworkController extends ViewController {
     public Button cancelButton;
     public Button acceptButton;
 
+
     public void clearAll(ActionEvent event) {
     }
 
