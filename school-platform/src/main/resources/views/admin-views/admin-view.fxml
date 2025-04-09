@@ -337,10 +337,10 @@
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="379.0" style="-fx-background-color: White; -fx-background-radius: 5;">
                      <children>
                         <Label layoutX="8.0" layoutY="15.0" prefHeight="17.0" prefWidth="59.0" text="Degree:" />
-                        <ComboBox fx:id="teacherDegreeComboBox" editable="true" layoutX="61.0" layoutY="8.0" prefHeight="17.0" prefWidth="215.0" />
+                        <ComboBox fx:id="teacherDegreeComboBox" editable="true" layoutX="61.0" layoutY="8.0" onMouseClicked="#updateDegreeComboBox" prefHeight="17.0" prefWidth="215.0" />
                         <Button id="btnN" fx:id="teacherManageDegreeButton" layoutX="287.0" layoutY="11.0" mnemonicParsing="false" onAction="#manageDegreesAdmin" prefHeight="29.0" prefWidth="72.0" text="Manage" />
                         <TextField fx:id="teacherSubjectTF" layoutX="90.0" layoutY="73.0" prefHeight="40.0" prefWidth="185.0" />
-                        <Button id="btnH" fx:id="teacherCreateSubjectButton" layoutX="287.0" layoutY="76.0" mnemonicParsing="false" onAction="#CreateSubject" prefHeight="29.0" prefWidth="72.0" text="Create" />
+                        <Button id="btnH" fx:id="teacherCreateSubjectButton" layoutX="287.0" layoutY="76.0" mnemonicParsing="false" onAction="#createSubject" prefHeight="29.0" prefWidth="72.0" text="Create" />
                         <ComboBox fx:id="teacherAssignSubjectComboBox" editable="true" layoutX="90.0" layoutY="116.0" prefHeight="17.0" prefWidth="185.0" />
                         <ComboBox fx:id="teacherUnassignSubjectComboBox" editable="true" layoutX="90.0" layoutY="156.0" prefHeight="17.0" prefWidth="185.0" />
                         <Button id="btnM" fx:id="teacherUnassignSubjectButton" layoutX="287.0" layoutY="159.0" mnemonicParsing="false" onAction="#unassignSubject" prefHeight="29.0" prefWidth="72.0" text="Unassign" />

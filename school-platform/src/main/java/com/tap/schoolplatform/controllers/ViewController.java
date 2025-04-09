@@ -50,7 +50,7 @@ public abstract class ViewController {
         return result.get() == ButtonType.OK;
     }
 
-    public BirthDate createBrithDate(DatePicker datePicker) {
+    public BirthDate createBirthDate(DatePicker datePicker) {
         LocalDate date = datePicker.getValue();
         return new BirthDate(date.getDayOfMonth(), date.getMonthValue(), date.getYear());
     }
