@@ -4,7 +4,6 @@ import com.tap.schoolplatform.controllers.ViewController;
 import com.tap.schoolplatform.models.academic.tasks.Evaluation;
 import javafx.util.StringConverter;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
@@ -13,10 +12,7 @@ public class NewExamController extends ViewController {
     private Evaluation evaluation;
     private boolean isEditing = true;
 
-    public TextField examTitle;
-    public Button plusButton;
     public DatePicker datePicker;
-    public Button cleanButton;
     public Button cancelButton;
     public Button acceptExam;
 
@@ -94,19 +90,41 @@ public class NewExamController extends ViewController {
         int hoursLimitTime = spinnerHour.getValue();
         int minutesLimitTime = spinnerMinute.getValue();
     }
+    public Button submitExamButton;
+    public TextField examTitleTF;
+    public Button okButton;
+    public Spinner timeHourSpinner;
+    public Spinner timeMinuteSpinner;
+    public TextField examOption1TF;
+    public TextField examOption2TF;
+    public TextField examOption3TF;
+    public TextField examOption4TF;
+    public RadioButton rightAnswer1RadioButton;
+    public ToggleGroup radioGroup;
+    public RadioButton rightAnswer2RadioButton;
+    public RadioButton rightAnswer3RadioButton;
+    public RadioButton rightAnswer4RadioButton;
+    public Button addQuestionButton;
+    public TableView<String> tableQuestions;
+    public TableColumn questionNumberTableColumn;
+    public TableColumn questionTableColumn;
+
 
     public void cleanAllButton(ActionEvent event) {
     }
 
     public void cancelExam(ActionEvent event) {
-        confirmationAlertCloseWindow("All questions and options will be lost", "Are you sure you want to cancel the new exam?", cancelButton);
+        confirmationAlertCloseWindow("All questions and options will be lost","Are you sure you want to cancel the new exam?", cancelButton);
     }
 
-    public void createExam(ActionEvent event) {
-        confirmationAlertCloseWindow("You'll be able to edit the details from this homework later", "Are you sure you want to create the new exam?", cancelButton);
+    public void submitExam(ActionEvent event) {
+        confirmationAlertCloseWindow("You'll be able to edit the details from this homework later","Are you sure you want to create the new exam?", cancelButton);
     }
 
     public void addQuestion(ActionEvent event) throws IOException {
         loadNewPageView(event, "/views/teacher-views/teacher-option-exam-new-question-details-view.fxml", "Add new question");
+    }
+
+    public void setExamName(ActionEvent actionEvent) {
     }
 }

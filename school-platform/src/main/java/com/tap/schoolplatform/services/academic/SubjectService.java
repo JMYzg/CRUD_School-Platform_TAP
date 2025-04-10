@@ -1,9 +1,13 @@
 package com.tap.schoolplatform.services.academic;
 
+import com.tap.schoolplatform.models.academic.Group;
 import com.tap.schoolplatform.models.academic.Subject;
+import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.academic.tasks.Evaluation;
 import com.tap.schoolplatform.models.academic.tasks.Task;
 import com.tap.schoolplatform.utils.dtos.academic.tasks.TaskDTO;
+
+import java.util.List;
 
 public class SubjectService {
 
@@ -51,5 +55,9 @@ public class SubjectService {
 
     public void deleteTask(Integer unit, Task task) {
         subject.removeTask(unit, task);
+    }
+
+    public List<Group> getGroupList(Semester semester) {
+        return subject.getDegree().getGroupList(semester);
     }
 }

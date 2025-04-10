@@ -58,18 +58,15 @@ public class SharedData {
         users.computeIfAbsent(UserRole.ADMIN, k -> FXCollections.observableArrayList()).add(admin);
         administrators.add(admin);
         Degree SE = new Degree("Software Engineering");
-        Subject subject =
-                new Subject(
-                        SE,
-                        Semester.FIRST,
-                        "Integral Calculus"
-                );
+        Subject IC = new Subject(SE, Semester.FIRST, "Integral Calculus");
+        Subject POO = new Subject(SE, Semester.FIRST, "POO");
         Group M1 = new Group(SE, Semester.FIRST, Shift.MORNINGS);
         Student student = getStudent(M1);
         users.computeIfAbsent(UserRole.STUDENT, k -> FXCollections.observableArrayList()).add(student);
         students.add(student);
         Teacher teacher = getTeacher(SE);
-        teacher.assignSubject(subject);
+        teacher.assignSubject(IC);
+        teacher.assignSubject(POO);
         users.computeIfAbsent(UserRole.TEACHER, k -> FXCollections.observableArrayList()).add(teacher);
         teachers.add(teacher);
         degrees.add(SE);

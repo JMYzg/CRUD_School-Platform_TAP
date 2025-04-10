@@ -23,7 +23,7 @@ public class Subject {
         this.degree = degree;
         this.name = name;
         this.semester = semester;
-        degree.addSubject(this);
+        this.degree.addSubject(this);
     }
 
     public String getName() {return name;}
@@ -42,7 +42,7 @@ public class Subject {
         return semester;
     }
     public void setSemester(Semester semester) {
-        if (this.degree != null) this.degree.removeSubject(this);
+        if (this.degree != null && this.degree.getSubjectList(semester).contains(this)) this.degree.removeSubject(this);
         this.semester = semester;
         if (this.degree != null) this.degree.addSubject(this);
     }
@@ -56,7 +56,7 @@ public class Subject {
             this.teacher = null;
             return;
         }
-        if (this.teacher != null) this.teacher.unassignSubject(this);
+        if (this.teacher != null && this.teacher.getAssignedSubjectList(semester).contains(this)) this.teacher.unassignSubject(this);
         this.teacher = teacher;
         this.teacher.assignSubject(this);
     }

@@ -36,4 +36,5 @@ module com.tap.schoolplatform {
     exports com.tap.schoolplatform.models.academic.enums;
     exports com.tap.schoolplatform.controllers.studentControllers.studentDataViewController;
     opens com.tap.schoolplatform.controllers.studentControllers.studentDataViewController to javafx.fxml;
+    opens com.tap.schoolplatform.controllers.teacherControllers.studentTeacherViewControllers to javafx.fxml;
 }

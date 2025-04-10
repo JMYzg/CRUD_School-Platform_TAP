@@ -29,14 +29,14 @@ public class DegreeViewController extends ViewController {
 
     public void addDegree(ActionEvent actionEvent) {
         if(newDegreeTextField.getText().isEmpty()) {
-            alert("Error", "Please write a name for the degree.", Alert.AlertType.ERROR);
+            alertError("Error", "Please write a name for the degree.");
         }
         if(newDegreeTextField.getText().equals(sharedDataObject.getDegrees().toString())) {
-            alert("Error", "There is already a degree with this name, please write a non existing degree.", Alert.AlertType.ERROR);
+            alertError("Error", "There is already a degree with this name, please write a non existing degree.");
         }
         adminDegree.createDegree(newDegreeTextField.getText());
         System.out.println(newDegreeTextField.getText());
-        alert("", "Degree added correctly", Alert.AlertType.INFORMATION);
+        alertInfo("", "Degree added correctly", "");
         Stage stage = (Stage) addButton.getScene().getWindow();
         stage.close();
     }

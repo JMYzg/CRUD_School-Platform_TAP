@@ -21,7 +21,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </ImageView>
-            <Label id="titleOptions" prefHeight="27.0" prefWidth="177.0" text="Classic art" />
+            <Label id="titleOptions" fx:id="subjectName" prefHeight="27.0" prefWidth="177.0" text="Classic art" />
             <Separator prefWidth="200.0">
                <padding>
                   <Insets left="15.0" right="15.0" />

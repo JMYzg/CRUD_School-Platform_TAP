@@ -25,8 +25,7 @@ public class StudentDataViewController extends ViewController {
     public Label state;
     public Label country;
 
-    LoginService loginService = new LoginService();
-    Student currentStudent = (Student) loginService.getCurrentUser();
+    Student currentStudent = (Student) LoginService.getCurrentUser();
 
     public void initialize() {
         studentPhoto.setImage(currentStudent.getProfilePicture());
