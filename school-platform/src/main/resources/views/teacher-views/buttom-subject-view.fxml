@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+
+
+<Button id="btnsubject" mnemonicParsing="false" prefHeight="76.0" prefWidth="131.0" style="-fx-background-color: #20b1aa;" stylesheets="@../../styles/main.css" text="Subject" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" />

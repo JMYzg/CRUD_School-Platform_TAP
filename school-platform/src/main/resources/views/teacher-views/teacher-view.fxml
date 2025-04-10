@@ -37,7 +37,7 @@
                   </VBox>
                </left>
                <center>
-                  <TabPane prefHeight="646.0" prefWidth="869.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER" />
+                  <TabPane prefHeight="646.0" prefWidth="869.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </children>

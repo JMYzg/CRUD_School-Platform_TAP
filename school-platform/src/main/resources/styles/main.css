@@ -272,7 +272,7 @@
 
 /* Fondo general del TabPane */
 .tab-pane {
-    -fx-background-color: #dedede; /* Color de fondo */
+    -fx-background-color: white; /* Color de fondo */
     -fx-border-color: transparent; /* Sin bordes */
 }
 /* Estilo de las pestañas no seleccionadas */

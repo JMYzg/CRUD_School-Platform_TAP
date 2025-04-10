@@ -130,6 +130,7 @@ public class AdminViewController extends ViewController {
     public ComboBox<Semester> teacherSemesterSubjectComboBox;
     public Button teacherCancelButton;
     public Button teacherEditButton;
+
     AdministratorService adminService;
     TeacherService teacherService;
     DegreeService degreeService;
@@ -198,7 +199,7 @@ public class AdminViewController extends ViewController {
         teacherGenderComboBox.setEditable(false);
         refreshCBDegree(teacherDegreeComboBox);
         teacherDegreeComboBox.setEditable(false);
-
+//Por qué aparece tanto esto?
 //        teacherDatePicker.setEditable(false);
         teacherLicenseTableColumn.setCellValueFactory(new PropertyValueFactory<>("license"));
         teacherNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));

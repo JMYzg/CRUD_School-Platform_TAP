@@ -2,6 +2,7 @@ package com.tap.schoolplatform.controllers.teacherControllers.examTeacherViewCon
 
 import com.tap.schoolplatform.controllers.ViewController;
 import com.tap.schoolplatform.models.academic.tasks.Evaluation;
+import com.tap.schoolplatform.models.academic.tasks.Task;
 import javafx.util.StringConverter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ import javafx.scene.control.*;
 import java.io.IOException;
 
 public class NewExamController extends ViewController {
-    private Evaluation evaluation;
+//    private final Evaluation currentExam = new Evaluation(" "," ",null);
     private boolean isEditing = true;
 
     public TextField examTitle;
@@ -43,35 +44,14 @@ public class NewExamController extends ViewController {
         spinnerConfiguration(spinnerMinuteDte, 0, 59);
         spinnerConfiguration(spinnerHour, 0, 23);
         spinnerConfiguration(spinnerMinute, 0, 59);
-
         titleTextField.setVisible(true);
         titleLabel.setVisible(false);
-
-        //btnSetTittleExam.setOnAction();
     }
-    private void setExamTitle(){
-        if (isEditing) {
-            // Save the title and switch to display mode
-            evaluation.setTitle(titleTextField.getText());
-            titleLabel.setText(evaluation.getTitle());
-            titleTextField.setVisible(false);
-            titleLabel.setVisible(true);
-            btnSetTittleExam.setText("EDIT");
-        } else {
-            // Switch back to edit mode
-            titleTextField.setVisible(true);
-            titleLabel.setVisible(false);
-            btnSetTittleExam.setText("OK");
-        }
-        isEditing = !isEditing; // Toggle state
 
-    }
 
     private void spinnerConfiguration(Spinner<Integer> spinner, int min, int max) {
-        SpinnerValueFactory<Integer> valueFactory =
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max);
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(min, max);
         valueFactory.setValue(min);
-
         valueFactory.setConverter(new StringConverter<Integer>() {
 
                 public String toString(Integer value) {
@@ -84,6 +64,25 @@ public class NewExamController extends ViewController {
         });
 
         spinner.setValueFactory(valueFactory);
+    }
+
+    public void setExamTitle(ActionEvent event) {
+           // titleTextField.setDisable(true);
+        if (isEditing) {
+//            // Save the title and switch to display mode
+//            currentExam.setTitle(titleTextField.getText());
+//            titleLabel.setText(currentExam.getTitle());
+            titleTextField.setVisible(false);
+            titleLabel.setVisible(true);
+            btnSetTittleExam.setText("EDIT");
+        } else {
+//            // Switch back to edit mode
+           titleTextField.setVisible(true);
+           titleLabel.setVisible(false);
+            btnSetTittleExam.setText("OK");
+        }
+        isEditing = !isEditing; // Toggle state
+
     }
 
     @FXML
