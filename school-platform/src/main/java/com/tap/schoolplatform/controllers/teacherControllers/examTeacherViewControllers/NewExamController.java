@@ -1,6 +1,7 @@
 package com.tap.schoolplatform.controllers.teacherControllers.examTeacherViewControllers;
 
 import com.tap.schoolplatform.controllers.ViewController;
+import com.tap.schoolplatform.models.academic.tasks.Evaluation;
 import javafx.util.StringConverter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +10,8 @@ import javafx.scene.control.*;
 import java.io.IOException;
 
 public class NewExamController extends ViewController {
+    private Evaluation evaluation;
+    private boolean isEditing = true;
 
     public TextField examTitle;
     public Button plusButton;
@@ -25,6 +28,13 @@ public class NewExamController extends ViewController {
     private Spinner<Integer> spinnerHour;  // Segundo grupo
     @FXML
     private Spinner<Integer> spinnerMinute; // Segundo grupo
+    @FXML
+    private Button btnSetTittleExam;
+    @FXML
+    private TextField titleTextField;
+    @FXML
+    private Label titleLabel;
+
 
     int currentHour;
 
@@ -33,6 +43,28 @@ public class NewExamController extends ViewController {
         spinnerConfiguration(spinnerMinuteDte, 0, 59);
         spinnerConfiguration(spinnerHour, 0, 23);
         spinnerConfiguration(spinnerMinute, 0, 59);
+
+        titleTextField.setVisible(true);
+        titleLabel.setVisible(false);
+
+        //btnSetTittleExam.setOnAction();
+    }
+    private void setExamTitle(){
+        if (isEditing) {
+            // Save the title and switch to display mode
+            evaluation.setTitle(titleTextField.getText());
+            titleLabel.setText(evaluation.getTitle());
+            titleTextField.setVisible(false);
+            titleLabel.setVisible(true);
+            btnSetTittleExam.setText("EDIT");
+        } else {
+            // Switch back to edit mode
+            titleTextField.setVisible(true);
+            titleLabel.setVisible(false);
+            btnSetTittleExam.setText("OK");
+        }
+        isEditing = !isEditing; // Toggle state
+
     }
 
     private void spinnerConfiguration(Spinner<Integer> spinner, int min, int max) {

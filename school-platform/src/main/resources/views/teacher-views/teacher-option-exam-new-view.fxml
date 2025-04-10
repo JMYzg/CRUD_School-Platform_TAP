@@ -14,6 +14,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="944.0" spacing="10.0" style="-fx-background-color: dedede;" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.examTeacherViewControllers.NewExamController">
@@ -33,8 +34,13 @@
             <Separator prefHeight="23.0" prefWidth="477.0" />
             <HBox prefHeight="32.0" prefWidth="435.0" spacing="10.0">
                <children>
-                  <TextField fx:id="examTitle" prefHeight="21.0" prefWidth="367.0" promptText="Title" />
-                  <Button id="btnplus" mnemonicParsing="false" prefHeight="34.0" prefWidth="53.0" text="OK" />
+                  <StackPane prefHeight="26.0" prefWidth="356.0">
+                     <children>
+                        <TextField fx:id="titleTextField" prefHeight="21.0" prefWidth="367.0" promptText="Title" />
+                        <Label fx:id="titleLabel" prefHeight="17.0" prefWidth="349.0" text="Title" visible="false" />
+                     </children>
+                  </StackPane>
+                  <Button id="btnplus" fx:id="btnSetTittleExam" mnemonicParsing="false" onAction="#setExamTitle" prefHeight="34.0" prefWidth="53.0" text="OK" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="457.0" spacing="10.0">
