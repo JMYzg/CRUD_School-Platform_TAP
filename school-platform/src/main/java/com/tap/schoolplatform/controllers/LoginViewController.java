@@ -29,16 +29,16 @@ public class LoginViewController extends ViewController {
         if (user != null) {
             switch (user.getRole()) {
                 case ADMIN:
-                    toAdminView();
                     LoginService.setCurrentUser(user);
+                    toAdminView();
                     break;
                 case TEACHER:
-                    toTeacherView();
                     LoginService.setCurrentUser(user);
+                    toTeacherView();
                     break;
                 case STUDENT:
-                    toStudentView();
                     LoginService.setCurrentUser(user);
+                    toStudentView();
                     break;
             }
         } else {
@@ -96,7 +96,7 @@ public class LoginViewController extends ViewController {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
         Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/teacher-views/teacher-option-view.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/teacher-views/teacher-view.fxml")));
         primaryStage.setTitle("Teacher");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -113,5 +113,4 @@ public class LoginViewController extends ViewController {
         primaryStage.show();
         primaryStage.setResizable(false);
     }
-
 }

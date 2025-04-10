@@ -11,12 +11,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="676.0" prefWidth="1000.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.teacherViewControllers.teacherViewController">
+<VBox prefHeight="676.0" prefWidth="1000.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.TeacherAnchorPaneController">
    <children>
       <AnchorPane prefHeight="30.0" prefWidth="655.0" style="-fx-background-color: #003b46;">
          <children>
             <Label layoutX="637.0" layoutY="6.0" text="Teacher's name:" />
-            <Label layoutX="739.0" layoutY="6.0" text="Juan Sanchez" />
+            <Label fx:id="teacherName" layoutX="739.0" layoutY="6.0" text="Juan Sanchez" />
             <Button id="btnLogout" fx:id="logOutButton" layoutX="38.0" layoutY="2.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: transparent;" text="Log out">
                <graphic>
                   <ImageView fitHeight="15" fitWidth="15">
@@ -29,19 +29,18 @@
          </children></AnchorPane>
       <AnchorPane prefHeight="646.0" prefWidth="1009.0" style="-fx-background-color: dedede;">
          <children>
-            <BorderPane prefHeight="646.0" prefWidth="990.0">
+            <BorderPane fx:id="borderPane" prefHeight="646.0" prefWidth="990.0">
                <left>
-                  <VBox prefHeight="657.0" prefWidth="131.0" style="-fx-background-color: B9B9B9;" BorderPane.alignment="CENTER">
+                  <VBox fx:id="vBox" prefHeight="657.0" prefWidth="131.0" style="-fx-background-color: B9B9B9;" BorderPane.alignment="CENTER">
                      <children>
                         <AnchorPane prefHeight="40.0" prefWidth="131.0" />
-                        <Button id="btnsubject" mnemonicParsing="false" prefHeight="76.0" prefWidth="131.0" style="-fx-background-color: #20b1aa;" text="Subject" />
                      </children>
                   </VBox>
                </left>
                <center>
                   <TabPane prefHeight="646.0" prefWidth="869.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                      <tabs>
-                        <Tab fx:id="groupButton" text="IS01M">
+                        <Tab fx:id="groupTab" text="IS01M">
                            <content>
                               <AnchorPane fx:id="anchorPane" prefHeight="624.0" prefWidth="869.0" style="-fx-background-color: dedede; -fx-background-radius: 5;">
                                  <padding>
