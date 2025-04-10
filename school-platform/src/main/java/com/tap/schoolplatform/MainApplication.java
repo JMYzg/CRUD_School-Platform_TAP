@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainApplication extends Application {
-    @Override
 
+    @Override
     public void start(Stage stage) throws IOException {
         SharedData.getInstance().initialize();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/views/admin-views/login-view.fxml"));
