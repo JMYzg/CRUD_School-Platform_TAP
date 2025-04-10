@@ -26,8 +26,6 @@ public class ExamOptionController extends ViewController {
 
     public void createNewExamn(ActionEvent event) throws IOException {
         loadNewPageView(event, "/views/teacher-views/teacher-option-exam-new-view.fxml", "Create new exam");
-       // radioButtonSelected();
     }
 
-    private void radioButtonSelected() {}
 }

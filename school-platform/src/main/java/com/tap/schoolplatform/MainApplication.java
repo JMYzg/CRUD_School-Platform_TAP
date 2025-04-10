@@ -13,7 +13,7 @@ public class MainApplication extends Application {
 
     public void start(Stage stage) throws IOException {
         SharedData.getInstance().initialize();
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/views/teacher-views/teacher-option-exam-new-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/views/admin-views/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();

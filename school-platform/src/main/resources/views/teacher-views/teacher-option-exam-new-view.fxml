@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="944.0" spacing="10.0" style="-fx-background-color: dedede;" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.examTeacherViewControllers.NewExamController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="944.0" spacing="10.0" style="-fx-background-color: dedede;" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.examTeacherViewControllers.NewExamController">
    <children>
       <VBox prefHeight="464.0" prefWidth="447.0" spacing="10.0" style="-fx-background-color: f6f6f6; -fx-background-radius: 5;">
          <children>
@@ -33,21 +33,31 @@
             <Separator prefHeight="23.0" prefWidth="477.0" />
             <HBox prefHeight="32.0" prefWidth="435.0" spacing="10.0">
                <children>
-                  <TextField fx:id="examTitle" prefHeight="21.0" prefWidth="367.0" promptText="Title (Cuando se le da OK se vuelve un Label)" />
+                  <TextField fx:id="examTitle" prefHeight="21.0" prefWidth="367.0" promptText="Title" />
                   <Button id="btnplus" mnemonicParsing="false" prefHeight="34.0" prefWidth="53.0" text="OK" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="457.0" spacing="10.0">
                <children>
-                  <Label text="Date:" />
+                  <Label prefHeight="17.0" prefWidth="53.0" text="Date:" />
                   <DatePicker fx:id="datePicker" prefHeight="29.0" prefWidth="143.0" promptText="DD/MM/YYYY" />
-                  <Label alignment="BOTTOM_RIGHT" text="Limit time:" />
-                  <Spinner prefHeight="30.0" prefWidth="52.0" />
+                  <Label text="Hour:" />
+                  <Spinner fx:id="spinnerHourDte" editable="true" prefHeight="30.0" prefWidth="52.0" />
                   <Label text=":" />
-                  <Spinner prefHeight="30.0" prefWidth="52.0" />
+                  <Spinner fx:id="spinnerMinuteDte" editable="true" prefHeight="30.0" prefWidth="52.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="423.0" spacing="10.0">
+               <children>
+                  <Label alignment="BOTTOM_RIGHT" text="Duration:" />
+                  <Spinner fx:id="spinnerHour" editable="true" prefHeight="30.0" prefWidth="52.0" />
+                  <Label text=":" />
+                  <Spinner fx:id="spinnerMinute" editable="true" prefHeight="30.0" prefWidth="52.0" />
                </children>
             </HBox>
             <Separator prefHeight="23.0" prefWidth="477.0" />
+            <Label id="txtbold" text="Enter Question" />
+            <TextField fx:id="examTitle2" prefHeight="21.0" prefWidth="367.0" promptText="Title" />
             <Label id="txtbold" text="Enter Exam Options:" />
             <TextField fx:id="examTitle1" prefWidth="349.0" promptText="Option 1" />
             <TextField fx:id="examTitle11" prefWidth="349.0" promptText="Option 2" />

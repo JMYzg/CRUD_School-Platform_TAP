@@ -125,4 +125,13 @@ public abstract class ViewController {
         alert.setGraphic(new ImageView(this.getClass().getResource("/images/error.png").toExternalForm()));
         alert.showAndWait();
     }
+    public void alertConfirm(String alertTitle, String alertMsg) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Alert");
+        alert.setHeaderText("");
+        alert.setContentText(alertMsg);
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alertas.css").toExternalForm());
+        alert.setGraphic(new ImageView(this.getClass().getResource("/images/confirm.png").toExternalForm()));
+        alert.showAndWait();
+    }
 }
