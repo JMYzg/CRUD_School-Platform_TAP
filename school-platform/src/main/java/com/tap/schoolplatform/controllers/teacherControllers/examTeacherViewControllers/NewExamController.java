@@ -22,8 +22,8 @@ public class NewExamController extends ViewController {
     public TextField examOption2TF;
     public TextField examOption3TF;
     public TextField examOption4TF;
-    public RadioButton rightAnswer1RadioButton;
     public ToggleGroup radioGroup;
+    public RadioButton rightAnswer1RadioButton;
     public RadioButton rightAnswer2RadioButton;
     public RadioButton rightAnswer3RadioButton;
     public RadioButton rightAnswer4RadioButton;
@@ -32,7 +32,12 @@ public class NewExamController extends ViewController {
     public TableColumn questionNumberTableColumn;
     public TableColumn questionTableColumn;
 
-    
+    public void initialize() {
+        datePicker.setEditable(false);
+        timeHourSpinner.setEditable(false);
+        timeMinuteSpinner.setEditable(false);
+
+    }
     public void cleanAllButton(ActionEvent event) {
     }
 

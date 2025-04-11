@@ -21,19 +21,19 @@
                         <AnchorPane prefHeight="33.0" prefWidth="207.0" style="-fx-background-color: #91d414; -fx-background-radius: 5;">
                            <children>
                               <Label id="txtboldW" layoutX="14.0" layoutY="8.0" text="Group:" />
-                              <Label id="txtboldW" fx:id="groupIdLabel" layoutX="58.0" layoutY="8.0" text="IT-01M" />
+                              <Label id="txtboldW" fx:id="groupNameLabel" layoutX="58.0" layoutY="8.0" text="IT-01M" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="33.0" prefWidth="183.0" style="-fx-background-color: #91d414; -fx-background-radius: 5;">
                            <children>
                               <Label id="txtboldW" layoutX="14.0" layoutY="8.0" text="Semester:" />
-                              <Label id="txtboldW" fx:id="semesterLabel" layoutX="76.0" layoutY="8.0" prefHeight="17.0" prefWidth="70.0" text="Forty" />
+                              <Label id="txtboldW" fx:id="groupSemesterLabel" layoutX="76.0" layoutY="8.0" prefHeight="17.0" prefWidth="70.0" text="Forty" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="33.0" prefWidth="237.0" style="-fx-background-color: #91d414; -fx-background-radius: 5;">
                            <children>
                               <Label id="txtboldW" layoutX="15.0" layoutY="9.0" text="Shift:" />
-                              <Label id="txtboldW" fx:id="shiftLabel" layoutX="53.0" layoutY="8.0" prefHeight="17.0" prefWidth="70.0" text="Morning" />
+                              <Label id="txtboldW" fx:id="groupShiftLabel" layoutX="53.0" layoutY="8.0" prefHeight="17.0" prefWidth="70.0" text="Morning" />
                            </children>
                         </AnchorPane>
                      </children>

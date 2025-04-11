@@ -30,10 +30,16 @@ public class GradeOptionTeacherViewController extends ViewController {
     public TableColumn<Student, Integer> unit7TableColumn;
 
     private final SharedData sharedDataObject = SharedData.getInstance();
+    public Label groupNameLabel;
+    public Label groupSemesterLabel;
+    public Label groupShiftLabel;
 
 //    GroupKey groupKey = new GroupKey(currentGroup.getSubjectList().get(0), currentGroup.getUnit);
 
     public void initialize() {
+        groupNameLabel.setText(currentGroup.getID());
+        groupSemesterLabel.setText(currentGroup.getSemester().toString());
+        groupShiftLabel.setText(currentGroup.getShift().toString());
     idTableColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
     lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
     unit1TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit1"));
@@ -43,10 +49,10 @@ public class GradeOptionTeacherViewController extends ViewController {
     unit5TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit5"));
     unit6TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit6"));
     unit7TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit7"));
-//    initializeTable(gradesTable);
+    initializeTable(gradesTable);
     }
 
     public void initializeTable(TableView<Student> table) {
-//        table.setItems(sharedDataObject.getStudents().filtered(student -> student.getGrade(groupKey)));
+        gradesTable.setItems(sharedDataObject.getStudents().filtered(student -> student.getGroup().equals(currentGroup)));
     }
 }
