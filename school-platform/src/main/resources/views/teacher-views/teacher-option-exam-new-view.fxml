@@ -48,12 +48,20 @@
                   <Label text="Date:" />
                   <DatePicker fx:id="datePicker" prefHeight="29.0" prefWidth="143.0" promptText="DD/MM/YYYY" />
                   <Label alignment="BOTTOM_RIGHT" text="Limit time:" />
-                  <Spinner fx:id="timeHourSpinner" prefHeight="30.0" prefWidth="52.0" />
+                  <Spinner fx:id="spinnerHourDte" prefHeight="30.0" prefWidth="52.0" />
                   <Label text=":" />
-                  <Spinner fx:id="timeMinuteSpinner" prefHeight="30.0" prefWidth="52.0" />
+                  <Spinner fx:id="spinnerMinuteDte" prefHeight="30.0" prefWidth="52.0" />
                </children>
             </HBox>
             <Separator prefHeight="23.0" prefWidth="477.0" />
+            <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="423.0" spacing="10.0">
+               <children>
+                  <Label alignment="BOTTOM_RIGHT" text="Limit time:" />
+                  <Spinner fx:id="spinnerHour" prefHeight="30.0" prefWidth="52.0" />
+                  <Label text=":" />
+                  <Spinner fx:id="spinnerMinute" prefHeight="30.0" prefWidth="52.0" />
+               </children>
+            </HBox>
             <Label id="txtbold" text="Enter Exam Options:" />
             <TextField fx:id="examOption1TF" prefWidth="349.0" promptText="Option 1" />
             <TextField fx:id="examOption2TF" prefWidth="349.0" promptText="Option 2" />
