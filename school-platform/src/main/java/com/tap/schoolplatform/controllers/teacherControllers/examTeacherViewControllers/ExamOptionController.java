@@ -5,11 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 
-
 import static com.tap.schoolplatform.controllers.teacherControllers.TeacherViewController.currentGroup;
+
 public class ExamOptionController extends ViewController {
 
     public Button createNewExamButton;
