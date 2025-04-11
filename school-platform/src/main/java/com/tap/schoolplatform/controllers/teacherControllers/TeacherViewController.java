@@ -23,26 +23,18 @@ public class TeacherViewController extends ViewController {
 
     SubjectService subjectService = new SubjectService();
     public static Group currentGroup;
-    public static Subject currentSubject;
+    private Subject currentSubject;
+
+    public void setCurrentSubject(Subject subject) {
+        this.currentSubject = subject;
+        subjectName.setText(subject.getName());
+    }
+
+    public void setCurrentGroup(Group group) {
+        currentGroup = group;
+    }
 
     public void initialize() {
-        for (Tab tab : TeacherAnchorPaneController.tabMap.keySet()) {
-            if (tab.isSelected()) {
-                currentGroup = TeacherAnchorPaneController.tabMap.get(tab);
-            }
-            System.out.println(TeacherAnchorPaneController.tabPaneMap);
-            for (Button button : TeacherAnchorPaneController.tabPaneMap.keySet()) {
-                if (TeacherAnchorPaneController.tabPaneMap.get(button).equals(tab.getTabPane())) {
-                    for (Subject subject : TeacherAnchorPaneController.buttonMap.keySet()) {
-                        if (TeacherAnchorPaneController.buttonMap.get(subject).equals(button)) {
-                            currentSubject = subject;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        subjectName.setText(currentSubject.getName());
     }
 
     public void openStudentTab(ActionEvent event) {
@@ -57,11 +49,10 @@ public class TeacherViewController extends ViewController {
         loadPageView("/views/teacher-views/teacher-option-homework-view.fxml", borderPane);
     }
 
-    public void openGradesTap(ActionEvent event) {
+    public void openGradesTab(ActionEvent event) {
         loadPageView("/views/teacher-views/teacher-option-grade-view.fxml", borderPane);
     }
 
     public void logOut(ActionEvent event) throws IOException {
-        logOutFunction(logOutButton);
     }
 }

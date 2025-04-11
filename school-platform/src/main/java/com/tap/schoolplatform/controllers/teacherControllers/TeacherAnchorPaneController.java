@@ -36,9 +36,9 @@ public class TeacherAnchorPaneController extends ViewController {
     public AnchorPane anchorPane;
 
     TeacherService teacherService;
-    public static Map<Subject, Button> buttonMap;
-    public static Map<Button, TabPane> tabPaneMap;
-    public static Map<Tab, Group> tabMap;
+    public Map<Subject, Button> buttonMap;
+    public Map<Button, TabPane> tabPaneMap;
+    public Map<Tab, Group> tabMap;
 
     private static final Logger logger = Logger.getLogger(TeacherAnchorPaneController.class.getName());
 
@@ -55,10 +55,33 @@ public class TeacherAnchorPaneController extends ViewController {
             for (Subject subject : teacherService.getTeacher().getAssignedSubjectList(semester)) {
                 Button button = new Button(subject.getName());
                 TabPane tabPane = new TabPane();
+                tabPane.setUserData(subject);
                 vBox.getChildren().add(button);
-                button.setOnAction(event -> borderPane.setCenter(tabPane));
                 buttonMap.put(subject, button);
                 tabPaneMap.put(button, tabPane);
+                button.setOnAction(event -> {
+                    borderPane.setCenter(tabPane);
+
+                    // Obtener el Subject asociado al TabPane
+                    Subject currentSubject = (Subject) tabPane.getUserData();
+
+                    // Verificar si hay un tab seleccionado
+                    Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+                    if (selectedTab != null) {
+                        Node content = selectedTab.getContent();
+                        if (content != null) {
+                            // Obtener el controlador desde el UserData del contenido
+                            TeacherViewController controller = (TeacherViewController) content.getUserData();
+                            if (controller != null) {
+                                controller.setCurrentSubject(currentSubject);
+                            } else {
+                                loadTabContent(selectedTab); // Recargar si no hay controlador
+                            }
+                        } else {
+                            loadTabContent(selectedTab); // Cargar contenido si no está presente
+                        }
+                    }
+                });
                 for (Group group : subject.getGroupList()) {
                     Tab tab = new Tab(group.getID());
                     tabPane.getTabs().add(tab);
@@ -82,7 +105,18 @@ public class TeacherAnchorPaneController extends ViewController {
 
     private void loadTabContent(Tab tab) {
         try {
-            Node content = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/teacher-views/teacher-option-view.fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/teacher-views/teacher-option-view.fxml"));
+            Node content = loader.load();
+            TeacherViewController controller = loader.getController();
+
+            // Obtener el Subject del TabPane
+            Subject subject = (Subject) tab.getTabPane().getUserData();
+            controller.setCurrentSubject(subject); // Actualiza el Subject en el controlador
+
+            // Si necesitas el Group:
+            Group group = tabMap.get(tab);
+            controller.setCurrentGroup(group);
+
             tab.setContent(content);
         } catch (IOException e) {
             logger.severe("Error al cargar teacher-option-view: " + e.getMessage());

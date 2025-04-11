@@ -25,7 +25,9 @@ public class StudentOptionTeacherViewController {
     private final SharedData sharedDataObject = SharedData.getInstance();
 
     public void initialize() {
-
+        groupName.setText(currentGroup.getID());
+        semesterGroup.setText(currentGroup.getSemester().toString());
+        groupShift.setText(currentGroup.getShift().toString());
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
         lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<>("name"));

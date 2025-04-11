@@ -1,8 +1,11 @@
 package com.tap.schoolplatform.controllers.teacherControllers.examTeacherViewControllers;
 
 import com.tap.schoolplatform.controllers.ViewController;
+import com.tap.schoolplatform.utils.SharedData;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 
@@ -29,6 +32,7 @@ public class NewExamController extends ViewController {
     public TableColumn questionNumberTableColumn;
     public TableColumn questionTableColumn;
 
+    
     public void cleanAllButton(ActionEvent event) {
     }
 

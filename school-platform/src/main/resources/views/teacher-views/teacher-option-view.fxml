@@ -30,7 +30,7 @@
             <Button id="btnOptions" fx:id="studentsButton" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#openStudentTab" prefHeight="31.0" prefWidth="193.0" text="Students" />
             <Button id="btnOptions" fx:id="examsButton" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#openExamsTab" prefHeight="31.0" prefWidth="193.0" text="Exams" />
             <Button id="btnOptions" fx:id="homeworkButton" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#openHomeworkTab" prefHeight="31.0" prefWidth="193.0" text="Homework" />
-            <Button id="btnOptions" fx:id="gradesButton" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#openGradesTap" prefHeight="31.0" prefWidth="193.0" text="Grades" />
+            <Button id="btnOptions" fx:id="gradesButton" alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#openGradesTab" prefHeight="31.0" prefWidth="193.0" text="Grades" />
          </children>
       </VBox>
    </left>
