@@ -1,16 +1,11 @@
 package com.tap.schoolplatform.controllers.studentControllers;
 
 import com.tap.schoolplatform.controllers.ViewController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class StudentViewController extends ViewController {
     public Button studentDataButton;
@@ -33,9 +28,8 @@ public class StudentViewController extends ViewController {
     }
 
     public void openGradesTab(MouseEvent mouseEvent) {
+        loadPageView("/views/student-views/student-grades-view.fxml", borderPane);
     }
-
-
 
     public void exitStudentView(MouseEvent mouseEvent) throws IOException {
         logOutFunction(logOutButton);

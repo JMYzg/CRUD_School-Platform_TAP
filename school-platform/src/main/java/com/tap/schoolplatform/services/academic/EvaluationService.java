@@ -30,7 +30,7 @@ public class EvaluationService {
     }
 
     public Question readQuestion(int index) {
-        return List.copyOf(evaluation.getQuestionSet()).get(index);
+        return List.copyOf(evaluation.getQuestionList()).get(index);
     }
 
     public void updateQuestion(Question question, QuestionDTO questionDTO) {

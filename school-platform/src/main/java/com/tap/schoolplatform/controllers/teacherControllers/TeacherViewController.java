@@ -17,16 +17,15 @@ public class TeacherViewController extends ViewController {
     public Button examsButton;
     public Button homeworkButton;
     public Button gradesButton;
-    public Button logOutButton;
     public BorderPane borderPane;
     public Label subjectName;
 
     SubjectService subjectService = new SubjectService();
     public static Group currentGroup;
-    private Subject currentSubject;
+    public static Subject currentSubject;
 
     public void setCurrentSubject(Subject subject) {
-        this.currentSubject = subject;
+        currentSubject = subject;
         subjectName.setText(subject.getName());
     }
 
@@ -42,6 +41,7 @@ public class TeacherViewController extends ViewController {
     }
 
     public void openExamsTab(ActionEvent event) {
+
         loadPageView("/views/teacher-views/teacher-option-exam-view.fxml", borderPane);
     }
 
@@ -51,8 +51,5 @@ public class TeacherViewController extends ViewController {
 
     public void openGradesTab(ActionEvent event) {
         loadPageView("/views/teacher-views/teacher-option-grade-view.fxml", borderPane);
-    }
-
-    public void logOut(ActionEvent event) throws IOException {
     }
 }

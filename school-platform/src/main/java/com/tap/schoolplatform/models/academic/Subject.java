@@ -91,6 +91,10 @@ public class Subject {
         }
     }
 
+    public Map<Integer, ObservableList<Task>> getTaskListMap() {
+        return Collections.unmodifiableMap(taskLists);
+    }
+
     public ObservableList<Group> getGroupList() { // I think we could delete shift from GroupKey
         return degree.getGroupList(semester);
     }

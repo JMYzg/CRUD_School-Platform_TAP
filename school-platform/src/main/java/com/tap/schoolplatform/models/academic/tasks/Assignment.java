@@ -14,8 +14,10 @@ public class Assignment extends Task {
 
     private final ObservableMap<FileKey, File> submittedFiles = FXCollections.observableHashMap();
 
-    public Assignment(String title, String description, LocalDateTime deadline) {
-        super(title, description, deadline);
+    private String description;
+
+    public Assignment(String title, LocalDateTime deadline) {
+        super(title, deadline);
     }
 
     public File getFile(FileKey key) {return submittedFiles.get(key);}
@@ -25,6 +27,9 @@ public class Assignment extends Task {
         }
         this.submittedFiles.put(key, file);
     }
+
+    public String getDescription() {return description;}
+    public void setDescription(String description) {this.description = description;}
 
     public boolean isPDF(File file) {
         return file.isFile() && file.getName().endsWith(".pdf");

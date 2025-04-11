@@ -40,16 +40,16 @@ public class GradeOptionTeacherViewController extends ViewController {
         groupNameLabel.setText(currentGroup.getID());
         groupSemesterLabel.setText(currentGroup.getSemester().toString());
         groupShiftLabel.setText(currentGroup.getShift().toString());
-    idTableColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
-    lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-    unit1TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit1"));
-    unit2TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit2"));
-    unit3TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit3"));
-    unit4TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit4"));
-    unit5TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit5"));
-    unit6TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit6"));
-    unit7TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit7"));
-    initializeTable(gradesTable);
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        unit1TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit1"));
+        unit2TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit2"));
+        unit3TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit3"));
+        unit4TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit4"));
+        unit5TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit5"));
+        unit6TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit6"));
+        unit7TableColumn.setCellValueFactory(new PropertyValueFactory<>("unit7"));
+        initializeTable(gradesTable);
     }
 
     public void initializeTable(TableView<Student> table) {

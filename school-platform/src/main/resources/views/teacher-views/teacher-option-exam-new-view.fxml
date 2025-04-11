@@ -28,7 +28,7 @@
                         <Insets right="210.0" />
                      </HBox.margin>
                   </Label>
-                  <Button id="btnM" fx:id="submitExamButton" mnemonicParsing="false" onAction="#submitExam" text="Submit Exam" />
+                  <Button id="btnM" fx:id="submitExamButton" mnemonicParsing="false" onAction="#handleSubmitExam" text="Submit Exam" />
                </children>
             </HBox>
             <Separator prefHeight="23.0" prefWidth="477.0" />
@@ -43,6 +43,11 @@
                   <Button id="btnplus" fx:id="btnSetTittleExam" mnemonicParsing="false" onAction="#setExamTitle" prefHeight="34.0" prefWidth="53.0" text="OK" />
                </children>
             </HBox>
+            <TextField fx:id="newExamUnit" prefHeight="28.0" prefWidth="276.0" promptText="Unit">
+               <VBox.margin>
+                  <Insets right="300.0" />
+               </VBox.margin>
+            </TextField>
             <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="457.0" spacing="10.0">
                <children>
                   <Label text="Date:" />
@@ -54,12 +59,7 @@
                </children>
             </HBox>
             <Separator prefHeight="23.0" prefWidth="477.0" />
-            <HBox prefHeight="39.0" prefWidth="423.0">
-               <children>
-                  <Spinner fx:id="spinnerHour" prefHeight="30.0" prefWidth="52.0" />
-                  <Spinner fx:id="spinnerMinute" prefHeight="30.0" prefWidth="52.0" />
-               </children>
-            </HBox>
+            <TextField fx:id="titleQuestion" prefHeight="21.0" prefWidth="367.0" promptText="Title" />
             <Label id="txtbold" text="Enter Exam Options:" />
             <TextField fx:id="examOption1TF" prefWidth="349.0" promptText="Option 1" />
             <TextField fx:id="examOption2TF" prefWidth="349.0" promptText="Option 2" />
@@ -95,10 +95,10 @@
          </padding>
       </VBox>
       <TableView fx:id="tableQuestions" prefHeight="520.0" prefWidth="474.0" style="-fx-background-color: f6f6f6; -fx-background-radius: 5;">
-        <columns>
-          <TableColumn fx:id="questionNumberTableColumn" prefWidth="36.0" text="No." />
-          <TableColumn fx:id="questionTableColumn" prefWidth="114.0" text="Question" />
-        </columns>
+         <columns>
+            <TableColumn fx:id="questionNumberTableColumn" prefWidth="36.0" text="No." />
+            <TableColumn fx:id="questionTableColumn" prefWidth="114.0" text="Question" />
+         </columns>
          <padding>
             <Insets left="5.0" right="5.0" />
          </padding>

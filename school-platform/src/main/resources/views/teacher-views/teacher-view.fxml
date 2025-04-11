@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Tab?>
+<?import javafx.geometry.Insets?>
 <VBox prefHeight="676.0" prefWidth="1000.0" stylesheets="@../../styles/main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tap.schoolplatform.controllers.teacherControllers.TeacherAnchorPaneController">
    <children>
       <AnchorPane prefHeight="30.0" prefWidth="655.0" style="-fx-background-color: #003b46;">

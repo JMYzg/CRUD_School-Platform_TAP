@@ -3,6 +3,7 @@ package com.tap.schoolplatform.services.academic;
 import com.tap.schoolplatform.models.academic.Group;
 import com.tap.schoolplatform.models.academic.Subject;
 import com.tap.schoolplatform.models.academic.enums.Semester;
+import com.tap.schoolplatform.models.academic.tasks.Assignment;
 import com.tap.schoolplatform.models.academic.tasks.Evaluation;
 import com.tap.schoolplatform.models.academic.tasks.Task;
 import com.tap.schoolplatform.utils.dtos.academic.tasks.TaskDTO;
@@ -27,10 +28,15 @@ public class SubjectService {
     }
 
     public void createTask(Integer unit, Task task, TaskDTO taskDTO) {
-        if (task instanceof Evaluation evaluation) {
-            evaluation.setStartDate(taskDTO.getStartDate());
-            evaluation.setTimer(taskDTO.getTimer());
+
+        if (task instanceof Assignment assignment) {
+            assignment.setDescription(taskDTO.getDescription().trim());
         }
+
+//        if (task instanceof Evaluation evaluation) {
+//            evaluation.setStartDate(taskDTO.getStartDate());
+//            evaluation.setTimer(taskDTO.getTimer());
+//        }
         subject.addTask(unit, task);
     }
 
@@ -43,9 +49,12 @@ public class SubjectService {
 
     public void updateTask(Task task, TaskDTO taskDTO) {
         if (taskDTO.getTitle() != null) task.setTitle(taskDTO.getTitle().trim());
-        if (taskDTO.getDescription() != null) task.setDescription(taskDTO.getDescription().trim());
         if (taskDTO.getScore() != null) task.setScore(taskDTO.getScore());
         if (taskDTO.getDeadline() != null) task.setDeadline(taskDTO.getDeadline());
+
+        if (task instanceof Assignment assignment) {
+            if (taskDTO.getDescription() != null) assignment.setDescription(taskDTO.getDescription().trim());
+        }
 
         if (task instanceof Evaluation evaluation) {
             if (taskDTO.getStartDate() != null) evaluation.setStartDate(taskDTO.getStartDate());

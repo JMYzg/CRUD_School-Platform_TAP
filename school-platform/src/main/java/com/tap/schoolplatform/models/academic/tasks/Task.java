@@ -11,16 +11,14 @@ public abstract class Task {
     private final UUID id;
     private final LocalDate creationDate;
     private String title;
-    private String description;
     private double score; // Should I delete this?
     private LocalDateTime deadline;
     private Status status;
 
-    public Task(String title, String description, LocalDateTime deadline) {
+    public Task(String title, LocalDateTime deadline) {
         this.id = UUID.randomUUID(); // Maybe the title could work as id
         creationDate = LocalDate.now();
         this.title = title;
-        this.description = description;
         this.score = 0;
         this.deadline = deadline;
         updateStatus();
@@ -39,13 +37,6 @@ public abstract class Task {
     }
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public double getScore() {

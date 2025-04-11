@@ -4,6 +4,8 @@ import com.tap.schoolplatform.models.academic.Group;
 import com.tap.schoolplatform.models.academic.Subject;
 import com.tap.schoolplatform.models.academic.enums.Semester;
 import com.tap.schoolplatform.models.academic.enums.Shift;
+import com.tap.schoolplatform.models.academic.tasks.Assignment;
+import com.tap.schoolplatform.models.academic.tasks.Evaluation;
 import com.tap.schoolplatform.models.enums.Gender;
 import com.tap.schoolplatform.models.enums.UserRole;
 import com.tap.schoolplatform.models.shared.Address;
@@ -20,6 +22,7 @@ import javafx.collections.ObservableMap;
 import javafx.scene.image.Image;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class SharedData {
@@ -59,7 +62,18 @@ public class SharedData {
         administrators.add(admin);
         Degree SE = new Degree("Software Engineering");
         Subject IC = new Subject(SE, Semester.FIRST, "Integral Calculus");
+
+        LocalDateTime deadline = LocalDateTime.of(2025, 4, 11, 10, 0);
+        Evaluation evaluation = new Evaluation("1. Evaluation", deadline);
+
+        IC.addTask(1, evaluation);
+
         Subject POO = new Subject(SE, Semester.FIRST, "POO");
+
+        Assignment assignment = new Assignment("1. Assignment", deadline);
+
+        POO.addTask(1, assignment);
+
         Group M1 = new Group(SE, Semester.FIRST, Shift.MORNINGS);
         Student student = getStudent(M1);
         users.computeIfAbsent(UserRole.STUDENT, k -> FXCollections.observableArrayList()).add(student);
