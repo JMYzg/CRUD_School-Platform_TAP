@@ -32,7 +32,6 @@ public class NewExamController extends ViewController {
     @FXML
     private Label titleLabel;
 
-
     int currentHour;
 
     public void initialize() {

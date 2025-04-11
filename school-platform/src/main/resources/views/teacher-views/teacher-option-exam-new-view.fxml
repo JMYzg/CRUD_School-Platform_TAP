@@ -54,11 +54,9 @@
                </children>
             </HBox>
             <Separator prefHeight="23.0" prefWidth="477.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="423.0" spacing="10.0">
+            <HBox prefHeight="39.0" prefWidth="423.0">
                <children>
-                  <Label alignment="BOTTOM_RIGHT" text="Limit time:" />
                   <Spinner fx:id="spinnerHour" prefHeight="30.0" prefWidth="52.0" />
-                  <Label text=":" />
                   <Spinner fx:id="spinnerMinute" prefHeight="30.0" prefWidth="52.0" />
                </children>
             </HBox>
